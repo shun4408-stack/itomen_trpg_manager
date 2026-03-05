@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG Archive v9.2.1 - Networked Master</title>
+    <title>TRPG Archive v9.2.2 - Networked Master</title>
     <style>
         /* ============================================================
            v7.9.7 正典スタイル（完全凍結・隔離）
@@ -148,16 +148,19 @@
 
         .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-family: 'Noto Serif JP', serif; }
         .cal-title { font-size: 1.5rem; font-weight: bold; color: var(--accent); letter-spacing: 2px; }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        
+        /* ★ v9.2.2 修正：セルの自動拡張防止 */
+        .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
         .cal-day-label { background: var(--panel-header-bg); padding: 12px; text-align: center; font-size: 0.75rem; font-weight: bold; color: var(--text-sub); }
-        .cal-cell { background: var(--card-bg); min-height: 105px; padding: 8px; position: relative; transition: 0.2s; cursor: pointer; z-index: 1; }
+        .cal-cell { background: var(--card-bg); min-height: 105px; padding: 8px; position: relative; transition: 0.2s; cursor: pointer; z-index: 1; min-width: 0; }
+        
         .cal-cell:hover { background: var(--panel-header-bg); }
         .cal-cell.today { background: var(--san-bg); }
         .cal-cell.today .cal-date-num { color: var(--accent); font-weight: bold; text-decoration: underline; }
         .cal-cell.other-month { opacity: 0.35; background: #eee; }
         .cal-date-num { font-family: 'Noto Serif JP', serif; font-size: 0.95rem; color: var(--text-sub); margin-bottom: 8px; display: block; }
         
-        .cal-event-preview { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.7; font-family: 'Noto Serif JP', serif; border-left: 4px solid var(--accent); padding: 1px 6px; margin-bottom: 4px; font-weight: bold; box-shadow: 1px 1px 3px rgba(0,0,0,0.08); border-radius: 0 4px 4px 0; transition: 0.2s; position: relative; z-index: 5; }
+        .cal-event-preview { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.7; font-family: 'Noto Serif JP', serif; border-left: 4px solid var(--accent); padding: 1px 6px; margin-bottom: 4px; font-weight: bold; box-shadow: 1px 1px 3px rgba(0,0,0,0.08); border-radius: 0 4px 4px 0; transition: 0.2s; position: relative; z-index: 5; display: block; }
         .cal-event-preview:hover { filter: brightness(1.1); transform: translateX(2px); }
         .cal-event-preview.status-adj { background: rgba(108, 117, 125, 0.15); border-left-color: #6c757d; color: #495057; }
         .cal-event-preview.status-wait { background: rgba(74, 111, 165, 0.15); border-left-color: #4a6fa5; color: #4a6fa5; }
@@ -211,7 +214,9 @@
         details.secret-details > div { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border); }
     </style>
 </head>
-<body class="view-mode"> <nav>
+<body class="view-mode"> 
+
+<nav>
     <h1 onclick="openSyncSettings()" title="管理者設定を開く">TRPG ARCHIVE</h1>
     <div class="nav-items">
         <div class="nav-item active" id="nav-cal" onclick="showView('v-calendar')">活動予定表</div>
@@ -509,7 +514,7 @@
 
 <script>
     /* ============================================================
-       v9.2.1 絶対不凍・堅牢化モジュール（getGenre復活版）
+       v9.2.2 絶対不凍・堅牢化モジュール（getGenre復活版・レイアウト修正版）
        ============================================================ */
     const KEY = 'trpg_archive_v74';
     const KEY_SCH = 'trpg_archive_schedules';
@@ -528,7 +533,6 @@
     let currentSchEditId = null;
     let currentScnEditId = null;
 
-    // エラーで絶対に止まらない設定読み込み
     let syncConfig = { owner: '', repo: '', token: '', path: 'data.json', sha: '' };
     try {
         const storedSync = localStorage.getItem(KEY_SYNC);
@@ -542,7 +546,6 @@
     const SKILLS_6TH = [ ["回避",0],["投擲",25],["こぶし/パンチ",50],["キック",25],["組みつき",25],["頭突き",10],["マーシャルアーツ",1],["拳銃",20],["サブマシンガン",15],["ショットガン",30],["ライフル",25],["弓",10],["目星",25],["聞き耳",25],["図書館",25],["応急手当",30],["精神分析",1],["鍵開け",1],["隠れる",10],["忍び歩き",10],["隠す",15],["追跡",10],["登攀",40],["写真術",10],["運転",20],["製作",5],["操縦",1],["跳躍",25],["水泳",25],["乗馬",5],["機械修理",10],["電気修理",10],["重機械操作",1],["変装",1],["ナビゲート",10],["説得",15],["言いくるめ",5],["信用",15],["値切り",5],["クトルフ神話",0],["心理学",5],["人類学",1],["考古学",1],["医学",5],["天文学",1],["生物学",1],["化学",1],["地質学",1],["物理学",1],["法律",5],["歴史",20],["オカルト",5],["博物学",10],["母国語",0],["ほかの言語",1],["芸術",5],["経理",10],["コンピューター",1],["電子工学",1] ];
     const SKILLS_7TH = [ ["回避",0],["投擲",20],["近接戦闘",25,"格闘"],["射撃",20,"拳銃"],["目星",25],["聞き耳",20],["図書館",20],["応急手当",30],["精神分析",1],["鍵開け",1],["隠密",20],["追跡",10],["登攀",20],["手さばき",10],["鑑定",5],["運転",20],["操縦",1],["跳躍",20],["水泳",20],["乗馬",5],["機械修理",10],["電気修理",10],["重機械操作",1],["変装",5],["ナビゲート",10],["製作",5],["説得",10],["言いくるめ",5],["威圧",15],["魅了",15],["信用",0],["値切り",5],["クトルフ神話",0],["心理学",10],["人類学",1],["考古学",1],["サバイバル",10],["医学",1],["歴史",5],["法律",5],["オカルト",5],["自然",10],["母国語",0],["ほかの言語",1],["芸術",5],["経理",5],["コンピューター",5],["電子工学",1],["科学",1,"数学"] ];
 
-    // ★重要：完全に安全なBase64変換（これで絶対にパースエラーが起きない）
     function safeUTF8ToBase64(str) {
         const utf8Bytes = new TextEncoder().encode(str);
         let binaryString = "";
@@ -561,7 +564,6 @@
         return new TextDecoder().decode(bytes);
     }
 
-    // ★大元凶だった消失関数の復活
     function getGenre(n) { 
         const cleaned = n.split(/[(\（]/)[0]; 
         for (const [g, l] of Object.entries(GENRE_MAP)) { 
@@ -583,12 +585,10 @@
             initNewForm(); 
             renderAll();
             
-            // 初回のカレンダー画面表示を強制実行
             showView('v-calendar'); 
         } catch(e) {
             console.error("起動時致命的エラー", e);
             document.getElementById('app-mode-disp').innerText = "⚠ 起動エラー(復旧試行)";
-            // 壊れていてもとにかく画面は出す
             try { renderAll(); showView('v-calendar'); } catch(ex){}
         }
     };
@@ -640,7 +640,6 @@
         schedules = schedules.map(s => { if (!s.dates && s.date) s.dates = [s.date]; if (!s.dates) s.dates = []; return s; }); 
     }
 
-    // UIをブロックせず、エラー時も自動復旧する最強の保存関数
     async function pushData() {
         if (!isEditMode || !syncConfig.owner || !syncConfig.repo || !syncConfig.token) return;
         
@@ -661,7 +660,6 @@
 
             let res = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
             
-            // 初回作成時や別端末との競合(409/422)が起きた場合は、自動で最新SHAを取得して上書きリトライ
             if (res.status === 409 || res.status === 422) {
                 const getRes = await fetch(url + '?ref=main', { headers });
                 if (getRes.ok) {
@@ -696,7 +694,6 @@
         try { renderScenarioLibrary(); } catch(e){ console.error(e); }
     }
 
-    // --- 同期設定画面の制御 ---
     function openSyncSettings() {
         document.getElementById('sync-owner').value = syncConfig.owner;
         document.getElementById('sync-repo').value = syncConfig.repo;
@@ -806,7 +803,6 @@
     function openViewer(i) {
         const c = chars[i]; const left = document.getElementById('v-page-left'); const right = document.getElementById('v-page-right'); const editContainer = document.getElementById('v-edit-btn-container');
         
-        // エラー回避のためのデフォルト値設定
         c.stats = c.stats || {};
         const str = Number(c.stats.str) || 0; const con = Number(c.stats.con) || 0; const pow = Number(c.stats.pow) || 0; const dex = Number(c.stats.dex) || 0; const app = Number(c.stats.app) || 0; const siz = Number(c.stats.siz) || 0; const int = Number(c.stats.int) || 0; const edu = Number(c.stats.edu) || 0; const san = Number(c.stats.san) || 0;
         const luck = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0;
@@ -853,7 +849,7 @@
         
         right.innerHTML = rightHtml;
         
-        editContainer.innerHTML = '<div style="display:flex; gap:10px;"><button onclick="editChar(' + i + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">編集</button><button onclick="deleteCharFromViewer(' + i + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">削除</button></div>';
+        editContainer.innerHTML = '<div style="display:flex; gap:10px;"><button onclick="editChar(' + i + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">編集</button><button onclick="deleteCharFromViewer(' + i + ')" class="btn-action del admin-only" style="font-size:0.9rem; padding:8px 20px;">削除</button></div>';
         
         document.getElementById('viewer-overlay').style.display = 'flex';
     }
@@ -889,7 +885,6 @@
     function exportData() { const blob = new Blob([JSON.stringify({chars, schedules, scnLib})], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "trpg_archive_all.json"; a.click(); }
     function importData() { document.getElementById('import-file').click(); }
     
-    // ★重要：復元後にちゃんと同期通信を走らせる
     function handleImport(input) { 
         const reader = new FileReader(); 
         reader.onload = async () => { 
