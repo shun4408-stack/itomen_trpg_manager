@@ -1,1 +1,51 @@
-{"chars":[],"schedules":[]}
+{
+  "chars": [
+    {
+      "regulation": "6th",
+      "name": "test",
+      "kana": "",
+      "job": "",
+      "sex": "",
+      "age": "",
+      "height": "",
+      "img": "",
+      "stats": {
+        "str": "",
+        "con": "",
+        "pow": "",
+        "dex": "",
+        "app": "",
+        "siz": "",
+        "int": "",
+        "edu": "",
+        "san": ""
+      },
+      "calcStats": {
+        "luck": ""
+      },
+      "ptPattern": "edu_only",
+      "ptManual": 0,
+      "skills": [],
+      "scns": [],
+      "profs": []
+    }
+  ],
+  "schedules": [
+    {
+      "id": 1772685993274,
+      "dates": [
+        "2026-03-05T21:00"
+      ],
+      "title": "test",
+      "status": "待機中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    }
+  ]
+}
