@@ -1,20 +1,5 @@
 {
   "chars": [],
-  "schedules": [
-    {
-      "id": 1772539406898,
-      "dates": [],
-      "title": "プルガトリウムの夜",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    }
-  ],
+  "schedules": [],
   "scnLib": []
 }
