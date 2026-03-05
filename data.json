@@ -1382,60 +1382,33 @@
       ]
     },
     {
-      "id": 1772717424651,
+      "id": 1772717441103,
       "dates": [],
-      "title": "Reverse city 2",
+      "title": "笑う人間師",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ナス大臣"
+          "name": "てる"
         }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
-        },
-        {
-          "name": "てる"
         }
       ]
     },
     {
-      "id": 1772717376639,
+      "id": 1772717398418,
       "dates": [],
-      "title": "塔葬の国",
+      "title": "イザナミの棺",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
-        {
-          "name": "ナス大臣"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
         {
           "name": "あきづ"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1772717317184,
-      "dates": [],
-      "title": "唯識桜",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ひなた"
         }
       ],
       "partners_pl": [
@@ -1444,12 +1417,6 @@
         },
         {
           "name": "てる"
-        },
-        {
-          "name": "かるぼなーら"
-        },
-        {
-          "name": "ねぎ"
         }
       ]
     },
@@ -1481,15 +1448,66 @@
       ]
     },
     {
-      "id": 1772717398418,
+      "id": 1772717317184,
       "dates": [],
-      "title": "イザナミの棺",
+      "title": "唯識桜",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
+          "name": "ひなた"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "てる"
+        },
+        {
+          "name": "かるぼなーら"
+        },
+        {
+          "name": "ねぎ"
+        }
+      ]
+    },
+    {
+      "id": 1772717376639,
+      "dates": [],
+      "title": "塔葬の国",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ナス大臣"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
           "name": "あきづ"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772717424651,
+      "dates": [],
+      "title": "Reverse city 2",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ナス大臣"
         }
       ],
       "partners_pl": [
