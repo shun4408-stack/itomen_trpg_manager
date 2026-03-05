@@ -1,43 +1,1416 @@
 {
   "chars": [
     {
-      "regulation": "6th",
-      "name": "test",
-      "kana": "",
-      "job": "",
-      "sex": "",
-      "age": "",
-      "height": "",
-      "img": "",
+      "regulation": "7th",
+      "name": "奥見　糸貴",
+      "kana": "おくみ　しき",
+      "job": "刑事",
+      "sex": "男性",
+      "age": "26(28)",
+      "height": "171",
+      "img": "data:image/jpeg;base64,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",
       "stats": {
-        "str": "",
-        "con": "",
-        "pow": "",
-        "dex": "",
-        "app": "",
-        "siz": "",
-        "int": "",
-        "edu": "",
-        "san": ""
+        "str": "70",
+        "con": "50",
+        "pow": "40",
+        "dex": "70",
+        "app": "65",
+        "siz": "60",
+        "int": "90",
+        "edu": "85",
+        "san": "69"
       },
       "calcStats": {
-        "luck": ""
+        "luck": "32"
       },
       "ptPattern": "edu_only",
-      "ptManual": 0,
-      "skills": [],
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "35",
+          "j": "0",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "近接戦闘（格闘）",
+          "b": "25",
+          "j": "55",
+          "i": "0",
+          "g": "10",
+          "o": "0",
+          "t": "90",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "拳銃",
+          "b": "20",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "50",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "応急手当",
+          "b": "30",
+          "j": "0",
+          "i": "20",
+          "g": "0",
+          "o": "0",
+          "t": "50",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "聞き耳",
+          "b": "20",
+          "j": "30",
+          "i": "10",
+          "g": "0",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "図書館",
+          "b": "20",
+          "j": "0",
+          "i": "40",
+          "g": "6",
+          "o": "0",
+          "t": "66",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "30",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "80",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "運転（自動車）",
+          "b": "20",
+          "j": "0",
+          "i": "30",
+          "g": "3",
+          "o": "0",
+          "t": "53",
+          "sub": "",
+          "gr": "行動"
+        },
+        {
+          "n": "製作（料理）",
+          "b": "5",
+          "j": "0",
+          "i": "0",
+          "g": "10",
+          "o": "0",
+          "t": "15",
+          "sub": "",
+          "gr": "行動"
+        },
+        {
+          "n": "信用",
+          "b": "0",
+          "j": "35",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "35",
+          "sub": "",
+          "gr": "交渉"
+        },
+        {
+          "n": "魅惑",
+          "b": "15",
+          "j": "45",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "言語（猫語）",
+          "b": "1",
+          "j": "0",
+          "i": "0",
+          "g": "36",
+          "o": "0",
+          "t": "37",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "オカルト",
+          "b": "5",
+          "j": "0",
+          "i": "0",
+          "g": "29",
+          "o": "0",
+          "t": "34",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "クトゥルフ神話",
+          "b": "0",
+          "j": "0",
+          "i": "0",
+          "g": "13",
+          "o": "0",
+          "t": "13",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "芸術（演劇）",
+          "b": "5",
+          "j": "75",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "科学（博物学）",
+          "b": "1",
+          "j": "0",
+          "i": "0",
+          "g": "3",
+          "o": "0",
+          "t": "4",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "心理学",
+          "b": "10",
+          "j": "70",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "夢の知識",
+          "b": "0",
+          "j": "0",
+          "i": "0",
+          "g": "3",
+          "o": "0",
+          "t": "3",
+          "sub": "",
+          "gr": "知識"
+        }
+      ],
+      "scns": [
+        "プルガトリウムの夜",
+        "デストルドーの使者",
+        "ねこ忍者の襲撃",
+        "ラストダンスは夜明けまで",
+        "気付いたら死んでた",
+        "喫茶カーネチェル",
+        "100万回目のハッピーバースデー",
+        "惨歌讃劇",
+        "悠遠からのmayday"
+      ],
+      "profs": [
+        {
+          "t": "所持品",
+          "x": "スマホ、財布、ハンカチ、ティッシュ、煙草（赤マル）、ジッポライター、警察手帳、筆記具、メモ帳、手袋"
+        },
+        {
+          "t": "プロフィール",
+          "x": "警視庁刑事部捜査第一課所属。菊凪班の一人。\n仕事ぶりは至って普通。なにもかも凡才の一言に尽きるが、武術の才には恵まれている。\n幼少期に姉を亡くしており、それ以来家族関係が歪になり自身も不安定な状態が続いていた。\n菊凪さんから説得を受け、以来は自分を信じて前を向いて生きていけるようになった。\n\n菊凪さんの幸せを願い続ける。孤独にさせないために。\n班長の事を見守り続ける。一人にさせないために。\n皆が笑って生きていける社会を守り続ける。大切な人の正義を貫くために。\n\n精神転移後、無事事件を未然に解決することができた。\n彼女は、世界は、救われたはずだ。今後、またどのような災いが降りかかるのかは想像もつかないが。\n\nあの世界に一人残してきた彼女のことを考えなかった日はなかった。\n彼女は今、どうしているのか。あの世界はあの後、どうなったのか。\nそれを知る術はない。過去には戻れない。振り返ってもしょうがない。\nだが、知っている。過去に戻る方法を。失ったものを取り戻す方法を。\n彼は目指すだろう。\n今は離れ離れでも、いつか交わる時を。"
+        },
+        {
+          "t": "PCに対する感情",
+          "x": "▶菊凪松里（菊凪さん）\n過去のバディ。\n彼女ももしかすると、同じ境遇、気持ちで居たのかもしれないと、想像はできるだろう。\n今はそれを確認することができない訳だが。\nあの時の選択が、正しいものなのか不安になる日だってあるだろう。\nそれでも、背中を押してくれた人のために、彼は生きることを選んだ。\n彼女を想い続ける。孤独にさせないために。\n\n▶菊凪松里（班長）\n現在のバディ。\nあったかもしれない未来を生きる人。\n彼女は何も知らない。それで良い。そのために彼は選択したのだから。\nどうか、幸せになって欲しい。"
+        },
+        {
+          "t": "RPの方向性",
+          "x": "「大丈夫ですか班長？俺に出来ることがあれば言ってください」\n「これですか？そうですね...大切な人が吸っていたんですよ。真似しないでくださいね？」\n基本的にはとても常識人で真面目。少々ネガティブ気質のため、あまり強くは出れない。\n特定の人物に対して非常にデリケートになる。\n人の救いになれる人間になりたい。"
+        },
+        {
+          "t": "性格",
+          "x": "長所：負けず嫌い、素直\n短所：神経質、頑固\n一人称：俺\n二人称：君、貴方、班長"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "真泉　紫",
+      "kana": "まいずみ　ゆかり",
+      "job": "会社員",
+      "sex": "女性",
+      "age": "23",
+      "height": "159",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "10",
+        "con": "17",
+        "pow": "10",
+        "dex": "17",
+        "app": "13",
+        "siz": "12",
+        "int": "14",
+        "edu": "16",
+        "san": "39"
+      },
+      "calcStats": {
+        "luck": "50"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "0",
+          "i": "15",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "0",
+          "i": "35",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "0",
+          "i": "15",
+          "g": "1",
+          "o": "0",
+          "t": "41"
+        },
+        {
+          "n": "運転（自動車）",
+          "b": "20",
+          "j": "0",
+          "i": "5",
+          "g": "0",
+          "o": "0",
+          "t": "25"
+        },
+        {
+          "n": "芸術（家事）",
+          "b": "5",
+          "j": "0",
+          "i": "70",
+          "g": "0",
+          "o": "0",
+          "t": "75"
+        },
+        {
+          "n": "経理",
+          "b": "10",
+          "j": "70",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "コンピューター",
+          "b": "1",
+          "j": "65",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "66"
+        },
+        {
+          "n": "説得",
+          "b": "15",
+          "j": "65",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "値切り",
+          "b": "5",
+          "j": "70",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "75"
+        },
+        {
+          "n": "他の言語（英語）",
+          "b": "1",
+          "j": "25",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "26"
+        },
+        {
+          "n": "法律",
+          "b": "5",
+          "j": "25",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "30"
+        }
+      ],
+      "scns": [
+        "キルキルイキル"
+      ],
+      "profs": [
+        {
+          "t": "所持品",
+          "x": "スマホ、財布、ハンカチ、ティッシュ、化粧箱"
+        },
+        {
+          "t": "プロフィール",
+          "x": "２３歳社会人５年目お姉さん。\n父がバツイチ、再婚した母と、その連れ子だった年の離れた弟が二人いる。５人家族の長女。\n家族構成は複雑だが現在の関係は良好。昔はなにかと苦労した。\nその苦労があってか家事や家計には少しうるさい。\n高校を卒業して就職する時、叶藍にルームシェアを提案されて以来彼女と二人暮らしをしている。\n本人には渋々感を出したが本当はとても嬉しかった。\n思春期のほとんどが若干頼りない父親との二人暮らし生活だったため、\n真面目で頼りがいのある性格に育ったが実は寂しがり屋で甘えたがり。元々一人っ子故かも。"
+        },
+        {
+          "t": "家族構成",
+          "x": "▶父親\n運送業。\n悪い人ではないのだが妙にだらしない。人柄でなんとかなっているタイプ。\n子供に対してよく「悪いな。苦労をかけて」みたいなことを面と向かって言っちゃう。\nおかげで親に甘えず自立した人間に育った。\n\n▶元母親\n元々の母親。専業主婦。\n父とはお金の話でよく喧嘩をしていてその結果離婚になったらしい。\nそのあたりは詳しくは紫も分かっていない。\nそもそも、子供がそんなに好きではない人だったのだと思う。\n\n▶現母親\n再婚相手の母。看護師。\n知り合いの紹介で付き合うことになったらしい。\n母親になろうと頑張ってはくれているのだろうがあからさまな雰囲気に慣れず微妙な距離感のまま。\n一度も「お母さん」と呼んだことは無い。名前で呼んでいる。\n\n▶二人の弟（13歳と16歳）\nそれぞれ中学生、高校生の弟がいる。再婚相手の母の連れ子。くん付けで呼んでる。\n年の離れた義姉となると向こうもどう接したらいいのかわからないようで、\n昔は何かと変なちょっかいをかけられている。\nぶっちゃけかなり苦手意識がある。"
+        },
+        {
+          "t": "PCに対しての感情",
+          "x": "▶小枝叶藍\n幼馴染。親友。大好き。\n普段見た目にそこまで気を遣っていなかったが、一緒に暮らし始めてからは気にするようにしている。\n彼女に高校生の時開けてもらったピアスを今も大事にしている。"
+        },
+        {
+          "t": "シナリオ関連",
+          "x": "▶趣味：節約\n人に使うお金は惜しまないが自分に使うお金はかなり渋るタイプ。\n記念日とか大切な日にはパーティしよって言いながらちょっといいもの買ってきてる。\n▶家具：目覚まし時計、特売チラシ\n朝がクソ弱い。目覚まし時計は必需品。昔ながらの爆音で鳴り響くやつ。ヂリリリリ！！！！\n特売チラシは自宅近辺のスーパー達の物が揃っている。曜日毎に行く場所変えてる。\n▶思い出の品：ピアス\n高校生の時とかに叶藍に開けてもらってからずっとつけてる。\n落ち込んだ時に触れる癖がある。かもしれない。"
+        },
+        {
+          "t": "RPの方向性",
+          "x": "「はいはい、わかったわかった。叶藍はしょうがないんだから」\n「叶藍！今日は近くのスーパーでお肉が特売なんだ！今日はお肉パーティーにしよう！」\n「叶藍が笑ってくれているだけで、私も笑顔になれるから」\n\n複雑な家庭環境だがなまじ皆悪い人ではなかったために負の感情が不完全燃焼のまま来ちゃった中途半端ガール。\n叶藍にだけは何度か話をしているかもしれない。太陽であれ。ギャル。\nていうか女同士の幼馴染の距離感ってどうなってるんですか？これでいいの？教えて誰か？"
+        },
+        {
+          "t": "ステータス関連",
+          "x": "サプリ2015(2010)ビジネスマン参照\n※特記：経理に+10%の補正\n※特徴：4-8 大切なもの（D）\n（一応2015のやつなので特記特徴つけてますが、適応不可ならそれでも大丈夫です。\nキャラシは特記特徴を使わないことを前提に組んでます。使えるなら若干数字変わります。\nでもピアスなくなったら普通にセルフでSANc入れます。）\n合計ステータス109"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "縁月　恒見",
+      "kana": "ゆづき　つねみ",
+      "job": "コンビニ店員",
+      "sex": "男",
+      "age": "19",
+      "height": "168",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "10",
+        "con": "17",
+        "pow": "11",
+        "dex": "15",
+        "app": "9",
+        "siz": "12",
+        "int": "11",
+        "edu": "13",
+        "san": "3"
+      },
+      "calcStats": {
+        "luck": "55"
+      },
+      "ptPattern": "dex",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "30",
+          "j": "0",
+          "i": "10",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "55",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "追跡",
+          "b": "10",
+          "j": "15",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "25"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "25",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "50"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "55",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "芸術(料理)",
+          "b": "5",
+          "j": "0",
+          "i": "35",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "言いくるめ",
+          "b": "5",
+          "j": "45",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "心理学",
+          "b": "5",
+          "j": "65",
+          "i": "10",
+          "g": "0",
+          "o": "0",
+          "t": "80"
+        },
+        {
+          "n": "オカルト",
+          "b": "5",
+          "j": "0",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "30"
+        },
+        {
+          "n": "法律",
+          "b": "5",
+          "j": "20",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "25"
+        }
+      ],
       "scns": [],
-      "profs": []
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nスマートフォン、財布、ハンカチ、ティッシュ、煙草、飴、ガム\n================================================================================\n【プロフィール】\n親を失った少年。\n幼い頃（4歳頃）家族を失ってから母方の祖父母の家へと預けられた。\n祖父母とは仲が悪いわけではないが、どこか他人行儀のような距離感が変えられず家を離れた。\n現在は障害年金とバイト代でなんとかやりくりしながら独り暮らしをしている。\n\n高校時代は部活こそ出来なかったが至って普通に生活していた。\n小中学校の時は体質の理解が得られず、困ったこともあったが高校にもなると慣れてくる。\n人とは適度な距離を保つだけでいい。面倒が起きなければそれでいいんだから。\n当たり障りなく、仲良しごっこをするだけで平和に時間は過ぎる。\n顔は広い方だったと思うけど、皆一クラスメイトとしての付き合い程度におさまり、親友と呼べるような人は出来なかった。\n高校を卒業してから連絡を取るような相手もいない。\n「縁月ってさ、なんかやりづらいよね。もっと付き合い良かったらいいのに」\nふと聞いたクラスメイトの一言がずっと頭に残ってる。\nこんな体でなければそうしたよ。\n\n様々な方法を試してみたけど、日が沈むとどうしても眠りに落ちてしまう。\n眠りの時間も伸びて、日に日に活動時間が短くなっていく。\nこのまま独りで、狭い部屋の中、起きることもなくなるのか。\nそんなことを考え、漠然とした不安に駆られる毎日が続く。\nあの事件から十何年と経つが、犯人が捜索されることもなく、世間では忘れられた過去にすぎない。\n自分だけが忘れられず、やるせない焦燥感があってもそれを覆す力はない。\n逆にずっと、眠っていたほうが楽なんじゃないかと思う。\n\nそんな時、道端で倒れている人を見つけた。\n顔を見てすぐに当時を思い出した。月光に照らされた影を。\nもしかしたら、こいつがそうなのかもしれない。\nあの犯人が、今目の前にいるのかもしれないと思うと怒りに似た感情が心の奥底から湧き出てきた。\nこんなに強く感情が湧くのは久しぶりだ。\nこいつが病人面で倒れているのを見ると余計腹が立つ。お前がそんな顔をするな。\nでも、まだわからない。確信がない。\nこれはチャンスだ。十何年と燻ぶった感情を発散させるためのチャンスだ。\n最後になってもいい。このままなにもせずいたら父さんや母さんにも合わせる顔がない。\nそのためにも、まずは仲良くなるフリをして話を聞き出さないと。\nこれが最後の仲良しごっこだ。\n================================================================================\n【RPの方向性】\n「らっしゃっせー。あ、じいちゃんまたショッポ？」\n「うぃーっす、あ、こもさん（小森）、廃棄もらってっていいすか？」\n「パイセン（ソネザキ）、今日こそ撫でさせてもら...あちょ、やめ...アー！！！（引っかかれる）」\n「あれ、大丈夫っすか？............あ、よかった～。死体だったらどうしようかと思った～」\n\nノリは良いが付き合いは悪い。\n色々と器用ではあるが、半ばすべてを諦めているからこそできているだけかも。\n================================================================================\n【家族構成】\n▶祖母：日絣　卯目（ひがすり　うめ）\n▶祖父：日絣　留目（ひがすり　とどめ）\nめちゃくちゃほんわか。普通に良い人達。\n娘夫婦のことはもちろん非常にショックを受けたが、孫の恒見を最優先に色々頑張ってくれた人達。\n唯一定期的に連絡をくれるし家の片づけにも来てくれる。\n善人すぎて逆に居心地が悪く恒見は家を出てしまったが、とても感謝はしている\n「困ったことがあったらいつでも帰ってきなさいね」\n\n▶母：縁月　瞳（ゆづき　ひとみ）　当時28歳\n看護師。めちゃくちゃ軽快ではっきりした性格。元ヤン。\n事件当時は恒見の弟か妹を妊娠していたが、そのまま親子共々亡くなった。\n恒見は母の形見のピアスを付けている。\n「またおやつこぼして！ちゃんとお皿の上で食べなさいっていつも行ってるでしょ！？」\n\n▶父：縁月　眞（ゆづき　まこと）　当時31歳\nサラリーマン。めちゃくちゃ優しい。元ヤン。\n母に怒られて父に慰めてもらうのがいつものパターンだった。\n恒見は父の形見の腕時計を付けている。\n「また母さんに怒られたのかい？」\n\n余談：恒見は両親が元ヤンだったことを祖父母から聞いて知った。\n================================================================================\n2015私立探偵準拠\n合計ステータス94\n\n[秘匿]\n■秘匿HO\n■HO太陽\n秘匿「お前はHO月を殺したい」\n推奨技能：目星・聞き耳\nあったら使うかも：交渉系・図書館\n\n特記事項-\n・年齢18～24歳(高校卒業済)\n・職業：コンビニ店員固定\n※職業技能について\n将来の夢を一つ決定し、それにちなんだ職業から技能を取得すること。将来の夢とは「眠ってしまう体質が治るならやってみたいこと/やってみたかったこと」または「幼いころ抱いていた将来の夢」など。\n・一応、行き倒れている人を見たら心配して声をかける人間であること(導入のため)\n\n★ステータスについて\n・あなたには幼いころの精神的なショックがある。\nPOWの値を＜2D6＞で決定する。\n・しかしたっぷり寝ているためなのかなんなのか、体はなんか元気だ。\nCONの値に+3する(※最大値の18は超えない)\n\n★家族について\n・幼いころ失った家族について、簡単な設定を提出すること(それぞれの名前と家族構成)\n\n＜序幕：これまでのおはなし＞\nお前の家族は吸血鬼によって殺された。\n幼いころ、お前はそれを目撃している。お前の眼前で母親は死んだのだ。首筋に牙をたてられ、血液を吸い上げられて。女の体は見る間に塵になっていった。気づけば、周囲には幾らかの砂山が築かれていた。人型に盛られた砂山が、お前の家族のなれの果てだと気づくのにそう時間はかからなかった。どうしてお前だけが生き残ったのかは定かじゃない。\n-暗転-\n吸血鬼による殺人事件は、単なる失踪事件として片づけられた。当然だ。吸血鬼が犯人だなんて言う幼子の証言が通るはずもなかった。手前で犯人を捜そうにも、月あかりを背に受けていた犯人の面相はあやふやだ。影だまりに沈んだその顔を、どうにも思い出せなかった。\n-暗転-\nそれからお前は夜に嫌われた。\n水平線の彼方に日が沈むころ、決まってお前は眠りに落ちてしまう。\n医者によれば、事件のショックから精神が夜を拒否してしまっているのだろうという話だった。日が沈むと同時に眠り、日が昇ると同時に目が覚める。そんな体質とともに、お前は生きていく羽目になった。\n-暗転-\n眠りの時間は、日に日に伸びた。厳密には、目覚める時間が少しずつ遅くなってきた。最近では昼に目覚めることも珍しくない。その体質のせいで随分孤独な人生を送って来たというのに、このまま改善することがなければやがてお前は二度と目覚めなくなるだろう。なんとも悲しい話だ。\n-暗転-\nそんな体質で、出来る仕事は限られていた。だからコンビニのバイトを始めた。幸いにも融通の利く店舗だ。変な客も、多いが。\n-暗転-\n\n＜第零幕：あらすじ＞\nそんな生活を送っていたある日、お前は道端で倒れていた人物に声をかける。それは単なる親切心だった。しかし運命とは皮肉なもので、そいつは忌むべき吸血鬼だった。\nそいつの顔を見た途端に気が付く。お前は、HO月の顔を、いつかどこかで目撃したことがある、と。\n\n月あかりに照らされたその目が、お前を見つめていた記憶。\nお前の家族を殺したのは、目前にいるその吸血鬼、かもしれない。\nお前の胸中にふつふつと湧いたそれは、怒りだった。殺意と言い換えてもいい。\n\nそうしてお前は密かに復讐を決意する。\nどの道お前はじきに目覚めなくなる。ならば敵を道連れにしたっていいじゃないか。もしかすると、トラウマの元である犯人がいなくなれば、お前に夜は戻るのかもしれないのだし。\n\n＜殺害方法＞\nさて、どうやって殺そうか。\n幸いにも、この吸血鬼はなんか知らんがすごい弱ってる。\nしかし腐っても鯛、弱ってたって吸血鬼だ。\n殺すにも、それなりの知識と準備と道具が必要だろう。\n殺害する準備が整うまでは、仲良くするフリをして油断を誘うのがいい。\n…と、お前はそう考え、これからHO月と仲良しごっこをはじめるという訳だ。\n\n＜目的＞\n・夜を取り戻す\n\n☆NPCについて\n・古森メメ\nお前を雇ったコンビニの店長。お前の体調についても知っている(家族を殺されたことまでは話していない)常に真っ黒なサングラスをかけていてかなり”如何にも”な見目をしているのだが如何せん涙もろい。\n面接の際、体調について軽く話したら思いっきり号泣された。以降随分お前のことを気にかけているようで、「ホントはダメなんだけどね」とかなんとか言いながら廃棄のお弁当を寄越したりする。\n\n・ソネザキさん\n古森の飼い猫。なんか知らんがものすごく嫌われていてよく威嚇される。"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "狗眤　紗良",
+      "kana": "いぬい　さら",
+      "job": "高校生",
+      "sex": "女性",
+      "age": "15→17",
+      "height": "143→146",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "11",
+        "con": "11",
+        "pow": "16",
+        "dex": "13",
+        "app": "15",
+        "siz": "8",
+        "int": "13",
+        "edu": "7",
+        "san": "94"
+      },
+      "calcStats": {
+        "luck": "80"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "140",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "26",
+          "j": "0",
+          "i": "20",
+          "g": "0",
+          "o": "0",
+          "t": "46"
+        },
+        {
+          "n": "投擲",
+          "b": "25",
+          "j": "0",
+          "i": "0",
+          "g": "6",
+          "o": "0",
+          "t": "31"
+        },
+        {
+          "n": "応急手当",
+          "b": "30",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "0",
+          "i": "5",
+          "g": "6",
+          "o": "0",
+          "t": "36"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "35",
+          "i": "10",
+          "g": "0",
+          "o": "0",
+          "t": "70"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "0",
+          "i": "5",
+          "g": "9",
+          "o": "0",
+          "t": "39"
+        },
+        {
+          "n": "芸術(造園)",
+          "b": "5",
+          "j": "0",
+          "i": "35",
+          "g": "7",
+          "o": "0",
+          "t": "47"
+        },
+        {
+          "n": "日本刀",
+          "b": "15",
+          "j": "0",
+          "i": "25",
+          "g": "5",
+          "o": "0",
+          "t": "45"
+        },
+        {
+          "n": "母国語(日本語)",
+          "b": "35",
+          "j": "10",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "45"
+        },
+        {
+          "n": "他の言語【英語】",
+          "b": "1",
+          "j": "10",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "11"
+        },
+        {
+          "n": "オカルト",
+          "b": "5",
+          "j": "35",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "クトゥルフ神話",
+          "b": "0",
+          "j": "0",
+          "i": "0",
+          "g": "5",
+          "o": "0",
+          "t": "5"
+        },
+        {
+          "n": "博物学",
+          "b": "10",
+          "j": "30",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "歴史",
+          "b": "20",
+          "j": "20",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        }
+      ],
+      "scns": [],
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ\n================================================================================\n【プロフィール】\nこれといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はそこそこ。全国大会にいったこともある。一回戦敗退だったが。\nちなみに友達の方は全国大会常連でいつもトップ３に入るくらい強い。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。色々と拘りがあるようで、庭を勝手に触ると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n紗良とは違ってお淑やかで賢くて運動ができて身長も自分より高い５歳下の妹がいる。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。\n================================================================================\n【RPの方向性】\n「ねえちょっと！起きなさいよ！早く起きないと鼻つまむわよ！」\n「べ、別に怖くなんてないんだから！見てなさいよね！（扉ガチャ）」\n「大人なんでしょ！ちゃんとしなさいよ！まったくしょうがないわね！」\nちょっと男子～って言ってるタイプ。男子にちょっと厳しいだけのとても平凡な長女。\n強いて言うなら面倒見の良さ（お節介）となんだかんだ優しいところが長所。\n================================================================================\n【その他】\n合計ステータス94\n6版作家準拠\n\n[旧プロフィール（メモ用）]\n【プロフィール】\nこれといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はいまのところ実に普通。県大会までは行けるが大体一回戦、二回戦で負ける。\nちなみに友達の方は全国大会常連で優勝経験もある。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。\n風水だの縁起の良さだの、色々と拘りがあるようで、庭を勝手に触られると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n自分とは違ってお淑やかで賢くて運動ができて身長も自分と大して変わらない５歳下の妹がいる。\nお母さんのおなかの中に忘れてきた大事なものを全部妹が拾って生まれてきた、とよくからかわれているが紗良は特に気にしていない様子。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "日継　睦美",
+      "kana": "ひつぎ　むつみ",
+      "job": "高校生",
+      "sex": "女性",
+      "age": "18",
+      "height": "163",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "7",
+        "con": "8",
+        "pow": "13",
+        "dex": "8",
+        "app": "7",
+        "siz": "14",
+        "int": "11",
+        "edu": "12",
+        "san": "41"
+      },
+      "calcStats": {
+        "luck": "65"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "16",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "46"
+        },
+        {
+          "n": "応急手当",
+          "b": "30",
+          "j": "0",
+          "i": "20",
+          "g": "1",
+          "o": "0",
+          "t": "51"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "0",
+          "i": "15",
+          "g": "0",
+          "o": "0",
+          "t": "40"
+        },
+        {
+          "n": "精神分析",
+          "b": "1",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "31"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "45",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "70"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "0",
+          "i": "15",
+          "g": "8",
+          "o": "0",
+          "t": "48"
+        },
+        {
+          "n": "説得",
+          "b": "15",
+          "j": "35",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "50"
+        },
+        {
+          "n": "心理学",
+          "b": "5",
+          "j": "40",
+          "i": "0",
+          "g": "1",
+          "o": "0",
+          "t": "46"
+        },
+        {
+          "n": "他の言語（英語）",
+          "b": "1",
+          "j": "35",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "36"
+        },
+        {
+          "n": "医学",
+          "b": "5",
+          "j": "40",
+          "i": "0",
+          "g": "1",
+          "o": "0",
+          "t": "46"
+        },
+        {
+          "n": "生物学",
+          "b": "1",
+          "j": "45",
+          "i": "0",
+          "g": "4",
+          "o": "0",
+          "t": "50"
+        }
+      ],
+      "scns": [],
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ\n================================================================================\n【プロフィール】\n勝気で堂々としている少女。\n一見は男子に負けず劣らない勢いのある勝気な性格に見えるが、\n実は寂しがり屋で臆病。面倒見がよく優しい。ようは、素直になれない性格なだけである。\n可愛い物好きで、見た目や態度とは裏腹にロマンチックでメルヘンチック。\n植物や動物が好きで、家には大きな庭があり大型犬を二匹飼っている。\n都会生まれで、大四家町には親の都合で引っ越してきた。\nいずれは進学し、獣医師になりたいという夢がある。\n\n父、祖父母と４人で暮らす一人っ子の少女。母は病気により既に他界している。\n母が亡くなって以来、母の代わりにしっかりしなくてはならないという思いから弱い部分を他人に見せることが少なくなった。\n中学の途中から父方の実家の方へ引っ越し、転校することになった。それが大四家町。\n「都会からきた転校生」ということもあって周りからは奇異な目で見られ、最初はよく話しかけられていたが、素直になれず突っぱねるばかりだったためクラスで浮いてしまっていた。\n都会人への偏見や、転校という状況が悪く作用してしまったのかもしれない。\nそこで初めて友達になってくれたのが鉄火と飛鳥だった。\n二人のことはとても大事な友達だと考えている。\n高校を選んだ理由も「二人がいるから」というもの。\n鉄火が町を出た時には不安を感じたところもあった。\n彼の自立心や自信に満ちた考え方は尊敬しており、自分も二人に甘えるだけでなく、やりたいことのために進学して頑張ろうと思っている。\n飛鳥ともいつかはそれぞれ別の道へ行き、離れ離れになってしまうと思うと辛い。\n二人にはあまりそういったことを態度に見せないよう気を張っているところがある。\n================================================================================\n【NPC、PCに対する感情】\n▶山城飛鳥\n大切な友人。\n天真爛漫で素直な彼女を少し羨ましく思っている。\nずっと友達でいたい、仲良くしていたいと思っている。\nが、素直にそれを伝えることはほとんどない。いつも口うるさく説教じみたことを言ってしまう。\n\n▶梶木鉄火\n大切な友人。\n彼の行動力はとても尊敬しているし、自分もああなりたいという心の支えになっている。\n例にもれず、これを素直に伝えることはほとんどない。\n年上の男性ということは意に介さず、飛鳥と同調して盛り上がっているところを諫めたりしている。\n================================================================================\n【RPの方向性】\n睦美：「ちょっと飛鳥！遊んでないで早くいくわよ！」\n　　　「鉄火くんでもだめなものはだめだからね！」\n　　　「可愛い...って、いつの間に！？別に可愛いなんて思ってないんだから！」\n　　　「皆、置いていかないで...わたしを一人にしないで...」\n所謂ツンデレ。恐らくツンが９割９分くらい。\n負けず嫌いなところがあるため、誰にでも食い下がっていく。\n何故か上から目線で発言してしまう。一見堂々としていてしっかり者に見えるが、内心では自分の発言にツッコみいれながら後悔してメソメソしているタイプ。\n発狂するか、なにかしらショックなことがあるとみるみる弱気になっていく。\n================================================================================\n【性格】\n長所：勤勉、慎重、勝気\n短所：弱気、臆病\n一人称：わたし\n二人称：くんちゃん（同年代、親しい人）、さん（目上の人）、あんた（飛鳥）\n================================================================================\n【補足】\n6版教授準拠\n能力値合計80"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "氷見　紺奈",
+      "kana": "ひみ　かんな",
+      "job": "大学生",
+      "sex": "女性",
+      "age": "23",
+      "height": "156",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "10",
+        "con": "11",
+        "pow": "9",
+        "dex": "13",
+        "app": "15",
+        "siz": "11",
+        "int": "16",
+        "edu": "13",
+        "san": "47"
+      },
+      "calcStats": {
+        "luck": "45"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "26",
+          "j": "0",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "51"
+        },
+        {
+          "n": "ナイフ",
+          "b": "0",
+          "j": "0",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "25"
+        },
+        {
+          "n": "応急手当",
+          "b": "30",
+          "j": "30",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "55"
+        },
+        {
+          "n": "精神分析",
+          "b": "1",
+          "j": "55",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "56"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "0",
+          "i": "30",
+          "g": "5",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "0",
+          "i": "30",
+          "g": "0",
+          "o": "0",
+          "t": "55"
+        },
+        {
+          "n": "製作(料理)",
+          "b": "5",
+          "j": "40",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "45"
+        },
+        {
+          "n": "信用",
+          "b": "15",
+          "j": "45",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "心理学",
+          "b": "5",
+          "j": "55",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "医学",
+          "b": "5",
+          "j": "35",
+          "i": "20",
+          "g": "0",
+          "o": "0",
+          "t": "60"
+        },
+        {
+          "n": "クトゥルフ神話",
+          "b": "0",
+          "j": "0",
+          "i": "0",
+          "g": "5",
+          "o": "0",
+          "t": "5"
+        }
+      ],
+      "scns": [
+        "辜月のN"
+      ],
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ、化粧箱、お菓子（手作り）\n================================================================================\n【プロフィール】\nカウンセラーを目指す女子大生。心理学部所属。\n父は裁判官、母親は高校教師である。兄弟はおらず一人っ子。小中高一貫の女子校に通っていた。\n入学して間もなく、最初に引っ越してきていたマンションから別のマンションに引っ越した。\n偶然隣の部屋だった來住とは親友と言えるくらい仲が良い。\n基本的に男性への耐性は少ないが、氷見は來住くんに対してのみとても積極的である。\n講義のほとんどは來住と同様のものであり、登校する時はいつも一緒だ。\n料理が趣味のため、作りすぎた場合は來住の部屋に届ける時もある。\n一緒に料理を作らないかと誘う時もあるだろう。\n男性と関わる機会が少なかったからか、初めて出来た男性の友人が嬉しいのかもしれない。\n================================================================================\n【補足】\n６版【医師】準拠\n能力値合計98\n\n\n[【HO2：箱】秘匿内容]\n【HO2：箱】\n▼公開情報\nあなたはPC1の親友だ。\nあなたはPC1と離れがたく思っている。\n==================================================================================\n▼開示していい+相談していい部分\nあなたたちは大学入学時からの親友だ。\nあなたは入学してはじめて話しかけてくれたPC1のことを大事に思っている。\nあなたたちは二年前に入学したものとする。\nまた、あなたたちには共通の友人がいる。名前は「二条錦」。\n京都生まれ京都育ちの生粋の京都人だ。\n==================================================================================\n▼秘匿部分\nあなたは大学の入学式の前日から今に至るまで謎の症状に悩まされている。\nあなたは人の声が聞こえない。\nあなたには匂いが分からないものがある。\nあなたには触った心地がしないものがある。\nあなたには味の分からない食べ物がある。\n――けれども、それらには例外がある。\nPC1の声だけはいつでも聞こえる。\nPC1の匂いだけはいつでも分かる。\nPC1だけはいつでも確かな感触がある。\nPC1の作ってくれた食べ物だけは味がある。\nこの事実を、あなたはPC1に今まで黙ってきた。\n\nこの症状を改善しようと病院に行ったことはあるが、\n原因は未だ分かっておらず、医者も半ば匙を投げている。\n※このため、特定の聞き耳は自動失敗となる。\n==================================================================================\n▼來住との出会い（氷見視点）\n入学式の前日、謎の症状に苛まれた。\n家族、友人にこの症状の話をすることは一切なかった。今もまだ話せていない。\n今までなんの問題もなく平穏な毎日を送っていた。\nだというのに、急に自分が病気をしたなんて話、特に両親なんかは、聞けば心配をかけるだろう。\n強く意識していたわけではないが、良い娘として、優秀な親の顔に泥を塗らないよう振舞うように努力してきたつもりだった。\n二人はそんなことをしなくても、私を大事にしてくれるしっかりした人だということは分かっている。\nきっと話せば分かってくれる。\nそれは分かっていたけど、できなかった。\nこれがプライドっていうものかしら。私にもそんなものがあったなんて初めて気づいた。\nだから黙っていた。\nでも、\n何も聞こえない。講義はどうやって聞けばいいの？\n何も味がしない。ケーキって、どんな味だっけ？\n何も感触がない。知らない間に傷がついていても知らないまま外に出て、誰かに見られたら？\n今まであったものが無くなる、とてつもない無力感が襲う。\n明日になれば治っていると、自分に言い聞かせてその日は寝るしかなかった。\n\nそんな中、大学の入学式の日になった。\n当然かのように何も聞こえない。\nただ、広いホールに椅子のガタつく音や誰かが鳴らしたカメラのシャッター音といった雑音だけが響いている。\n周りの同期達は、これからの大学生活への期待感に満ちた顔をしている。\n恐らく、今目の前で話している人物が大層な演説をしてくれているのだろう。\n私にはわからない。\n周りにこんなにも人がいるというのに、私だけ、取り残されている。\n私は、独りになっちゃった。\n\n入学式が終わって、皆写真を取ったりしながら、これからの大学生活に向けての話をしている。\n恐らく、そうなんだと思う。私にそれを確かめる術はない。\n両親もそれに習って、私の写真を撮ってくれる。\n二人は入学を喜んでくれているのだろう。顔を見れば分かる。それくらいは分かる。\n今日は朝から準備して、綺麗な晴れ着を着せてもらっている。\nきっと良い生地なのでしょうね。触れば分かる。いつもなら。\n私は、笑えているのだろうか。\n撮ってもらった写真を、私は確認することはなかった。\n\n帰路につこうとした時、どこかから声が聞こえた。\n若い、元気な、男の人の声だった。\n気付いた時には、その声のする方向へ走っていた。\nそこにいたのが來住くんだった。\n彼の声だけが、あの広場に響いていた。\n声が聞こえる。澄んだ青空のようで、よく通るはっきりとした声が。\n感触がする。お日様で少し焼けた肌の感触が。\n匂いがする。初めて嗅いだ匂いだ。香水の嫌な臭いじゃない、自然で暖かい匂いが。\nきっと貴方は運命の人。\n\n独りだった私の世界に現れた、運命の人。\n貴方と離れたくない。ずっと一緒にいさせて欲しい。\nだから、離れないで？\n==================================================================================\n【氷見紺奈への秘匿内容の落とし込みについて】\nシナリオ開始時点で、誰にも秘匿にある症状については話していません。\nこれは彼女の「優等生である自分」に対するプライドが原因ということにしています。\n女子校時代は生徒会長とか生徒会書記とかやってて女子校でモテてるタイプであって欲しい。\nINTがまあまあ高いので、やれば大体なんでもできていた彼女のはずですが、症状が現れてからの無力感にとても苦しむと思います。\nそこに來住くんのような存在が現れれば、当然強く惹かれることでしょう。\n\n入学に伴い一人暮らしを始めた彼女ですが、來住くんをストーカーしてマンションの部屋を特定してからは隣に引っ越しています。\nもし隣に誰かが住んでいてもなんとかして追い出してから住み始めます。\n彼にはあたかも偶然のように振舞っていますが、狙ってのことです。\n\n來住くん意外の人間には文字通り眼中にありません。彼女の世界には、來住くんしかいない訳なので。\n彼女はただ純粋な気持ちで來住くんと接しています。\n声を聞きたいからいっぱい話しかけるし、\n感触を味わいたいからいっぱい触るし、\n匂いを感じたいので近づきます。\n\n彼女はそうやって來住くんに積極的なアプローチを行うことでしょう。\nしかし、彼に嫌われるのは嫌なので、本気で嫌がるようなことはしません。\n\n自分の行動に違和感があることは若干自覚していますが、それでも自分の欲求に素直に行動します。\n何か來住くんの方から質問されれば大体は答えますがその場合\n「だって、貴方は私の世界そのものだもの」\n「ごめんなさい、嫌だったかしら？でも、私はもっと貴方と触れ合っていたいの」\nと、ロマンチストな返事をしてくれる（予定）\n症状の核心に迫ることを聞かれると、彼女は誤魔化そうとする。\n病気をしている人だとバレれば、彼は離れてしまうかもしれないと思うから。\n來住くんのことは無条件に信じているが、そこに関しては例外らしい。\n==================================================================================\n【NPC、PCへの感情】\n▼來住回生\n氷見は彼を運命の人だと思って信じている。\n男性との関わりが少ないため、かなり極端な付き合い方になっているが彼女は至って純粋な気持ちで彼と関わっているつもりである。\n▼二条錦\nよく一緒になることが多い。ただそれだけ。\n彼女にとってはほぼいないも同然の人物。なにせ何を言っているのかわからないから。\n==================================================================================\n【RPの方向性】\n氷見：「來住くん！ご飯作り過ぎちゃったから一緒に食べない？」\n　　　「ねえ、次の講義は場所が変わるんだって。一緒に行きましょ？」（腕にくっつく）\n　　　「さっきの人、何て言っていたの？ごめんなさい、聞きそびれちゃって」\n　　　「來住くんって、良い匂いするよね。私、貴方の匂い好きなの」（超近い）\n　　　「お願い、嫌いにならないで。なんでもするから。貴方の望むことだったらなんだってするから」\n基本的にはお淑やかで真面目で優等生だが、所々常識が欠けている。\nまた、同年代の男性との関わりが少なかったため、來住くんとの関係を拗らせている。\nPLの「女子校出身の箱入りお嬢様」に対する独断と偏見が詰まっている。\nとにかく來住くんにはくっつく。距離が近い。いろんな意味で。\n==================================================================================\n【氷見の性格】\n長所：素直、真面目、上品\n短所：臆病、強引\n一人称：私\n二人称：來住くん"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "鹿目　千緋",
+      "kana": "かなめ　ちあき",
+      "job": "怪盗",
+      "sex": "男性",
+      "age": "23",
+      "height": "175",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "10",
+        "con": "13",
+        "pow": "11",
+        "dex": "16",
+        "app": "11",
+        "siz": "13",
+        "int": "13",
+        "edu": "16",
+        "san": "26"
+      },
+      "calcStats": {
+        "luck": "55"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "32",
+          "j": "15",
+          "i": "21",
+          "g": "0",
+          "o": "0",
+          "t": "68",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "拳銃",
+          "b": "20",
+          "j": "30",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "50",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "ナイフ",
+          "b": "25",
+          "j": "50",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "75",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "応急手当",
+          "b": "30",
+          "j": "0",
+          "i": "20",
+          "g": "0",
+          "o": "0",
+          "t": "50",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "50",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "75",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "0",
+          "i": "15",
+          "g": "0",
+          "o": "0",
+          "t": "40",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "50",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "75",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "運転(自動車)",
+          "b": "20",
+          "j": "50",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "70",
+          "sub": "",
+          "gr": "行動"
+        },
+        {
+          "n": "変装",
+          "b": "1",
+          "j": "0",
+          "i": "39",
+          "g": "0",
+          "o": "0",
+          "t": "40",
+          "sub": "",
+          "gr": "行動"
+        },
+        {
+          "n": "言いくるめ",
+          "b": "5",
+          "j": "45",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "50",
+          "sub": "",
+          "gr": "交渉"
+        },
+        {
+          "n": "ドイツ語",
+          "b": "1",
+          "j": "0",
+          "i": "0",
+          "g": "3",
+          "o": "0",
+          "t": "4",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "芸術(絵画)",
+          "b": "5",
+          "j": "0",
+          "i": "35",
+          "g": "5",
+          "o": "0",
+          "t": "45",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "博物学",
+          "b": "10",
+          "j": "30",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "40",
+          "sub": "",
+          "gr": "知識"
+        }
+      ],
+      "scns": [
+        "レプリカントの葬列"
+      ],
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ\n================================================================================\n【プロフィール】\n本当に成人しているのか疑いたくなる程に純粋無垢な男性。\n嘘が下手。頭も悪い。計画性とは無縁の行き当たりばったりの勢いで怪盗を続けている。\n自分の直感と勢いに任せ、自分のやりたいようにするのが彼の生き方である。\n少年のようなところがあり、カッコつけたがる謎の意地を見せる場合がある。\n怪盗を名乗っているのも、とりあえずカッコイイからという安直な理由。\nKや黄杜のことはとても信頼しており、家族、親友のように接する。\n\n\n\n[【HO1：怪盗】秘匿内容]\n【6版】COC[レプリカントの葬列]\n■公開ハンドアウト\n・HO1怪盗：あなたは最近巷を騒がせている怪盗だ。\n・HO2贋作師：あなたは一度見た絵ならば何でも模倣することが出来る。\nHO1は名前の他に「怪盗名」を設定しておくとよい。勿論HO2とのコンビ名でも構わない。\nHO2は贋作師ではあるが運転技術などに長けており、盗みの現場へ同行することが多い。\n================================================================================\n■探索者の年齢\n21～35歳程度を想定している。それ以上になる場合はKPと要相談。\n================================================================================\n■秘匿ハンドアウト\n・HO1:怪盗\nあなたには記憶がない。\n記憶の始まりは一年前、雨の降る夜目覚めたゴミ捨て場以降の記憶だ。\nごみ収集の男にたたき起こされたあなたの身体はどこもかしこもひどく傷んでいた。\n身元を証明するものは何も持っておらず、ただポケットに入っていたのは一枚のスチレンボードで出来た名刺サイズの板のみ。そこには誰かの血痕と、絵の具のあと、それから走り書きの文字が残されているだけだった。\n文字の半分以上は雨で流れてしまったらしい、滲んでいる。\nかろうじて読める部分には「生ける絵画を」と書かれていた。\n\nそれから暫く、どうやって生きていたのかについては自由に決定してよい。\n\n数カ月が経って、「黄杜」という実に胡散臭い男と出会った。\n彼は何を思ったのか貴方に興味を持ち、貴方の話に耳を傾けたことだろう。\n曰く彼は画商をしており、絵画の情報を集めるには長けているという。\n「生ける絵画」の情報を集める代わりに「金になる美術作品」を集めてくれるなら、君に協力しようと申し出たのだ。現状、あなたの身元を知るには「生ける絵画」について追うほかはない。申し出に快諾したか渋ったかはあなた次第だが、どちらにせよあなたは現在この男と協力して「怪盗」何てことをやっている。住む場所やらなんやらを提供したのもこの男だ。\n\n怪盗を始めて数カ月が経って、ある日あなたは盗み出した絵画の中に贋作が混ざっていることに気づいた。あなたの目から見ても、黄杜の目から見てもすぐには気づけないほどの出来で、随分感心したことだろう。それに、それはただの模倣品にも関わらず、あなたに得体の知れない感動を与えた。元の絵よりも、何故かずっと素晴らしく思えたのだ。\nそれを見て思い立ったのがあなたか黄杜かどちらでも構わないが、この腕前は盗みに役立つかもしれないと気づいた。盗み出す絵画と、贋作をそっくり入れ替えればそも盗みに気づかれず絵画を頂くことが出来る。\nこうしてあなたは黄杜の伝手で贋作師であるHO2と出会い、コンビを組むことになった。こんな胡散臭い上にそんなに儲けが出るかどうかもわからない申し出を、何故HO2が受けてくれたのかはよくわからないが。\n\nあなたは自分の正体が知りたい。空っぽの現状は、際限なく不安を生むだろう。なにか、だれか、どこかとつながりがあることを確かめたい。血のつながりを盲信するわけではないが、家族がもしいるなら会ってみたいとも思っている。\n================================================================================\n▼あなたの目的\n生ける絵画を追い、自分の正体を確かめる事。\n＜探索者作成の条件＞\n・一年より前の過去については設定しないこと(矛盾が発生するため)\n・雨の日が嫌いだ。目が覚めた夜に雨が降っていたからだろうか。\n・あなたが名乗っている名前は自分でつけた名前だ。本名はわからない。\n・あなたは片目が義眼だ。右左好きな方を選んで構わない。目星などの視力が必要な技能の初期値に-5の補正が入っている。\n================================================================================\n◤　オリジナル職業：怪盗　◢…職業技能\n変装、目星、聞き耳、運転＜バイク/パラグライダー＞若しくは操縦＜ヘリコプター＞等脱出に使えそうな技能、鍵開け、任意の戦闘技能、博物学、交渉系技能\n================================================================================\n◤　推奨　◢\n推奨能力値：高DEX\n推奨：目星・戦闘技能・回避\nあったら使うかも：変装・聞き耳・交渉技能・跳躍・芸術＜イカサマ＞\n\n[【HO1：怪盗】秘匿関連のプロフィール]\n▼HO1に関連した事前設定について\n〇怪盗という職業について\n黄杜が提案したので「カッコイイ！」と思って案に乗った。\n自分の過去、記憶に関連したものが探せれば方法はなんでもいいのだが、どうせならカッコイイ方がいいのでそのまま黄杜の案に乗ることにした。\n黄杜が色々用意してくれるので思う存分恰好つけて怪盗を楽しみつつ、過去の記憶に関する情報を集めようとしている。\n怪盗名は二人合わせて「怪盗K」\n\n〇過去の記憶について\nぶっちゃけどうでもいいと思っている。今が楽しければ。\nしかし、せっかく怪盗をやるのなら何か目的があったほうが良いので「生ける絵画」の情報を集めている。\n家族がいるなら会ってみたい。もしかすると心配しているかもしれない。\n\n〇雨の日\n特に気にしてないがなんとなく嫌い。その程度。\n\n〇名前\n名前辞典で見つけた響きのいいものを適当に組み合わせた。\n「なんか鹿って縁起よくねー！？」\n「緋って文字カッコイイから入れよー！」\n\n〇義眼（左目）\n義眼であることに特に違和感は感じてない。\n記憶がないわけだし、なんか事故とかにあってなんかなったのかもーとふんわり受け止めている。\n\n〇総合的に見た自分の状況に対する理解と認知（PC視点）\nなんかなんやかんやあって目とか記憶ぶっとんだんだろうな。くらいにしか思ってない。\nラッキーなことに黄杜が色々やってくれるしKっていう相棒もできたし、怪盗楽しいなー！のノリ。\n先のことや現状についてはこれといった不満や不安はない。\nしいていうなら、家族がいるのなら会ってみたい。\nどうなるのかはわからないし、別にどうなってもいい。これは彼にとってただの興味でしかない。\n\n〇PLからの補足\n彼はとても強がりである。自分でも気づいていない。\n本当は現状に対してとても不安を抱いているが、明るく無邪気に振舞っている。\nこれは無意識からくるものである。これが彼なりの心の自衛手段なのだろう。\n真の味方（家族等）というものが彼には存在しないというのも大きい。\nそのため、仲良くなった人間、優しい人、自分が甘えられると判断した人間に対しては異常なほど無防備になる傾向がある。\n家族に近しい人物が欲しいのかもしれない。\nもし発狂したら、突然Kをお姉ちゃんとか母さんって呼ぶかもしれない。\n==================================================================================\n▼PC、NPCに対して\n〇K\nいい奴！こんな俺と一緒に怪盗をやってくれるから！\n〇黄杜\nいい奴！色々用意してくれるから！\n==================================================================================\n【RPの方向性】\n鹿目「俺、鹿目千緋っていうの！よろしくなK！」\n　　「あ、それ俺が食べようと思ってたやつ！返せよ～！」\n　　「あぁ、そっか～。俺達って、どうあがいたって他人なんだな...」\n馬鹿。とにかく馬鹿。\n発狂する時は家族か他人かの境に葛藤して爆発して塵となってくれ。\n\nいわひらの香霧くんやってたてるさんに対して家族関係のRPするのきつくありませんか。\n刺されるの目に見えてるじゃないですか（本音）\n==================================================================================\n【性格】\n長所：馬鹿\n短所：馬鹿\n一人称：俺\n二人称：K、お前、あんた\n==================================================================================\n【その他】\n目星 -5 の補正によって目星は基本75-5の70で振ることになると思います。"
+        }
+      ]
+    },
+    {
+      "regulation": "6th",
+      "name": "絵波　瞬",
+      "kana": "えなみ　しゅん",
+      "job": "病人",
+      "sex": "男",
+      "age": "15",
+      "height": "167",
+      "img": "data:image/jpeg;base64,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",
+      "stats": {
+        "str": "12",
+        "con": "11",
+        "pow": "11",
+        "dex": "13",
+        "app": "13",
+        "siz": "12",
+        "int": "11",
+        "edu": "10",
+        "san": "55"
+      },
+      "calcStats": {
+        "luck": "55"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": "0",
+      "skills": [
+        {
+          "n": "回避",
+          "b": "26",
+          "j": "0",
+          "i": "20",
+          "g": "0",
+          "o": "0",
+          "t": "46",
+          "sub": "",
+          "gr": "戦闘"
+        },
+        {
+          "n": "目星",
+          "b": "25",
+          "j": "10",
+          "i": "30",
+          "g": "1",
+          "o": "0",
+          "t": "66",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "聞き耳",
+          "b": "25",
+          "j": "10",
+          "i": "25",
+          "g": "0",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "図書館",
+          "b": "25",
+          "j": "0",
+          "i": "30",
+          "g": "5",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "写真術",
+          "b": "10",
+          "j": "50",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "60",
+          "sub": "",
+          "gr": "探索"
+        },
+        {
+          "n": "製作(料理)",
+          "b": "5",
+          "j": "40",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "45",
+          "sub": "",
+          "gr": "行動"
+        },
+        {
+          "n": "言いくるめ",
+          "b": "5",
+          "j": "25",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "30",
+          "sub": "",
+          "gr": "交渉"
+        },
+        {
+          "n": "心理学",
+          "b": "5",
+          "j": "40",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "45",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "歴史",
+          "b": "20",
+          "j": "25",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "45",
+          "sub": "",
+          "gr": "知識"
+        },
+        {
+          "n": "オカルト",
+          "b": "5",
+          "j": "0",
+          "i": "5",
+          "g": "0",
+          "o": "0",
+          "t": "10",
+          "sub": "",
+          "gr": "知識"
+        }
+      ],
+      "scns": [
+        "花冷えに亡く季節"
+      ],
+      "profs": [
+        {
+          "t": "写記された手記",
+          "x": "【所持品】\nカメラ、ハンカチ、ティッシュ\n================================================================================\n【プロフィール】\n写真を撮るのが大好きな男の子。\n場所、人、時間を問わず自分が気に入った時にその場面をカメラに収めている。\n部屋にはたくさんの写真がある。\n================================================================================\n【RPの方向性】\n絵波「ほら、みんな並んで並んで。撮るよ？」\n　　「僕はね、この瞬間を忘れたくないんだ。だからこうやって、カメラで撮るんだよ」\n大人しい男の子。割と社交的。\n================================================================================\n【その他】\n合計ステータス94\n6版芸術家準拠\n\n[HO1【記】秘匿情報]\n■ハンドアウト■■■\n------------------\nHO1 『　記　』　症状：想い出と呼称される記憶を蝕まれている\n\n記憶喪失// 君は記憶喪失だ。生活に支障はないが、想い出と呼べるほとんどの記憶を失っている。家族も友人も、過去も覚えていない。\n\n性格// 記憶を失っていても悲観的ではない。記憶がないからこそ世界がこんなにも輝いている、と幸せな日々。感受性豊かで、美しいものを美しいと思える太陽のような子供だ。\n\n病気// 重い病らしく、治療を受ける事が出来るのは18歳からであり、君はそれまでの間このサナトリウムで過ごすことになるらしい。\n\n備考// 君はほとんど失われた想い出のなかでぼんやりと覚えている記憶がある。フラッシュバックするようにたまに思い出せる程度で、全貌はわからない。\n\n>>KPから\nフラッシュバックの内容は？\n→誰かに「綺麗だ」と口にしたこと。それを覚えていたいと願った。\n\n[HO1【記】秘匿込みプロフィール]\n【プロフィール】\n過去の想い出を失っているため、今を精一杯生きることを意識している。\n新しい想い出は忘れないために記録に残そうと写真や日記を付けることが習慣になっている。\n==================================================================================\n▼PCに対して\n〇影花　栬\n何故かはわからないが、やたらと懐いてくる可愛い女の子だと思っている。\n絵波的には普通に嬉しい。良い友達。\nせっかくなのだから、他の皆とももっと仲良くなってくれないかなと思っている。\n機会があれば栬が他の子と仲良くなれるよう気を配っている。\n==================================================================================\n【性格】\n長所：\n短所：\n一人称：僕\n二人称：栬、くん、ちゃん\n==================================================================================\n\n[日記]\n絵波の日記\n【火曜日】\n昨日から、このサナトリウム『アヴリル』で過ごすことになった。\n僕の病気、記憶喪失を治すために、治療が受けられる１８歳までの約３年間の間を此処で過ごすことになる。\nアヴリルに着いてから、ここでの僕の自室に案内された。\n部屋は二人用だったみたいだ。同室の子が先に部屋に来ていた。\n一目見た時、綺麗な人だと思った。\n菖蒲色のさらりと流れる長髪を二つに結んでいて、萌葱色の瞳が僕を捉えていた。\nそして、胸元に綺麗な花を携えていたんだ。\n昨日今日と一緒に過ごしてきたけど、とても穏やかで優しい子だと思う。\n名前は、どうやら日記には書いちゃいけないらしい。\n約束をしてしまったから、仕方ない。\n僕が記憶を失ってから、このアヴリルに来て初めて出来た、僕の友達なんだ。\nこれからもっと仲良くなれたらいいな。\n他にも、６人の子供達がいた。\n閉じた瞳と長い金髪が印象的なケイト。\nちょっと内気だけど友達想いで真面目なニコ。\n知的で大きな二つの三つ編みと眼鏡が特徴的なマリ。\n木登りが得意で、狼のような性格をしているリィ。\n赤髪の印象に違わず元気いっぱいの双子姉妹ペネロペ。\n皆、とてもいい子達ばかりだ。\n様々な病気を抱えているんだろうけど、各々が病気と向き合って、ここで日々を過ごしている。\n僕も、皆とここでたくさんの想い出を作れたら、きっと楽しいだろうね。\nただ、マリはもう、今週の水曜日には治療が始まってしまう。\n短い間だったけれど、彼女からは様々なことを教えてもらった。\n治療について彼女は不安や不満を漏らすこともあった。\nそれでも、彼女のこの先の未来が明るいものであってほしいと僕は思う。\n\n【水曜日】\nマリが亡くなった。\n綺麗な姿だった。子供達がおめかししてあげたらしい。\n昨夜、中庭で見た光は子供達による彼女への追悼の儀式のものだった。\nリィはひどく悲しんでいた。立ち直れるといいけれど。\n僕も彼女とまた踊れる日を楽しみにしていたけれど、残念だ。\nここには様々な病気を持つ子供達が暮らしている。\n各々の病気に対する考えも様々だ。\nマリは言っていた。病気が治ってしまったら、自分が自分ではなくなってしまうと。\n１８歳になり、治療をすると『子供』から『大人』になってしまうって。\nだから、彼女は子供のまま終わることを選んだんだろう。\n大人はつまらないと、ケイトは言っていた。\n大人になってしまったら、大切な人が離れてしまうと心配もしていた。\n僕はどうなんだろう。\n治療して記憶が戻ったら大人になって、別人になってしまうんだろうか。\nわからない。記憶があったら僕にもその意味が、考えが理解できたんだろうか。\n僕が大人になったら、君は僕の友達ではなくなってしまうのかな。\n初めての友達。君は、僕の何もかもが変わっても、それでも僕を友達と言ってくれるのかな。\n僕は君のなにもかも変わってしまったとしても、友達でいたいよ。\n君があの時、僕に声をかけてくれたように、同じ言葉を君にかけたい。\nそういえば、黒いチューリップの花言葉。どんな意味なんだろう。\n君のその花の胸に抱く願いが、希望に溢れたものであると僕は嬉しいな。\nいつか調べてみよう。\n\n【木曜日】\n今日はひどい雨だった。\nアヴリルも、マリがいなくなって寂しいのだろうか。\n雷が怒号のように鳴り響いていた。\nそれと同時に、ペネロペの病気が不思議な現象を起こした。\nケイトがいうには、彼女の想像が具現化しているらしい。そういう病気なのだと。\n知らない場所で、知らない人の、冷たくて、寂しいなにかを見た。\n人形は綻んでいて、花は枯れ、怯えた君を見つけた。\n暗く無機質な箱の中で、君は僕の名前を呼んでいた。\n君の酷く怯えた表情を見たら、君がどれだけ辛い時間を過ごしていたのかを想像して胸が痛んだ。\n似たような経験をしたことがあると言っていた。外では、このようなことが起きてしまうこともあるらしい。\n外の世界に出るというのは、こういうことなんだろうか。\n君に、怖くて辛い記憶を思い出すのは平気なのかと問われたね。\nあの時の答えは、今も変わっていない。\n記憶が戻った時、僕はまだ、君に同じ答えを返せるだろうか。\nでも、君は言ってくれたんだ。友達でいてくれるって。\n君にもうあんな顔、してほしくないな。\n\n【金曜日】\n今日は君とたくさん話をしたね。\nニコやケイト、マリのことや、君のこと。\n誰しもが幸せな時が永遠に続けば良いと願っていた。\n僕もそう思う。でも、それは到底、叶わない願いであることは分かっている。\nだからこそ僕は、その瞬間を尊んで生きたいと思うんだ。\n人生は同じことの繰り返しだ。\n楽しいことも、悲しいことも、嬉しいことも、辛いことも。\n忘れて、思い出して、それを繰り返していく。\nそれもまた、一つの永遠なんじゃないかと僕は思いたい。\nだって、そうじゃないと、僕は皆の考える永遠に辿り着くことはないし、共にすることもできない。\nそう、気づいてしまったから。\n今日の朝、自室にある日記を読んだんだ。\n何気ない日々を書き連ねてある、なんてことない日記だった。\n一週間毎に新しい日記に交換していた。\n写真も入っていて、アヴリルの皆が写っていた。\nニコに聞いたら、まだこの日記の持ち主はアブリルにいるんだって言っていた。\n誰なのかはすぐに分かった。\nその時、皆の優しさを改めて実感したんだ。\n何度も初めましてを繰り返して、何度も友達になってくれたんだね。\nありがとう。\nきっと、怖い思いをさせたんじゃないかと思うんだ。\n一週間共に過ごした人間が、すべてを忘れてまた「初めまして」って言うんだ。\nどれほど気味が悪かったろう。\nでも、今まで過ごした皆の様子は、まるで自然だった。\n皆に助けられて、今日まで僕は生きてきたんだって思うと嬉しかった。\nそれと同時に、申し訳ない気持ちでいっぱいにもなった。\n胸に花を抱く君。\n君は、永遠と「初めまして」を繰り返す僕に、何を思うだろう。\n君の考える永遠に、僕の席はあるだろうか。\nもしかしたら、君も既に何度か経験したのかもしれないね。\nマリが亡くなったことに対して、君は懐疑的だった。\n残された人々の永遠が揺らぐんじゃないかって。君は確かそう言っていた。\nであれば、僕は君の目にどう映るんだろう。\nマリから返してもらったこの呪文。\n使うときは来るんだろうか。今は、とてもそんな気にはならない。\n\n【土曜日】\nニコとケイトも永遠となってしまった。\n寂しいね。皆、永遠を求めて僕たちの目の前からいなくなっていく。\n彼らに祈りを捧げた後は、君とたくさん話をしたね。本当に良かった。\n気付けたんだ。思い出せたんだ。\nいつか、綺麗だと思った誰かは君だったんだ。\n胸に花を抱く君、花に愛され、花と生きる君。\nでもそんな君が、明日を超えれば死んでしまうと聞いて、ひどく焦った。\n僕も明日を超えればまた記憶を失ってしまうから。\nそれでも君が居てくれるならと思っていた。\nでも、違うんだね。\n君は、誰かを犠牲に生きるのは嫌だと言っていた。\nそれなら、君がそうするように、僕もそうするよ。\n日曜日が来る。僕達にとって、特別な日曜日が。\n最後まで一緒にいるよ。一緒に考えよう。"
+        }
+      ]
     }
   ],
   "schedules": [
     {
-      "id": 1772685993274,
+      "id": 1772614014651,
       "dates": [
-        "2026-03-05T21:00"
+        "2026-03-01T21:00",
+        "2026-03-07T21:00"
       ],
-      "title": "test",
-      "status": "待機中",
+      "title": "同じ空には昇れない",
+      "status": "進行中",
+      "role": "プレイヤー（PL）",
+      "charName": "縁月　恒見",
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772531282175,
+      "dates": [
+        "2026-03-02T21:00"
+      ],
+      "title": "鰯と柊",
+      "status": "完走",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "あきづ"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772532652486,
+      "dates": [
+        "2026-03-03T22:00"
+      ],
+      "title": "片鱗",
+      "status": "完走",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "あきづ"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772613952705,
+      "dates": [
+        "2026-03-04T21:00"
+      ],
+      "title": "デストルドーの使者",
+      "status": "完走",
+      "role": "プレイヤー（PL）",
+      "charName": "奥見　糸貴",
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772539406898,
+      "dates": [],
+      "title": "プルガトリウムの夜",
+      "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [],
@@ -46,6 +1419,20 @@
           "name": "いとめん"
         }
       ]
+    },
+    {
+      "id": 1772569651015,
+      "dates": [],
+      "title": "テスト",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": []
     }
   ]
 }
