@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG Archive v9.2.0 - Networked Master</title>
+    <title>TRPG Archive v9.2.1 - Networked Master</title>
     <style>
         /* ============================================================
            v7.9.7 正典スタイル（完全凍結・隔離）
@@ -509,7 +509,7 @@
 
 <script>
     /* ============================================================
-       v9.2.0 絶対不凍・堅牢化モジュール
+       v9.2.1 絶対不凍・堅牢化モジュール（getGenre復活版）
        ============================================================ */
     const KEY = 'trpg_archive_v74';
     const KEY_SCH = 'trpg_archive_schedules';
@@ -561,6 +561,15 @@
         return new TextDecoder().decode(bytes);
     }
 
+    // ★大元凶だった消失関数の復活
+    function getGenre(n) { 
+        const cleaned = n.split(/[(\（]/)[0]; 
+        for (const [g, l] of Object.entries(GENRE_MAP)) { 
+            if (l.some(s => cleaned.includes(s))) return g; 
+        } 
+        return "知識"; 
+    }
+
     window.onload = async () => { 
         try {
             if(localStorage.getItem('trpg_theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); 
@@ -574,7 +583,7 @@
             initNewForm(); 
             renderAll();
             
-            // ★重要：初回のカレンダー画面表示を強制実行
+            // 初回のカレンダー画面表示を強制実行
             showView('v-calendar'); 
         } catch(e) {
             console.error("起動時致命的エラー", e);
@@ -796,16 +805,22 @@
     
     function openViewer(i) {
         const c = chars[i]; const left = document.getElementById('v-page-left'); const right = document.getElementById('v-page-right'); const editContainer = document.getElementById('v-edit-btn-container');
-        const hp = Math.ceil((Number(c.stats.con)+Number(c.stats.siz))/(c.regulation === '7th' ? 10 : 2));
-        const mp = c.regulation === '7th' ? Math.floor(Number(c.stats.pow)/5) : c.stats.pow;
-        const ide = c.regulation === '7th' ? c.stats.int : Number(c.stats.int)*5;
-        const know = c.regulation === '7th' ? c.stats.edu : Number(c.stats.edu)*5;
-        const s = Number(c.stats.str) + Number(c.stats.siz);
+        
+        // エラー回避のためのデフォルト値設定
+        c.stats = c.stats || {};
+        const str = Number(c.stats.str) || 0; const con = Number(c.stats.con) || 0; const pow = Number(c.stats.pow) || 0; const dex = Number(c.stats.dex) || 0; const app = Number(c.stats.app) || 0; const siz = Number(c.stats.siz) || 0; const int = Number(c.stats.int) || 0; const edu = Number(c.stats.edu) || 0; const san = Number(c.stats.san) || 0;
+        const luck = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0;
+        
+        const hp = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
+        const mp = c.regulation === '7th' ? Math.floor(pow/5) : pow;
+        const ide = c.regulation === '7th' ? int : int*5;
+        const know = c.regulation === '7th' ? edu : edu*5;
+        const s = str + siz;
         let db; if(c.regulation === '6th') db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; else db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6";
-        left.innerHTML = '<div style="text-align:center;"><img src="' + (c.img || '') + '" class="char-icon" style="width:180px; height:180px; margin-bottom:20px;"></div><div class="name-area"><h2 class="char-name-ruby"><ruby>' + c.name + '<rt>' + (c.kana || '') + '</rt></ruby></h2><span class="reg-tag ' + (c.regulation === '7th' ? 'tag-7th' : 'tag-6th') + '">' + (c.regulation === '7th' ? '7th Ed.' : '6th Ed.') + '</span></div><div style="font-size:0.9rem; margin-bottom:20px;"><b>' + (c.job || '無職') + '</b> / ' + (c.sex || '-') + ' / ' + (c.age || '-') + ' / ' + (c.height || '-') + 'cm</div><div class="viewer-stat-grid">' + ["str","con","pow","dex","app","siz","int","edu","san"].map(k => '<div class="viewer-stat-box"><b>' + k.toUpperCase() + '</b><span>' + (c.stats[k] || '-') + '</span></div>').join('') + '</div><div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;"><div class="viewer-stat-box"><b>HP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + hp + '</div></div><div class="viewer-stat-box"><b>MP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + mp + '</div></div><div class="viewer-stat-box"><b>DB</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + db + '</div></div><div class="viewer-stat-box"><b>アイデア</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + ide + '</div></div><div class="viewer-stat-box"><b>知識</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + know + '</div></div><div class="viewer-stat-box"><b>幸運</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + (c.calcStats?.luck || 0) + '</div></div></div>';
+        
+        left.innerHTML = '<div style="text-align:center;"><img src="' + (c.img || '') + '" class="char-icon" style="width:180px; height:180px; margin-bottom:20px;"></div><div class="name-area"><h2 class="char-name-ruby"><ruby>' + (c.name || '名無し') + '<rt>' + (c.kana || '') + '</rt></ruby></h2><span class="reg-tag ' + (c.regulation === '7th' ? 'tag-7th' : 'tag-6th') + '">' + (c.regulation === '7th' ? '7th Ed.' : '6th Ed.') + '</span></div><div style="font-size:0.9rem; margin-bottom:20px;"><b>' + (c.job || '無職') + '</b> / ' + (c.sex || '-') + ' / ' + (c.age || '-') + ' / ' + (c.height || '-') + 'cm</div><div class="viewer-stat-grid">' + ["str","con","pow","dex","app","siz","int","edu","san"].map(k => '<div class="viewer-stat-box"><b>' + k.toUpperCase() + '</b><span>' + (c.stats[k] || '-') + '</span></div>').join('') + '</div><div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;"><div class="viewer-stat-box"><b>HP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + hp + '</div></div><div class="viewer-stat-box"><b>MP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + mp + '</div></div><div class="viewer-stat-box"><b>DB</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + db + '</div></div><div class="viewer-stat-box"><b>アイデア</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + ide + '</div></div><div class="viewer-stat-box"><b>知識</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + know + '</div></div><div class="viewer-stat-box"><b>幸運</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + luck + '</div></div></div>';
         
         let rightHtml = ''; let skillHtml = '<span class="section-label">習得技能</span><div class="viewer-skill-list">';
-        // 技能リストが空のデータでも落ちないように対策
         const safeSkills = c.skills || [];
         ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => {
             const gs = safeSkills.filter(s => (s.gr || getGenre(s.n)) === g && (Number(s.j)>0 || Number(s.i)>0 || Number(s.g)>0 || Number(s.o)>0));
@@ -838,7 +853,6 @@
         
         right.innerHTML = rightHtml;
         
-        // ★重要：閲覧画面のボタンにも admin-only を付与して確実に隠す
         editContainer.innerHTML = '<div style="display:flex; gap:10px;"><button onclick="editChar(' + i + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">編集</button><button onclick="deleteCharFromViewer(' + i + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">削除</button></div>';
         
         document.getElementById('viewer-overlay').style.display = 'flex';
@@ -855,7 +869,6 @@
     function editChar(i) { 
         currentEditIdx = i; closeViewer(); const c = chars[i]; 
         
-        // ★重要：古いデータを開いたときに技能リストが出なくなるエラーを防ぐための安全処理
         c.stats = c.stats || {};
         c.calcStats = c.calcStats || {};
         c.skills = c.skills || [];
