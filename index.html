@@ -193,9 +193,18 @@
         <div class="nav-item" id="nav-char" onclick="showView('v-characters')">探索者名簿</div>
     </div>
     <div class="nav-footer">
+<button class="btn-util" onclick="toggleGithubSettings()" style="background:#24292e; color:white;">GitHub連携設定</button>
+
+<div id="github-settings" style="display:none; position:fixed; bottom:80px; left:10px; background:var(--card-bg); padding:15px; border:1px solid var(--border); border-radius:8px; z-index:100; box-shadow:var(--shadow); width:190px;">
+    <span style="font-size:0.7rem; font-weight:bold; color:var(--accent);">連携用トークン</span>
+    <input type="password" id="gh-token" placeholder="ghp_..." style="font-size:0.7rem; margin-bottom:10px;">
+    <span style="font-size:0.7rem; font-weight:bold; color:var(--accent);">リポジトリ名 (User/Repo)</span>
+    <input type="text" id="gh-repo" placeholder="itomen/trpg-archive" style="font-size:0.7rem; margin-bottom:10px;">
+    <button class="btn-action" onclick="saveGithubSettings()" style="width:100%;">設定をブラウザに保存</button>
+</div>
         <button class="btn-util" onclick="toggleTheme()">モード切替</button>
         <button class="btn-util" onclick="openImportOverlay()" style="background:var(--important); border:none; color:white; font-weight:bold;">テキストから記帳</button>
-        <button class="btn-util" onclick="exportData()">全保存 (JSON)</button>
+        <button class="btn-util" id="sync-btn" onclick="syncToGithub()" style="background:#2ecc71; color:white; font-weight:bold;">大書庫を世界へ同期</button>
         <button class="btn-util" onclick="importData()">復元</button>
         <input type="file" id="import-file" style="display:none" onchange="handleImport(this)">
     </div>
@@ -372,7 +381,13 @@
     function getGenre(n) { const cleaned = n.split(/[(\（]/)[0]; for (const [g, l] of Object.entries(GENRE_MAP)) { if (l.some(s => cleaned.includes(s))) return g; } return "知識"; }
 
     /* --- 聖域：名簿ロジック (v7.9.7 隔離凍結) --- */
-    window.onload = () => { if(localStorage.getItem('trpg_theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); schedules = (JSON.parse(localStorage.getItem(KEY_SCH)) || []).map(s => { if (!s.dates && s.date) s.dates = [s.date]; if (!s.dates) s.dates = []; return s; }); initNewForm(); renderChars(); renderScheduleView(); };
+    window.onload = () => { 
+        if(localStorage.getItem('trpg_theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); 
+        schedules = (JSON.parse(localStorage.getItem(KEY_SCH)) || []).map(s => { if (!s.dates && s.date) s.dates = [s.date]; if (!s.dates) s.dates = []; return s; });
+        initNewForm(); renderChars(); renderScheduleView();
+        
+        loadPublicData(); // ← この1行を「 }; 」の直前に追記
+    };
     
     /* --- 物語の自動同期 (Scenario Sync) 実装回路 --- */
     function syncScenarioToChar(charName, scenarioTitle) {
@@ -622,6 +637,93 @@
     function closeSchEditor() { document.getElementById('sch-editor-overlay').style.display = 'none'; currentSchEditId = null; }
     function deleteSchedule(id) { if(confirm("この物語を大書庫から削除しますか？")) { schedules = schedules.filter(s => s.id !== id); localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); renderScheduleView(); closeSchViewer(); } }
     function quickAdd(day) { const panel = document.getElementById('add-sch-form'); if(!panel.classList.contains('open')) togglePanel('add-sch-form', true); const dateStr = currentViewDate.getFullYear() + '-' + String(currentViewDate.getMonth()+1).padStart(2,'0') + '-' + String(day).padStart(2,'0') + 'T21:00'; const inputs = document.querySelectorAll('#sch-date-list-new .sch-date-in'); if(inputs.length > 0) inputs[0].value = dateStr; }
+async function loadPublicData() {
+    try {
+        const response = await fetch('data.json'); 
+        if (response.ok) {
+            const publicData = await response.json();
+            
+            // 初めてサイトを訪れた人（名簿も予定表も空の人）にだけ、公開データを反映させる
+            if (chars.length === 0 && schedules.length === 0) {
+                chars = publicData.chars || [];
+                schedules = publicData.schedules || [];
+                
+                // 画面を最新の状態に描画
+                renderChars();
+                renderScheduleView();
+                console.log("大書庫の公開記録を同期しました。");
+            }
+        }
+    } catch (e) {
+        console.log("公開データ（data.json）が見つからないか、読み込みに失敗しました。");
+    }
+}
+// GitHub連携設定の表示切替
+function toggleGithubSettings() {
+    const el = document.getElementById('github-settings');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+// 設定をLocalStorageに保存（いとめんさんのPC内だけに保持）
+function saveGithubSettings() {
+    localStorage.setItem('gh_token', document.getElementById('gh-token').value);
+    localStorage.setItem('gh_repo', document.getElementById('gh-repo').value);
+    alert("GitHubの連携設定を記憶しました。");
+    toggleGithubSettings();
+}
+
+// 設定を読み込む
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+});
+
+// メイン機能：GitHub上のdata.jsonを直接書き換える
+async function syncToGithub() {
+    const token = localStorage.getItem('gh_token');
+    const repo = localStorage.getItem('gh_repo');
+    if (!token || !repo) return alert("GitHub連携設定を先に済ませてください。");
+
+    const btn = document.getElementById('sync-btn');
+    btn.innerText = "同期中...";
+    btn.disabled = true;
+
+    try {
+        const path = "data.json";
+        const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify({ chars, schedules }, null, 2))));
+
+        // 1. 既存ファイルのSHA（現在のバージョン番号のようなもの）を取得
+        const getRes = await fetch(url, { headers: { "Authorization": `token ${token}` } });
+        let sha = "";
+        if (getRes.ok) {
+            const data = await getRes.json();
+            sha = data.sha;
+        }
+
+        // 2. ファイルを上書き（または新規作成）
+        const putRes = await fetch(url, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Archive update from Web",
+                content: content,
+                sha: sha
+            })
+        });
+
+        if (putRes.ok) {
+            alert("大書庫の記録がGitHubに同期されました。世界に公開されています。");
+        } else {
+            throw new Error("通信に失敗しました。設定を確認してください。");
+        }
+    } catch (e) {
+        alert("エラー: " + e.message);
+    } finally {
+        btn.innerText = "大書庫を世界へ同期";
+        btn.disabled = false;
+    }
+}
 </script>
 </body>
 </html>
