@@ -1395,23 +1395,23 @@
       "sex": "男",
       "age": "45",
       "height": "175",
-      "img": "https://image.iaproject.app/d19f0414-39fa-4bbb-a5c3-9c06ac5b1863",
+      "img": "data:image/jpeg;base64,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",
       "stats": {
-        "str": 14,
-        "con": 13,
-        "pow": 15,
-        "dex": 12,
-        "app": 12,
-        "siz": 12,
-        "int": 14,
-        "edu": 19,
-        "san": 46
+        "str": "14",
+        "con": "13",
+        "pow": "15",
+        "dex": "12",
+        "app": "12",
+        "siz": "12",
+        "int": "14",
+        "edu": "19",
+        "san": "46"
       },
       "calcStats": {
         "luck": "75"
       },
       "ptPattern": "edu_only",
-      "ptManual": 0,
+      "ptManual": "0",
       "skills": [
         {
           "n": "回避",
@@ -1421,127 +1421,6 @@
           "g": "0",
           "o": "0",
           "t": "59",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "投擲",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "こぶし/パンチ",
-          "b": 50,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 50,
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "キック",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "組みつき",
-          "b": 25,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 25,
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "頭突き",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "マーシャルアーツ",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "拳銃",
-          "b": "20",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "20",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "サブマシンガン",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "ショットガン",
-          "b": "30",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "30",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "ライフル",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "弓",
-          "b": 10,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 10,
           "sub": "",
           "gr": "戦闘"
         },
@@ -1601,224 +1480,15 @@
           "gr": "探索"
         },
         {
-          "n": "鍵開け",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "隠れる",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "忍び歩き",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "隠す",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "追跡",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "登攀",
-          "b": "40",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "40",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "写真術",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "運転",
-          "b": 20,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 20,
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "製作",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "操縦",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "跳躍",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "水泳",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "乗馬",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "機械修理",
+          "n": "運転(自動車)",
           "b": "20",
           "j": "0",
-          "i": "0",
+          "i": "10",
           "g": "0",
           "o": "0",
-          "t": "20",
+          "t": "30",
           "sub": "",
           "gr": "行動"
-        },
-        {
-          "n": "電気修理",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "重機械操作",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "変装",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "ナビゲート",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "説得",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "言いくるめ",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "交渉"
         },
         {
           "n": "信用",
@@ -1832,28 +1502,6 @@
           "gr": "交渉"
         },
         {
-          "n": "値切り",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "クトルフ神話",
-          "b": 0,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 0,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
           "n": "心理学",
           "b": "5",
           "j": "75",
@@ -1861,28 +1509,6 @@
           "g": "0",
           "o": "0",
           "t": "80",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "人類学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "考古学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
           "sub": "",
           "gr": "知識"
         },
@@ -1898,17 +1524,6 @@
           "gr": "知識"
         },
         {
-          "n": "天文学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
           "n": "生物学",
           "b": "1",
           "j": "50",
@@ -1916,149 +1531,6 @@
           "g": "0",
           "o": "0",
           "t": "51",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "化学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "地質学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "物理学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "法律",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "歴史",
-          "b": "20",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "20",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "オカルト",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "博物学",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "母国語",
-          "b": "95",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "95",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "ほかの言語",
-          "b": 1,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 1,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "芸術",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "経理",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "コンピューター",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "電子工学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
           "sub": "",
           "gr": "知識"
         },
@@ -2072,17 +1544,6 @@
           "t": "70",
           "sub": "",
           "gr": "知識"
-        },
-        {
-          "n": "運転(自動車)",
-          "b": "20",
-          "j": "0",
-          "i": "10",
-          "g": "0",
-          "o": "0",
-          "t": "30",
-          "sub": "",
-          "gr": "行動"
         }
       ],
       "scns": [
@@ -2091,10 +1552,31 @@
       "profs": [
         {
           "t": "写記された手記",
-          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ、煙草（キャビン）、ジッポライター、手帳、ペン\n================================================================================\n【プロフィール】\n保健室の先生。\n優しい物腰で、どんな生徒にも分け隔てなく接する。\n学校の保健室というのは、様々な生徒が、様々な理由を持って訪れる場所である。\n彼はどんな生徒であっても招き入れ、時に治療し、時に相談に乗り、時に雑談をする。\n生徒からの信頼は厚いかもしれない。\n逆に、教師からの視線は痛いものがあるかもしれない。\n剣道部の副顧問を担当しており、自身は全国大会に出場の経験があるらしい。\n普段の印象もあってか、あまり信じられてはいない。\n車を喫煙所代わりにしているのが度々目撃されては生徒からいじられ、教師から叱責されている。\n================================================================================\n６版医師準拠\n合計ステータス値１１１\n加齢補正によりEDU+2 APP-1\n\n[【HO3 先生は優しく話してくれる】秘匿内容]\n■HO3\n「HO3先生は優しく話してくれる」\n保健室にいる養護教諭。\n\n以下、秘匿内容\n▼過去\n幼い頃に両親が離婚しており、自身を引き取った父親は中学生の時に死んだ。母親とは連絡が取れず、父方の親戚を転々とした。誰の愛情も受けず、誰にも心を委ねることができず孤独の人生を歩んできた。いつか誰かを心から愛し、誰かに心から愛されたいと考えていた。\n\n▼自殺した生徒について\n保健室によく来ていた生徒。HO3は生徒と恋愛的な意味で「教師と生徒」以上の関係であった。彼女もHO3と同じで、両親の仲が悪く居場所がないと話していた。HO1が担任のクラスでも、HO2が顧問の部活動でも居心地が悪いと話していた。HO3は、本人から聞いたことであれば、彼女の事について様々な情報を知っている。\n※「恋愛的な意味で」の具体的な解釈は自由です。プラトニックなものだったのかどうかなど、詳細な設定はPLが決定してください。\n\n★精神分析+50%の補正\n\n[【HO3 先生は優しく話してくれる】秘匿込みプロフィール１]\n▼PC、NPCに対して\n〇美影　杏\n年齢とは似合わず、どこか大人びていて、落ち着いた雰囲気の生徒。\n悩みがあるとのことだったので、それを解決する機会は与えたつもりだったが、結局彼女は自殺という形で亡くなってしまった。\n彼女のことは少し気になっていた。そういう意味ではなく、単純に同じ種類の人間として。\nお互い似た境遇の「人からの愛情に飢えた者」同士、惹かれあっていたかもしれない。\n彼女の方がどう思っていたのか真意は定かではないが、好意には気付いていた。\nその好意に応えるべきだったのか、もっと深く関わっていたら救えたのか。今となっては後の祭りだ。\nでも、教師と生徒としての一線を超えるつもりはなく、教師として出来る最大限の助力はしたつもり。\nこのまま時間が経てば「そんな生徒もいたな」で済むだろうと自身を言い聞かせている。そんな感じ。\n==================================================================================\n【RPの方向性】\n真堂「どうしたんだ。またベッドを借りに来たのか？いつも担任の先生に言い訳する僕の身にもなってくれよ？」\n\n優しい先生って感じ。隙だらけで生徒からも先生からもよく弄られてる。かも。\nあまり頼りがいはないが、生徒からしたら話しやすく親しみやすい人。\n教師からしたら生徒を甘やかしてる！って思われてるんだろうなって感じ。\n==================================================================================\n【性格】\n長所：温厚\n短所：臆病\n一人称：僕\n二人称：君、貴方、美影さん\n\n[【HO3 先生は優しく話してくれる】秘匿込みプロフィール２]\n【美影杏との出会いからシナリオ直前まで】\n流れを日記形式でまとめてみた。\nこの方が真堂先生の美影に対する気持ちとか、エピソードを考えやすいかなって...\n\n▼真堂先生の日記\n日々の日記を綴っている。\n基本は学校のことや、生徒たちのことで他愛ないことを綴っている。\nその中にいくつか、美影杏に関するであろう記述が残されている。\n\n〇月×日\n保健室通いの生徒というのは今時珍しいことでもない。\n他の学校でも、そういった生徒とは度々接してきた。\n美影杏もその中の一人だ。思春期特有のよくある悩みを抱えて、今日もここに彼女はやってきた。\nどうやら両親の仲が悪く、家にはあまり帰りたくないらしい。\nHO１先生やHO２先生も他の生徒のこともあってあまり集中して話を聞いてあげられていないようだ。\n僕の方から言って、催促した方がいいだろうか？\n所詮は養護教諭の僕では、普段から気にかけてあげるというのは難しいし、その方がいいだろう。\n大丈夫。この時期の子供は、深く考えすぎて不安になりすぎてしまうものだ。\n彼女もその内分かるだろう。どうってことはない。\n\n〇月×日\n最近になって、保健室に通う頻度が増えているような気がする。\n別に悪いことではないが、こう何度も通っていたら周りの生徒や教師からも違和感を持たれるだろう。\nこういった生徒は何かと邪見に扱われがちなものだ。\n「普通じゃない」と分かった時、人はどういった反応をするのか分かったものではない。\n偶に話を聞く程度ならいいが、大事になっては僕の手に負えない上に彼女の悩みの種が増えてしまう。\n出来れば普通に教室で授業を受けてもらいたいものだが。\n他でもない彼女自身のために。\n\n〇月×日\n今日もまた彼女の相談に乗った。\nといっても、ほとんどは只のお喋り程度の内容だ。\n悩みは尽きないのかもしれないが、少なくとも僕の前では笑って話してくれている。\n家や教室内で上手くいってないようだから、心の拠り所を探しているのだろう。\n僕で良ければいくらでも話を聞いてあげたい所だけど、それでは問題の解決には繋がらない。\n彼女にいくつかの相談窓口を勧めた。\n僕に話すより、こういった公的機関に相談した方がよっぽど建設的な話ができると思ったから。\n僕にこうして相談できているわけだから、窓口のスタッフにも同じように言えたら大丈夫だろう。\n親を相手にするというのは、子供である彼女にとってとても怖いことだと思う。\nそれでも、こうして僕に相談に来る程悩んでいるのであれば、今のうちに行動に起こすべきだ。\n相談する内容がわからない。言えないというのであれば、まずは僕に話すように言った。\nその時の内容などを僕も一緒にまとめて、上手く伝えられるようにできると思ったから。\n長く掛かるかもしれないが、頑張って欲しいと思う。\n\n〇月×日\nあれからしばらく経つ。\n話の節々から察するに、どうやら窓口はあまり利用していないのだろう。\n僕から催促することじゃないし、彼女がそうするのであれば仕方がない。\n今日もまた、彼女と話をする。\n\n〇月×日\n不思議なことだ。\n彼女は僕の前では普通に話をして、笑っている。\nそれだけ心を許してくれているのだろう。彼女の気持ちに気付かない程、僕も馬鹿じゃない。\n自惚れるつもりはないが、だからこそ、少しもどかしい。\n彼女もまた、愛情に飢えている。人として必要なものが足りていないのだ。\nそこから生まれる葛藤が今の彼女を作っている。\nそれは、僕に向けるものではない。僕が与えられるものではないんだ。\n僕もまた、愛情を知らずに育ったから。\n「類は友を呼ぶ」とはよく言ったものだ。\nそれでは、欲しいものなんて手に入らないって分かっているはずなのに。\nいや、今の彼女にはそれすら分からないのだろう。\n騙しているようで、気分が悪いな。\nでも、ここで僕が彼女を突き放してしまったら、彼女は孤独になってしまう。\nそれだけは避けないといけない。\n今だけは、この歪んだ関係に浸らせてあげよう。\n何時か夢が覚めるその時まで。\n\n〇月×日\n美影杏が亡くなった。自殺だった。\n結局、彼女にはなにもしてあげられなかった。\n何も出来ないくせに、期待させるようなことばかり言って、結局は彼女を救えなかったんだ。\n僕も周りと同じ、見て見ぬふりをしていた烏合の一人に過ぎない。\nでも、「僕なら彼女を救えた」なんて、それこそ自惚れるなという話だ。\n所詮は雇われの一教師、ましてや養護教諭にそんな権限も力もない。\nやれることはやったはずだ。\nそのはずだ　（その後、何かを書こうとして筆が止まっている）"
+          "x": "スマホ、財布、ハンカチ、ティッシュ、煙草（キャビン）、ジッポライター、手帳、ペン\n"
+        },
+        {
+          "t": "プロフィール",
+          "x": "保健室の先生。\n優しい物腰で、どんな生徒にも分け隔てなく接する。\n学校の保健室というのは、様々な生徒が、様々な理由を持って訪れる場所である。\n彼はどんな生徒であっても招き入れ、時に治療し、時に相談に乗り、時に雑談をする。\n生徒からの信頼は厚いかもしれない。\n逆に、教師からの視線は痛いものがあるかもしれない。\n剣道部の副顧問を担当しており、自身は全国大会に出場の経験があるらしい。\n普段の印象もあってか、あまり信じられてはいない。\n車を喫煙所代わりにしているのが度々目撃されては生徒からいじられ、教師から叱責されている。"
+        },
+        {
+          "t": "補足",
+          "x": "６版医師準拠\n合計ステータス値１１１\n加齢補正によりEDU+2 APP-1"
         }
       ],
-      "secrets": []
+      "secrets": [
+        {
+          "t": "秘匿１",
+          "x": "[【HO3 先生は優しく話してくれる】秘匿内容]\n■HO3\n「HO3先生は優しく話してくれる」\n保健室にいる養護教諭。\n\n以下、秘匿内容\n▼過去\n幼い頃に両親が離婚しており、自身を引き取った父親は中学生の時に死んだ。母親とは連絡が取れず、父方の親戚を転々とした。誰の愛情も受けず、誰にも心を委ねることができず孤独の人生を歩んできた。いつか誰かを心から愛し、誰かに心から愛されたいと考えていた。\n\n▼自殺した生徒について\n保健室によく来ていた生徒。HO3は生徒と恋愛的な意味で「教師と生徒」以上の関係であった。彼女もHO3と同じで、両親の仲が悪く居場所がないと話していた。HO1が担任のクラスでも、HO2が顧問の部活動でも居心地が悪いと話していた。HO3は、本人から聞いたことであれば、彼女の事について様々な情報を知っている。\n※「恋愛的な意味で」の具体的な解釈は自由です。プラトニックなものだったのかどうかなど、詳細な設定はPLが決定してください。\n\n★精神分析+50%の補正"
+        },
+        {
+          "t": "秘匿２",
+          "x": "[【HO3 先生は優しく話してくれる】秘匿込みプロフィール]\n▼PC、NPCに対して\n〇美影　杏\n年齢とは似合わず、どこか大人びていて、落ち着いた雰囲気の生徒。\n悩みがあるとのことだったので、それを解決する機会は与えたつもりだったが、結局彼女は自殺という形で亡くなってしまった。\n彼女のことは少し気になっていた。そういう意味ではなく、単純に同じ種類の人間として。\nお互い似た境遇の「人からの愛情に飢えた者」同士、惹かれあっていたかもしれない。\n彼女の方がどう思っていたのか真意は定かではないが、好意には気付いていた。\nその好意に応えるべきだったのか、もっと深く関わっていたら救えたのか。今となっては後の祭りだ。\nでも、教師と生徒としての一線を超えるつもりはなく、教師として出来る最大限の助力はしたつもり。\nこのまま時間が経てば「そんな生徒もいたな」で済むだろうと自身を言い聞かせている。そんな感じ。\n\n【RPの方向性】\n真堂「どうしたんだ。またベッドを借りに来たのか？いつも担任の先生に言い訳する僕の身にもなってくれよ？」\n\n優しい先生って感じ。隙だらけで生徒からも先生からもよく弄られてる。かも。\nあまり頼りがいはないが、生徒からしたら話しやすく親しみやすい人。\n教師からしたら生徒を甘やかしてる！って思われてるんだろうなって感じ。\n\n【性格】\n長所：温厚\n短所：臆病\n一人称：僕\n二人称：君、貴方、美影さん"
+        },
+        {
+          "t": "秘匿３",
+          "x": "[【HO3 先生は優しく話してくれる】秘匿込みプロフィール]\n【美影杏との出会いからシナリオ直前まで】\n流れを日記形式でまとめてみた。\nこの方が真堂先生の美影に対する気持ちとか、エピソードを考えやすいかなって...\n\n▼真堂先生の日記\n日々の日記を綴っている。\n基本は学校のことや、生徒たちのことで他愛ないことを綴っている。\nその中にいくつか、美影杏に関するであろう記述が残されている。\n\n〇月×日\n保健室通いの生徒というのは今時珍しいことでもない。\n他の学校でも、そういった生徒とは度々接してきた。\n美影杏もその中の一人だ。思春期特有のよくある悩みを抱えて、今日もここに彼女はやってきた。\nどうやら両親の仲が悪く、家にはあまり帰りたくないらしい。\nHO１先生やHO２先生も他の生徒のこともあってあまり集中して話を聞いてあげられていないようだ。\n僕の方から言って、催促した方がいいだろうか？\n所詮は養護教諭の僕では、普段から気にかけてあげるというのは難しいし、その方がいいだろう。\n大丈夫。この時期の子供は、深く考えすぎて不安になりすぎてしまうものだ。\n彼女もその内分かるだろう。どうってことはない。\n\n〇月×日\n最近になって、保健室に通う頻度が増えているような気がする。\n別に悪いことではないが、こう何度も通っていたら周りの生徒や教師からも違和感を持たれるだろう。\nこういった生徒は何かと邪見に扱われがちなものだ。\n「普通じゃない」と分かった時、人はどういった反応をするのか分かったものではない。\n偶に話を聞く程度ならいいが、大事になっては僕の手に負えない上に彼女の悩みの種が増えてしまう。\n出来れば普通に教室で授業を受けてもらいたいものだが。\n他でもない彼女自身のために。\n\n〇月×日\n今日もまた彼女の相談に乗った。\nといっても、ほとんどは只のお喋り程度の内容だ。\n悩みは尽きないのかもしれないが、少なくとも僕の前では笑って話してくれている。\n家や教室内で上手くいってないようだから、心の拠り所を探しているのだろう。\n僕で良ければいくらでも話を聞いてあげたい所だけど、それでは問題の解決には繋がらない。\n彼女にいくつかの相談窓口を勧めた。\n僕に話すより、こういった公的機関に相談した方がよっぽど建設的な話ができると思ったから。\n僕にこうして相談できているわけだから、窓口のスタッフにも同じように言えたら大丈夫だろう。\n親を相手にするというのは、子供である彼女にとってとても怖いことだと思う。\nそれでも、こうして僕に相談に来る程悩んでいるのであれば、今のうちに行動に起こすべきだ。\n相談する内容がわからない。言えないというのであれば、まずは僕に話すように言った。\nその時の内容などを僕も一緒にまとめて、上手く伝えられるようにできると思ったから。\n長く掛かるかもしれないが、頑張って欲しいと思う。\n\n〇月×日\nあれからしばらく経つ。\n話の節々から察するに、どうやら窓口はあまり利用していないのだろう。\n僕から催促することじゃないし、彼女がそうするのであれば仕方がない。\n今日もまた、彼女と話をする。\n\n〇月×日\n不思議なことだ。\n彼女は僕の前では普通に話をして、笑っている。\nそれだけ心を許してくれているのだろう。彼女の気持ちに気付かない程、僕も馬鹿じゃない。\n自惚れるつもりはないが、だからこそ、少しもどかしい。\n彼女もまた、愛情に飢えている。人として必要なものが足りていないのだ。\nそこから生まれる葛藤が今の彼女を作っている。\nそれは、僕に向けるものではない。僕が与えられるものではないんだ。\n僕もまた、愛情を知らずに育ったから。\n「類は友を呼ぶ」とはよく言ったものだ。\nそれでは、欲しいものなんて手に入らないって分かっているはずなのに。\nいや、今の彼女にはそれすら分からないのだろう。\n騙しているようで、気分が悪いな。\nでも、ここで僕が彼女を突き放してしまったら、彼女は孤独になってしまう。\nそれだけは避けないといけない。\n今だけは、この歪んだ関係に浸らせてあげよう。\n何時か夢が覚めるその時まで。\n\n〇月×日\n美影杏が亡くなった。自殺だった。\n結局、彼女にはなにもしてあげられなかった。\n何も出来ないくせに、期待させるようなことばかり言って、結局は彼女を救えなかったんだ。\n僕も周りと同じ、見て見ぬふりをしていた烏合の一人に過ぎない。\nでも、「僕なら彼女を救えた」なんて、それこそ自惚れるなという話だ。\n所詮は雇われの一教師、ましてや養護教諭にそんな権限も力もない。\nやれることはやったはずだ。\nそのはずだ　（その後、何かを書こうとして筆が止まっている）"
+        }
+      ]
     },
     {
       "regulation": "6th",
