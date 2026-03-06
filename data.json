@@ -1747,23 +1747,23 @@
       "sex": "女性",
       "age": "15→17",
       "height": "143→146",
-      "img": "https://image.iaproject.app/25e5a866-7712-4e33-9713-2b98cab577a6",
+      "img": "data:image/jpeg;base64,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",
       "stats": {
-        "str": 11,
-        "con": 11,
-        "pow": 16,
-        "dex": 13,
-        "app": 15,
-        "siz": 8,
-        "int": 13,
-        "edu": 7,
-        "san": 94
+        "str": "11",
+        "con": "11",
+        "pow": "16",
+        "dex": "13",
+        "app": "15",
+        "siz": "8",
+        "int": "13",
+        "edu": "7",
+        "san": "94"
       },
       "calcStats": {
         "luck": "80"
       },
       "ptPattern": "edu_only",
-      "ptManual": 0,
+      "ptManual": "0",
       "skills": [
         {
           "n": "回避",
@@ -1788,112 +1788,13 @@
           "gr": "戦闘"
         },
         {
-          "n": "こぶし/パンチ",
-          "b": 50,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 50,
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "キック",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "組みつき",
-          "b": 25,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 25,
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "頭突き",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "マーシャルアーツ",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "拳銃",
-          "b": "20",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "20",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "サブマシンガン",
+          "n": "日本刀",
           "b": "15",
           "j": "0",
-          "i": "0",
-          "g": "0",
+          "i": "25",
+          "g": "5",
           "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "ショットガン",
-          "b": "30",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "30",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "ライフル",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "戦闘"
-        },
-        {
-          "n": "弓",
-          "b": 10,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 10,
+          "t": "45",
           "sub": "",
           "gr": "戦闘"
         },
@@ -1942,380 +1843,6 @@
           "gr": "探索"
         },
         {
-          "n": "精神分析",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "鍵開け",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "隠れる",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "忍び歩き",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "隠す",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "追跡",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "登攀",
-          "b": "40",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "40",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "写真術",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "探索"
-        },
-        {
-          "n": "運転",
-          "b": "20",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "20",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "製作",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "操縦",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "跳躍",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "水泳",
-          "b": "25",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "25",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "乗馬",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "機械修理",
-          "b": "20",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "20",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "電気修理",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "重機械操作",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "変装",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "ナビゲート",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "行動"
-        },
-        {
-          "n": "説得",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "言いくるめ",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "信用",
-          "b": "15",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "15",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "値切り",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "交渉"
-        },
-        {
-          "n": "クトルフ神話",
-          "b": 0,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 0,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "心理学",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "人類学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "考古学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "医学",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "天文学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "生物学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "化学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "地質学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "物理学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "法律",
-          "b": "5",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "5",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
           "n": "歴史",
           "b": "20",
           "j": "20",
@@ -2347,83 +1874,6 @@
           "t": "40",
           "sub": "",
           "gr": "知識"
-        },
-        {
-          "n": "母国語",
-          "b": 35,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 35,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "ほかの言語",
-          "b": 1,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 1,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "芸術",
-          "b": 5,
-          "j": 0,
-          "i": 0,
-          "g": 0,
-          "o": 0,
-          "t": 5,
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "経理",
-          "b": "10",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "10",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "コンピューター",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "電子工学",
-          "b": "1",
-          "j": "0",
-          "i": "0",
-          "g": "0",
-          "o": "0",
-          "t": "1",
-          "sub": "",
-          "gr": "知識"
-        },
-        {
-          "n": "日本刀",
-          "b": "15",
-          "j": "0",
-          "i": "25",
-          "g": "5",
-          "o": "0",
-          "t": "45",
-          "sub": "",
-          "gr": "戦闘"
         },
         {
           "n": "母国語(日本語)",
@@ -2471,12 +1921,29 @@
         }
       ],
       "scns": [
-        "彼方から君に捧ぐ"
+        "彼方から君に捧ぐ",
+        "実験体δは青に微笑む"
       ],
       "profs": [
         {
           "t": "写記された手記",
-          "x": "【所持品】\nスマホ、財布、ハンカチ、ティッシュ\n================================================================================\n【プロフィール】\nこれといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はそこそこ。全国大会にいったこともある。一回戦敗退だったが。\nちなみに友達の方は全国大会常連でいつもトップ３に入るくらい強い。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。色々と拘りがあるようで、庭を勝手に触ると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n紗良とは違ってお淑やかで賢くて運動ができて身長も自分より高い５歳下の妹がいる。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。\n================================================================================\n【RPの方向性】\n「ねえちょっと！起きなさいよ！早く起きないと鼻つまむわよ！」\n「べ、別に怖くなんてないんだから！見てなさいよね！（扉ガチャ）」\n「大人なんでしょ！ちゃんとしなさいよ！まったくしょうがないわね！」\nちょっと男子～って言ってるタイプ。男子にちょっと厳しいだけのとても平凡な長女。\n強いて言うなら面倒見の良さ（お節介）となんだかんだ優しいところが長所。\n================================================================================\n【その他】\n合計ステータス94\n6版作家準拠\n\n[旧プロフィール（メモ用）]\n【プロフィール】\nこれといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はいまのところ実に普通。県大会までは行けるが大体一回戦、二回戦で負ける。\nちなみに友達の方は全国大会常連で優勝経験もある。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。\n風水だの縁起の良さだの、色々と拘りがあるようで、庭を勝手に触られると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n自分とは違ってお淑やかで賢くて運動ができて身長も自分と大して変わらない５歳下の妹がいる。\nお母さんのおなかの中に忘れてきた大事なものを全部妹が拾って生まれてきた、とよくからかわれているが紗良は特に気にしていない様子。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。"
+          "x": "スマホ、財布、ハンカチ、ティッシュ\n"
+        },
+        {
+          "t": "プロフィール",
+          "x": "これといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はそこそこ。全国大会にいったこともある。一回戦敗退だったが。\nちなみに友達の方は全国大会常連でいつもトップ３に入るくらい強い。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。色々と拘りがあるようで、庭を勝手に触ると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n紗良とは違ってお淑やかで賢くて運動ができて身長も自分より高い５歳下の妹がいる。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。"
+        },
+        {
+          "t": "RPの方向性",
+          "x": "「ねえちょっと！起きなさいよ！早く起きないと鼻つまむわよ！」\n「べ、別に怖くなんてないんだから！見てなさいよね！（扉ガチャ）」\n「大人なんでしょ！ちゃんとしなさいよ！まったくしょうがないわね！」\nちょっと男子～って言ってるタイプ。男子にちょっと厳しいだけのとても平凡な長女。\n強いて言うなら面倒見の良さ（お節介）となんだかんだ優しいところが長所。"
+        },
+        {
+          "t": "補足",
+          "x": "合計ステータス94\n6版作家準拠"
+        },
+        {
+          "t": "旧プロフィール（メモ用）",
+          "x": "これといって秀でたものはないが、やたらと勝気な少女。黙っていればただの美人。\n一番仲のいい女友達についていく形で剣道を習っている。小学校の時からなので歴だけは長い。\n剣道の腕前はいまのところ実に普通。県大会までは行けるが大体一回戦、二回戦で負ける。\nちなみに友達の方は全国大会常連で優勝経験もある。\n勝気な性格から勘違いされやすいが趣味はかなり大人しいもので、造園と読書が好き。\n家の庭の手入れは大体紗良が行っている。\n風水だの縁起の良さだの、色々と拘りがあるようで、庭を勝手に触られると怒る。\nクリスマスの時期になると庭が綺麗にイルミネーションされるため、近所では度々話題になる。\n読書の大体は造園に関するものだが、恋愛小説など年相応のジャンルを読むこともある。\n学校では図書委員会に所属しており、図書室の整理、貸出の受付、秋の時期には近くの幼稚園に行って読み聞かせを行うイベントを開催するなどの活動を行っている。\n紗良もまんざらではないようで、精力的に活動に参加している。園児からのウケもいいらしい。\n自分でも何か書けないかなと、密かにネタ帳を書き溜めている。\n机の中に隠してあるので、部屋の中に入るのはともかく机を物色されるのはとても嫌う。\n自分とは違ってお淑やかで賢くて運動ができて身長も自分と大して変わらない５歳下の妹がいる。\nお母さんのおなかの中に忘れてきた大事なものを全部妹が拾って生まれてきた、とよくからかわれているが紗良は特に気にしていない様子。\n可愛い妹ができたのがよほど嬉しいのか、お姉ちゃんとしてとても頑張っている。\n妹の方もよく懐いてくれているようで、姉妹仲は非常に良好。"
         }
       ],
       "secrets": []
