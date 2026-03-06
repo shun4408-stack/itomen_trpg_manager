@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG Archive v9.2.2 - Networked Master</title>
+    <title>TRPG Archive v9.2.3 - Networked Master</title>
     <style>
         /* ============================================================
            v7.9.7 正典スタイル（完全凍結・隔離）
@@ -119,6 +119,7 @@
 
         .btn-action { border: 1px solid var(--border); background: var(--panel-header-bg); font-size: 0.7rem; cursor: pointer; padding: 5px 12px; border-radius: 4px; color: var(--text-main); z-index: 20; position: relative; }
         .btn-main { background: var(--accent); color: white; border: none; padding: 15px; cursor: pointer; border-radius: 6px; font-weight: bold; width: 100%; font-family: 'Noto Serif JP', serif; font-size: 1.1rem; letter-spacing: 2px; }
+        .btn-main:disabled { background: #999; cursor: not-allowed; }
         .btn-sub { width: 100%; cursor: pointer; font-size: 0.85rem; padding: 10px; border-radius: 6px; border: 2px dashed var(--border); background:none; color:var(--text-sub); margin-bottom: 15px; transition: 0.2s; }
         
         .crop-container { position: relative; width: 180px; height: 180px; margin: 15px auto; border: 3px solid var(--border); border-radius: 50%; overflow: hidden; background: #e0e0e0; cursor: move; }
@@ -149,7 +150,6 @@
         .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-family: 'Noto Serif JP', serif; }
         .cal-title { font-size: 1.5rem; font-weight: bold; color: var(--accent); letter-spacing: 2px; }
         
-        /* ★ v9.2.2 修正：セルの自動拡張防止 */
         .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
         .cal-day-label { background: var(--panel-header-bg); padding: 12px; text-align: center; font-size: 0.75rem; font-weight: bold; color: var(--text-sub); }
         .cal-cell { background: var(--card-bg); min-height: 105px; padding: 8px; position: relative; transition: 0.2s; cursor: pointer; z-index: 1; min-width: 0; }
@@ -514,7 +514,7 @@
 
 <script>
     /* ============================================================
-       v9.2.2 絶対不凍・堅牢化モジュール（getGenre復活版・レイアウト修正版）
+       v9.2.3 絶対不凍・堅牢化モジュール（認証テスト機能搭載）
        ============================================================ */
     const KEY = 'trpg_archive_v74';
     const KEY_SCH = 'trpg_archive_schedules';
@@ -694,6 +694,7 @@
         try { renderScenarioLibrary(); } catch(e){ console.error(e); }
     }
 
+    // --- 同期設定画面の制御 ---
     function openSyncSettings() {
         document.getElementById('sync-owner').value = syncConfig.owner;
         document.getElementById('sync-repo').value = syncConfig.repo;
@@ -701,16 +702,50 @@
         document.getElementById('sync-overlay').style.display = 'flex';
     }
     function closeSyncSettings() { document.getElementById('sync-overlay').style.display = 'none'; }
-    function saveSyncSettings() {
-        syncConfig.owner = document.getElementById('sync-owner').value.trim();
-        syncConfig.repo = document.getElementById('sync-repo').value.trim();
-        syncConfig.token = document.getElementById('sync-token').value.trim();
-        localStorage.setItem(KEY_SYNC, JSON.stringify(syncConfig));
-        isEditMode = !!syncConfig.token;
-        applyAppMode();
-        closeSyncSettings();
-        if (isEditMode) pushData(); 
+    
+    // ★ v9.2.3: 認証テスト付きの保存処理
+    async function saveSyncSettings() {
+        const ownerVal = document.getElementById('sync-owner').value.trim();
+        const repoVal = document.getElementById('sync-repo').value.trim();
+        const tokenVal = document.getElementById('sync-token').value.trim();
+        
+        if (!tokenVal) {
+            clearSyncSettings();
+            return;
+        }
+
+        const btn = document.querySelector('#sync-overlay .btn-main');
+        const origText = btn.innerText;
+        btn.innerText = "認証テスト中...";
+        btn.disabled = true;
+
+        try {
+            // GitHub APIでリポジトリへのアクセス権限をテスト
+            const res = await fetch(`https://api.github.com/repos/${ownerVal}/${repoVal}`, {
+                headers: { 'Authorization': `token ${tokenVal}` }
+            });
+
+            if (res.ok) {
+                // 認証成功時のみ保存してモード移行
+                syncConfig.owner = ownerVal;
+                syncConfig.repo = repoVal;
+                syncConfig.token = tokenVal;
+                localStorage.setItem(KEY_SYNC, JSON.stringify(syncConfig));
+                isEditMode = true;
+                applyAppMode();
+                closeSyncSettings();
+                pushData(); // 同期開始
+            } else {
+                alert("認証に失敗しました。トークンやリポジトリ名が正しいか確認してください。\n（エラー: " + res.status + "）");
+            }
+        } catch (e) {
+            alert("通信エラーが発生しました。ネットワーク状況を確認してください。");
+        } finally {
+            btn.innerText = origText;
+            btn.disabled = false;
+        }
     }
+    
     function clearSyncSettings() {
         syncConfig.token = '';
         localStorage.setItem(KEY_SYNC, JSON.stringify(syncConfig));
