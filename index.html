@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG Archive v9.4.5 - Networked Master</title>
+    <title>Itomen-TRPG ARCHIVE</title>
     <style>
-        /* ============================================================
-           v7.9.7 正典スタイル（完全凍結・隔離）
-           ============================================================ */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap');
         
         :root {
@@ -28,8 +25,6 @@
         }
 
         body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        
-        /* 閲覧モード時の非表示制御（安全に隠蔽） */
         body.view-mode .admin-only { display: none !important; }
 
         nav { width: 210px; background-color: var(--sidebar); color: var(--sidebar-text); flex-shrink: 0; display: flex; flex-direction: column; z-index: 10; }
@@ -96,21 +91,28 @@
         .char-card:hover { transform: translateY(-3px); }
         .char-icon { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--card-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.2); flex-shrink: 0; background: #e0e0e0; }
 
+        /* ★ 縦長1カラム・レスポンシブ ビューア */
         #viewer-overlay, #editor-overlay, #import-overlay, #sch-viewer-overlay, #sch-editor-overlay, #scn-editor-overlay, #sync-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .viewer-book, .editor-book, .import-book, .sync-book { width: 95%; max-width: 1100px; height: 90vh; background: var(--bg); display: flex; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px; overflow: hidden; position: relative; }
-        .sync-book { max-width: 600px; height: auto; display: block; padding-bottom: 30px; }
-        .viewer-page, .editor-page, .import-page { flex: 1; padding: 40px; overflow-y: auto; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
-        .viewer-page::-webkit-scrollbar { display: none; }
-        .viewer-page.left { border-right: 2px solid rgba(0,0,0,0.05); background: var(--card-bg); }
-        .close-btn { position: absolute; top: 20px; right: 30px; color: var(--text-sub); font-size: 1.5rem; cursor: pointer; z-index: 110; }
         
-        .viewer-stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .viewer-book.single-column { flex-direction: column; width: 95%; max-width: 850px; height: 95vh; overflow-y: auto; background: var(--bg); display: flex; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; scrollbar-width: none; }
+        .viewer-book.single-column::-webkit-scrollbar { display: none; }
+        .viewer-book.single-column .viewer-page { width: 100%; box-sizing: border-box; padding: 40px 40px 100px 40px; }
+        
+        .sticky-footer { position: sticky; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; gap: 15px; padding: 15px 20px; box-sizing: border-box; z-index: 120; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+        .sticky-footer .btn-action { font-size: 0.95rem; padding: 10px 25px; border-radius: 30px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .sticky-footer .btn-action:hover { opacity: 0.8; transform: translateY(-2px); }
+        .sticky-footer .btn-action.outline { background: transparent; border: 1px solid rgba(255,255,255,0.5); color: white; }
+        .sticky-footer .btn-action.del-outline { background: transparent; border: 1px solid rgba(255,77,79,0.5); color: #ff4d4f; }
+
+        .editor-book, .import-book, .sync-book { width: 95%; max-width: 1100px; height: 90vh; background: var(--bg); display: flex; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px; overflow: hidden; position: relative; }
+        .sync-book { max-width: 600px; height: auto; display: block; padding-bottom: 30px; }
+        .editor-page, .import-page { flex: 1; padding: 40px; overflow-y: auto; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
+        .editor-page::-webkit-scrollbar, .import-page::-webkit-scrollbar { display: none; }
+        .close-btn { position: absolute; top: 20px; right: 30px; color: var(--text-sub); font-size: 1.5rem; cursor: pointer; z-index: 130; }
+        
         .viewer-stat-box { background: var(--panel-header-bg); padding: 10px; border-radius: 6px; text-align: center; }
         .viewer-stat-box b { display: block; font-size: 0.65rem; color: var(--text-sub); font-family: 'Noto Serif JP', serif; }
         .viewer-stat-box span { font-family: 'Noto Serif JP', serif; font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
-        
-        .viewer-skill-list { column-count: 2; column-gap: 30px; font-size: 0.85rem; }
-        .viewer-skill-item { display: flex; justify-content: space-between; border-bottom: 1px dotted var(--border); padding: 4px 0; break-inside: avoid; }
         
         .name-area { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
         .char-name-ruby { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; margin: 0; font-weight: 700; color: var(--text-main); }
@@ -173,7 +175,7 @@
         .chr-main-content { flex: 1; padding: 25px 35px; display: flex; flex-direction: column; justify-content: center; }
         .chr-title { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: bold; margin: 0 0 10px; color: var(--accent); line-height: 1.2; letter-spacing: 1px; }
         .chr-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 18px; opacity: 0.4; }
-        .chr-meta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .chr-meta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; top: 3px; }
         
         .chr-status-pill { font-size: 0.7rem; padding: 4px 14px; border-radius: 20px; color: white; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .status-adj { background: #6c757d; } .status-wait { background: #4a6fa5; } 
@@ -210,6 +212,25 @@
         details.secret-details summary { font-family: 'Noto Serif JP', serif; font-weight: bold; color: var(--important); cursor: pointer; outline: none; }
         details.secret-details summary:hover { opacity: 0.8; }
         details.secret-details > div { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border); }
+/* ★ v9.8.0 追従ボタン＆技能バッジ用CSS */
+        .viewer-book.single-column, .editor-book.single-column { flex-direction: column; width: 95%; max-width: 850px; height: 95vh; overflow-y: auto; background: var(--bg); display: flex; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; scrollbar-width: none; margin: 0 auto; }
+        .viewer-book.single-column::-webkit-scrollbar, .editor-book.single-column::-webkit-scrollbar { display: none; }
+        .viewer-book.single-column .viewer-page, .editor-book.single-column .editor-page { width: 100%; box-sizing: border-box; padding: 40px; padding-bottom: 120px; }
+        
+        .sticky-footer { position: sticky; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; gap: 15px; padding: 15px 20px; box-sizing: border-box; z-index: 120; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+        .sticky-footer .btn-action { font-size: 0.95rem; padding: 10px 25px; border-radius: 30px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .sticky-footer .btn-action:hover { opacity: 0.8; transform: translateY(-2px); }
+        .sticky-footer .btn-action.outline { background: transparent; border: 1px solid rgba(255,255,255,0.5); color: white; }
+        .sticky-footer .btn-action.del-outline { background: transparent; border: 1px solid rgba(255,77,79,0.5); color: #ff4d4f; }
+
+        /* 技能バッジ用スタイル（等幅で揃える） */
+        .skill-badge { display: inline-block; width: 45px; text-align: center; border-radius: 4px; padding: 3px 0; font-size: 0.65rem; font-family: 'Noto Sans JP', sans-serif; font-weight: bold; letter-spacing: 0.5px; box-sizing: border-box; margin-right: 4px; vertical-align: middle; }
+        .badge-empty { border: 1px solid rgba(130,120,100,0.2); color: rgba(130,120,100,0.4); background: transparent; }
+        .badge-b { border: 1px solid rgba(130,120,100,0.5); color: var(--text-sub); background: rgba(0,0,0,0.03); }
+        .badge-j { border: 1px solid rgba(74,111,165,0.8); color: white; background: #4a6fa5; }
+        .badge-i { border: 1px solid rgba(88,129,87,0.8); color: white; background: #588157; }
+        .badge-g { border: 1px solid rgba(184,115,51,0.8); color: white; background: var(--important); }
+        .badge-o { border: 1px solid rgba(108,117,125,0.8); color: white; background: #6c757d; }
     </style>
 </head>
 <body class="view-mode"> 
@@ -263,7 +284,7 @@
                     <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">プレイヤー（PL）</span>
                     <div id="sch-ptn-list-pl-new" class="partner-list-pl"></div>
                     <button class="btn-sub admin-only" onclick="addPartnerField(this, 'pl')">＋ プレイヤーを追加</button>
-                    <button class="btn-main" onclick="saveSchedule('new')" style="margin-top:30px;">予定表に記帳する</button>
+                    <button class="btn-main" onclick="saveSchedule('new')" style="margin-top:30px;">予定表に書き加える</button>
                 </div>
             </div>
             
@@ -304,7 +325,7 @@
 
         <div id="v-scenarios" class="view-section">
             <div class="panel admin-only">
-                <button class="panel-trigger" onclick="togglePanel('add-scn-form')">＋ 新しいシナリオを記帳する</button>
+                <button class="panel-trigger" onclick="togglePanel('add-scn-form')">＋ 新しいシナリオを目録に記帳する</button>
                 <div id="add-scn-form" class="panel-content">
                     <span class="section-label">目録の情報</span>
                     <div class="form-group"><label>シナリオ題名</label><input type="text" id="scn-in-title" placeholder="物語のタイトルを記入"></div>
@@ -430,10 +451,28 @@
     <div class="secret-list"></div><button class="btn-sub admin-only" onclick="addSecretField(this)">＋ 秘匿項目を追加</button>
 </template>
 
-<div id="viewer-overlay" onclick="closeViewer()"><div class="viewer-book" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeViewer()">×</div><div class="viewer-page left" id="v-page-left"></div><div class="viewer-page" id="v-page-right"></div><div class="viewer-edit-btn-area" id="v-edit-btn-container"></div></div></div>
-<div id="editor-overlay"><div class="editor-book"><div class="close-btn" onclick="closeEditor()">×</div><div class="editor-page" id="editor-page-inner"><h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">探索者の手記を改変する</h2><div id="form-container-edit"></div><button class="btn-main admin-only" id="btn-save-edit" style="margin-top:30px;">変更を名簿に上書きする</button></div></div></div>
-<div id="import-overlay"><div class="import-book"><div class="close-btn" onclick="closeImportOverlay()">×</div><div class="import-page"><h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">「いあきゃら」テキストから写記する</h2><textarea id="import-text-area" style="height:350px; font-family:monospace; font-size:0.8rem;" placeholder="ここにテキストをペースト..."></textarea><button class="btn-main admin-only" style="margin-top:20px;" onclick="parseAndAddChar()">大書庫へ記帳する</button></div></div></div>
-<div id="sch-viewer-overlay" onclick="closeSchViewer()"><div class="viewer-book" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeSchViewer()">×</div><div class="viewer-page left" id="sv-page-left"></div><div class="viewer-page" id="sv-page-right"></div><div class="viewer-edit-btn-area admin-only" id="sv-edit-btn-container"></div></div></div>
+<div id="viewer-overlay" onclick="closeViewer()">
+    <div class="viewer-book single-column" onclick="event.stopPropagation()">
+        <div class="close-btn" onclick="closeViewer()">×</div>
+        <div class="viewer-page" id="v-page-content"></div>
+        <div class="sticky-footer" id="v-edit-btn-container"></div>
+    </div>
+</div>
+
+<div id="editor-overlay" onclick="closeEditor()">
+    <div class="editor-book single-column" onclick="event.stopPropagation()">
+        <div class="close-btn" onclick="closeEditor()" style="z-index: 130;">×</div>
+        <div class="editor-page" id="editor-page-inner">
+            <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">探索者の手記を編集する</h2>
+            <div id="form-container-edit"></div>
+        </div>
+        <div class="sticky-footer">
+            <button class="btn-main admin-only" id="btn-save-edit" style="max-width: 400px; margin: 0 auto; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">変更を名簿に上書きする</button>
+        </div>
+    </div>
+</div>
+<div id="import-overlay"><div class="import-book"><div class="close-btn" onclick="closeImportOverlay()">×</div><div class="import-page"><h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">「いあきゃら」テキストから写記する</h2><textarea id="import-text-area" style="height:350px; font-family:monospace; font-size:0.8rem;" placeholder="ここにテキストをペースト..."></textarea><button class="btn-main admin-only" style="margin-top:20px;" onclick="parseAndAddChar()">写記する</button></div></div></div>
+<div id="sch-viewer-overlay" onclick="closeSchViewer()"><div class="viewer-book single-column" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeSchViewer()">×</div><div class="viewer-page" id="sv-page-content" style="flex: 1 0 auto;"></div><div class="sticky-footer" id="sv-edit-btn-container" style="flex-shrink: 0; margin-top: auto;"></div></div></div>
 
 <div id="sch-editor-overlay"><div class="editor-book"><div class="close-btn" onclick="closeSchEditor()">×</div><div class="editor-page">
     <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">物語の予定を改編する</h2>
@@ -441,7 +480,7 @@
         <span class="section-label">刻限と状況</span>
         <div id="sch-date-list-edit" class="sch-date-list"></div>
         <button class="btn-sub admin-only" onclick="addSchDateField(this)">＋ 日程を追加</button>
-        <div class="form-group" style="margin-top:15px;"><label>進行状況</label><select id="edit-sch-status"><option value="調整中">調整中</option><option value="待機中">待機中</option><option value="進行中">進行中</option><option value="完走"></option></select></div>
+        <div class="form-group" style="margin-top:15px;"><label>進行状況</label><select id="edit-sch-status"><option value="調整中">調整中</option><option value="待機中">待機中</option><option value="進行中">進行中</option><option value="完走">完走</option></select></div>
         <span class="section-label">物語の題名</span>
         <div class="form-group" style="margin-bottom:15px;"><input type="text" id="edit-sch-title"></div>
         <span class="section-label">役割</span>
@@ -511,9 +550,6 @@
 </div></div></div>
 
 <script>
-    /* ============================================================
-       v9.4.5 自動共有展開モジュール（共有URL機能搭載＋カード右上にボタン追加）
-       ============================================================ */
     const KEY = 'trpg_archive_v74';
     const KEY_SCH = 'trpg_archive_schedules';
     const KEY_SCN_LIB = 'trpg_archive_scenarios_v1';
@@ -560,7 +596,6 @@
             initNewForm(); 
             renderAll();
             
-            // ★ v9.4.4 URLパラメータのチェック（共有URLから飛んできた場合の処理）
             const urlParams = new URLSearchParams(window.location.search);
             const sharedCharName = urlParams.get('char');
             if (sharedCharName) {
@@ -722,23 +757,23 @@
         }
     }
 
-    // ★ v9.4.5 共有URLコピー機能
     function copyShareUrl(idx, btn) {
         const c = chars[idx];
         if (!c || !c.name) return;
-        // 現在のURL（?以降を除いたクリーンなURL）を取得し、パラメータを付与
         const baseUrl = window.location.origin + window.location.pathname;
         const shareUrl = baseUrl + '?char=' + encodeURIComponent(c.name);
         
         navigator.clipboard.writeText(shareUrl).then(() => {
             const orig = btn.innerText;
+            const origBg = btn.style.background;
+            const origColor = btn.style.color;
             btn.innerText = "URL出力完了！";
             btn.style.background = "var(--important)";
             btn.style.color = "white";
             setTimeout(() => { 
                 btn.innerText = orig; 
-                btn.style.background = "transparent"; 
-                btn.style.color = "var(--important)"; 
+                btn.style.background = origBg; 
+                btn.style.color = origColor; 
             }, 2000);
         }).catch(err => {
             console.error(err);
@@ -761,25 +796,42 @@
         else db = (s_val<65)?"-2":(s_val<85)?"-1":(s_val<125)?"0":(s_val<165)?"+1d4":"+1d6";
 
         let cc = c.regulation === '7th' ? "CC" : "CCB";
-        let commands = `${cc}<={SAN} 【SAN値チェック】\n${cc}<=${luck} 【幸運】\n${cc}<=${ide} 【アイデア】\n${cc}<=${know} 【知識】\n\n`;
+        let commands = "";
 
-        const statKeys = [ { key: "str", label: "STR" }, { key: "con", label: "CON" }, { key: "pow", label: "POW" }, { key: "dex", label: "DEX" }, { key: "app", label: "APP" }, { key: "siz", label: "SIZ" }, { key: "int", label: "INT" }, { key: "edu", label: "EDU" } ];
-        statKeys.forEach(st => {
-            let val = Number(c.stats[st.key]) || 0;
-            if (c.regulation === '6th') commands += `${cc}<=${val * 5} 【${st.label}×5】\n`;
-            else commands += `${cc}<=${val} 【${st.label}】\n`;
-        });
-        commands += `\n`;
+        // 1. SAN値チェック
+        commands += `${cc}<={SAN} 【SAN値チェック】\n`;
 
-        let dbForCmd = db === "0" ? "" : db;
-        commands += `1d3${dbForCmd} 【ダメージ1d3】\n1d6${dbForCmd} 【ダメージ1d6】\n1d8${dbForCmd} 【ダメージ1d8】\n1d10${dbForCmd} 【ダメージ1d10】\n\n`;
+        // 2. 幸運（6版は固定値、7版は変数参照）
+        if (c.regulation === '6th') {
+            commands += `${cc}<=${luck} 【幸運】\n`;
+        } else {
+            commands += `${cc}<={幸運} 【幸運】\n`;
+        }
 
+        // 3 & 4. アイデア・知識（6版7版ともに計算後の固定値）
+        commands += `${cc}<=${ide} 【アイデア】\n`;
+        commands += `${cc}<=${know} 【知識】\n\n`;
+
+        // 5. 成長した技能系
         (c.skills || []).forEach(s => {
             if(Number(s.t) > 0) {
                 let n = s.sub ? `${s.n}(${s.sub})` : s.n;
                 commands += `${cc}<=${s.t} 【${n}】\n`;
             }
         });
+        commands += `\n`;
+
+        // 6. ダメージ系
+        let dbForCmd = db === "0" ? "" : db;
+        commands += `1d3${dbForCmd} 【ダメージ】\n1d6${dbForCmd} 【ダメージ】\n1d8${dbForCmd} 【ダメージ】\n1d10${dbForCmd} 【ダメージ】\n\n`;
+
+        // 7. ステータス系（6版はパラメータ*5、7版はパラメータ等倍）
+        const statKeys = [ { key: "str", label: "STR" }, { key: "con", label: "CON" }, { key: "pow", label: "POW" }, { key: "dex", label: "DEX" }, { key: "app", label: "APP" }, { key: "siz", label: "SIZ" }, { key: "int", label: "INT" }, { key: "edu", label: "EDU" } ];
+        statKeys.forEach(st => {
+            if (c.regulation === '6th') commands += `${cc}<={${st.label}}*5 【${st.label}×5】\n`;
+            else commands += `${cc}<={${st.label}} 【${st.label}】\n`;
+        });
+        commands += `\n`;
 
         const statusArray = [ { label: "HP", value: hp, max: hp }, { label: "MP", value: mp, max: mp }, { label: "SAN", value: san, max: san } ];
         if (c.regulation === '7th') { statusArray.push({ label: "幸運", value: luck, max: 99 }); }
@@ -790,7 +842,7 @@
             kind: "character",
             data: {
                 name: c.name || "名無し",
-                memo: `${c.job || '無職'} / ${c.age || '?'}歳 / ${c.height || '?'}cm\nレギュレーション: ${c.regulation === '7th' ? '7版' : '6版'}`,
+                memo: "", // メモ欄は空
                 initiative: dex, externalUrl: window.location.origin + window.location.pathname + '?char=' + encodeURIComponent(c.name || ''), status: statusArray,
                 params: [ { label: "STR", value: String(str) }, { label: "CON", value: String(con) }, { label: "POW", value: String(pow) }, { label: "DEX", value: String(dex) }, { label: "APP", value: String(app) }, { label: "SIZ", value: String(siz) }, { label: "INT", value: String(int) }, { label: "EDU", value: String(edu) }, { label: "DB", value: db } ],
                 iconUrl: validIconUrl, faces: [], x: 0, y: 0, angle: 0, width: 4, height: 4, active: true, secret: false, invisible: false, hideStatus: false, color: "", commands: commands
@@ -809,19 +861,148 @@
     }
 
     function showView(id) { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); const navMap = { 'v-calendar': 'nav-cal', 'v-characters': 'nav-char', 'v-scenarios': 'nav-scn' }; if(navMap[id]) document.getElementById(navMap[id]).classList.add('active'); if(id === 'v-calendar') renderScheduleView(); if(id === 'v-scenarios') renderScenarioLibrary(); }
-    function initNewForm() { const c = document.getElementById('form-container-new'); c.innerHTML = ''; c.appendChild(createFormNode('new')); crop.activeEl = c.querySelector('.crop-img-el'); updatePatternOptions(c, '6th'); applyPresets(c, '6th'); document.getElementById('sch-date-list-new').innerHTML = ''; addSchDateField(document.querySelector('#add-sch-form .btn-sub')); document.getElementById('sch-ptn-list-kp-new').innerHTML = ''; document.getElementById('sch-ptn-list-pl-new').innerHTML = ''; handleSchRoleChange(document.getElementById('sch-role')); document.getElementById('scn-ptn-list-kp-new').innerHTML = ''; document.getElementById('scn-ptn-list-pl-new').innerHTML = ''; }
-    function createFormNode(s) { const t = document.getElementById('form-template').content.cloneNode(true); t.querySelectorAll('input[name="regulation_tmp"]').forEach(r => r.name = "reg_" + s); return t; }
-    function handleRegChange(el) { const p = el.closest('.panel-content, .editor-page'); updatePatternOptions(p, el.value); recalc(el); if(confirm("レギュレーションに合わせて技能リストを整理しますか？")) applyPresets(p, el.value); }
-    function updatePatternOptions(p, r) { const sel = p.querySelector('.pt-job-pattern'); const m = r === '7th' ? 2 : 10; sel.innerHTML = '<option value="edu_only">EDU × ' + (r==='7th'?4:20) + '</option><option value="str">EDU×' + m + ' + STR×' + m + '</option><option value="con">EDU×' + m + ' + CON×' + m + '</option><option value="pow">EDU×' + m + ' + POW×' + m + '</option><option value="dex">EDU×' + m + ' + DEX×' + m + '</option><option value="app">EDU×' + m + ' + APP×' + m + '</option><option value="siz">EDU×' + m + ' + SIZ×' + m + '</option><option value="int">EDU×' + m + ' + INT×' + m + '</option><option value="manual">自由入力</option>'; }
-    function createHeaderRow() { const h = document.createElement('div'); h.className = 'skill-header-row-pts'; h.innerHTML = '<div class="skill-header-label">技能名</div><div class="skill-header-label">初期</div><div class="skill-header-label">職業(J)</div><div class="skill-header-label">興味(I)</div><div class="skill-header-label">成長</div><div class="skill-header-label">他</div><div class="skill-header-label">合計</div><div></div>'; return h; }
-    function applyPresets(parent, reg) { const listIn = parent.querySelector('.skill-list-in'); listIn.innerHTML = ''; const presets = reg === '7th' ? SKILLS_7TH : SKILLS_6TH; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); presets.filter(p => getGenre(p[0]) === g).forEach(p => { let v = p[1]; if(p[0] === "回避") { const dex = Number(parent.querySelector('.in-dex').value) || 0; v = reg === '7th' ? Math.floor(dex/2) : dex*2; } if(p[0] === "母国語") { const edu = Number(parent.querySelector('.in-edu').value) || 0; v = reg === '7th' ? edu : edu*5; } addSkillFieldToContainer(group, p[0], v, 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(parent.querySelector('.in-str')); }
-    function addSkillFieldToContainer(container, n="", b=0, j=0, i=0, g=0, o=0, sub="", genre="") { const d = document.createElement('div'); d.className = "sk-row"; let nameHtml = '<input type="text" class="sk-name" value="' + n + '" placeholder="技能名">'; if (SUBTYPES[n]) { nameHtml = '<div style="display:flex; flex-direction:column; gap:2px;"><b style="font-size:0.6rem; color:var(--text-sub);">' + n + '</b><select class="sk-sub" onchange="updateDefaultValue(this, \'' + n + '\')">'; for (let s in SUBTYPES[n]) { nameHtml += '<option value="' + s + '" ' + (s === sub ? 'selected' : '') + '>' + s + '</option>'; } nameHtml += '</select><input type="hidden" class="sk-name" value="' + n + '"></div>'; } d.innerHTML = nameHtml + '<input type="hidden" class="sk-g-fix" value="' + (genre || '') + '"><input type="number" class="sk-b" value="' + b + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-j" value="' + j + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-i" value="' + i + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-g" value="' + g + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-o" value="' + o + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-total" value="' + (Number(b)+Number(j)+Number(i)+Number(g)+Number(o)) + '" readonly style="font-weight:bold; color:var(--important);\"><button type="button" onclick="this.parentElement.remove(); recalc(document.body);" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
-    function updateDefaultValue(sel, category) { const row = sel.closest('.sk-row'); const newVal = SUBTYPES[category][sel.value] || 1; row.querySelector('.sk-b').value = newVal; updateSkillTotal(row.querySelector('.sk-b')); }
-    function updateSkillTotal(el) { const p = el.parentElement; const total = Number(p.querySelector('.sk-b').value) + Number(p.querySelector('.sk-j').value) + Number(p.querySelector('.sk-i').value) + Number(p.querySelector('.sk-g').value) + Number(p.querySelector('.sk-o').value); p.querySelector('.sk-total').value = total; recalc(el); }
-    function applySkillFilter(checkbox) { const p = checkbox.closest('.panel-content, .editor-page'); const rows = p.querySelectorAll('.sk-row'); rows.forEach(row => { const j=Number(row.querySelector('.sk-j').value)||0, i=Number(row.querySelector('.sk-i').value)||0, g=Number(row.querySelector('.sk-g').value)||0, o=Number(row.querySelector('.sk-o').value)||0; const isAcq = (j+i+g+o)>0; row.style.setProperty('display', (checkbox.checked && !isAcq) ? 'none' : 'grid', 'important'); }); }
-    function recalc(el) { const p = el.closest('.panel-content, .editor-page'); if(!p) return; const r = p.querySelector('input[type="radio"]:checked').value; const g = (c) => Number(p.querySelector('.'+c).value) || 0; const str=g('in-str'), con=g('in-con'), pow=g('in-pow'), dex=g('in-dex'), app=g('in-app'), siz=g('in-siz'), int=g('in-int'), edu=g('in-edu'); let hp, mp, ide, know, db; if(r === '6th') { hp = Math.ceil((con + siz) / 2); mp = pow; ide = int * 5; know = edu * 5; const s = str + siz; db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; } else { hp = Math.floor((con + siz) / 10); mp = Math.floor(pow / 5); ide = int; know = edu; const s = str + siz; db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6"; } p.querySelector('.val-hp').innerText = hp; p.querySelector('.val-mp').innerText = mp; p.querySelector('.val-db').innerText = db; p.querySelector('.val-ide').innerText = ide; p.querySelector('.val-know').innerText = know; const pattern = p.querySelector('.pt-job-pattern').value; const manualInput = p.querySelector('.pt-job-manual'); const extraRow = p.querySelector('.pt-extra-row'); let jobMax = 0; const m = r === '7th' ? 2 : 10; const total_m = r === '7th' ? 4 : 20; if(pattern === 'manual') { if(extraRow) extraRow.classList.add('open'); jobMax = Number(manualInput?.value) || 0; } else { if(extraRow) extraRow.classList.remove('open'); if(pattern === 'edu_only') jobMax = edu * total_m; else jobMax = (edu * m) + (g('in-' + pattern) * m); } const intMax = r === '7th' ? int * 2 : int * 10; let jUsed = 0, iUsed = 0; p.querySelectorAll('.sk-row').forEach(row => { jUsed += Number(row.querySelector('.sk-j').value) || 0; iUsed += Number(row.querySelector('.sk-i').value) || 0; }); const upd = (u, max, pre) => { const uEl=p.querySelector('.pt-' + pre + '-used'), mEl=p.querySelector('.pt-' + pre + '-max'), rEl=p.querySelector('.pt-' + pre + '-remain'); uEl.innerText = u; mEl.innerText = max; const rem = max - u; if(rEl) rEl.innerText = '残り: ' + rem; const color = rem < 0 ? 'var(--san-border)' : rem === 0 ? 'var(--important)' : 'var(--accent)'; uEl.style.color = color; if(rEl) rEl.style.color = color; }; upd(jUsed, jobMax, 'job'); upd(iUsed, intMax, 'int'); }
     
-    // ★ ここにURL共有ボタンを追加
+    // ★ v9.7.2 縦長1カラム・レスポンシブ用ビューア
+    // ★ v9.8.0 縦長1カラム＆全枠固定バッジデザイン対応のビューア
+    function openViewer(i) {
+        const c = chars[i];
+        const content = document.getElementById('v-page-content');
+        const editContainer = document.getElementById('v-edit-btn-container');
+
+        c.stats = c.stats || {}; c.calcStats = c.calcStats || {}; c.skills = c.skills || []; c.scns = c.scns || []; c.profs = c.profs || []; c.secrets = c.secrets || [];
+        const str = Number(c.stats.str)||0; const con = Number(c.stats.con)||0; const pow = Number(c.stats.pow)||0; const dex = Number(c.stats.dex)||0; const app = Number(c.stats.app)||0; const siz = Number(c.stats.siz)||0; const int = Number(c.stats.int)||0; const edu = Number(c.stats.edu)||0; const san = Number(c.stats.san)||0;
+        const luck = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0;
+        const hp = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
+        const mp = c.regulation === '7th' ? Math.floor(pow/5) : pow;
+        const ide = c.regulation === '7th' ? int : int*5;
+        const know = c.regulation === '7th' ? edu : edu*5;
+        const s_val = str + siz;
+        let db; if(c.regulation === '6th') db = (s_val<=12)?"-1d6":(s_val<=16)?"-1d4":(s_val<=24)?"0":(s_val<=32)?"+1d4":"+1d6"; else db = (s_val<65)?"-2":(s_val<85)?"-1":(s_val<125)?"0":(s_val<165)?"+1d4":"+1d6";
+
+        // 技能ポイントの計算処理
+        let jobMax = 0;
+        const m = c.regulation === '7th' ? 2 : 10;
+        const total_m = c.regulation === '7th' ? 4 : 20;
+        if (c.ptPattern === 'manual') { jobMax = Number(c.ptManual) || 0; } 
+        else if (c.ptPattern === 'edu_only') { jobMax = edu * total_m; } 
+        else if (c.ptPattern) { jobMax = (edu * m) + ((Number(c.stats[c.ptPattern]) || 0) * m); }
+        const intMax = c.regulation === '7th' ? int * 2 : int * 10;
+        
+        let jUsed = 0, iUsed = 0;
+        (c.skills || []).forEach(s => { jUsed += Number(s.j)||0; iUsed += Number(s.i)||0; });
+
+        let html = `
+            <div style="display:flex; gap:30px; align-items:center; margin-bottom:30px; padding-bottom:20px; border-bottom:2px dashed var(--border); flex-wrap:wrap;">
+                <img src="${c.img || ''}" class="char-icon" style="width:160px; height:160px; box-shadow:var(--shadow);" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
+                <div style="flex:1; min-width:250px;">
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px; flex-wrap:wrap;">
+                        <h2 style="font-family:'Noto Serif JP',serif; font-size:2.2rem; margin:0; font-weight:700; color:var(--text-main); word-break:keep-all; line-height:1.2;"><ruby>${c.name || '名無し'}<rt>${c.kana || ''}</rt></ruby></h2>
+                        <span class="reg-tag ${c.regulation === '7th' ? 'tag-7th' : 'tag-6th'}" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 0.8rem; padding: 6px 14px; white-space:nowrap; position:relative; top:4px;">${c.regulation === '7th' ? '7th Ed.' : '6th Ed.'}</span>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
+    <div style="background:var(--panel-header-bg); padding:6px 12px; border-radius:6px; border:1px solid var(--border); font-size:1rem; color:var(--text-main);"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:6px;">職業</span>${c.job || '無職'}</div>
+    <div style="background:var(--panel-header-bg); padding:6px 12px; border-radius:6px; border:1px solid var(--border); font-size:1rem; color:var(--text-main);"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:6px;">性別</span>${c.sex || '-'}</div>
+    <div style="background:var(--panel-header-bg); padding:6px 12px; border-radius:6px; border:1px solid var(--border); font-size:1rem; color:var(--text-main);"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:6px;">年齢</span>${c.age || '-'}</div>
+    <div style="background:var(--panel-header-bg); padding:6px 12px; border-radius:6px; border:1px solid var(--border); font-size:1rem; color:var(--text-main);"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:6px;">身長</span>${c.height ? c.height + 'cm' : '-'}</div>
+</div>
+                </div>
+            </div>
+
+            <span class="section-label">能力値</span>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(65px, 1fr)); gap:10px; margin-bottom:20px;">
+                ${["str","con","pow","dex","app","siz","int","edu","san"].map(k => `
+                    <div class="viewer-stat-box" ${k==='san'?'style="background:var(--san-bg); border:1px solid var(--san-border); padding:8px 0;"':'style="padding:8px 0;"'}>
+                        <b ${k==='san'?'style="color:var(--accent);"':''}>${k.toUpperCase()}</b>
+                        <span ${k==='san'?'style="color:var(--accent); font-size:1.4rem;"':'style="font-size:1.4rem;"'}>${c.stats[k] || '-'}</span>
+                    </div>
+                `).join('')}
+            </div>
+
+            <span class="section-label">算出ステータス</span>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(80px, 1fr)); gap:15px; background:var(--panel-header-bg); padding:20px; border-radius:8px; margin-bottom:40px;">
+                <div class="calc-box"><label>HP</label><div class="calc-val" style="font-size:1.4rem;">${hp}</div></div>
+                <div class="calc-box"><label>MP</label><div class="calc-val" style="font-size:1.4rem;">${mp}</div></div>
+                <div class="calc-box"><label>DB</label><div class="calc-val" style="font-size:1.4rem;">${db}</div></div>
+                <div class="calc-box"><label>アイデア</label><div class="calc-val" style="font-size:1.4rem;">${ide}</div></div>
+                <div class="calc-box"><label>知識</label><div class="calc-val" style="font-size:1.4rem;">${know}</div></div>
+                <div class="calc-box"><label>幸運</label><div class="calc-val" style="font-size:1.4rem;">${luck}</div></div>
+            </div>
+        `;
+
+        html += `<span class="section-label">技能ポイント割り振り状況</span>`;
+        html += `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; background:var(--panel-header-bg); padding:20px; border-radius:8px; margin-bottom:40px; text-align:center; border:1px solid var(--border);">`;
+        html += `<div><span style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; display:block; margin-bottom:5px;">職業技能ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.5rem; font-weight:bold; color:${jUsed>jobMax?'var(--san-border)':(jUsed===jobMax?'var(--important)':'var(--accent)')};">${jUsed} <span style="font-size:1rem; color:var(--text-sub);">/ ${jobMax}</span></span></div>`;
+        html += `<div><span style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; display:block; margin-bottom:5px;">興味技能ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.5rem; font-weight:bold; color:${iUsed>intMax?'var(--san-border)':(iUsed===intMax?'var(--important)':'var(--accent)')};">${iUsed} <span style="font-size:1rem; color:var(--text-sub);">/ ${intMax}</span></span></div>`;
+        html += `</div>`;
+
+        // ★ 技能リスト（1列化）＆ 固定幅のバッジ表示
+        html += '<span class="section-label">習得技能</span><div style="margin-bottom:40px;">';
+        const safeSkills = c.skills || [];
+        ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => {
+            const gs = safeSkills.filter(s => (s.gr || getGenre(s.n)) === g && (Number(s.j)>0 || Number(s.i)>0 || Number(s.g)>0 || Number(s.o)>0));
+            if(gs.length > 0) {
+                html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:15px 25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="font-size:0.85rem; color:var(--accent); display:block; border-bottom:1px solid var(--border); margin-bottom:12px; padding-bottom:6px; font-family:'Noto Serif JP', serif;">■ ${g}技能</b>`;
+                gs.forEach(s => { 
+                    const dispName = s.sub ? `${s.n}(${s.sub})` : s.n;
+                    
+                    // 値が0のものは "badge-empty"、値があるものは色付きのクラスを付与
+                    let badges = '';
+                    badges += `<span class="skill-badge ${Number(s.b) > 0 ? 'badge-b' : 'badge-empty'}">基 ${s.b||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.j) > 0 ? 'badge-j' : 'badge-empty'}">職 ${s.j||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.i) > 0 ? 'badge-i' : 'badge-empty'}">興 ${s.i||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.g) > 0 ? 'badge-g' : 'badge-empty'}">成 ${s.g||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.o) > 0 ? 'badge-o' : 'badge-empty'}">他 ${s.o||0}</span>`;
+
+                    html += `<div class="viewer-skill-item" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted var(--border); padding:8px 0; font-size:1rem;">
+                                <span style="font-weight:bold; width:150px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${dispName}</span>
+                                <div style="flex:1; display:flex; justify-content:center; gap:2px; flex-wrap:wrap;">${badges}</div>
+                                <b style="font-size:1.3rem; color:var(--important); min-width:50px; text-align:right; font-family:'Noto Serif JP', serif;">${s.t}%</b>
+                             </div>`; 
+                });
+                html += '</div>';
+            }
+        });
+        html += '</div>';
+
+        html += '<span class="section-label">通過シナリオの記録</span>';
+        if(c.scns && c.scns.length > 0) {
+            html += `<div style="margin-bottom:40px; font-size:1rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">${c.scns.join('　/　')}</div>`;
+        } else {
+            html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
+        }
+
+        html += '<span class="section-label">手記（プロフィール / メモ）</span>';
+        if(c.profs && c.profs.length > 0) {
+            c.profs.forEach(p => { 
+                if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif;">${p.x}</div></div>`; 
+            });
+        } else {
+            html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
+        }
+
+        if(c.secrets && c.secrets.length > 0) {
+            html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span>';
+            html += '<details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);">';
+            html += '<summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary>';
+            html += '<div style="margin-top:15px; padding-top:20px; border-top:1px dashed var(--border);">';
+            c.secrets.forEach(p => {
+                if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main);">${p.x}</div></div>`;
+            });
+            html += '</div></details>';
+        }
+
+        content.innerHTML = html;
+
+        editContainer.innerHTML = `
+            <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="background:transparent; border:1px solid var(--important); color:var(--important);">URL出力</button>
+            <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white;">駒出力</button>
+            <div style="width:1px; height:20px; background:rgba(255,255,255,0.2); margin: 0 5px;"></div>
+            <button onclick="editChar(${i})" class="btn-action outline admin-only">編集する</button>
+            <button onclick="deleteCharFromViewer(${i})" class="btn-action del-outline admin-only">削除する</button>
+        `;
+        document.getElementById('viewer-overlay').style.display = 'flex';
+    }
+
     function renderChars() { 
         const ui = document.getElementById('char-list-ui'); ui.innerHTML = ''; 
         const sortVal = document.getElementById('sort-order').value; const filterVal = document.getElementById('filter-reg').value; 
@@ -842,7 +1023,7 @@
                     <img src="${c.img || ''}" class="char-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
                     <div style="flex:1">
                         <div style="position:absolute; top:20px; right:20px; display:flex; gap:8px;">
-                            <button onclick="event.stopPropagation(); copyShareUrl(${i}, this)" class="btn-action" style="border-color:var(--important); color:var(--important); background:transparent; padding:4px 10px;">URL出力</button>
+                            <button onclick="event.stopPropagation(); copyShareUrl(${i}, this)" class="btn-action" style="border-color:var(--important); color:var(--important); background:transparent; padding:4px 10px;">URLコピー</button>
                             <button onclick="event.stopPropagation(); copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white; border:none; padding:4px 10px;">駒出力</button>
                             <button onclick="event.stopPropagation(); editChar(${i})" class="btn-action admin-only">編集</button>
                             <button onclick="event.stopPropagation(); deleteChar(${i})" class="btn-action del admin-only">削除</button>
@@ -855,7 +1036,7 @@
                             <div class="info-item"><span class="info-label-inline">職業：</span>${c.job || '-'}</div><span class="info-sep">/</span>
                             <div class="info-item"><span class="info-label-inline">性別：</span>${c.sex || '-'}</div><span class="info-sep">/</span>
                             <div class="info-item"><span class="info-label-inline">年齢：</span>${c.age || '-'}</div><span class="info-sep">/</span>
-                            <div class="info-item"><span class="info-label-inline">身長：</span>${c.height || '-'}</div>
+                            <div class="info-item"><span class="info-label-inline">身長：</span>${c.height ? c.height + 'cm' : '-'}</div>
                             <div class="info-item" style="width:100%; margin-top:2px;"><span class="info-label-inline">通過シナリオ：</span>${scnDisp}</div>
                         </div>
                         <div style="display:grid; grid-template-columns: repeat(9, 1fr); gap:4px;">
@@ -874,67 +1055,18 @@
                 </div>`; 
         }); 
     }
-    
-    function openViewer(i) {
-        const c = chars[i]; const left = document.getElementById('v-page-left'); const right = document.getElementById('v-page-right'); const editContainer = document.getElementById('v-edit-btn-container');
-        
-        c.stats = c.stats || {};
-        const str = Number(c.stats.str) || 0; const con = Number(c.stats.con) || 0; const pow = Number(c.stats.pow) || 0; const dex = Number(c.stats.dex) || 0; const app = Number(c.stats.app) || 0; const siz = Number(c.stats.siz) || 0; const int = Number(c.stats.int) || 0; const edu = Number(c.stats.edu) || 0; const san = Number(c.stats.san) || 0;
-        const luck = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0;
-        
-        const hp = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
-        const mp = c.regulation === '7th' ? Math.floor(pow/5) : pow;
-        const ide = c.regulation === '7th' ? int : int*5;
-        const know = c.regulation === '7th' ? edu : edu*5;
-        const s = str + siz;
-        let db; if(c.regulation === '6th') db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; else db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6";
-        
-        left.innerHTML = '<div style="text-align:center;"><img src="' + (c.img || '') + '" class="char-icon" style="width:180px; height:180px; margin-bottom:20px;"></div><div class="name-area"><h2 class="char-name-ruby"><ruby>' + (c.name || '名無し') + '<rt>' + (c.kana || '') + '</rt></ruby></h2><span class="reg-tag ' + (c.regulation === '7th' ? 'tag-7th' : 'tag-6th') + '">' + (c.regulation === '7th' ? '7th Ed.' : '6th Ed.') + '</span></div><div style="font-size:0.9rem; margin-bottom:20px;"><b>' + (c.job || '無職') + '</b> / ' + (c.sex || '-') + ' / ' + (c.age || '-') + ' / ' + (c.height || '-') + 'cm</div><div class="viewer-stat-grid">' + ["str","con","pow","dex","app","siz","int","edu","san"].map(k => '<div class="viewer-stat-box"><b>' + k.toUpperCase() + '</b><span>' + (c.stats[k] || '-') + '</span></div>').join('') + '</div><div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;"><div class="viewer-stat-box"><b>HP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + hp + '</div></div><div class="viewer-stat-box"><b>MP</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + mp + '</div></div><div class="viewer-stat-box"><b>DB</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + db + '</div></div><div class="viewer-stat-box"><b>アイデア</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + ide + '</div></div><div class="viewer-stat-box"><b>知識</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + know + '</div></div><div class="viewer-stat-box"><b>幸運</b><div style="font-size:1.2rem; color:var(--accent); font-weight:bold; font-family:\'Noto Serif JP\', serif;">' + luck + '</div></div></div>';
-        
-        let rightHtml = ''; let skillHtml = '<span class="section-label">習得技能</span><div class="viewer-skill-list">';
-        const safeSkills = c.skills || [];
-        ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => {
-            const gs = safeSkills.filter(s => (s.gr || getGenre(s.n)) === g && (Number(s.j)>0 || Number(s.i)>0 || Number(s.g)>0 || Number(s.o)>0));
-            if(gs.length > 0) {
-                skillHtml += '<div style="break-inside:avoid; margin-bottom:10px;"><b style="font-size:0.7rem; color:var(--accent); display:block; border-bottom:1px solid var(--border); margin-bottom:5px; font-family:\'Noto Serif JP\', serif;">■ ' + g + '技能</b>';
-                gs.forEach(s => { const dispName = s.sub ? s.n + '(' + s.sub + ')' : s.n; skillHtml += '<div class="viewer-skill-item"><span>' + dispName + '</span><b>' + s.t + '%</b></div>'; });
-                skillHtml += '</div>';
-            }
-        });
-        skillHtml += '</div>'; rightHtml += skillHtml;
-        
-        let scnHtml = '<span class="section-label">通過シナリオの記録</span>'; if(c.scns && c.scns.length > 0) scnHtml += '<div style="margin-bottom:20px;"><div style="font-size:0.9rem; line-height:1.7; color:var(--text-main); font-family:\'Noto Serif JP\', serif; white-space:pre-wrap;">' + c.scns.join('　/　') + '</div></div>';
-        rightHtml += scnHtml;
-        
-        let profHtml = '<span class="section-label">手記（プロフィール / メモ）</span>'; if(c.profs) c.profs.forEach(p => { if(p.t || p.x) profHtml += `<div style="margin-bottom:20px;"><b style="color:var(--important); display:block; margin-bottom:5px; font-family:\'Noto Serif JP\', serif;">■ ${p.t}</b><div style="font-size:0.9rem; line-height:1.6; white-space:pre-wrap; font-family:\'Noto Serif JP\', serif;">${p.x}</div></div>`; });
-        rightHtml += profHtml; 
 
-        let secretHtml = '';
-        if(c.secrets && c.secrets.length > 0) {
-            secretHtml += '<span class="section-label">秘匿情報</span>';
-            secretHtml += '<details class="secret-details">';
-            secretHtml += '<summary>⚠ ネタバレ注意（クリックで展開）</summary>';
-            secretHtml += '<div>';
-            c.secrets.forEach(p => {
-                if(p.t || p.x) secretHtml += `<div style="margin-bottom:20px;"><b style="color:var(--important); display:block; margin-bottom:5px; font-family:\'Noto Serif JP\', serif;">■ ${p.t}</b><div style="font-size:0.9rem; line-height:1.6; white-space:pre-wrap; font-family:\'Noto Serif JP\', serif; color:var(--text-main);">${p.x}</div></div>`;
-            });
-            secretHtml += '</div></details>';
-        }
-        rightHtml += secretHtml;
-        
-        right.innerHTML = rightHtml;
-        
-        editContainer.innerHTML = `
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="font-size:0.9rem; padding:8px 20px; border-color:var(--important); color:var(--important); background:transparent;">URL出力</button>
-                <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="font-size:0.9rem; padding:8px 20px; background:var(--accent); color:white; border:none;">駒出力</button>
-                <button onclick="editChar(${i})" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">編集</button>
-                <button onclick="deleteCharFromViewer(${i})" class="btn-action del admin-only" style="font-size:0.9rem; padding:8px 20px;">削除</button>
-            </div>
-        `;
-        
-        document.getElementById('viewer-overlay').style.display = 'flex';
-    }
+    function initNewForm() { const c = document.getElementById('form-container-new'); c.innerHTML = ''; c.appendChild(createFormNode('new')); crop.activeEl = c.querySelector('.crop-img-el'); updatePatternOptions(c, '6th'); applyPresets(c, '6th'); document.getElementById('sch-date-list-new').innerHTML = ''; addSchDateField(document.querySelector('#add-sch-form .btn-sub')); document.getElementById('sch-ptn-list-kp-new').innerHTML = ''; document.getElementById('sch-ptn-list-pl-new').innerHTML = ''; handleSchRoleChange(document.getElementById('sch-role')); document.getElementById('scn-ptn-list-kp-new').innerHTML = ''; document.getElementById('scn-ptn-list-pl-new').innerHTML = ''; }
+    function createFormNode(s) { const t = document.getElementById('form-template').content.cloneNode(true); t.querySelectorAll('input[name="regulation_tmp"]').forEach(r => r.name = "reg_" + s); return t; }
+    function handleRegChange(el) { const p = el.closest('.panel-content, .editor-page'); updatePatternOptions(p, el.value); recalc(el); if(confirm("レギュレーションに合わせて技能リストを整理しますか？")) applyPresets(p, el.value); }
+    function updatePatternOptions(p, r) { const sel = p.querySelector('.pt-job-pattern'); const m = r === '7th' ? 2 : 10; sel.innerHTML = '<option value="edu_only">EDU × ' + (r==='7th'?4:20) + '</option><option value="str">EDU×' + m + ' + STR×' + m + '</option><option value="con">EDU×' + m + ' + CON×' + m + '</option><option value="pow">EDU×' + m + ' + POW×' + m + '</option><option value="dex">EDU×' + m + ' + DEX×' + m + '</option><option value="app">EDU×' + m + ' + APP×' + m + '</option><option value="siz">EDU×' + m + ' + SIZ×' + m + '</option><option value="int">EDU×' + m + ' + INT×' + m + '</option><option value="manual">自由入力</option>'; }
+    function createHeaderRow() { const h = document.createElement('div'); h.className = 'skill-header-row-pts'; h.innerHTML = '<div class="skill-header-label">技能名</div><div class="skill-header-label">初期</div><div class="skill-header-label">職業(J)</div><div class="skill-header-label">興味(I)</div><div class="skill-header-label">成長</div><div class="skill-header-label">他</div><div class="skill-header-label">合計</div><div></div>'; return h; }
+    function applyPresets(parent, reg) { const listIn = parent.querySelector('.skill-list-in'); listIn.innerHTML = ''; const presets = reg === '7th' ? SKILLS_7TH : SKILLS_6TH; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); presets.filter(p => getGenre(p[0]) === g).forEach(p => { let v = p[1]; if(p[0] === "回避") { const dex = Number(parent.querySelector('.in-dex').value) || 0; v = reg === '7th' ? Math.floor(dex/2) : dex*2; } if(p[0] === "母国語") { const edu = Number(parent.querySelector('.in-edu').value) || 0; v = reg === '7th' ? edu : edu*5; } addSkillFieldToContainer(group, p[0], v, 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(parent.querySelector('.in-str')); }
+    function addSkillFieldToContainer(container, n="", b=0, j=0, i=0, g=0, o=0, sub="", genre="") { const d = document.createElement('div'); d.className = "sk-row"; let nameHtml = '<input type="text" class="sk-name" value="' + n + '" placeholder="技能名">'; if (SUBTYPES[n]) { nameHtml = '<div style="display:flex; flex-direction:column; gap:2px;"><b style="font-size:0.6rem; color:var(--text-sub);">' + n + '</b><select class="sk-sub" onchange="updateDefaultValue(this, \'' + n + '\')">'; for (let s in SUBTYPES[n]) { nameHtml += '<option value="' + s + '" ' + (s === sub ? 'selected' : '') + '>' + s + '</option>'; } nameHtml += '</select><input type="hidden" class="sk-name" value="' + n + '"></div>'; } d.innerHTML = nameHtml + '<input type="hidden" class="sk-g-fix" value="' + (genre || '') + '"><input type="number" class="sk-b" value="' + b + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-j" value="' + j + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-i" value="' + i + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-g" value="' + g + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-o" value="' + o + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-total" value="' + (Number(b)+Number(j)+Number(i)+Number(g)+Number(o)) + '" readonly style="font-weight:bold; color:var(--important);\"><button type="button" onclick="this.parentElement.remove(); recalc(document.body);" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
+    function updateDefaultValue(sel, category) { const row = sel.closest('.sk-row'); const newVal = SUBTYPES[category][sel.value] || 1; row.querySelector('.sk-b').value = newVal; updateSkillTotal(row.querySelector('.sk-b')); }
+    function updateSkillTotal(el) { const p = el.parentElement; const total = Number(p.querySelector('.sk-b').value) + Number(p.querySelector('.sk-j').value) + Number(p.querySelector('.sk-i').value) + Number(p.querySelector('.sk-g').value) + Number(p.querySelector('.sk-o').value); p.querySelector('.sk-total').value = total; recalc(el); }
+    function applySkillFilter(checkbox) { const p = checkbox.closest('.panel-content, .editor-page'); const rows = p.querySelectorAll('.sk-row'); rows.forEach(row => { const j=Number(row.querySelector('.sk-j').value)||0, i=Number(row.querySelector('.sk-i').value)||0, g=Number(row.querySelector('.sk-g').value)||0, o=Number(row.querySelector('.sk-o').value)||0; const isAcq = (j+i+g+o)>0; row.style.setProperty('display', (checkbox.checked && !isAcq) ? 'none' : 'grid', 'important'); }); }
+    function recalc(el) { const p = el.closest('.panel-content, .editor-page'); if(!p) return; const r = p.querySelector('input[type="radio"]:checked').value; const g = (c) => Number(p.querySelector('.'+c).value) || 0; const str=g('in-str'), con=g('in-con'), pow=g('in-pow'), dex=g('in-dex'), app=g('in-app'), siz=g('in-siz'), int=g('in-int'), edu=g('in-edu'); let hp, mp, ide, know, db; if(r === '6th') { hp = Math.ceil((con + siz) / 2); mp = pow; ide = int * 5; know = edu * 5; const s = str + siz; db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; } else { hp = Math.floor((con + siz) / 10); mp = Math.floor(pow / 5); ide = int; know = edu; const s = str + siz; db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6"; } p.querySelector('.val-hp').innerText = hp; p.querySelector('.val-mp').innerText = mp; p.querySelector('.val-db').innerText = db; p.querySelector('.val-ide').innerText = ide; p.querySelector('.val-know').innerText = know; const pattern = p.querySelector('.pt-job-pattern').value; const manualInput = p.querySelector('.pt-job-manual'); const extraRow = p.querySelector('.pt-extra-row'); let jobMax = 0; const m = r === '7th' ? 2 : 10; const total_m = r === '7th' ? 4 : 20; if(pattern === 'manual') { if(extraRow) extraRow.classList.add('open'); jobMax = Number(manualInput?.value) || 0; } else { if(extraRow) extraRow.classList.remove('open'); if(pattern === 'edu_only') jobMax = edu * total_m; else jobMax = (edu * m) + (g('in-' + pattern) * m); } const intMax = r === '7th' ? int * 2 : int * 10; let jUsed = 0, iUsed = 0; p.querySelectorAll('.sk-row').forEach(row => { jUsed += Number(row.querySelector('.sk-j').value) || 0; iUsed += Number(row.querySelector('.sk-i').value) || 0; }); const upd = (u, max, pre) => { const uEl=p.querySelector('.pt-' + pre + '-used'), mEl=p.querySelector('.pt-' + pre + '-max'), rEl=p.querySelector('.pt-' + pre + '-remain'); uEl.innerText = u; mEl.innerText = max; const rem = max - u; if(rEl) rEl.innerText = '残り: ' + rem; const color = rem < 0 ? 'var(--san-border)' : rem === 0 ? 'var(--important)' : 'var(--accent)'; uEl.style.color = color; if(rEl) rEl.style.color = color; }; upd(jUsed, jobMax, 'job'); upd(iUsed, intMax, 'int'); }
 
     function deleteCharFromViewer(i) {
         if(confirm("名簿から削除しますか？")) {
@@ -946,18 +1078,12 @@
 
     function editChar(i) { 
         currentEditIdx = i; closeViewer(); const c = chars[i]; 
-        
-        c.stats = c.stats || {};
-        c.calcStats = c.calcStats || {};
-        c.skills = c.skills || [];
-        c.scns = c.scns || [];
-        c.profs = c.profs || [];
-        c.secrets = c.secrets || [];
-
+        c.stats = c.stats || {}; c.calcStats = c.calcStats || {}; c.skills = c.skills || []; c.scns = c.scns || []; c.profs = c.profs || []; c.secrets = c.secrets || [];
         const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; ["str","con","pow","dex","app","siz","int","edu","san"].forEach(k => { f('in-'+k).value = c.stats[k]; }); container.querySelector('input[name="reg_edit"][value="' + (c.regulation || '6th') + '"]').checked = true; updatePatternOptions(container, c.regulation || '6th'); f('pt-job-pattern').value = c.ptPattern || 'edu_only'; if(f('pt-job-manual')) f('pt-job-manual').value = c.ptManual || 0; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); c.skills.filter(s => (s.gr || getGenre(s.n)) === g).forEach(s => addSkillFieldToContainer(group, s.n, s.b, s.j, s.i, s.g, s.o, s.sub || "", g)); const presets = (c.regulation === '7th' ? SKILLS_7TH : SKILLS_6TH); presets.filter(p => getGenre(p[0]) === g).forEach(p => { if(!c.skills.some(s => s.n === p[0])) addSkillFieldToContainer(group, p[0], p[1], 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(f('in-str')); f('val-luck').value = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0; c.scns?.forEach(v => addScnField(container, v)); c.profs?.forEach(p => addProfField(container, p.t, p.x)); c.secrets?.forEach(p => addSecretField(container, p.t, p.x)); document.getElementById('btn-save-edit').onclick = () => saveData('edit'); document.getElementById('editor-overlay').style.display = 'flex'; 
     }
 
     function saveData(mode) { const c = document.getElementById(mode === 'new' ? 'form-container-new' : 'form-container-edit'); const f = (cl) => c.querySelector('.'+cl); if(!f('in-name').value) return alert("名前を記入してください"); const sks = Array.from(c.querySelectorAll('.sk-row')).map(r => { return { n: r.querySelector('.sk-name').value, b: r.querySelector('.sk-b').value, j: r.querySelector('.sk-j').value, i: r.querySelector('.sk-i').value, g: r.querySelector('.sk-g').value, o: r.querySelector('.sk-o').value, t: r.querySelector('.sk-total').value, sub: r.querySelector('.sk-sub')?.value || "", gr: r.querySelector('.sk-g-fix').value }; }).filter(s => Number(s.j)||Number(s.i)||Number(s.g)||Number(s.o)); const d = { regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value, stats: { str: f('in-str').value, con: f('in-con').value, pow: f('in-pow').value, dex: f('in-dex').value, app: f('in-app').value, siz: f('in-siz').value, int: f('in-int').value, edu: f('in-edu').value, san: f('in-san').value }, calcStats: { luck: f('val-luck').value }, ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })) }; if(mode === 'new') { chars.push(d); cancelAdd(); } else { chars[currentEditIdx] = d; closeEditor(); } localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); updateScheduleFormSelect(); pushData(); }
+    
     function deleteChar(i) { if(confirm("名簿から削除しますか？")) { chars.splice(i, 1); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); updateScheduleFormSelect(); pushData(); } }
     function closeViewer() { document.getElementById('viewer-overlay').style.display = 'none'; }
     function closeEditor() { document.getElementById('editor-overlay').style.display = 'none'; }
@@ -991,14 +1117,20 @@
         reader.readAsText(input.files[0]); 
     }
     
-    function addScnField(p, v="") { const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; const container = root.querySelector('.scn-list'); const d = document.createElement('div'); d.style.display="flex"; d.style.marginBottom="5px"; d.innerHTML = '<input type="text" class="scn-in" value="' + v + '" style="flex:1"><button type="button" onclick="this.parentElement.remove()" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
+    function addScnField(p, v="") { 
+        const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
+        const container = root.querySelector('.scn-list'); 
+        const d = document.createElement('div'); d.style.display="flex"; d.style.marginBottom="5px"; 
+        d.innerHTML = '<input type="text" class="scn-in" value="' + v + '" style="flex:1"><button type="button" onclick="this.parentElement.remove()" class="btn-action admin-only">✕</button>'; 
+        container.appendChild(d); 
+    }
     
     function addProfField(p, t="項目名", txt="") { 
         const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
         const container = root.querySelector('.prof-list'); 
         const d = document.createElement('div'); 
         d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; 
-        d.innerHTML = '<input type="text" class="prof-t" value="' + t + '" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="prof-x" rows="3" style="resize:none; overflow:hidden;" oninput="this.style.height=\'auto\'; this.style.height=this.scrollHeight+\'px\';">' + txt + '</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>'; 
+        d.innerHTML = `<input type="text" class="prof-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="prof-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>`;
         container.appendChild(d); 
         const ta = d.querySelector('.prof-x');
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
@@ -1009,7 +1141,7 @@
         const container = root.querySelector('.secret-list'); 
         const d = document.createElement('div'); 
         d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; 
-        d.innerHTML = '<input type="text" class="secret-t" value="' + t + '" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="secret-x" rows="3" style="resize:none; overflow:hidden;" oninput="this.style.height=\'auto\'; this.style.height=this.scrollHeight+\'px\';">' + txt + '</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>'; 
+        d.innerHTML = `<input type="text" class="secret-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="secret-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>`;
         container.appendChild(d); 
         const ta = d.querySelector('.secret-x');
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
@@ -1019,11 +1151,21 @@
     function startDrag(e) { crop.drag = true; const p = e.target.closest('.panel-content, .editor-page'); if(p) crop.activeEl = p.querySelector('.crop-img-el'); crop.sx = e.clientX - crop.x; crop.sy = e.clientY - crop.y; }
     function doDrag(e) { if(crop.drag) { crop.x = e.clientX - crop.sx; crop.y = e.clientY - crop.sy; applyCrop(); } }
     function stopDrag() { crop.drag = false; }
-    function applyCrop() { if(crop.activeEl) crop.activeEl.style.transform = 'translate(' + crop.x + 'px, ' + crop.y + 'px) scale(' + crop.z + ')'; }
+    function applyCrop() { if(crop.activeEl) crop.activeEl.style.transform = `translate(${crop.x}px, ${crop.y}px) scale(${crop.z})`; }
     function updateZoom(v) { crop.z = parseFloat(v); applyCrop(); }
-    function lockCrop(btn) { const p = btn.closest('.panel-content, .editor-page'); const img = p.querySelector('.crop-img-el'); if(!img.src) return; const cvs = document.createElement('canvas'); cvs.width = 200; cvs.height = 200; const ctx = cvs.getContext('2d'); ctx.fillStyle = "#e0e0e0"; ctx.fillRect(0, 0, cvs.width, cvs.height); ctx.save(); ctx.translate(crop.x*(200/180), crop.y*(200/180)); ctx.scale(crop.z*(200/180), crop.z*(200/180)); const tempImg = new Image(); tempImg.crossOrigin = "anonymous"; tempImg.onload = () => { ctx.drawImage(tempImg, 0, 0); ctx.restore(); p.querySelector('.in-img-data').value = cvs.toDataURL('image/jpeg', 0.8); alert("肖像を確定しました"); }; tempImg.onerror = () => { ctx.drawImage(img, 0, 0); ctx.restore(); p.querySelector('.in-img-data').value = cvs.toDataURL('image/jpeg', 0.8); alert("肖像を確定しました"); }; tempImg.src = img.src; }
+    
+    function lockCrop(btn) { 
+        const p = btn.closest('.panel-content, .editor-page'); const img = p.querySelector('.crop-img-el'); if(!img.src) return; 
+        const cvs = document.createElement('canvas'); cvs.width = 200; cvs.height = 200; const ctx = cvs.getContext('2d'); ctx.fillStyle = "#e0e0e0"; ctx.fillRect(0, 0, cvs.width, cvs.height); ctx.save(); ctx.translate(crop.x*(200/180), crop.y*(200/180)); ctx.scale(crop.z*(200/180), crop.z*(200/180)); 
+        const tempImg = new Image(); tempImg.crossOrigin = "anonymous"; 
+        tempImg.onload = () => { ctx.drawImage(tempImg, 0, 0); ctx.restore(); p.querySelector('.in-img-data').value = cvs.toDataURL('image/jpeg', 0.8); alert("肖像を確定しました"); }; 
+        tempImg.onerror = () => { ctx.drawImage(img, 0, 0); ctx.restore(); p.querySelector('.in-img-data').value = cvs.toDataURL('image/jpeg', 0.8); alert("肖像を確定しました"); }; 
+        tempImg.src = img.src; 
+    }
+    
     function openImportOverlay() { document.getElementById('import-overlay').style.display = 'flex'; }
     function closeImportOverlay() { document.getElementById('import-overlay').style.display = 'none'; }
+    
     function parseAndAddChar() {
         const text = document.getElementById('import-text-area').value;
         if(!text) return;
@@ -1060,7 +1202,7 @@
         parsedSkillsMap.forEach((s) => { if (Number(s.j)>0 || Number(s.i)>0 || Number(s.g)>0 || Number(s.o)>0) { orderedSkills.push({ n: s.n, b: s.b, j: s.j, i: s.i, g: s.g, o: s.o, t: s.t, sub: s.sub, gr: getGenre(s.n) }); } });
         const data = { regulation: reg, name: pName, kana: pKana, job: getVal(/職業:\s*(.+)/), sex: getVal(/性別:\s*(.+)/), age: getVal(/年齢:\s*(.+)/), height: getVal(/身長:\s*(.+)/), img: getVal(/https:\/\/image\.iaproject\.app\/([^\s]+)/) ? "https://image.iaproject.app/" + getVal(/https:\/\/image\.iaproject\.app\/([^\s]+)/) : "", stats: stats, calcStats: { luck: getVal(/幸運\s+(\d+)/) }, ptPattern: ptPatt, ptManual: ptMan, skills: orderedSkills, scns: (lines.find(l => l.includes('タグ:')) ? lines.find(l => l.includes('タグ:')).split('タグ:')[1].split(/[,，\s]+/).filter(s => s.trim()) : []), profs: [], secrets: [] };
         const memoIdx = text.indexOf('【メモ】'); if(memoIdx !== -1) data.profs.push({ t: "写記された手記", x: text.substring(memoIdx + 4).trim() });
-        chars.push(data); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); closeImportOverlay(); pushData(); alert(data.name + ' の記録を大書庫の秩序に従って写記しました。'); updateScheduleFormSelect();
+        chars.push(data); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); closeImportOverlay(); pushData(); alert(data.name + ' の記録を写記しました。'); updateScheduleFormSelect();
     }
 
     function renderScheduleView() { schedules = schedules.map(s => { if (!s.dates && s.date) s.dates = [s.date]; if (!s.dates) s.dates = []; return s; }); autoUpdateStatus(); renderCalendar(); renderChronicle(); updateScheduleFormSelect(); }
@@ -1079,11 +1221,42 @@
         if (changed) { localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); pushData(); }
     }
 
-    function updateScheduleFormSelect() { document.querySelectorAll('.sch-char-select-el').forEach(sel => { const current = sel.value; sel.innerHTML = '<option value="">選択しない</option>'; chars.forEach(c => { sel.innerHTML += '<option value="' + c.name + '">' + c.name + '</option>'; }); sel.value = current; }); }
-    function addSchDateField(btn, val="") { const root = btn.closest('.panel-content, .editor-page'); const container = root.querySelector('.sch-date-list'); const d = document.createElement('div'); d.style.display = "flex"; d.style.gap = "10px"; d.style.marginBottom = "8px"; d.innerHTML = '<input type="datetime-local" class="sch-date-in" value="' + val + '" style="flex:1;"><button type="button" onclick="this.parentElement.remove()" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
+    function updateScheduleFormSelect() { document.querySelectorAll('.sch-char-select-el').forEach(sel => { const current = sel.value; sel.innerHTML = '<option value="">選択しない</option>'; chars.forEach(c => { sel.innerHTML += `<option value="${c.name}">${c.name}</option>`; }); sel.value = current; }); }
+    function addSchDateField(btn, val="") { const root = btn.closest('.panel-content, .editor-page'); const container = root.querySelector('.sch-date-list'); const d = document.createElement('div'); d.style.display = "flex"; d.style.gap = "10px"; d.style.marginBottom = "8px"; d.innerHTML = `<input type="datetime-local" class="sch-date-in" value="${val}" style="flex:1;"><button type="button" onclick="this.parentElement.remove()" class="btn-action admin-only">✕</button>`; container.appendChild(d); }
     function addPartnerField(btn, category, name="") { const root = btn.closest('.panel-content, .editor-page'); const container = root.querySelector('.partner-list-' + category); const d = document.createElement('div'); d.style.display = "flex"; d.style.gap = "8px"; d.style.marginBottom = "8px"; d.innerHTML = `<input type="text" class="ptn-name" value="${name}" placeholder="名前" style="flex:1;"><button type="button" onclick="this.parentElement.remove()" class="btn-action admin-only">✕</button>`; container.appendChild(d); }
-    function handleSchRoleChange(el) { const root = el.closest('.panel-content, .editor-page'); const pcSelect = root.querySelector('.sch-char-select-el'); const role = el.value; if (role === 'キーパー（KP/SKP）') { if(pcSelect) { pcSelect.value = ""; pcSelect.disabled = true; pcSelect.style.opacity = "0.5"; } } else { if(pcSelect) { pcSelect.disabled = false; pcSelect.style.opacity = "1"; } } const kpList = root.querySelector('.partner-list-kp'); const plList = root.querySelector('.partner-list-pl'); if(!kpList || !plList) return; [kpList, plList].forEach(list => { Array.from(list.querySelectorAll('.ptn-name')).forEach(input => { if (input.value === MY_NAME) input.closest('div').remove(); }); }); if (role === 'キーパー（KP/SKP）' || role === 'キーパー（KPC）') { addPartnerField(kpList.parentElement.querySelector('.btn-sub'), 'kp', MY_NAME); } else if (role === 'プレイヤー（PL）') { addPartnerField(plList.parentElement.querySelector('.btn-sub'), 'pl', MY_NAME); } }
-    function renderCalendar() { const grid = document.getElementById('calendar-grid-ui'); const display = document.getElementById('cal-display-month'); grid.innerHTML = ''; const year = currentViewDate.getFullYear(); const month = currentViewDate.getMonth(); display.innerText = year + '年 ' + (month + 1) + '月'; ['日', '月', '火', '水', '木', '金', '土'].forEach(d => { grid.innerHTML += '<div class="cal-day-label">' + d + '</div>'; }); const firstDay = new Date(year, month, 1).getDay(); const lastDate = new Date(year, month + 1, 0).getDate(); const prevLastDate = new Date(year, month, 0).getDate(); for (let i = firstDay; i > 0; i--) { grid.innerHTML += '<div class="cal-cell other-month"><div class="cal-date-num">' + (prevLastDate - i + 1) + '</div></div>'; } for (let i = 1; i <= lastDate; i++) { const today = new Date(); const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear(); let cellContent = ''; const cellDateStr = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(i).padStart(2, '0'); schedules.forEach(s => { if(s.dates && s.dates.some(d => d.startsWith(cellDateStr))) { const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done'; cellContent += `<div class="cal-event-preview ${stCls}" onclick="event.stopPropagation(); openSchViewer(${s.id})">${s.title}</div>`; } }); grid.innerHTML += '<div class="cal-cell ' + (isToday ? 'today' : '') + '" onclick="if(isEditMode) quickAdd(' + i + ')"><div class="cal-date-num">' + i + '</div>' + cellContent + '</div>'; } }
+    
+    function handleSchRoleChange(el) { 
+        const root = el.closest('.panel-content, .editor-page'); 
+        const pcSelect = root.querySelector('.sch-char-select-el'); 
+        const role = el.value; 
+        if (role === 'キーパー（KP/SKP）') { if(pcSelect) { pcSelect.value = ""; pcSelect.disabled = true; pcSelect.style.opacity = "0.5"; } } 
+        else { if(pcSelect) { pcSelect.disabled = false; pcSelect.style.opacity = "1"; } } 
+        const kpList = root.querySelector('.partner-list-kp'); const plList = root.querySelector('.partner-list-pl'); 
+        if(!kpList || !plList) return; 
+        [kpList, plList].forEach(list => { Array.from(list.querySelectorAll('.ptn-name')).forEach(input => { if (input.value === MY_NAME) input.closest('div').remove(); }); }); 
+        if (role === 'キーパー（KP/SKP）' || role === 'キーパー（KPC）') { addPartnerField(kpList.parentElement.querySelector('.btn-sub'), 'kp', MY_NAME); } 
+        else if (role === 'プレイヤー（PL）') { addPartnerField(plList.parentElement.querySelector('.btn-sub'), 'pl', MY_NAME); } 
+    }
+
+    function renderCalendar() { 
+        const grid = document.getElementById('calendar-grid-ui'); const display = document.getElementById('cal-display-month'); grid.innerHTML = ''; 
+        const year = currentViewDate.getFullYear(); const month = currentViewDate.getMonth(); display.innerText = `${year}年 ${month+1}月`; 
+        ['日', '月', '火', '水', '木', '金', '土'].forEach(d => { grid.innerHTML += `<div class="cal-day-label">${d}</div>`; }); 
+        const firstDay = new Date(year, month, 1).getDay(); const lastDate = new Date(year, month + 1, 0).getDate(); const prevLastDate = new Date(year, month, 0).getDate(); 
+        for (let i = firstDay; i > 0; i--) { grid.innerHTML += `<div class="cal-cell other-month"><div class="cal-date-num">${prevLastDate-i+1}</div></div>`; } 
+        for (let i = 1; i <= lastDate; i++) { 
+            const today = new Date(); const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear(); 
+            let cellContent = ''; const cellDateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`; 
+            schedules.forEach(s => { 
+                if(s.dates && s.dates.some(d => d.startsWith(cellDateStr))) { 
+                    const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done'; 
+                    cellContent += `<div class="cal-event-preview ${stCls}" onclick="event.stopPropagation(); openSchViewer(${s.id})">${s.title}</div>`; 
+                } 
+            }); 
+            grid.innerHTML += `<div class="cal-cell ${isToday ? 'today' : ''}" onclick="if(isEditMode) quickAdd(${i})"><div class="cal-date-num">${i}</div>${cellContent}</div>`; 
+        } 
+    }
+    
     function changeMonth(diff) { currentViewDate.setMonth(currentViewDate.getMonth() + diff); renderCalendar(); }
     
     function saveSchedule(mode) {
@@ -1117,7 +1290,7 @@
         ongoingUI.innerHTML = ''; upcomingUI.innerHTML = ''; adjustingUI.innerHTML = '';
         schedules.forEach(s => {
             const d = new Date(s.dates && s.dates[0] ? s.dates[0] : Date.now()); const mStr = (d.getMonth()+1) + '月'; const dStr = d.getDate();
-            const dateCount = (s.dates && s.dates.length > 1) ? ' <span style="font-size:0.65rem; color:var(--important);">[全' + s.dates.length + '回]</span>' : '';
+            const dateCount = (s.dates && s.dates.length > 1) ? `<span style="font-size:1rem; color:var(--important); margin-left:8px; position:relative; top:-2px;">[全${s.dates.length}回]</span>` : '';
             const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done';
             const allKp = (s.partners_kp || []).map(p => p.name).join(', ');
             const allPl = (s.partners_pl || []).map(p => p.name).join(', ');
@@ -1136,34 +1309,85 @@
     
     function openSchViewer(id) {
         const s = schedules.find(ev => ev.id === id); if(!s) return;
-        const left = document.getElementById('sv-page-left'); const right = document.getElementById('sv-page-right'); const editContainer = document.getElementById('sv-edit-btn-container');
+        const container = document.getElementById('sv-page-content');
+        const editContainer = document.getElementById('sv-edit-btn-container');
+
         const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done';
-        let datesHtml = ''; if (s.dates && s.dates.length > 0) { datesHtml = '<div class="sv-section-card"><span class="sv-section-label">予定された刻限</span>'; s.dates.forEach(dateStr => { const d = new Date(dateStr); datesHtml += `<span class="sv-date-badge">${d.getFullYear()}年 ${d.getMonth()+1}月 ${d.getDate()}日 <small>${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}</small></span>`; }); datesHtml += '</div>'; }
-        const charObj = chars.find(c => c.name === s.charName); const charImg = (charObj && charObj.img && s.role !== 'キーパー（KP/SKP）') ? `<div style="text-align:center; margin-bottom:20px;"><img src="${charObj.img}" class="char-icon" style="width:150px; height:150px; border:4px solid var(--card-bg); box-shadow:var(--shadow);"></div>` : '';
-        const pcLabel = (s.role !== 'キーパー（KP/SKP）' && s.charName) ? `<div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub);">探索者</span><p style="font-size:1.3rem; font-family:'Noto Serif JP', serif; font-weight:bold; margin:5px 0;">${s.charName}</p></div>` : '';
-        left.innerHTML = `<div style="padding:10px;"><div style="display:flex; justify-content:center; margin-bottom:30px;"><span class="chr-status-pill ${stCls}">${s.status}</span></div>${datesHtml}<div style="margin-top:40px;">${charImg}${pcLabel}<p style="text-align:center; margin-top:20px; font-weight:bold; color:var(--important); font-size:0.85rem; letter-spacing:2px;">${s.role}</p></div></div>`;
-        let ptnListHtml = ''; if ((s.partners_kp && s.partners_kp.length > 0) || (s.partners_pl && s.partners_pl.length > 0)) { ptnListHtml += '<div class="sv-section-card" style="margin-top:40px;"><span class="sv-section-label">物語に集う列席者</span>'; if (s.partners_kp && s.partners_kp.length > 0) { ptnListHtml += '<div class="sv-partner-group"><span class="sv-partner-label">キーパー（KP/SKP）</span><div class="sv-partner-names">' + s.partners_kp.map(p => p.name).join(' / ') + '</div></div>'; } if (s.partners_pl && s.partners_pl.length > 0) { ptnListHtml += '<div class="sv-partner-group"><span class="sv-partner-label">プレイヤー（PL）</span><div class="sv-partner-names">' + s.partners_pl.map(p => p.name).join(' / ') + '</div></div>'; } ptnListHtml += '</div>'; }
-        right.innerHTML = `<div style="padding:40px 20px; height:100%; display:flex; flex-direction:column; justify-content:center; text-align:center;"><h2 style="font-family:'Noto Serif JP', serif; font-size:2.2rem; line-height:1.4; color:var(--accent); margin-bottom:20px;">${s.title}</h2><div style="width:60px; height:3px; background:var(--accent); margin:0 auto 40px; opacity:0.6;"></div>${ptnListHtml}</div>`;
-        
-        editContainer.innerHTML = '<div style="display:flex; gap:10px;"><button onclick="editSch(' + s.id + ')" class="btn-action admin-only" style="font-size:0.9rem; padding:8px 20px;">編集</button><button onclick="deleteSchFromViewer(' + s.id + ')" class="btn-action del admin-only" style="font-size:0.9rem; padding:8px 20px;">削除</button></div>';
-        
+
+        // 1 & 2: タイトルと進行状況 (名簿画面風ヘッダー)
+        let html = `
+            <div style="display:flex; gap:30px; align-items:center; margin-bottom:30px; padding-bottom:20px; border-bottom:2px dashed var(--border); flex-wrap:wrap;">
+                <div style="flex:1; min-width:250px;">
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px; flex-wrap:wrap;">
+                        <h2 style="font-family:'Noto Serif JP',serif; font-size:2.2rem; margin:0; font-weight:700; color:var(--text-main); word-break:keep-all; line-height:1.2;">${s.title}</h2>
+                        <span class="chr-status-pill ${stCls}" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 0.8rem; padding: 6px 14px; white-space:nowrap; position:relative; top:4px;">${s.status}</span>
+                    </div>
+                </div>
+            </div>`;
+
+        // 3: 列席者 (名簿のセクションスタイル)
+        if ((s.partners_kp && s.partners_kp.length > 0) || (s.partners_pl && s.partners_pl.length > 0)) {
+            html += '<span class="section-label">物語に集う列席者</span>';
+            html += '<div style="margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">';
+            if (s.partners_kp && s.partners_kp.length > 0) {
+                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ キーパー（KP/SKP）</b>`;
+                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; margin-bottom:25px;">${s.partners_kp.map(p => p.name).join('　/　')}</div>`;
+            }
+            if (s.partners_pl && s.partners_pl.length > 0) {
+                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ プレイヤー（PL）</b>`;
+                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif;">${s.partners_pl.map(p => p.name).join('　/　')}</div>`;
+            }
+            html += '</div>';
+        }
+
+        // 4 & 5: 探索者 (KPの場合はまるごと非表示)
+        if (s.role !== 'キーパー（KP/SKP）') {
+            html += '<span class="section-label">担当する探索者</span>';
+            const charObj = chars.find(c => c.name === s.charName);
+            const charImg = (charObj && charObj.img) ? `<img src="${charObj.img}" class="char-icon" style="width:110px; height:110px; border:4px solid var(--card-bg); box-shadow:var(--shadow); flex-shrink:0;">` : '';
+            const pcName = s.charName ? s.charName : '指定なし';
+            
+            html += `
+            <div style="margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; gap:25px; align-items:center;">
+                ${charImg}
+                <div style="flex:1;">
+                    <div><span style="font-size:0.8rem; color:var(--text-sub); font-weight:bold; display:block; margin-bottom:4px;">探索者</span><span style="font-family:'Noto Serif JP', serif; font-size:1.6rem; font-weight:bold; color:var(--text-main);">${pcName}</span></div>
+                </div>
+            </div>`;
+        }
+
+        // 6: 予定された刻限 (名簿のセクションスタイル)
+        if (s.dates && s.dates.length > 0) {
+            html += '<span class="section-label">予定された刻限</span>';
+            html += '<div style="margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">';
+            s.dates.forEach((dateStr, idx) => {
+                const d = new Date(dateStr);
+                const borderStyle = idx === s.dates.length - 1 ? 'none' : '1px dotted var(--border)';
+                const padStyle = idx === s.dates.length - 1 ? '0' : '15px';
+                // gridレイアウトを使って、日付側の幅（180px）を固定し、時間の開始位置が常に揃うようにしました
+                html += `
+                <div style="font-family:'Noto Serif JP', serif; color:var(--text-main); border-bottom:${borderStyle}; padding-bottom:${padStyle}; margin-bottom:${padStyle}; display:grid; grid-template-columns: 180px auto; align-items:center; gap:20px;">
+                    <span style="font-size:1.3rem; color:var(--accent); font-weight:bold;">${d.getFullYear()}年 ${d.getMonth()+1}月 ${d.getDate()}日</span>
+                    <span style="font-size:1.2rem; font-weight:bold; color:var(--text-main);">${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}</span>
+                </div>`;
+            });
+            html += '</div>';
+        }
+
+        container.innerHTML = html;
+
+        editContainer.innerHTML = `
+            <button onclick="editSch(${s.id})" class="btn-action outline admin-only">編集する</button>
+            <button onclick="deleteSchFromViewer(${s.id})" class="btn-action del-outline admin-only">削除する</button>
+        `;
+
         document.getElementById('sch-viewer-overlay').style.display = 'flex';
     }
-
-    function deleteSchFromViewer(id) {
-        if(confirm("この物語を大書庫から削除しますか？")) {
-            schedules = schedules.filter(s => s.id !== id);
-            localStorage.setItem(KEY_SCH, JSON.stringify(schedules));
-            renderScheduleView(); pushData();
-            closeSchViewer();
-        }
-    }
-
-    function editSch(id) { currentSchEditId = id; const s = schedules.find(ev => ev.id === id); if(!s) return; closeSchViewer(); const root = document.getElementById('sch-editor-overlay'); root.querySelector('.sch-date-list').innerHTML = ''; (s.dates || []).forEach(d => addSchDateField(root.querySelector('.btn-sub'), d)); root.querySelector('#edit-sch-status').value = s.status; root.querySelector('#edit-sch-title').value = s.title; root.querySelector('#edit-sch-role').value = s.role; handleSchRoleChange(root.querySelector('#edit-sch-role')); updateScheduleFormSelect(); root.querySelector('#edit-sch-char-select').value = s.charName; root.querySelector('.partner-list-kp').innerHTML = ''; (s.partners_kp || []).forEach(p => addPartnerField(root.querySelector('.partner-list-kp').parentElement.querySelector('.btn-sub'), 'kp', p.name)); root.querySelector('.partner-list-pl').innerHTML = ''; (s.partners_pl || []).forEach(p => addPartnerField(root.querySelector('.partner-list-pl').parentElement.querySelector('.btn-sub'), 'pl', p.name)); root.querySelector('#btn-update-sch').onclick = () => saveSchedule('edit'); root.style.display = 'flex'; }
+    
     function closeSchViewer() { document.getElementById('sch-viewer-overlay').style.display = 'none'; }
     function closeSchEditor() { document.getElementById('sch-editor-overlay').style.display = 'none'; currentSchEditId = null; }
     function deleteSchedule(id) { if(confirm("この物語を大書庫から削除しますか？")) { schedules = schedules.filter(s => s.id !== id); localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); renderScheduleView(); pushData(); closeSchViewer(); } }
-    function quickAdd(day) { const panel = document.getElementById('add-sch-form'); if(!panel.classList.contains('open')) togglePanel('add-sch-form', true); const dateStr = currentViewDate.getFullYear() + '-' + String(currentViewDate.getMonth()+1).padStart(2,'0') + '-' + String(day).padStart(2,'0') + 'T21:00'; const inputs = document.querySelectorAll('#sch-date-list-new .sch-date-in'); if(inputs.length > 0) inputs[0].value = dateStr; }
+    function quickAdd(day) { const panel = document.getElementById('add-sch-form'); if(!panel.classList.contains('open')) togglePanel('add-sch-form', true); const dateStr = `${currentViewDate.getFullYear()}-${String(currentViewDate.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}T21:00`; const inputs = document.querySelectorAll('#sch-date-list-new .sch-date-in'); if(inputs.length > 0) inputs[0].value = dateStr; }
 
     function toggleScnFormFields(val, mode) {
         const passedFields = document.getElementById(mode === 'new' ? 'scn-ext-passed' : 'edit-scn-ext-passed');
@@ -1281,7 +1505,7 @@
         
         const pcSelect = document.getElementById('edit-scn-in-pc');
         pcSelect.innerHTML = '<option value="">選択しない</option>';
-        chars.forEach(c => { pcSelect.innerHTML += '<option value="' + c.name + '">' + c.name + '</option>'; });
+        chars.forEach(c => { pcSelect.innerHTML += `<option value="${c.name}">${c.name}</option>`; });
         
         if (s.date) document.getElementById('edit-scn-in-date').value = s.date;
         if (s.pc) pcSelect.value = s.pc;
