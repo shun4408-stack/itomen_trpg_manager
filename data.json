@@ -4267,22 +4267,6 @@
   ],
   "schedules": [
     {
-      "id": 1772873913940,
-      "dates": [
-        "2026-03-04T21:00"
-      ],
-      "title": "テスト",
-      "status": "完走",
-      "role": "プレイヤー（PL）",
-      "charName": "Iris = Cotton",
-      "partners_kp": [],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
       "id": 1772716678138,
       "dates": [
         "2026-03-06T21:00",
