@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itomen-TRPG ARCHIVE</title>
+    <title>いとめんのTRPG ARCHIVE</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap');
         
@@ -344,17 +345,15 @@
                             <div class="form-group"><label>通過日</label><input type="date" id="scn-in-date"></div>
                             <div class="form-group"><label>担当PC</label><select id="scn-in-pc" class="sch-char-select-el"><option value="">選択しない</option></select></div>
                         </div>
-                        <div class="form-row">
-                            <div>
-                                <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">KP</span>
-                                <div id="scn-ptn-list-kp-new" class="scn-partner-list-kp"></div>
-                                <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'kp')">＋ KPを追加</button>
-                            </div>
-                            <div>
-                                <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">PL</span>
-                                <div id="scn-ptn-list-pl-new" class="scn-partner-list-pl"></div>
-                                <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'pl')">＋ PLを追加</button>
-                            </div>
+                        <div style="margin-bottom:15px;">
+                            <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">KP</span>
+                            <div id="scn-ptn-list-kp-new" class="scn-partner-list-kp"></div>
+                            <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'kp')">＋ KPを追加</button>
+                        </div>
+                        <div>
+                            <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">PL</span>
+                            <div id="scn-ptn-list-pl-new" class="scn-partner-list-pl"></div>
+                            <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'pl')">＋ PLを追加</button>
                         </div>
                     </div>
 
@@ -518,17 +517,15 @@
                 <div class="form-group"><label>通過日</label><input type="date" id="edit-scn-in-date"></div>
                 <div class="form-group"><label>担当PC</label><select id="edit-scn-in-pc" class="sch-char-select-el"></select></div>
             </div>
-            <div class="form-row">
-                <div>
-                    <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">KP</span>
-                    <div id="scn-ptn-list-kp-edit" class="scn-partner-list-kp"></div>
-                    <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'kp')">＋ KPを追加</button>
-                </div>
-                <div>
-                    <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">PL</span>
-                    <div id="scn-ptn-list-pl-edit" class="scn-partner-list-pl"></div>
-                    <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'pl')">＋ PLを追加</button>
-                </div>
+            <div style="margin-bottom:15px;">
+                <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">KP</span>
+                <div id="scn-ptn-list-kp-edit" class="scn-partner-list-kp"></div>
+                <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'kp')">＋ KPを追加</button>
+            </div>
+            <div>
+                <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold;">PL</span>
+                <div id="scn-ptn-list-pl-edit" class="scn-partner-list-pl"></div>
+                <button class="btn-sub admin-only" onclick="addScnPartnerField(this, 'pl')">＋ PLを追加</button>
             </div>
         </div>
         <div id="edit-scn-ext-kp" style="display:none;">
@@ -741,7 +738,7 @@
         const charIdx = chars.findIndex(c => c.name === charName);
         if (charIdx !== -1) {
             if (!chars[charIdx].scns) chars[charIdx].scns = [];
-            if (!chars[charIdx].scns.includes(scenarioTitle)) { chars[charIdx].scns.push(scenarioTitle); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); pushData(); }
+            if (!chars[charIdx].scns.includes(scenarioTitle)) { chars[charIdx].scns.push(scenarioTitle); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); }
         }
     }
 
@@ -752,7 +749,7 @@
                 const kpArr = (s.partners_kp || []).map(p => p.name); const plArr = (s.partners_pl || []).map(p => p.name);
                 let passDate = ""; if (s.dates && s.dates.length > 0) { const sortedDates = [...s.dates].sort(); passDate = sortedDates[sortedDates.length - 1].split('T')[0]; }
                 scnLib.push({ id: Date.now() + Math.floor(Math.random()*1000), title: s.title, genre: 'passed', date: passDate, pc: s.charName || "", kp: kpArr, pl: plArr, kpCount: 0 });
-                localStorage.setItem(KEY_SCN_LIB, JSON.stringify(scnLib)); renderScenarioLibrary(); pushData();
+                localStorage.setItem(KEY_SCN_LIB, JSON.stringify(scnLib)); renderScenarioLibrary(); 
             }
         }
     }
@@ -1384,9 +1381,12 @@
         document.getElementById('sch-viewer-overlay').style.display = 'flex';
     }
     
+   function editSch(id) { currentSchEditId = id; const s = schedules.find(ev => ev.id === id); if(!s) return; closeSchViewer(); const root = document.getElementById('sch-editor-overlay'); root.querySelector('.sch-date-list').innerHTML = ''; (s.dates || []).forEach(d => addSchDateField(root.querySelector('.btn-sub'), d)); root.querySelector('#edit-sch-status').value = s.status; root.querySelector('#edit-sch-title').value = s.title; root.querySelector('#edit-sch-role').value = s.role; handleSchRoleChange(root.querySelector('#edit-sch-role')); updateScheduleFormSelect(); root.querySelector('#edit-sch-char-select').value = s.charName; root.querySelector('.partner-list-kp').innerHTML = ''; (s.partners_kp || []).forEach(p => addPartnerField(root.querySelector('.partner-list-kp').parentElement.querySelector('.btn-sub'), 'kp', p.name)); root.querySelector('.partner-list-pl').innerHTML = ''; (s.partners_pl || []).forEach(p => addPartnerField(root.querySelector('.partner-list-pl').parentElement.querySelector('.btn-sub'), 'pl', p.name)); root.querySelector('#btn-update-sch').onclick = () => saveSchedule('edit'); root.style.display = 'flex'; }
+
     function closeSchViewer() { document.getElementById('sch-viewer-overlay').style.display = 'none'; }
     function closeSchEditor() { document.getElementById('sch-editor-overlay').style.display = 'none'; currentSchEditId = null; }
-    function deleteSchedule(id) { if(confirm("この物語を大書庫から削除しますか？")) { schedules = schedules.filter(s => s.id !== id); localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); renderScheduleView(); pushData(); closeSchViewer(); } }
+    function deleteSchFromViewer(id) { if(confirm("この物語を予定表から削除しますか？")) { schedules = schedules.filter(s => s.id !== id); localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); renderScheduleView(); pushData(); closeSchViewer(); } }
+    function deleteSchedule(id) { if(confirm("この物語を予定表から削除しますか？")) { schedules = schedules.filter(s => s.id !== id); localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); renderScheduleView(); pushData(); closeSchViewer(); } }
     function quickAdd(day) { const panel = document.getElementById('add-sch-form'); if(!panel.classList.contains('open')) togglePanel('add-sch-form', true); const dateStr = `${currentViewDate.getFullYear()}-${String(currentViewDate.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}T21:00`; const inputs = document.querySelectorAll('#sch-date-list-new .sch-date-in'); if(inputs.length > 0) inputs[0].value = dateStr; }
 
     function toggleScnFormFields(val, mode) {
