@@ -4472,100 +4472,91 @@
       ]
     },
     {
-      "id": 1773047161399,
+      "id": 1773047368159,
       "dates": [],
-      "title": "フィンブルの手記",
+      "title": "████が消えた夏",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
-        {
-          "name": "ss"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
         {
           "name": "ちいた"
         }
-      ]
-    },
-    {
-      "id": 1772717537683,
-      "dates": [],
-      "title": "欲望街",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "なお"
-        }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
         },
         {
-          "name": "あきづ"
-        },
-        {
-          "name": "ひなた"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1772717484506,
+      "id": 1772721982285,
       "dates": [],
-      "title": "クオリフィル世界における独ガ論",
+      "title": "VOID",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "きなこ"
+        }
+      ]
+    },
+    {
+      "id": 1772717517762,
+      "dates": [],
+      "title": "井藤チアキと云う女",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "Stella"
+          "name": "ねぎ"
         }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
-        },
+        }
+      ]
+    },
+    {
+      "id": 1772717458166,
+      "dates": [],
+      "title": "ワンルーム・ディスコン",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1772717424651,
+      "dates": [],
+      "title": "Reverse city 2",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
         {
           "name": "ナス大臣"
         }
-      ]
-    },
-    {
-      "id": 1772717441103,
-      "dates": [],
-      "title": "笑う人間師",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717398418,
-      "dates": [],
-      "title": "イザナミの棺",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "あきづ"
-        }
       ],
       "partners_pl": [
         {
@@ -4577,15 +4568,15 @@
       ]
     },
     {
-      "id": 1772717347356,
+      "id": 1772717376639,
       "dates": [],
-      "title": "すみません、よくわかりません。",
+      "title": "塔葬の国",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "なお"
+          "name": "ナス大臣"
         }
       ],
       "partners_pl": [
@@ -4597,9 +4588,6 @@
         },
         {
           "name": "てる"
-        },
-        {
-          "name": "ひなた"
         }
       ]
     },
@@ -4631,15 +4619,15 @@
       ]
     },
     {
-      "id": 1772717376639,
+      "id": 1772717347356,
       "dates": [],
-      "title": "塔葬の国",
+      "title": "すみません、よくわかりません。",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ナス大臣"
+          "name": "なお"
         }
       ],
       "partners_pl": [
@@ -4651,19 +4639,22 @@
         },
         {
           "name": "てる"
+        },
+        {
+          "name": "ひなた"
         }
       ]
     },
     {
-      "id": 1772717424651,
+      "id": 1772717398418,
       "dates": [],
-      "title": "Reverse city 2",
+      "title": "イザナミの棺",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ナス大臣"
+          "name": "あきづ"
         }
       ],
       "partners_pl": [
@@ -4676,9 +4667,9 @@
       ]
     },
     {
-      "id": 1772717458166,
+      "id": 1772717441103,
       "dates": [],
-      "title": "ワンルーム・ディスコン",
+      "title": "笑う人間師",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
@@ -4694,38 +4685,68 @@
       ]
     },
     {
-      "id": 1772717517762,
+      "id": 1772717484506,
       "dates": [],
-      "title": "井藤チアキと云う女",
+      "title": "クオリフィル世界における独ガ論",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ねぎ"
+          "name": "Stella"
         }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
+        },
+        {
+          "name": "ナス大臣"
         }
       ]
     },
     {
-      "id": 1772721982285,
+      "id": 1772717537683,
       "dates": [],
-      "title": "VOID",
+      "title": "欲望街",
       "status": "調整中",
-      "role": "キーパー（KP/SKP）",
+      "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "いとめん"
+          "name": "なお"
         }
       ],
       "partners_pl": [
         {
-          "name": "きなこ"
+          "name": "いとめん"
+        },
+        {
+          "name": "あきづ"
+        },
+        {
+          "name": "ひなた"
+        }
+      ]
+    },
+    {
+      "id": 1773047161399,
+      "dates": [],
+      "title": "フィンブルの手記",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ss"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ちいた"
         }
       ]
     }
