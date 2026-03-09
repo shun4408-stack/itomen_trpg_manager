@@ -59,7 +59,7 @@
         .status-error { color: #fff; background: var(--san-border); border: 1px solid var(--accent); }
         @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
-        main { flex: 1; overflow-y: auto; padding: 30px; position: relative; }
+        main { flex: 1; overflow-y: scroll; padding: 30px; position: relative; }
         .content-area { max-width: 1100px; margin: 0 auto; padding-bottom: 100px; }
         .view-section { display: none; }
         .view-section.active { display: block; }
@@ -198,20 +198,20 @@
         .chr-month { font-size: 0.85rem; color: var(--text-sub); font-weight: bold; }
         .chr-day { font-family: 'Noto Serif JP', serif; font-size: 2.4rem; font-weight: bold; color: var(--accent); line-height: 1; margin: 8px 0; }
         .chr-main-content { flex: 1; padding: 25px 35px; display: flex; flex-direction: column; justify-content: center; }
-        .chr-title { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: bold; margin: 0 0 10px; color: var(--accent); line-height: 1.2; letter-spacing: 1px; }
+        .chr-title { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: bold; margin: 0 0 10px; color: var(--accent); height: 32px; line-height: 32px; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0; }
         .chr-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 18px; opacity: 0.4; }
-        .chr-meta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; top: 3px; }
+        .chr-meta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         
-        .chr-status-pill { font-size: 0.7rem; padding: 4px 14px; border-radius: 20px; color: white; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .chr-status-pill { font-size: 0.7rem; padding: 0 14px; border-radius: 20px; color: white; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); height: 24px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
         .status-adj { background: #6c757d; } .status-wait { background: #4a6fa5; } 
         .status-ongoing { background: #588157; } .status-done { background: var(--important); }
 
-        .chr-info-item { font-size: 0.95rem; color: var(--text-sub); display: flex; align-items: center; gap: 8px; line-height: 1.5; }
-        .chr-info-item b { color: var(--text-main); font-family: 'Noto Serif JP', serif; font-size: 1rem; }
+        .chr-info-item { font-size: 0.95rem; color: var(--text-sub); display: flex; align-items: center; gap: 8px; height: 24px; line-height: 24px; }
+        .chr-info-item b { color: var(--text-main); font-family: 'Noto Serif JP', serif; font-size: 1.05rem; }
 
         .chr-card-simple-row { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow); cursor: pointer; transition: 0.2s; position: relative; }
         .chr-card-simple-row:hover { transform: translateX(5px); background: var(--panel-header-bg); }
-        .chr-title-simple-row { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: bold; color: var(--text-main); margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .chr-title-simple-row { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: bold; color: var(--text-main); margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 26px; line-height: 26px; padding: 0; }
         .chr-meta-simple-row { font-size: 0.8rem; color: var(--text-sub); white-space: nowrap; font-family: 'Noto Serif JP', serif; }
 
         .card-btn-area { position: absolute; top: 15px; right: 15px; display: flex; gap: 8px; z-index: 10; }
@@ -227,11 +227,14 @@
         
         .viewer-edit-btn-area { position: absolute; bottom: 40px; left: 40px; z-index: 120; }
 
-        .scn-card { background: var(--card-bg); border: 1px solid var(--border); padding: 15px 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: var(--shadow); position: relative; }
-        .scn-card-title { font-family: 'Noto Serif JP', serif; font-weight: bold; font-size: 1.1rem; margin: 0 0 8px 0; color: var(--text-main); padding-right: 120px; }
-        .scn-card-btns { position: absolute; top: 12px; right: 15px; display: flex; gap: 8px; z-index: 10; }
-        .scn-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: var(--text-sub); }
-        .scn-meta b { color: var(--accent); font-family: 'Noto Serif JP', serif; margin-right: 4px; }
+        .scn-card { background: var(--card-bg); border: 1px solid var(--border); padding: 14px 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; gap: 8px; transition: 0.2s; cursor: pointer; }
+        .scn-card:hover { transform: translateX(5px); background: var(--panel-header-bg); }
+        .scn-card-title { font-family: 'Noto Serif JP', serif; font-weight: bold; font-size: 1.1rem; margin: 0; color: var(--text-main); padding-right: 120px; height: 26px; line-height: 26px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .scn-card-btns { position: absolute; top: 14px; right: 15px; display: flex; gap: 8px; z-index: 10; align-items: center; height: 26px; }
+        .scn-card-btns .btn-action { height: 24px; display: flex; align-items: center; justify-content: center; padding: 0 12px; margin: 0; box-sizing: border-box; font-size: 0.7rem; }
+        .scn-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.85rem; color: var(--text-sub); align-items: center; }
+        .scn-meta > span { display: inline-flex; align-items: center; height: 24px; line-height: 24px; font-family: 'Noto Serif JP', serif; }
+        .scn-meta b { color: var(--accent); font-family: 'Noto Sans JP', sans-serif; margin-right: 6px; font-size: 0.9rem; }
 
         details.secret-details { background: var(--panel-header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 20px; }
         details.secret-details summary { font-family: 'Noto Serif JP', serif; font-weight: bold; color: var(--important); cursor: pointer; outline: none; }
@@ -287,10 +290,10 @@
         .dash-stat-label { font-size: 0.7rem; color: var(--text-sub); font-weight: bold; }
         .dash-stat-value { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; font-weight: bold; color: var(--accent); line-height: 1; }
         
-        .dash-next-sch { background: var(--bg); border: 1px solid var(--border); padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; position: relative; overflow: hidden; }
+        .dash-next-sch { background: var(--bg); border: 1px solid var(--border); padding: 12px 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 4px; }
         .dash-next-sch:hover { transform: translateX(3px); box-shadow: var(--shadow); background: var(--panel-header-bg); }
-        .dash-next-date { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: var(--accent); font-weight: bold; margin-bottom: 2px; line-height: 1.2;}
-        .dash-next-title { font-size: 0.9rem; font-weight: bold; color: var(--text-main); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Noto Serif JP', serif; }
+        .dash-next-date { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: var(--accent); font-weight: bold; margin: 0; }
+        .dash-next-title { font-size: 0.95rem; font-weight: bold; color: var(--text-main); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Noto Serif JP', serif; height: 24px; line-height: 24px; }
         
         .dash-recent-chars { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
         .dash-recent-chars::-webkit-scrollbar { display: none; }
@@ -903,23 +906,44 @@
         let kpPct = totalRole > 0 ? 100 - plPct : 50;
 
         // 4. 進行中・待機中のタスクリスト（最大5件）
-        let upcomingSchs = schedules.filter(s => (s.status === '待機中' || s.status === '進行中') && s.dates && s.dates.length > 0).sort((a, b) => new Date(a.dates[0]) - new Date(b.dates[0])).slice(0, 5);
+        const nowTime = Date.now();
+        const getNextDateStr = (dates) => {
+            if (!dates || dates.length === 0) return null;
+            const sorted = [...dates].sort((a, b) => new Date(a) - new Date(b));
+            const futureDates = sorted.filter(dStr => new Date(dStr).getTime() > nowTime);
+            return futureDates.length > 0 ? futureDates[0] : sorted[sorted.length - 1];
+        };
+
+        let upcomingSchs = schedules
+            .filter(s => (s.status === '待機中' || s.status === '進行中') && s.dates && s.dates.length > 0)
+            .sort((a, b) => new Date(getNextDateStr(a.dates)) - new Date(getNextDateStr(b.dates)))
+            .slice(0, 5);
+
         let upcomingHtml = '<div style="color:var(--text-sub); font-size:0.85rem; text-align:center; padding:20px 0;">進行中・待機中の予定はありません</div>';
         if(upcomingSchs.length > 0) {
             upcomingHtml = `<div class="dash-task-list">` + upcomingSchs.map(sch => {
-                const nd = new Date(sch.dates[0]);
+                const ndStr = getNextDateStr(sch.dates);
+                const nd = new Date(ndStr || Date.now());
+                const mStr = (nd.getMonth() + 1);
+                const dStr = nd.getDate();
+                const hStr = String(nd.getHours()).padStart(2, '0');
+                const minStr = String(nd.getMinutes()).padStart(2, '0');
                 const stCls = sch.status === '待機中' ? 'status-wait' : 'status-ongoing';
+                
                 return `
-                    <div class="dash-next-sch" onclick="openSchViewer(${sch.id});">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                            <div class="dash-next-date" style="margin-bottom:0; display:flex; align-items:center; gap:10px;">
-                                <span style="display:inline-block; width:50px; text-align:left;">${nd.getMonth()+1}/${nd.getDate()}</span>
-                                <span style="font-size:0.8rem; color:var(--text-sub); background:var(--input-bg); border:1px solid var(--border); padding:2px 8px; border-radius:12px; font-family:'Noto Sans JP', sans-serif; box-shadow:inset 0 1px 3px rgba(0,0,0,0.02); line-height:1;">${String(nd.getHours()).padStart(2,'0')}:${String(nd.getMinutes()).padStart(2,'0')}</span>
-                            </div>
-                            <span class="chr-status-pill ${stCls}" style="font-size:0.65rem; padding:3px 8px;">${sch.status}</span>
+                    <div class="dash-next-sch" onclick="openSchViewer(${sch.id});" style="padding:0; flex-direction:row; align-items:stretch;">
+                        <div style="width:75px; background:var(--panel-header-bg); border-right:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px 5px; flex-shrink:0;">
+                            <span style="font-size:0.65rem; color:var(--text-sub); font-weight:bold; margin-bottom:6px; letter-spacing:1px;">NEXT</span>
+                            <span style="font-family:'Noto Serif JP', serif; font-size:1.4rem; font-weight:bold; color:var(--accent); line-height:1; margin-bottom:8px;">${mStr}/${dStr}</span>
+                            <span style="font-size:0.75rem; color:var(--text-main); font-weight:bold; background:var(--bg); padding:2px 8px; border-radius:12px; border:1px solid var(--border); font-family:'Noto Sans JP', sans-serif; box-shadow:inset 0 1px 3px rgba(0,0,0,0.02); line-height:1;">${hStr}:${minStr}</span>
                         </div>
-                        <div class="dash-next-title">${sch.title}</div>
-                        <div style="font-size:0.7rem; color:var(--text-sub); font-weight:bold;">${sch.role} ${sch.charName ? ` / PC: ${sch.charName}` : ''}</div>
+                        <div style="flex:1; padding:12px 15px; display:flex; flex-direction:column; justify-content:center; gap:14px; min-width:0;">
+                            <div class="dash-next-title" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:1rem; height:20px; line-height:20px;">${sch.title}</div>
+                            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                                <span class="chr-status-pill ${stCls}" style="font-size:0.65rem; padding:0 10px; height:20px;">${sch.status}</span>
+                                <div style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; line-height:1;">${sch.role} ${sch.charName ? ` / PC: ${sch.charName}` : ''}</div>
+                            </div>
+                        </div>
                     </div>`;
             }).join('') + `</div>`;
         }
@@ -961,7 +985,7 @@
         let recentScnsHtml = '<div style="color:var(--text-sub); font-size:0.8rem; text-align:center; padding:10px 0;">記録なし</div>';
         const passedScns = scnLib.filter(s => s.genre === 'passed').sort((a,b) => (b.date || "").localeCompare(a.date || "")).slice(0, 3);
         if(passedScns.length > 0) {
-            recentScnsHtml = `<div class="dash-recent-scns">` + passedScns.map(s => `<div class="dash-scn-item"><div style="font-weight:bold; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:70%;">${s.title}</div><div style="font-family:'Noto Serif JP',serif; color:var(--important); font-weight:bold; font-size:0.75rem;">${s.date ? s.date.replace(/-/g, '/') : '-'}</div></div>`).join('') + `</div>`;
+            recentScnsHtml = `<div class="dash-recent-scns">` + passedScns.map(s => `<div class="dash-scn-item" style="display:flex; justify-content:space-between; align-items:center; height:36px; box-sizing:border-box;"><div style="font-weight:bold; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:70%; height:20px; line-height:20px;">${s.title}</div><div style="font-family:'Noto Serif JP',serif; color:var(--important); font-weight:bold; font-size:0.75rem; height:20px; line-height:20px;">${s.date ? s.date.replace(/-/g, '/') : '-'}</div></div>`).join('') + `</div>`;
         }
 
         // HTML描画
@@ -1320,7 +1344,7 @@
 
         html += '<span class="section-label">通過シナリオの記録</span>';
         if(c.scns && c.scns.length > 0) {
-            html += `<div style="margin-bottom:40px; font-size:1rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">${c.scns.join('　/　')}</div>`;
+            html += `<div style="margin-bottom:40px; font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); letter-spacing:0.5px; font-weight:500;">${c.scns.join('　/　')}</div>`;
         } else {
             html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
         }
@@ -1328,7 +1352,7 @@
         html += '<span class="section-label">手記（プロフィール / メモ）</span>';
         if(c.profs && c.profs.length > 0) {
             c.profs.forEach(p => { 
-                if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif;">${p.x}</div></div>`; 
+                if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; 
             });
         } else {
             html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
@@ -1340,7 +1364,7 @@
             html += '<summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary>';
             html += '<div style="margin-top:15px; padding-top:20px; border-top:1px dashed var(--border);">';
             c.secrets.forEach(p => {
-                if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main);">${p.x}</div></div>`;
+                if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`;
             });
             html += '</div></details>';
         }
@@ -1698,20 +1722,78 @@
         const upcomingUI = document.getElementById('chronicle-upcoming-ui');
         const adjustingUI = document.getElementById('chronicle-adjusting-ui');
         ongoingUI.innerHTML = ''; upcomingUI.innerHTML = ''; adjustingUI.innerHTML = '';
+        
+        const nowTime = Date.now();
+
         schedules.forEach(s => {
-            const d = new Date(s.dates && s.dates[0] ? s.dates[0] : Date.now()); const mStr = (d.getMonth()+1) + '月'; const dStr = d.getDate();
-            const dateCount = (s.dates && s.dates.length > 1) ? `<span style="font-size:1rem; color:var(--important); margin-left:8px; position:relative; top:-2px;">[全${s.dates.length}回]</span>` : '';
+            // ★ 次の予定日を自動計算（過ぎた日程を無視して一番近い未来の日付を取得）
+            let nextDateStr = s.dates && s.dates[0] ? s.dates[0] : null;
+            if (s.dates && s.dates.length > 0) {
+                const sorted = [...s.dates].sort((a, b) => new Date(a) - new Date(b));
+                const futureDates = sorted.filter(dStr => new Date(dStr).getTime() > nowTime);
+                nextDateStr = futureDates.length > 0 ? futureDates[0] : sorted[sorted.length - 1];
+            }
+            
+            const d = new Date(nextDateStr || Date.now());
+            const mStr = (d.getMonth() + 1);
+            const dStr = d.getDate();
+            const hStr = String(d.getHours()).padStart(2, '0');
+            const minStr = String(d.getMinutes()).padStart(2, '0');
+
+            // ★ タイトル横にあった「全n回」をサイドバー用のラベルに変更（余白を広げて下に配置）
+            const dateCountLabel = (s.dates && s.dates.length > 1) ? `<span style="font-size:0.75rem; color:var(--important); font-weight:bold; margin-top:16px;">[全${s.dates.length}回]</span>` : '';
             const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done';
             const allKp = (s.partners_kp || []).map(p => p.name).join(', ');
             const allPl = (s.partners_pl || []).map(p => p.name).join(', ');
+
             if (s.status === '進行中' || s.status === '待機中') {
                 const pcTag = (s.role !== 'キーパー（KP/SKP）' && s.charName) ? `<div class="chr-info-item">探索者: <b>${s.charName}</b></div>` : '';
                 let ptnHtml = ''; if (allKp) ptnHtml += `<div class="chr-info-item">KP: <b>${allKp}</b></div>`; if (allPl) ptnHtml += `<div class="chr-info-item">PL: <b>${allPl}</b></div>`;
-                if (ptnHtml) ptnHtml = `<div style="width:100%; border-top:1px dotted var(--border); padding-top:8px; margin-top:8px; display:flex; flex-direction:column; gap:4px;">${ptnHtml}</div>`;
-                const cardHtml = `<div class="chr-card" onclick="openSchViewer(${s.id})"><div class="chr-date-sidebar"><span class="chr-month">${mStr}</span><span class="chr-day">${dStr}</span></div><div class="chr-main-content"><h4 class="chr-title">${s.title}${dateCount}</h4><div class="chr-divider"></div><div class="chr-meta-row"><span class="chr-status-pill ${stCls}">${s.status}</span><div class="chr-info-item">ロール: <b>${s.role}</b></div>${pcTag}${ptnHtml}</div></div><div class="card-btn-area admin-only"><button class="btn-action" onclick="event.stopPropagation(); editSch(${s.id})">編集</button><button class="btn-action del" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button></div></div>`;
+                if (ptnHtml) ptnHtml = `<div style="width:100%; border-top:1px dotted var(--border); padding-top:10px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">${ptnHtml}</div>`;
+                
+                const cardHtml = `
+                <div class="chr-card" onclick="openSchViewer(${s.id})">
+                    <div class="chr-date-sidebar">
+                        <span style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; margin-bottom:12px; letter-spacing:1px;">NEXT</span>
+                        <span style="font-family:'Noto Serif JP', serif; font-size:1.8rem; font-weight:bold; color:var(--accent); line-height:1; margin-bottom:12px;">${mStr}/${dStr}</span>
+                        <span style="font-size:0.8rem; color:var(--text-main); font-weight:bold; background:var(--bg); padding:2px 10px; border-radius:12px; border:1px solid var(--border); font-family:'Noto Sans JP', sans-serif; box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">${hStr}:${minStr}</span>
+                        ${dateCountLabel}
+                    </div>
+                    <div class="chr-main-content">
+                        <h4 class="chr-title">${s.title}</h4>
+                        <div class="chr-divider"></div>
+                        <div class="chr-meta-row">
+                            <span class="chr-status-pill ${stCls}">${s.status}</span>
+                            <div class="chr-info-item">ロール: <b>${s.role}</b></div>
+                            ${pcTag}${ptnHtml}
+                        </div>
+                    </div>
+                    <div class="card-btn-area admin-only">
+                        <button class="btn-action" onclick="event.stopPropagation(); editSch(${s.id})">編集</button>
+                        <button class="btn-action del" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button>
+                    </div>
+                </div>`;
                 if (s.status === '進行中') ongoingUI.innerHTML += cardHtml; else upcomingUI.innerHTML += cardHtml;
+                
             } else if (s.status === '調整中') {
-                adjustingUI.innerHTML += `<div class="chr-card-simple-row" onclick="openSchViewer(${s.id})"><span class="chr-status-pill ${stCls}">${s.status}</span><h4 class="chr-title-simple-row">${s.title}</h4><span class="chr-meta-simple-row">${allKp ? 'KP: ' + allKp : ''}${allPl ? ' / PL: ' + allPl : ''}</span><div class="card-btn-area-simple admin-only"><button class="btn-action" style="font-size:0.6rem;" onclick="event.stopPropagation(); editSch(${s.id})">編集</button><button class="btn-action del" style="font-size:0.6rem;" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button></div></div>`;
+                // ★ 調整中カードのサイドバー幅を100pxに固定し、タグのサイズを他のカードと統一
+                adjustingUI.innerHTML += `
+                <div class="chr-card" onclick="openSchViewer(${s.id})" style="border-radius:8px; margin-bottom:10px; min-height:80px; padding:0;">
+                    <div class="chr-date-sidebar" style="width:100px; padding:15px 10px; border-right:1px solid var(--border);">
+                        <span class="chr-status-pill ${stCls}">${s.status}</span>
+                    </div>
+                    <div class="chr-main-content" style="padding:15px 20px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+                        <h4 class="scn-card-title" style="padding:0; margin:0; height:24px; line-height:24px;">${s.title}</h4>
+                        <div class="scn-meta" style="gap:24px; margin:0;">
+                            ${allKp ? '<span><b>KP:</b> ' + allKp + '</span>' : ''}
+                            ${allPl ? '<span><b>PL:</b> ' + allPl + '</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="scn-card-btns admin-only" style="top:15px; right:15px;">
+                        <button class="btn-action" onclick="event.stopPropagation(); editSch(${s.id})">編集</button>
+                        <button class="btn-action del" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button>
+                    </div>
+                </div>`;
             }
         });
         ['ongoing', 'upcoming', 'adjusting'].forEach(id => { const el = document.getElementById('chronicle-'+id+'-ui'); if(!el.innerHTML) el.innerHTML = '<div style="text-align:center; padding:15px; color:var(--text-sub); font-style:italic; font-size:0.8rem;">—— 記録はありません ——</div>'; });
@@ -1741,12 +1823,12 @@
             html += '<span class="section-label">物語に集う列席者</span>';
             html += '<div style="margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">';
             if (s.partners_kp && s.partners_kp.length > 0) {
-                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ キーパー（KP/SKP）</b>`;
-                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; margin-bottom:25px;">${s.partners_kp.map(p => p.name).join('　/　')}</div>`;
+                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ キーパー（KP/SKP）</b>`;
+                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; letter-spacing:0.5px; font-weight:500; margin-bottom:25px;">${s.partners_kp.map(p => p.name).join('　/　')}</div>`;
             }
             if (s.partners_pl && s.partners_pl.length > 0) {
-                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ プレイヤー（PL）</b>`;
-                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif;">${s.partners_pl.map(p => p.name).join('　/　')}</div>`;
+                html += `<b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ プレイヤー（PL）</b>`;
+                html += `<div style="font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; letter-spacing:0.5px; font-weight:500;">${s.partners_pl.map(p => p.name).join('　/　')}</div>`;
             }
             html += '</div>';
         }
@@ -1773,7 +1855,7 @@
             html += '<div style="margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);">';
             s.dates.forEach((dateStr, idx) => {
                 const d = new Date(dateStr);
-                const borderStyle = idx === s.dates.length - 1 ? 'none' : '1px dotted var(--border)';
+                const borderStyle = idx === s.dates.length - 1 ? 'none' : '1px solid var(--border)';
                 const padStyle = idx === s.dates.length - 1 ? '0' : '15px';
                 // gridレイアウトを使って、日付側の幅（180px）を固定し、時間の開始位置が常に揃うようにしました
                 html += `
@@ -1940,17 +2022,20 @@
             } else if (s.genre === 'kp') {
                 let runsCount = (s.runs && Array.isArray(s.runs)) ? s.runs.length : 0;
                 let totalKps = runsCount + (Number(s.kpCount) || 0);
-                metaHtml = `<div class="scn-meta" style="margin-bottom:8px;"><span><b style="color:var(--important);">総KP回数:</b> <span style="font-size:1.1rem; color:var(--text-main); font-weight:bold;">${totalKps}</span> 回</span></div>`;
+                metaHtml = `<div class="scn-meta" style="margin-bottom:8px;"><span><b style="color:var(--important);">総KP回数:</b> <span style="font-size:1.1rem; color:var(--text-main); font-weight:bold; margin-right:4px;">${totalKps}</span>回</span></div>`;
                 if (runsCount > 0) {
-                    metaHtml += `<details class="run-details"><summary>開催の記録 (${runsCount}回)</summary><div style="display:flex; flex-direction:column; gap:6px; margin-top:12px;">`;
+                    metaHtml += `<details class="run-details"><summary>開催の記録 (${runsCount} 回)</summary><div style="display:flex; flex-direction:column; gap:6px; margin-top:12px;">`;
                     s.runs.forEach((r, idx) => { 
                         let plDisp = Array.isArray(r.pl) ? r.pl.join(', ') : (r.pl || '-'); 
                         let kpDisp = Array.isArray(r.kp) ? r.kp.join(', ') : (r.kp || '-');
                         let kpcDisp = r.kpc ? `<span style="margin-left:8px; color:var(--important);">[KPC: ${r.kpc}]</span>` : '';
-                        metaHtml += `<div style="padding:8px 10px; background:var(--bg); border:1px solid var(--border); border-radius:6px; font-size:0.8rem;">
-                            <div style="margin-bottom:4px; font-family:'Noto Serif JP',serif;"><span style="display:inline-block; width:18px; text-align:center; background:var(--border); color:var(--text-main); border-radius:4px; margin-right:6px; font-weight:bold; font-size:0.7rem;">${idx+1}</span> <b style="color:var(--accent);">${r.date || '日付不明'}</b>${kpcDisp}</div>
-                            <div style="padding-left:26px; color:var(--text-sub); line-height:1.6;"><b>KP:</b> ${kpDisp}<br><b>PL:</b> ${plDisp}</div>
-                        </div>`; 
+                        metaHtml += `<div style="padding:10px; background:var(--bg); border:1px solid var(--border); border-radius:6px; font-size:0.85rem;">
+                            <div style="margin-bottom:8px; font-family:'Noto Serif JP',serif; display:flex; align-items:center; height:20px; line-height:20px;"><span style="display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; background:var(--border); color:var(--text-main); border-radius:4px; margin-right:6px; font-weight:bold; font-size:0.7rem; font-family:'Noto Sans JP', sans-serif;">${idx+1}</span> <b style="color:var(--accent); font-size:0.95rem;">${r.date || '日付不明'}</b>${kpcDisp}</div>
+                            <div style="padding-left:24px; color:var(--text-sub); display:flex; flex-direction:column; gap:6px; font-family:'Noto Serif JP', serif;">
+                                <div style="display:flex; align-items:center; height:20px; line-height:20px;"><b style="color:var(--important); font-family:'Noto Sans JP', sans-serif; width:28px; font-size:0.9rem;">KP:</b> <span>${kpDisp}</span></div>
+                                <div style="display:flex; align-items:center; height:20px; line-height:20px;"><b style="color:var(--important); font-family:'Noto Sans JP', sans-serif; width:28px; font-size:0.9rem;">PL:</b> <span>${plDisp}</span></div>
+                            </div>
+                        </div>`;
                     });
                     metaHtml += `</div></details>`;
                 }
