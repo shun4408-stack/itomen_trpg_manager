@@ -120,6 +120,11 @@
         .sticky-footer .btn-action.outline { background: transparent; border: 1px solid rgba(255,255,255,0.5); color: white; }
         .sticky-footer .btn-action.del-outline { background: transparent; border: 1px solid rgba(255,77,79,0.5); color: #ff4d4f; }
 
+        /* ★ 探索者ページ用の常時追従フッター */
+        .char-sticky-footer { position: fixed; bottom: 0; left: 210px; width: calc(100% - 210px); background: var(--panel-header-bg); display: flex; justify-content: center; align-items: center; padding: 15px 30px; box-sizing: border-box; z-index: 100; border-top: 2px solid var(--accent); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
+        [data-theme="dark"] .char-sticky-footer { background: var(--card-bg); box-shadow: 0 -5px 20px rgba(0,0,0,0.6); }
+        @media (max-width: 850px) { .char-sticky-footer { left: 0; width: 100%; flex-direction: column; gap: 10px; padding: 10px; } .char-sticky-footer > div { width: 100%; justify-content: center !important; } }
+
         .editor-book, .import-book, .sync-book { width: 95%; max-width: 1100px; height: 90vh; background: var(--bg); display: flex; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px; overflow: hidden; position: relative; }
         .sync-book { max-width: 600px; height: auto; display: block; padding-bottom: 30px; }
         .editor-page, .import-page { flex: 1; padding: 40px; overflow-y: auto; position: relative; scrollbar-width: none; -ms-overflow-style: none; }
@@ -127,7 +132,7 @@
         .close-btn { position: absolute; top: 20px; right: 30px; color: var(--text-sub); font-size: 1.5rem; cursor: pointer; z-index: 130; }
         
         .viewer-stat-box { background: var(--panel-header-bg); padding: 10px; border-radius: 6px; text-align: center; }
-        .viewer-stat-box b { display: block; font-size: 0.65rem; color: var(--text-sub); font-family: 'Noto Serif JP', serif; }
+        .viewer-stat-box b { display: block; font-size: 0.65rem; color: var(--text-sub); font-family: 'Noto Sans JP', sans-serif; }
         .viewer-stat-box span { font-family: 'Noto Serif JP', serif; font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
         
         .name-area { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; position: relative; z-index: 2; }
@@ -418,13 +423,7 @@
                 <h2 class="page-header-main">探索者名簿</h2>
             </div>
             <div class="panel admin-only">
-                <button class="panel-trigger" onclick="togglePanel('add-form')">＋ 新しい探索者を記帳する</button>
-                <div id="add-form" class="panel-content">
-                    <button class="btn-action admin-only" onclick="openImportOverlay()" style="margin-bottom:15px; width:100%; border-color:var(--accent); color:var(--accent);">いあきゃらテキストから自動記帳</button>
-                    <div id="form-container-new"></div>
-                    <button class="btn-main admin-only" onclick="saveData('new')" style="margin-top:30px;">名簿に記帳する</button>
-                    <button type="button" class="admin-only" onclick="cancelAdd()" style="width:100%; border:none; background:none; color:var(--text-sub); margin-top:10px; text-decoration:underline; cursor:pointer;">取り消す</button>
-                </div>
+                <button class="panel-trigger" onclick="initNewForm(); showView('v-char-new');">＋ 新しい探索者を記帳する</button>
             </div>
             <div class="archive-controls">
                 <div class="control-group"><span>順序：</span><select id="sort-order" onchange="renderChars()"><option value="new">記帳が新しい順</option><option value="old">記帳が古い順</option><option value="name">名前（五十音）順</option><option value="san_desc">正気度が高い順</option><option value="san_asc">正気度が低い順</option></select></div>
@@ -514,8 +513,37 @@
                 <div id="scn-list-kp" style="margin-top:15px;"></div>
             </details>
         </div>
-    </div>
-</main>
+
+        <div id="v-char-viewer" class="view-section">
+            <div id="v-page-content" style="padding-bottom:100px;"></div>
+            <div class="char-sticky-footer" id="v-viewer-footer"></div>
+        </div>
+
+        <div id="v-char-new" class="view-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--accent); padding-bottom:10px; margin-bottom:20px;">
+                <h2 style="font-family:'Noto Serif JP',serif; margin:0;">新しい探索者を記帳する</h2>
+                <button class="btn-action admin-only" onclick="openImportOverlay()" style="border-color:var(--accent); color:var(--accent); padding:8px 15px;">いあきゃらテキストから自動記帳</button>
+            </div>
+            <div class="editor-page" style="padding:0; overflow:visible; padding-bottom:100px;">
+                <div id="form-container-new"></div>
+            </div>
+            <div class="char-sticky-footer">
+                <div style="flex:1; display:flex; justify-content:flex-end; padding-right:20px;">
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" onchange="applySkillFilter(this)"> 習得技能のみ表示</label>
+                </div>
+                <div style="flex:0 0 auto;">
+                    <div style="display:flex; gap:30px; background:var(--bg); padding:10px 25px; border-radius:30px; border:1px solid var(--border); box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);">
+                        <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">職業ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold;" class="pt-job-used-color"><span class="pt-job-used">0</span> <span style="font-size:0.9rem; color:var(--text-sub);">/ <span class="pt-job-max">0</span></span></span></div>
+                        <div style="width:1px; background:var(--border);"></div>
+                        <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">興味ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold;" class="pt-int-used-color"><span class="pt-int-used">0</span> <span style="font-size:0.9rem; color:var(--text-sub);">/ <span class="pt-int-max">0</span></span></span></div>
+                    </div>
+                </div>
+                <div style="flex:1; display:flex; justify-content:flex-start; gap:10px; padding-left:20px;">
+                    <button class="btn-action outline" onclick="showView('v-characters')" style="padding:10px 20px; border-color:var(--text-sub); color:var(--text-main);">取り消す</button>
+                    <button class="btn-action admin-only" onclick="saveData('new')" style="background:var(--accent); color:white; padding:10px 20px; font-weight:bold;">名簿に記帳する</button>
+                </div>
+            </div>
+        </div>
 
 <template id="form-template">
     <input type="hidden" class="in-img-data">
@@ -559,23 +587,18 @@
         <div class="calc-box"><label>幸運</label><input type="number" class="val-luck" style="border:none!important; background:transparent!important; color:var(--important)!important; font-size:1.2rem!important; padding:0!important; text-align:center!important; font-weight:bold!important;" oninput="recalc(this)"></div>
     </div>
     <span class="section-label">技能ポイント管理</span>
-    <div class="pt-mgmt-container">
-        <div class="pt-box">
-            <label>職業技能ポイント</label>
+    <div class="pt-mgmt-container" style="display:flex; gap:15px;">
+        <div class="pt-box" style="flex:1;">
+            <label>職業技能ポイントの計算式</label>
             <div class="pt-formula-box"><select class="pt-job-pattern" onchange="recalc(this)"></select></div>
             <div class="pt-extra-row"><input type="number" class="pt-job-manual" placeholder="ポイントを入力" oninput="recalc(this)"></div>
-            <div class="pt-display"><span class="pt-job-used">0</span> / <span class="pt-job-max">0</span></div>
-            <div class="pt-remain pt-job-remain">残り: 0</div>
         </div>
-        <div class="pt-box">
-            <label>興味技能ポイント</label>
+        <div class="pt-box" style="flex:1;">
+            <label>興味技能ポイントの計算式</label>
             <div class="pt-formula-box"><div class="pt-formula-text">INT × 10</div></div>
-            <div class="pt-display"><span class="pt-int-used">0</span> / <span class="pt-int-max">0</span></div>
-            <div class="pt-remain pt-int-remain">残り: 0</div>
         </div>
     </div>
     <span class="section-label">技能リスト</span>
-    <label class="skill-filter-toggle"><input type="checkbox" onchange="applySkillFilter(this)"> 習得技能のみ表示</label>
     <div class="skill-list-in"></div>
     <span class="section-label">通過シナリオの記録</span><div class="scn-list"></div><button class="btn-sub admin-only" onclick="addScnField(this)">＋ シナリオを追加</button>
     <span class="section-label">手記（プロフィール / メモ）</span><div class="prof-list"></div><button class="btn-sub admin-only" onclick="addProfField(this)">＋ 項目を追加</button>
@@ -583,28 +606,31 @@
     <div class="secret-list"></div><button class="btn-sub admin-only" onclick="addSecretField(this)">＋ 秘匿項目を追加</button>
 </template>
 
-<div id="viewer-overlay" onclick="closeViewer()">
-    <div class="viewer-book single-column" onclick="event.stopPropagation()">
-        <div class="close-btn" onclick="closeViewer()">×</div>
-        <div class="viewer-page" id="v-page-content"></div>
-        <div class="sticky-footer" id="v-edit-btn-container"></div>
-    </div>
-</div>
-
-<div id="editor-overlay" onclick="closeEditor()">
-    <div class="editor-book single-column" onclick="event.stopPropagation()">
-        <div class="close-btn" onclick="closeEditor()" style="z-index: 130;">×</div>
-        <div class="editor-page" id="editor-page-inner">
-            <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">探索者の手記を編集する</h2>
-            <div id="form-container-edit"></div>
+<div id="v-char-editor" class="view-section">
+            <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px; margin-top:0;">探索者の手記を編集する</h2>
+            <div class="editor-page" style="padding:0; overflow:visible; padding-bottom:100px;">
+                <div id="form-container-edit"></div>
+            </div>
+            <div class="char-sticky-footer">
+                <div style="flex:1; display:flex; justify-content:flex-end; padding-right:20px;">
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" onchange="applySkillFilter(this)"> 習得技能のみ表示</label>
+                </div>
+                <div style="flex:0 0 auto;">
+                    <div style="display:flex; gap:30px; background:var(--bg); padding:10px 25px; border-radius:30px; border:1px solid var(--border); box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);">
+                        <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">職業ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold;" class="pt-job-used-color"><span class="pt-job-used">0</span> <span style="font-size:0.9rem; color:var(--text-sub);">/ <span class="pt-job-max">0</span></span></span></div>
+                        <div style="width:1px; background:var(--border);"></div>
+                        <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">興味ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold;" class="pt-int-used-color"><span class="pt-int-used">0</span> <span style="font-size:0.9rem; color:var(--text-sub);">/ <span class="pt-int-max">0</span></span></span></div>
+                    </div>
+                </div>
+                <div style="flex:1; display:flex; justify-content:flex-start; gap:10px; padding-left:20px;">
+                    <button class="btn-action outline" onclick="openViewer(currentEditIdx)" style="padding:10px 20px; border-color:var(--text-sub); color:var(--text-main);">閲覧へ戻る</button>
+                    <button class="btn-action admin-only" id="btn-save-edit" style="background:var(--accent); color:white; padding:10px 20px; font-weight:bold;">変更を保存</button>
+                </div>
+            </div>
         </div>
-        <div class="sticky-footer">
-            <button class="btn-main admin-only" id="btn-save-edit" style="max-width: 400px; margin: 0 auto; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">変更を名簿に上書きする</button>
-        </div>
-    </div>
-</div>
+</main>
 <div id="import-overlay"><div class="import-book"><div class="close-btn" onclick="closeImportOverlay()">×</div><div class="import-page"><h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">「いあきゃら」テキストから写記する</h2><textarea id="import-text-area" style="height:350px; font-family:monospace; font-size:0.8rem;" placeholder="ここにテキストをペースト..."></textarea><button class="btn-main admin-only" style="margin-top:20px;" onclick="parseAndAddChar()">写記する</button></div></div></div>
-<div id="sch-viewer-overlay" onclick="closeSchViewer()"><div class="viewer-book single-column" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeSchViewer()">×</div><div class="viewer-page" id="sv-page-content" style="flex: 1 0 auto;"></div><div class="sticky-footer" id="sv-edit-btn-container" style="flex-shrink: 0; margin-top: auto;"></div></div></div>
+<div id="sch-viewer-overlay" onclick="closeSchViewer()"><div class="viewer-book single-column" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeSchViewer()">×</div><div class="viewer-page" id="sv-page-content" style="flex: 1 0 auto;"></div><div id="sv-edit-btn-container" style="flex-shrink: 0; margin-top: auto; display: flex; justify-content: center; align-items: center; gap: 15px; padding: 15px 20px;"></div></div></div>
 
 <div id="sch-editor-overlay" onclick="closeSchEditor()">
     <div class="editor-book single-column" onclick="event.stopPropagation()">
@@ -1227,7 +1253,7 @@
         });
     }
 
-    function showView(id) { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); const navMap = { 'v-home': 'nav-home', 'v-calendar': 'nav-cal', 'v-characters': 'nav-char', 'v-scenarios': 'nav-scn' }; if(navMap[id]) document.getElementById(navMap[id]).classList.add('active'); if(id === 'v-calendar') renderScheduleView(); if(id === 'v-scenarios') renderScenarioLibrary(); if(id === 'v-home') renderHome(); }
+    function showView(id) { document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); const navMap = { 'v-home': 'nav-home', 'v-calendar': 'nav-cal', 'v-characters': 'nav-char', 'v-char-viewer': 'nav-char', 'v-char-new': 'nav-char', 'v-char-editor': 'nav-char', 'v-scenarios': 'nav-scn' }; if(navMap[id]) document.getElementById(navMap[id]).classList.add('active'); if(id === 'v-calendar') renderScheduleView(); if(id === 'v-scenarios') renderScenarioLibrary(); if(id === 'v-home') renderHome(); document.querySelector('main').scrollTo(0, 0); }
     
     // ★ v9.7.2 縦長1カラム・レスポンシブ用ビューア
     // ★ v9.8.0 縦長1カラム＆全枠固定バッジデザイン対応のビューア
@@ -1307,12 +1333,6 @@
             </div>
         `;
 
-        html += `<span class="section-label">技能ポイント割り振り状況</span>`;
-        html += `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; background:var(--panel-header-bg); padding:20px; border-radius:8px; margin-bottom:40px; text-align:center; border:1px solid var(--border);">`;
-        html += `<div><span style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; display:block; margin-bottom:5px;">職業技能ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.5rem; font-weight:bold; color:${jUsed>jobMax?'var(--san-border)':(jUsed===jobMax?'var(--important)':'var(--accent)')};">${jUsed} <span style="font-size:1rem; color:var(--text-sub);">/ ${jobMax}</span></span></div>`;
-        html += `<div><span style="font-size:0.75rem; color:var(--text-sub); font-weight:bold; display:block; margin-bottom:5px;">興味技能ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.5rem; font-weight:bold; color:${iUsed>intMax?'var(--san-border)':(iUsed===intMax?'var(--important)':'var(--accent)')};">${iUsed} <span style="font-size:1rem; color:var(--text-sub);">/ ${intMax}</span></span></div>`;
-        html += `</div>`;
-
         // ★ 技能リスト（1列化）＆ 固定幅のバッジ表示
         html += '<span class="section-label">習得技能</span><div style="margin-bottom:40px;">';
         const safeSkills = c.skills || [];
@@ -1322,20 +1342,13 @@
                 html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:15px 25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="font-size:0.85rem; color:var(--accent); display:block; border-bottom:1px solid var(--border); margin-bottom:12px; padding-bottom:6px; font-family:'Noto Serif JP', serif;">■ ${g}技能</b>`;
                 gs.forEach(s => { 
                     const dispName = s.sub ? `${s.n}(${s.sub})` : s.n;
-                    
-                    // 値が0のものは "badge-empty"、値があるものは色付きのクラスを付与
                     let badges = '';
                     badges += `<span class="skill-badge ${Number(s.b) > 0 ? 'badge-b' : 'badge-empty'}">基本 ${s.b||0}</span>`;
                     badges += `<span class="skill-badge ${Number(s.j) > 0 ? 'badge-j' : 'badge-empty'}">職業 ${s.j||0}</span>`;
                     badges += `<span class="skill-badge ${Number(s.i) > 0 ? 'badge-i' : 'badge-empty'}">興味 ${s.i||0}</span>`;
                     badges += `<span class="skill-badge ${Number(s.g) > 0 ? 'badge-g' : 'badge-empty'}">成長 ${s.g||0}</span>`;
                     badges += `<span class="skill-badge ${Number(s.o) > 0 ? 'badge-o' : 'badge-empty'}">その他 ${s.o||0}</span>`;
-
-                    html += `<div class="viewer-skill-item" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted var(--border); padding:8px 0; font-size:1rem;">
-                                <span style="font-weight:bold; width:150px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${dispName}</span>
-                                <div style="flex:1; display:flex; justify-content:center; gap:2px; flex-wrap:wrap;">${badges}</div>
-                                <b style="font-size:1.3rem; color:var(--important); min-width:50px; text-align:right; font-family:'Noto Serif JP', serif;">${s.t}%</b>
-                             </div>`; 
+                    html += `<div class="viewer-skill-item" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted var(--border); padding:8px 0; font-size:1rem;"><span style="font-weight:bold; width:150px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${dispName}</span><div style="flex:1; display:flex; justify-content:center; gap:2px; flex-wrap:wrap;">${badges}</div><b style="font-size:1.3rem; color:var(--important); min-width:50px; text-align:right; font-family:'Noto Serif JP', serif;">${s.t}%</b></div>`; 
                 });
                 html += '</div>';
             }
@@ -1343,42 +1356,46 @@
         html += '</div>';
 
         html += '<span class="section-label">通過シナリオの記録</span>';
-        if(c.scns && c.scns.length > 0) {
-            html += `<div style="margin-bottom:40px; font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); letter-spacing:0.5px; font-weight:500;">${c.scns.join('　/　')}</div>`;
-        } else {
-            html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
-        }
+        if(c.scns && c.scns.length > 0) { html += `<div style="margin-bottom:40px; font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); letter-spacing:0.5px; font-weight:500;">${c.scns.join('　/　')}</div>`; } 
+        else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         html += '<span class="section-label">手記（プロフィール / メモ）</span>';
-        if(c.profs && c.profs.length > 0) {
-            c.profs.forEach(p => { 
-                if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; 
-            });
-        } else {
-            html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`;
-        }
+        if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; }); } 
+        else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         if(c.secrets && c.secrets.length > 0) {
-            html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span>';
-            html += '<details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);">';
-            html += '<summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary>';
-            html += '<div style="margin-top:15px; padding-top:20px; border-top:1px dashed var(--border);">';
-            c.secrets.forEach(p => {
-                if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`;
-            });
+            html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span><details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);"><summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary><div style="margin-top:15px; padding-top:20px; border-top:1px dashed var(--border);">';
+            c.secrets.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; });
             html += '</div></details>';
         }
 
         content.innerHTML = html;
 
-        editContainer.innerHTML = `
-            <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="background:transparent; border:1px solid var(--important); color:var(--important);">URL出力</button>
-            <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white;">駒出力</button>
-            <div style="width:1px; height:20px; background:rgba(255,255,255,0.2); margin: 0 5px;"></div>
-            <button onclick="editChar(${i})" class="btn-action outline admin-only">編集する</button>
-            <button onclick="deleteCharFromViewer(${i})" class="btn-action del-outline admin-only">削除する</button>
+        const fJobColor = jUsed>jobMax?'var(--san-border)':(jUsed===jobMax?'var(--important)':'var(--text-main)');
+        const fIntColor = iUsed>intMax?'var(--san-border)':(iUsed===intMax?'var(--important)':'var(--text-main)');
+
+        document.getElementById('v-viewer-footer').innerHTML = `
+            <div style="flex:1; display:flex; justify-content:flex-end; gap:10px; padding-right:20px;">
+                <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="background:transparent; border:1px solid var(--important); color:var(--important); padding:10px 20px;">URL出力</button>
+                <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white; padding:10px 20px;">駒出力</button>
+            </div>
+            
+            <div style="flex:0 0 auto;">
+                <div style="display:flex; gap:30px; background:var(--bg); padding:10px 25px; border-radius:30px; border:1px solid var(--border); box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);">
+                    <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">職業ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold; color:${fJobColor};">${jUsed} <span style="font-size:0.9rem; color:var(--text-sub);">/ ${jobMax}</span></span></div>
+                    <div style="width:1px; background:var(--border);"></div>
+                    <div style="text-align:center;"><span style="font-size:0.7rem; color:var(--text-sub); font-weight:bold; margin-right:8px;">興味ポイント</span><span style="font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:bold; color:${fIntColor};">${iUsed} <span style="font-size:0.9rem; color:var(--text-sub);">/ ${intMax}</span></span></div>
+                </div>
+            </div>
+
+            <div style="flex:1; display:flex; justify-content:flex-start; gap:10px; padding-left:20px;">
+                <button onclick="editChar(${i})" class="btn-action admin-only" style="padding:10px 20px;">編集</button>
+                <button onclick="deleteCharFromViewer(${i})" class="btn-action admin-only" style="padding:10px 20px;">削除</button>
+                <button onclick="showView('v-characters')" class="btn-action outline" style="padding:10px 20px; border-color:var(--text-sub); color:var(--text-main);">名簿一覧へ戻る</button>
+            </div>
         `;
-        document.getElementById('viewer-overlay').style.display = 'flex';
+        showView('v-char-viewer');
+        document.querySelector('main').scrollTo(0, 0);
     }
 
     function renderChars() { 
@@ -1451,8 +1468,8 @@
     function addSkillFieldToContainer(container, n="", b=0, j=0, i=0, g=0, o=0, sub="", genre="") { const d = document.createElement('div'); d.className = "sk-row"; let nameHtml = '<input type="text" class="sk-name" value="' + n + '" placeholder="技能名">'; if (SUBTYPES[n]) { nameHtml = '<div style="display:flex; flex-direction:column; gap:2px;"><b style="font-size:0.6rem; color:var(--text-sub);">' + n + '</b><select class="sk-sub" onchange="updateDefaultValue(this, \'' + n + '\')">'; for (let s in SUBTYPES[n]) { nameHtml += '<option value="' + s + '" ' + (s === sub ? 'selected' : '') + '>' + s + '</option>'; } nameHtml += '</select><input type="hidden" class="sk-name" value="' + n + '"></div>'; } d.innerHTML = nameHtml + '<input type="hidden" class="sk-g-fix" value="' + (genre || '') + '"><input type="number" class="sk-b" value="' + b + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-j" value="' + j + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-i" value="' + i + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-g" value="' + g + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-o" value="' + o + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-total" value="' + (Number(b)+Number(j)+Number(i)+Number(g)+Number(o)) + '" readonly style="font-weight:bold; color:var(--important);\"><button type="button" onclick="this.parentElement.remove(); recalc(document.body);" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
     function updateDefaultValue(sel, category) { const row = sel.closest('.sk-row'); const newVal = SUBTYPES[category][sel.value] || 1; row.querySelector('.sk-b').value = newVal; updateSkillTotal(row.querySelector('.sk-b')); }
     function updateSkillTotal(el) { const p = el.parentElement; const total = Number(p.querySelector('.sk-b').value) + Number(p.querySelector('.sk-j').value) + Number(p.querySelector('.sk-i').value) + Number(p.querySelector('.sk-g').value) + Number(p.querySelector('.sk-o').value); p.querySelector('.sk-total').value = total; recalc(el); }
-    function applySkillFilter(checkbox) { const p = checkbox.closest('.panel-content, .editor-page'); const rows = p.querySelectorAll('.sk-row'); rows.forEach(row => { const j=Number(row.querySelector('.sk-j').value)||0, i=Number(row.querySelector('.sk-i').value)||0, g=Number(row.querySelector('.sk-g').value)||0, o=Number(row.querySelector('.sk-o').value)||0; const isAcq = (j+i+g+o)>0; row.style.setProperty('display', (checkbox.checked && !isAcq) ? 'none' : 'grid', 'important'); }); }
-    function recalc(el) { const p = el.closest('.panel-content, .editor-page'); if(!p) return; const r = p.querySelector('input[type="radio"]:checked').value; const g = (c) => Number(p.querySelector('.'+c).value) || 0; const str=g('in-str'), con=g('in-con'), pow=g('in-pow'), dex=g('in-dex'), app=g('in-app'), siz=g('in-siz'), int=g('in-int'), edu=g('in-edu'); let hp, mp, ide, know, db; if(r === '6th') { hp = Math.ceil((con + siz) / 2); mp = pow; ide = int * 5; know = edu * 5; const s = str + siz; db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; } else { hp = Math.floor((con + siz) / 10); mp = Math.floor(pow / 5); ide = int; know = edu; const s = str + siz; db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6"; } p.querySelector('.val-hp').innerText = hp; p.querySelector('.val-mp').innerText = mp; p.querySelector('.val-db').innerText = db; p.querySelector('.val-ide').innerText = ide; p.querySelector('.val-know').innerText = know; const pattern = p.querySelector('.pt-job-pattern').value; const manualInput = p.querySelector('.pt-job-manual'); const extraRow = p.querySelector('.pt-extra-row'); let jobMax = 0; const m = r === '7th' ? 2 : 10; const total_m = r === '7th' ? 4 : 20; if(pattern === 'manual') { if(extraRow) extraRow.classList.add('open'); jobMax = Number(manualInput?.value) || 0; } else { if(extraRow) extraRow.classList.remove('open'); if(pattern === 'edu_only') jobMax = edu * total_m; else jobMax = (edu * m) + (g('in-' + pattern) * m); } const intMax = r === '7th' ? int * 2 : int * 10; let jUsed = 0, iUsed = 0; p.querySelectorAll('.sk-row').forEach(row => { jUsed += Number(row.querySelector('.sk-j').value) || 0; iUsed += Number(row.querySelector('.sk-i').value) || 0; }); const upd = (u, max, pre) => { const uEl=p.querySelector('.pt-' + pre + '-used'), mEl=p.querySelector('.pt-' + pre + '-max'), rEl=p.querySelector('.pt-' + pre + '-remain'); uEl.innerText = u; mEl.innerText = max; const rem = max - u; if(rEl) rEl.innerText = '残り: ' + rem; const color = rem < 0 ? 'var(--san-border)' : rem === 0 ? 'var(--important)' : 'var(--accent)'; uEl.style.color = color; if(rEl) rEl.style.color = color; }; upd(jUsed, jobMax, 'job'); upd(iUsed, intMax, 'int'); }
+    function applySkillFilter(checkbox) { const p = checkbox.closest('.view-section') || checkbox.closest('.panel-content, .editor-page'); const rows = p.querySelectorAll('.sk-row'); rows.forEach(row => { const j=Number(row.querySelector('.sk-j').value)||0, i=Number(row.querySelector('.sk-i').value)||0, g=Number(row.querySelector('.sk-g').value)||0, o=Number(row.querySelector('.sk-o').value)||0; const isAcq = (j+i+g+o)>0; row.style.setProperty('display', (checkbox.checked && !isAcq) ? 'none' : 'grid', 'important'); }); }
+    function recalc(el) { const p = el.closest('.view-section') || el.closest('.panel-content, .editor-page'); if(!p) return; const r = p.querySelector('input[type="radio"]:checked').value; const g = (c) => Number(p.querySelector('.'+c).value) || 0; const str=g('in-str'), con=g('in-con'), pow=g('in-pow'), dex=g('in-dex'), app=g('in-app'), siz=g('in-siz'), int=g('in-int'), edu=g('in-edu'); let hp, mp, ide, know, db; if(r === '6th') { hp = Math.ceil((con + siz) / 2); mp = pow; ide = int * 5; know = edu * 5; const s = str + siz; db = (s<=12)?"-1d6":(s<=16)?"-1d4":(s<=24)?"0":(s<=32)?"+1d4":"+1d6"; } else { hp = Math.floor((con + siz) / 10); mp = Math.floor(pow / 5); ide = int; know = edu; const s = str + siz; db = (s<65)?"-2":(s<85)?"-1":(s<125)?"0":(s<165)?"+1d4":"+1d6"; } p.querySelector('.val-hp').innerText = hp; p.querySelector('.val-mp').innerText = mp; p.querySelector('.val-db').innerText = db; p.querySelector('.val-ide').innerText = ide; p.querySelector('.val-know').innerText = know; const pattern = p.querySelector('.pt-job-pattern').value; const manualInput = p.querySelector('.pt-job-manual'); const extraRow = p.querySelector('.pt-extra-row'); let jobMax = 0; const m = r === '7th' ? 2 : 10; const total_m = r === '7th' ? 4 : 20; if(pattern === 'manual') { if(extraRow) extraRow.classList.add('open'); jobMax = Number(manualInput?.value) || 0; } else { if(extraRow) extraRow.classList.remove('open'); if(pattern === 'edu_only') jobMax = edu * total_m; else jobMax = (edu * m) + (g('in-' + pattern) * m); } const intMax = r === '7th' ? int * 2 : int * 10; let jUsed = 0, iUsed = 0; p.querySelectorAll('.sk-row').forEach(row => { jUsed += Number(row.querySelector('.sk-j').value) || 0; iUsed += Number(row.querySelector('.sk-i').value) || 0; }); const upd = (u, max, pre) => { p.querySelectorAll('.pt-' + pre + '-used').forEach(el => el.innerText = u); p.querySelectorAll('.pt-' + pre + '-max').forEach(el => el.innerText = max); const rem = max - u; const color = rem < 0 ? 'var(--san-border)' : rem === 0 ? 'var(--important)' : 'var(--text-main)'; p.querySelectorAll('.pt-' + pre + '-used-color').forEach(el => el.style.color = color); }; upd(jUsed, jobMax, 'job'); upd(iUsed, intMax, 'int'); }
 
     // --- 🎲 ダイスローラー機能 ---
     function rollDice(count, faces) { let total = 0; for(let i=0; i<count; i++) total += Math.floor(Math.random() * faces) + 1; return total; }
@@ -1511,17 +1528,19 @@
     }
 
     function editChar(i) { 
-        currentEditIdx = i; closeViewer(); const c = chars[i]; 
+        currentEditIdx = i; const c = chars[i]; 
         c.stats = c.stats || {}; c.calcStats = c.calcStats || {}; c.skills = c.skills || []; c.scns = c.scns || []; c.profs = c.profs || []; c.secrets = c.secrets || [];
-        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; ["str","con","pow","dex","app","siz","int","edu","san"].forEach(k => { f('in-'+k).value = c.stats[k]; }); container.querySelector('input[name="reg_edit"][value="' + (c.regulation || '6th') + '"]').checked = true; updatePatternOptions(container, c.regulation || '6th'); f('pt-job-pattern').value = c.ptPattern || 'edu_only'; if(f('pt-job-manual')) f('pt-job-manual').value = c.ptManual || 0; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); c.skills.filter(s => (s.gr || getGenre(s.n)) === g).forEach(s => addSkillFieldToContainer(group, s.n, s.b, s.j, s.i, s.g, s.o, s.sub || "", g)); const presets = (c.regulation === '7th' ? SKILLS_7TH : SKILLS_6TH); presets.filter(p => getGenre(p[0]) === g).forEach(p => { if(!c.skills.some(s => s.n === p[0])) addSkillFieldToContainer(group, p[0], p[1], 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(f('in-str')); f('val-luck').value = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0; c.scns?.forEach(v => addScnField(container, v)); c.profs?.forEach(p => addProfField(container, p.t, p.x)); c.secrets?.forEach(p => addSecretField(container, p.t, p.x)); document.getElementById('btn-save-edit').onclick = () => saveData('edit'); document.getElementById('editor-overlay').style.display = 'flex'; 
+        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; ["str","con","pow","dex","app","siz","int","edu","san"].forEach(k => { f('in-'+k).value = c.stats[k]; }); container.querySelector('input[name="reg_edit"][value="' + (c.regulation || '6th') + '"]').checked = true; updatePatternOptions(container, c.regulation || '6th'); f('pt-job-pattern').value = c.ptPattern || 'edu_only'; if(f('pt-job-manual')) f('pt-job-manual').value = c.ptManual || 0; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); c.skills.filter(s => (s.gr || getGenre(s.n)) === g).forEach(s => addSkillFieldToContainer(group, s.n, s.b, s.j, s.i, s.g, s.o, s.sub || "", g)); const presets = (c.regulation === '7th' ? SKILLS_7TH : SKILLS_6TH); presets.filter(p => getGenre(p[0]) === g).forEach(p => { if(!c.skills.some(s => s.n === p[0])) addSkillFieldToContainer(group, p[0], p[1], 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(f('in-str')); f('val-luck').value = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0; c.scns?.forEach(v => addScnField(container, v)); c.profs?.forEach(p => addProfField(container, p.t, p.x)); c.secrets?.forEach(p => addSecretField(container, p.t, p.x)); 
+        document.getElementById('btn-save-edit').onclick = () => saveData('edit'); 
+        showView('v-char-editor'); document.querySelector('main').scrollTo(0, 0);
     }
 
     function saveData(mode) { const c = document.getElementById(mode === 'new' ? 'form-container-new' : 'form-container-edit'); const f = (cl) => c.querySelector('.'+cl); if(!f('in-name').value) return alert("名前を記入してください"); const sks = Array.from(c.querySelectorAll('.sk-row')).map(r => { return { n: r.querySelector('.sk-name').value, b: r.querySelector('.sk-b').value, j: r.querySelector('.sk-j').value, i: r.querySelector('.sk-i').value, g: r.querySelector('.sk-g').value, o: r.querySelector('.sk-o').value, t: r.querySelector('.sk-total').value, sub: r.querySelector('.sk-sub')?.value || "", gr: r.querySelector('.sk-g-fix').value }; }).filter(s => Number(s.j)||Number(s.i)||Number(s.g)||Number(s.o)); const d = { regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value, stats: { str: f('in-str').value, con: f('in-con').value, pow: f('in-pow').value, dex: f('in-dex').value, app: f('in-app').value, siz: f('in-siz').value, int: f('in-int').value, edu: f('in-edu').value, san: f('in-san').value }, calcStats: { luck: f('val-luck').value }, ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })) }; if(mode === 'new') { chars.push(d); cancelAdd(); } else { chars[currentEditIdx] = d; closeEditor(); } localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); updateScheduleFormSelect(); pushData(); }
     
     function deleteChar(i) { if(confirm("名簿から削除しますか？")) { chars.splice(i, 1); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); updateScheduleFormSelect(); pushData(); } }
-    function closeViewer() { document.getElementById('viewer-overlay').style.display = 'none'; }
-    function closeEditor() { document.getElementById('editor-overlay').style.display = 'none'; }
-    function cancelAdd() { togglePanel('add-form', false); initNewForm(); }
+    function closeViewer() { showView('v-characters'); }
+    function closeEditor() { openViewer(currentEditIdx); }
+    function cancelAdd() { showView('v-characters'); initNewForm(); }
     function togglePanel(id, f) { const c = document.getElementById(id); if(f !== undefined) { if(f) c.classList.add('open'); else c.classList.remove('open'); } else { c.classList.toggle('open'); } }
     function toggleTheme() { const n = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', n); localStorage.setItem('trpg_theme', n); }
     function exportData() { const blob = new Blob([JSON.stringify({chars, schedules, scnLib})], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "trpg_archive_all.json"; a.click(); }
@@ -1869,10 +1888,18 @@
 
         container.innerHTML = html;
 
-        editContainer.innerHTML = `
-            <button onclick="editSch(${s.id})" class="btn-action outline admin-only">編集する</button>
-            <button onclick="deleteSchFromViewer(${s.id})" class="btn-action del-outline admin-only">削除する</button>
-        `;
+       if (isEditMode) {
+            editContainer.style.display = 'flex';
+            editContainer.style.background = 'var(--panel-header-bg)';
+            editContainer.style.borderTop = '2px solid var(--accent)';
+            editContainer.innerHTML = `
+                <button onclick="editSch(${s.id})" class="btn-action admin-only" style="padding:10px 30px; font-size:0.9rem;">編集</button>
+                <button onclick="deleteSchFromViewer(${s.id})" class="btn-action admin-only" style="padding:10px 30px; font-size:0.9rem;">削除</button>
+            `;
+        } else {
+            editContainer.style.display = 'none';
+            editContainer.innerHTML = '';
+        }
 
         document.getElementById('sch-viewer-overlay').style.display = 'flex';
     }
