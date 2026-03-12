@@ -4309,7 +4309,7 @@
         "luck": "55"
       },
       "ptPattern": "edu_only",
-      "ptManual": 0,
+      "ptManual": "0",
       "skills": [],
       "scns": [],
       "profs": [],
