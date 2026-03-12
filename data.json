@@ -4282,6 +4282,38 @@
         }
       ],
       "secrets": []
+    },
+    {
+      "regulation": "6th",
+      "name": "テスト",
+      "kana": "テスト",
+      "job": "テスト",
+      "tokki": "",
+      "tokucho": "",
+      "sex": "テスト",
+      "age": "テスト",
+      "height": "テスト",
+      "img": "",
+      "stats": {
+        "str": "13",
+        "con": "9",
+        "pow": "11",
+        "dex": "11",
+        "app": "6",
+        "siz": "10",
+        "int": "13",
+        "edu": "13",
+        "san": "55"
+      },
+      "calcStats": {
+        "luck": "55"
+      },
+      "ptPattern": "edu_only",
+      "ptManual": 0,
+      "skills": [],
+      "scns": [],
+      "profs": [],
+      "secrets": []
     }
   ],
   "schedules": [
