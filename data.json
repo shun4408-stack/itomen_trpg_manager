@@ -4288,11 +4288,10 @@
       "name": "テスト",
       "kana": "テスト",
       "job": "テスト",
-      "jobSup": "2015",
-      "jobNameSel": "",
-      "tokki": "テレビ局にコネを持っており、自由に出入りできる。うまくすれば、有名人にも近づける。",
+      "jobSup": "6th_base",
+      "jobNameSel": "医師",
+      "tokki": "",
       "tokucho": "",
-      "tokucho2": "",
       "sex": "テスト",
       "age": "テスト",
       "height": "テスト",
@@ -4403,22 +4402,9 @@
           "gr": "知識"
         }
       ],
-      "scns": [
-        "ああああああああ",
-        "ああああああああ"
-      ],
-      "profs": [
-        {
-          "t": "ああああああああ",
-          "x": "ああああああああ"
-        }
-      ],
-      "secrets": [
-        {
-          "t": "ああああああああ",
-          "x": "ああああああああ"
-        }
-      ]
+      "scns": [],
+      "profs": [],
+      "secrets": []
     }
   ],
   "schedules": [
@@ -4558,6 +4544,32 @@
       ]
     },
     {
+      "id": 1773152439384,
+      "dates": [
+        "2026-04-06T21:00",
+        "2026-04-08T21:00",
+        "2026-04-10T21:00",
+        "2026-04-11T13:00"
+      ],
+      "title": "鰯と柊",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "ナス大臣"
+        },
+        {
+          "name": "Stella"
+        }
+      ]
+    },
+    {
       "id": 1772717195980,
       "dates": [
         "2026-04-12T13:00"
@@ -4640,162 +4652,36 @@
       ]
     },
     {
-      "id": 1773153499639,
+      "id": 1773047161399,
       "dates": [],
-      "title": "茶瀬木高校オカルト部",
+      "title": "フィンブルの手記",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "あきづ"
+          "name": "ss"
         }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
         },
-        {
-          "name": "カルボナーラ"
-        },
-        {
-          "name": "ねぎ"
-        },
-        {
-          "name": "さにー"
-        }
-      ]
-    },
-    {
-      "id": 1773152396772,
-      "dates": [],
-      "title": "片鱗",
-      "status": "調整中",
-      "role": "キーパー（KP/SKP）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "いとめん"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "さにー"
-        },
-        {
-          "name": "カルボナーラ"
-        }
-      ]
-    },
-    {
-      "id": 1773047368159,
-      "dates": [],
-      "title": "████が消えた夏",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
         {
           "name": "ちいた"
         }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
       ]
     },
     {
-      "id": 1772721982285,
+      "id": 1772717537683,
       "dates": [],
-      "title": "VOID",
-      "status": "調整中",
-      "role": "キーパー（KP/SKP）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "いとめん"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "きなこ"
-        }
-      ]
-    },
-    {
-      "id": 1772717517762,
-      "dates": [],
-      "title": "井藤チアキと云う女",
+      "title": "欲望街",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ねぎ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "カルボナーラ"
-        }
-      ]
-    },
-    {
-      "id": 1772717458166,
-      "dates": [],
-      "title": "ワンルーム・ディスコン",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717424651,
-      "dates": [],
-      "title": "Reverse city 2",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ナス大臣"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1772717376639,
-      "dates": [],
-      "title": "塔葬の国",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ナス大臣"
+          "name": "なお"
         }
       ],
       "partners_pl": [
@@ -4804,6 +4690,66 @@
         },
         {
           "name": "あきづ"
+        },
+        {
+          "name": "ひなた"
+        }
+      ]
+    },
+    {
+      "id": 1772717484506,
+      "dates": [],
+      "title": "クオリフィル世界における独ガ論",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "Stella"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ナス大臣"
+        }
+      ]
+    },
+    {
+      "id": 1772717441103,
+      "dates": [],
+      "title": "笑う人間師",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1772717398418,
+      "dates": [],
+      "title": "イザナミの棺",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
         },
         {
           "name": "てる"
@@ -4838,76 +4784,16 @@
       ]
     },
     {
-      "id": 1772717398418,
+      "id": 1772717376639,
       "dates": [],
-      "title": "イザナミの棺",
+      "title": "塔葬の国",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
-        {
-          "name": "あきづ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1772717441103,
-      "dates": [],
-      "title": "笑う人間師",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717484506,
-      "dates": [],
-      "title": "クオリフィル世界における独ガ論",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "Stella"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
         {
           "name": "ナス大臣"
         }
-      ]
-    },
-    {
-      "id": 1772717537683,
-      "dates": [],
-      "title": "欲望街",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "なお"
-        }
       ],
       "partners_pl": [
         {
@@ -4917,20 +4803,20 @@
           "name": "あきづ"
         },
         {
-          "name": "ひなた"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1773047161399,
+      "id": 1772717424651,
       "dates": [],
-      "title": "フィンブルの手記",
+      "title": "Reverse city 2",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ss"
+          "name": "ナス大臣"
         }
       ],
       "partners_pl": [
@@ -4938,14 +4824,53 @@
           "name": "いとめん"
         },
         {
-          "name": "ちいた"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1773152439384,
+      "id": 1772717458166,
       "dates": [],
-      "title": "鰯と柊",
+      "title": "ワンルーム・ディスコン",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1772717517762,
+      "dates": [],
+      "title": "井藤チアキと云う女",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ねぎ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "カルボナーラ"
+        }
+      ]
+    },
+    {
+      "id": 1772721982285,
+      "dates": [],
+      "title": "VOID",
       "status": "調整中",
       "role": "キーパー（KP/SKP）",
       "charName": "",
@@ -4956,10 +4881,76 @@
       ],
       "partners_pl": [
         {
-          "name": "ナス大臣"
+          "name": "きなこ"
+        }
+      ]
+    },
+    {
+      "id": 1773047368159,
+      "dates": [],
+      "title": "████が消えた夏",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ちいた"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
         },
         {
-          "name": "Stella"
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1773152396772,
+      "dates": [],
+      "title": "片鱗",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "さにー"
+        },
+        {
+          "name": "カルボナーラ"
+        }
+      ]
+    },
+    {
+      "id": 1773153499639,
+      "dates": [],
+      "title": "茶瀬木高校オカルト部",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "カルボナーラ"
+        },
+        {
+          "name": "ねぎ"
+        },
+        {
+          "name": "さにー"
         }
       ]
     }
