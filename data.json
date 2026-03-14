@@ -4389,6 +4389,76 @@
         }
       ],
       "secrets": []
+    },
+    {
+      "regulation": "7th",
+      "name": "テスト",
+      "kana": "",
+      "job": "アスリート",
+      "jobSup": "7th_base",
+      "jobNameSel": "アスリート",
+      "tokki": "",
+      "tokucho": "",
+      "tokucho2": "",
+      "scnMemo": "",
+      "sex": "",
+      "age": "",
+      "height": "",
+      "img": "",
+      "stats": {
+        "str": "",
+        "con": "",
+        "pow": "",
+        "dex": "",
+        "app": "",
+        "siz": "",
+        "int": "",
+        "edu": "",
+        "san": ""
+      },
+      "calcStats": {
+        "luck": ""
+      },
+      "ptPattern": "edu_only",
+      "ptManual": 0,
+      "skills": [
+        {
+          "n": "近接戦闘",
+          "b": "25",
+          "j": "1",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "26",
+          "sub": "格闘",
+          "gr": "戦闘"
+        },
+        {
+          "n": "信用",
+          "b": "0",
+          "j": "1",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "1",
+          "sub": "",
+          "gr": "交渉"
+        },
+        {
+          "n": "ほかの言語",
+          "b": "1",
+          "j": "1",
+          "i": "0",
+          "g": "0",
+          "o": "0",
+          "t": "2",
+          "sub": "",
+          "gr": "知識"
+        }
+      ],
+      "scns": [],
+      "profs": [],
+      "secrets": []
     }
   ],
   "schedules": [
