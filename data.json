@@ -4423,9 +4423,9 @@
       "img": "",
       "stats": {
         "str": "10",
-        "mod_str": "1",
+        "mod_str": "",
         "con": "9",
-        "mod_con": "-3",
+        "mod_con": "",
         "pow": "12",
         "mod_pow": "",
         "dex": "10",
@@ -4444,9 +4444,9 @@
       "calcStats": {
         "luck": "60",
         "mod_luck": "",
-        "mod_hp": "1",
+        "mod_hp": "",
         "mod_mp": "",
-        "mod_db": "1d3",
+        "mod_db": "",
         "mod_ide": "",
         "mod_know": ""
       },
