@@ -4405,6 +4405,57 @@
         }
       ],
       "secrets": []
+    },
+    {
+      "regulation": "6th",
+      "name": "テスト",
+      "kana": "",
+      "job": "",
+      "jobSup": "",
+      "jobNameSel": "",
+      "tokki": "",
+      "tokucho": "",
+      "tokucho2": "",
+      "scnMemo": "",
+      "sex": "",
+      "age": "",
+      "height": "",
+      "img": "",
+      "stats": {
+        "str": "",
+        "mod_str": "",
+        "con": "",
+        "mod_con": "",
+        "pow": "",
+        "mod_pow": "",
+        "dex": "",
+        "mod_dex": "",
+        "app": "",
+        "mod_app": "",
+        "siz": "",
+        "mod_siz": "",
+        "int": "",
+        "mod_int": "",
+        "edu": "",
+        "mod_edu": "",
+        "san": "",
+        "mod_san": ""
+      },
+      "calcStats": {
+        "luck": "",
+        "mod_luck": "",
+        "mod_hp": "",
+        "mod_mp": "",
+        "mod_db": "",
+        "mod_ide": "",
+        "mod_know": ""
+      },
+      "ptPattern": "edu_only",
+      "ptManual": 0,
+      "skills": [],
+      "scns": [],
+      "profs": [],
+      "secrets": []
     }
   ],
   "schedules": [
