@@ -3652,7 +3652,7 @@
       "calcStats": {
         "luck": "60"
       },
-      "ptPattern": "pow",
+      "ptPattern": "dex",
       "ptManual": "0",
       "skills": [
         {
