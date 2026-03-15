@@ -4092,7 +4092,7 @@
         "mod_ide": "",
         "mod_know": ""
       },
-      "ptPattern": "manual",
+      "ptPattern": "str",
       "ptManual": "320",
       "skills": [
         {
