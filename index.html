@@ -244,7 +244,7 @@
         details.secret-details { background: var(--panel-header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 20px; }
         details.secret-details summary { font-family: 'Noto Serif JP', serif; font-weight: bold; color: var(--important); cursor: pointer; outline: none; }
         details.secret-details summary:hover { opacity: 0.8; }
-        details.secret-details > div { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border); }
+        details.secret-details > div { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
 
         /* ★ アコーディオン用スタイル（目録＆KP記録） */
         details.scn-section-details > summary.scn-summary-btn { background: var(--panel-header-bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 20px; cursor: pointer; font-family: 'Noto Serif JP', serif; font-size: 0.95rem; font-weight: bold; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; user-select: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
@@ -323,77 +323,170 @@
         .dash-partners-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; gap: 6px; }
         .dash-task-list { display: flex; flex-direction: column; gap: 8px; }
 
-        /* ★ 真・スマホ最適化（完全レスポンシブデザイン） */
+        .badge-mob-only { display: none; }
+        
+        /* ★ カード右上ボタンの基本（PC・スマホ共通の統一レイアウト） */
+        .card-btn-area { position: absolute; top: 10px !important; right: 10px !important; z-index: 10; display: flex; }
+        .btn-mobile-menu { display: none; }
+        .card-btn-group { display: flex; gap: 8px; }
+
+        /* ★ スマホ最適化（ミニチュア縮小・PCデザイン維持版） */
         @media screen and (max-width: 850px) {
-            /* 根幹レイアウトをスマホ用にリセット */
             body { display: block !important; height: auto !important; overflow: visible !important; }
+            /* はみ出し防止（メニューが見切れる問題の解消） */
+            .char-card, .chr-card, .scn-card { overflow: visible !important; }
             
-            /* 1. 下部ナビゲーションへの強制変形 */
-            nav {
-                width: 100% !important; height: 65px !important;
-                flex-direction: row !important; bottom: 0 !important; top: auto !important; left: 0 !important;
-                position: fixed !important; padding: 0 !important; 
-                justify-content: space-evenly !important; align-items: center !important;
-                border-right: none !important; border-top: 1px solid var(--border) !important;
-                z-index: 9999 !important; background-color: var(--sidebar) !important;
-            }
-            /* 邪魔な要素を完全消去 */
+            nav { width: 100% !important; height: 65px !important; flex-direction: row !important; bottom: 0 !important; top: auto !important; left: 0 !important; position: fixed !important; padding: 0 !important; justify-content: space-evenly !important; align-items: center !important; border-right: none !important; border-top: 1px solid var(--border) !important; z-index: 9999 !important; background-color: var(--sidebar) !important; }
             nav h1, .nav-stats, .nav-footer { display: none !important; }
+            .nav-items { display: flex !important; flex-direction: row !important; width: 100% !important; overflow: visible !important; padding: 0 !important; justify-content: space-around !important; }
+            .nav-item { flex-direction: column !important; padding: 5px 0 !important; margin: 0 !important; font-size: 0.65rem !important; gap: 4px !important; width: 100% !important; text-align: center !important; border-radius: 0 !important; }
+            .nav-item.active { background-color: transparent !important; color: var(--accent) !important; border-radius: 0 !important; border: none !important; border-top: 3px solid var(--accent) !important; }
+            [data-theme="dark"] .nav-item.active { background-color: transparent !important; color: #fff !important; border: none !important; border-top: 3px solid #fff !important; }
             
-            .nav-items {
-                display: flex !important; flex-direction: row !important; width: 100% !important;
-                overflow: visible !important; padding: 0 !important; justify-content: space-around !important;
-            }
-            .nav-item {
-                flex-direction: column !important; padding: 5px 0 !important; margin: 0 !important;
-                font-size: 0.65rem !important; gap: 4px !important; width: 100% !important;
-                text-align: center !important; border-radius: 0 !important;
-            }
-            .nav-item.active {
-                background-color: transparent !important; color: var(--accent) !important;
-                border-radius: 0 !important; border: none !important; border-top: 3px solid var(--accent) !important;
-            }
-            [data-theme="dark"] .nav-item.active {
-                background-color: transparent !important; color: #fff !important; border: none !important; border-top: 3px solid #fff !important;
-            }
+            main { margin: 0 !important; padding: 10px 10px 85px 10px !important; width: 100% !important; height: 100vh !important; box-sizing: border-box !important; overflow-y: auto !important; overflow-x: hidden !important; }
+            .content-area { padding-bottom: 20px !important; }
+
+            /* ★ コントロールパネルの縮小 */
+            .archive-controls { padding: 10px !important; gap: 8px !important; margin-bottom: 15px !important; flex-wrap: wrap !important; }
+            .control-group { font-size: 0.65rem !important; }
+            .control-group select { font-size: 0.65rem !important; padding: 2px 4px !important; }
+
+            /* 共通ボタンサイズの縮小 */
+            .btn-action { font-size: 0.65rem !important; padding: 4px 8px !important; }
+
+            /* ★ 1. 名簿カード（探索者）のミニチュア化 */
+            .char-card { padding: 12px 10px !important; gap: 10px !important; border-radius: 8px !important; margin-bottom: 15px !important; }
+            /* 一覧カードのアイコンは小さく */
+            .char-card .char-icon { width: 55px !important; height: 55px !important; border-width: 2px !important; }
+            /* 閲覧ページのアイコンは大きく（中央揃え） */
+            #v-page-content .char-icon { width: 120px !important; height: 120px !important; border-width: 3px !important; margin: 0 auto !important; display: block !important; }
+            /* 予定表ビューアのアイコン */
+            #sv-page-content .char-icon { width: 80px !important; height: 80px !important; border-width: 2px !important; }
+            .name-area { margin-bottom: 6px !important; gap: 8px !important; }
+            .char-name-ruby { font-size: 1.1rem !important; }
+            .reg-tag { font-size: 0.5rem !important; padding: 2px 6px !important; top: 0 !important; }
             
-            main {
-                margin: 0 !important; padding: 15px 10px 85px 10px !important;
-                width: 100% !important; height: 100vh !important; box-sizing: border-box !important; overflow-y: auto !important;
-            }
+            .basic-info-row { gap: 4px !important; margin-bottom: 6px !important; }
+            .info-pill { font-size: 0.6rem !important; padding: 2px 6px 2px 2px !important; }
+            .info-pill-label { font-size: 0.45rem !important; padding: 1px 4px !important; margin-right: 4px !important; }
 
-            /* 2. 技能リストの横スクロール化 */
-            .skill-list-header, .sk-row { min-width: 650px !important; }
-            .skill-list-in { overflow-x: auto !important; padding-bottom: 15px !important; -webkit-overflow-scrolling: touch !important; }
+            /* 名簿カード右上のボタンをまるごと縮小（テキストは維持） */
+            .char-card > div > div[style*="top:-5px"] { top: -8px !important; right: -5px !important; transform: scale(0.75); transform-origin: top right; }
 
-            /* 3. 画面幅の圧縮調整 */
-            .panel { padding: 15px !important; }
-            .grid-cards { grid-template-columns: 1fr !important; }
+            /* 9列ステータスを無理やり収める */
+            div[style*="repeat(9"] { gap: 2px !important; margin-bottom: 0 !important; }
+            div[style*="repeat(9"] > div { padding: 2px 0 !important; border-radius: 4px !important; }
+            div[style*="repeat(9"] > div > div:first-child { font-size: 0.45rem !important; }
+            div[style*="repeat(9"] > div > div:last-child { font-size: 0.75rem !important; }
+
+            /* ★ 2. 予定表カード（カレンダー）のミニチュア化 */
+            .chr-card { margin-bottom: 10px !important; border-radius: 8px !important; }
+            /* 帯の幅をスリムにする */
+            .chr-date-sidebar { width: 60px !important; padding: 10px 5px !important; }
+            /* 1番目のテキスト（NEXT） */
+            .chr-date-sidebar span:nth-child(1) { font-size: 0.55rem !important; margin-bottom: 4px !important; letter-spacing: 0 !important; }
+            /* 2番目のテキスト（4/2 などの日付）※固定スタイルを強制上書き！ */
+            .chr-date-sidebar span:nth-child(2) { font-size: 1.3rem !important; margin: 4px 0 !important; line-height: 1.1 !important; font-weight: bold !important; }
+            /* 3番目のテキスト（時間） */
+            .chr-date-sidebar span:nth-child(3) { font-size: 0.60rem !important; padding: 2px 4px !important; letter-spacing: 0 !important; }
+            /* 4番目のテキスト（全n回）※存在する場合のみ適用 */
+            .chr-date-sidebar span:nth-child(4) { font-size: 0.50rem !important; margin-top: 4px !important; }
             
-            div[style*="minmax(65px"], div[style*="minmax(80px"] { grid-template-columns: repeat(3, 1fr) !important; }
+            .chr-main-content { padding: 12px 10px !important; gap: 4px !important; }
+            .chr-title { font-size: 1.05rem !important; margin-bottom: 4px !important; height: 22px !important; line-height: 22px !important; }
+            .chr-divider { margin-bottom: 8px !important; }
+            .chr-meta-row { gap: 8px !important; }
+            .chr-status-pill { font-size: 0.55rem !important; padding: 0 8px !important; height: 18px !important; }
+            .chr-info-item { font-size: 0.65rem !important; height: 16px !important; line-height: 16px !important; }
+            .chr-info-item b { font-size: 0.75rem !important; }
+            
+            /* スケジュール右上ボタン（テキスト維持） */
+            .chr-card .card-btn-area { top: 6px !important; right: 6px !important; transform: scale(0.8); transform-origin: top right; gap: 4px !important; }
 
-            /* 4. オーバーレイ（全画面化） */
+            /* ★ 3. シナリオ目録カードのミニチュア化 */
+            .scn-card { padding: 10px 12px !important; gap: 6px !important; border-radius: 8px !important; margin-bottom: 8px !important; }
+            .scn-card-title { font-size: 0.95rem !important; padding-right: 60px !important; height: 20px !important; line-height: 20px !important; }
+            .scn-meta { gap: 8px !important; font-size: 0.6rem !important; line-height: 1.4 !important; }
+            .scn-meta > span { height: auto !important; line-height: 1.4 !important; }
+            .scn-meta b { font-size: 0.65rem !important; margin-right: 4px !important; }
+            
+            /* シナリオ右上ボタン（テキスト維持） */
+            .scn-card-btns { top: 6px !important; right: 8px !important; transform: scale(0.8); transform-origin: top right; gap: 4px !important; }
+
+            /* ★ ダッシュボードのミニチュア化 */
+            .dash-card { padding: 12px !important; }
+            .dash-card-title { font-size: 0.85rem !important; }
+            .dash-stat-value { font-size: 1.3rem !important; }
+
+            /* ★ オーバーレイ・フッター等の全画面調整 */
             #char-viewer-overlay, #char-editor-overlay, #sch-viewer-overlay, #sch-editor-overlay, #scn-editor-overlay, #import-overlay, #sync-overlay { padding: 0 !important; }
-            .viewer-book, .editor-book, .import-book, .sync-book {
-                width: 100% !important; max-width: 100% !important;
-                height: 100% !important; max-height: 100% !important;
-                border-radius: 0 !important; margin: 0 !important; border: none !important;
-            }
-            .viewer-book.single-column .viewer-page, .editor-book.single-column .editor-page { padding: 20px !important; padding-bottom: 100px !important; }
+            .viewer-book, .editor-book, .import-book, .sync-book { width: 100% !important; max-width: 100% !important; height: 100% !important; max-height: 100% !important; border-radius: 0 !important; margin: 0 !important; border: none !important; }
+            .viewer-book.single-column .viewer-page, .editor-book.single-column .editor-page { padding: 15px !important; padding-bottom: 100px !important; }
             
-            /* 押しやすいスマホ用閉じるボタン */
-            .close-btn { top: 15px !important; right: 15px !important; z-index: 9999 !important; background: var(--bg); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+            .close-btn { top: 10px !important; right: 10px !important; z-index: 9999 !important; background: var(--bg); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-size: 1.2rem !important; }
             
-            div:has(> div[style*="max-width:250px"]) { flex-direction: column !important; }
-            div[style*="max-width:250px"] { max-width: 100% !important; border-right: none !important; border-bottom: 1px dashed var(--border) !important; padding-right: 0 !important; padding-bottom: 15px !important; }
+            /* ★ 1. スマホ時のフッター2行化＆コンパクト化 */
+            .char-sticky-footer { left: 0 !important; width: 100% !important; bottom: 65px !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; gap: 6px !important; padding: 8px !important; }
+            .char-sticky-footer > div { padding: 0 !important; flex: unset !important; width: auto !important; justify-content: center !important; gap: 6px !important; }
+            /* 中央のポイント表示を強制的に1行目へ */
+            .char-sticky-footer > div:nth-child(2) { order: -1 !important; width: 100% !important; display: flex !important; margin-bottom: 2px !important; }
+            /* ポイントの枠自体も少しスリムに */
+            .char-sticky-footer > div:nth-child(2) > div { padding: 6px 20px !important; gap: 15px !important; }
+            /* ボタンとチェックボックスを一回り小さく */
+            .char-sticky-footer .btn-action { padding: 6px 12px !important; font-size: 0.75rem !important; margin: 0 !important; border-radius: 20px !important; }
+            .skill-filter-toggle { padding: 4px 10px !important; font-size: 0.75rem !important; margin: 0 !important; }
+            /* スマホ時のみ一部の文字を隠すクラス */
+            .hide-mob { display: none !important; }
             
-            /* フッター群をナビバーの上に配置 */
-            .char-sticky-footer { left: 0 !important; width: 100% !important; bottom: 65px !important; flex-direction: column !important; gap: 10px !important; padding: 10px !important; }
-            .char-sticky-footer > div { width: 100% !important; justify-content: center !important; padding: 0 !important; flex-wrap: wrap !important; }
             .sticky-footer { bottom: 65px !important; padding: 10px !important; }
             
-            /* ホームの調整 */
-            .dashboard-grid { grid-template-columns: 1fr !important; }
+            /* ★ 2. 技能リストのスマホ最適化 */
+            /* ★ 3. 職業ベースセクションのスマホ最適化 */
+            .viewer-job-header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+            .viewer-job-calc { margin-left: 0 !important; }
+
+            /* 閲覧ページ：技能リストを「技能名｜タグ｜合計値」で美しく整列 */
+            .viewer-skill-item { gap: 5px !important; padding: 6px 0 !important; }
+            /* 左：技能名（「>」を追加して直下のspanのみを厳密に指定！） */
+            .viewer-skill-item > span:first-child { width: 35% !important; min-width: 90px !important; font-size: 0.8rem !important; flex: none !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            /* 中：タグコンテナ（余白を使って中央に均等配置） */
+            .viewer-skill-item div { flex: 1 !important; justify-content: center !important; gap: 3px !important; }
+            /* 中：タグ本体（サイズを完全に均等なブロックに固定化） */
+            .skill-badge { width: 28px !important; min-width: 28px !important; max-width: 28px !important; font-size: 0.75rem !important; padding: 3px 0 !important; margin: 0 !important; text-align: center !important; box-sizing: border-box !important; }
+            .badge-lbl { display: none !important; }
+            /* 右：合計値（固定幅で右端にビシッと揃える） */
+            .viewer-skill-item b { font-size: 1.1rem !important; width: 45px !important; min-width: 45px !important; flex: none !important; text-align: right !important; margin: 0 !important; }
+            
+            /* 編集ページ：1行にすべて収める極限圧縮 */
+            .skill-list-header, .sk-row { min-width: 100% !important; gap: 2px !important; padding: 2px 0 !important; }
+            .sk-row input { padding: 4px 0 !important; font-size: 0.8rem !important; text-align: center !important; }
+            .sk-row .sk-name { font-size: 0.75rem !important; padding: 4px !important; text-align: left !important; }
+            .skill-header-label { font-size: 0.55rem !important; letter-spacing: -0.5px; text-align: center !important; }
+            .badge-mob-only { display: inline !important; }
+            .skill-list-in { overflow-x: hidden !important; padding-bottom: 10px !important; }
+
+            /* 各カードの基準点を統一してはみ出しを許可する */
+            .char-card, .chr-card, .scn-card { position: relative !important; overflow: visible !important; }
+            /* ★ メニューを開いたカードを最前面に出して、下のカードに隠れないようにする */
+            .char-card:has(.open), .chr-card:has(.open), .scn-card:has(.open) { z-index: 999 !important; }
+
+            /* ★ スマホ用ボタン折りたたみメニュー化（強制上書き・クラシックデザイン） */
+            /* 全カード共通で右上スレスレ（角）に配置 */
+            div[style*="top:-5px"] { top: 4px !important; right: 4px !important; transform: none !important; }
+            .card-btn-area { top: 4px !important; right: 4px !important; transform: none !important; }
+            .scn-card-btns { top: 4px !important; right: 4px !important; transform: none !important; }
+            
+            /* ボタン本体をクラシックかつコンパクトなデザインに */
+            .btn-mobile-menu { display: flex !important; align-items: center; justify-content: center; width: 30px; height: 26px; border: 1px solid var(--border) !important; border-bottom: 2px solid var(--border) !important; background: linear-gradient(to bottom, var(--card-bg), var(--panel-header-bg)) !important; border-radius: 4px !important; font-size: 1.1rem; cursor: pointer; color: var(--text-main); font-weight: bold; padding: 0 !important; transition: 0.1s; line-height: 1 !important; }
+            .btn-mobile-menu:active { transform: translateY(1px); border-bottom-width: 1px !important; margin-bottom: 1px; }
+            .card-btn-group { top: 30px; } /* メニューの出現位置もボタンサイズに合わせて微調整 */
+            
+            /* ドロップダウンメニューもクラシックなパネル風に */
+            .card-btn-group { display: none !important; position: absolute; top: 38px; right: 0; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; flex-direction: column; gap: 0; box-shadow: var(--shadow); overflow: hidden; width: 100px; z-index: 100; }
+            .card-btn-area.open .card-btn-group { display: flex !important; }
+            .card-btn-group .btn-action { border: none !important; border-bottom: 1px dashed var(--border) !important; border-radius: 0 !important; padding: 12px 10px !important; width: 100%; text-align: center; font-size: 0.75rem !important; margin: 0 !important; background: var(--card-bg) !important; color: var(--text-main) !important; box-shadow: none !important; }
+            .card-btn-group .btn-action:active { background: var(--panel-header-bg) !important; transform: none !important; margin: 0 !important; border-bottom-width: 1px dashed var(--border) !important; }
+            .card-btn-group .btn-action:last-child { border-bottom: none !important; }
         }
     </style>
 </head>
@@ -602,8 +695,8 @@
             </div>
             <div class="char-sticky-footer">
                 <div style="flex:1; display:flex; flex-direction:row; align-items:center; justify-content:flex-end; padding-right:20px; gap:15px;">
-                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-acq" onchange="applySkillFilter(this)"> 習得技能を表示</label>
-                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-prof" onchange="applySkillFilter(this)"> 職業技能を表示</label>
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-acq" onchange="applySkillFilter(this)"> <span>習得<span class="hide-mob">技能を表示</span></span></label>
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-prof" onchange="applySkillFilter(this)"> <span>職業<span class="hide-mob">技能を表示</span></span></label>
                 </div>
                 <div style="flex:0 0 auto;">
                     <div style="display:flex; gap:30px; background:var(--bg); padding:10px 25px; border-radius:30px; border:1px solid var(--border); box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);">
@@ -751,8 +844,8 @@
             </div>
             <div class="char-sticky-footer">
                 <div style="flex:1; display:flex; flex-direction:row; align-items:center; justify-content:flex-end; padding-right:20px; gap:15px;">
-                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-acq" onchange="applySkillFilter(this)"> 習得技能を表示</label>
-                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-prof" onchange="applySkillFilter(this)"> 職業技能を表示</label>
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-acq" onchange="applySkillFilter(this)"> <span>習得<span class="hide-mob">技能を表示</span></span></label>
+                    <label class="skill-filter-toggle" style="margin:0;"><input type="checkbox" class="filter-prof" onchange="applySkillFilter(this)"> <span>職業<span class="hide-mob">技能を表示</span></span></label>
                 </div>
                 <div style="flex:0 0 auto;">
                     <div style="display:flex; gap:30px; background:var(--bg); padding:10px 25px; border-radius:30px; border:1px solid var(--border); box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);">
@@ -1732,7 +1825,6 @@
                 <div style="flex:1; min-width:250px;">
                     <div style="display:flex; align-items:center; gap:15px; margin-bottom:12px; flex-wrap:wrap;">
                         <h2 style="font-family:'Noto Serif JP',serif; font-size:2.2rem; margin:0; font-weight:700; color:var(--text-main); word-break:keep-all; line-height:1.2;"><ruby>${c.name || '名無し'}<rt>${c.kana || ''}</rt></ruby></h2>
-                        <span class="reg-tag ${c.regulation === '7th' ? 'tag-7th' : 'tag-6th'}" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 0.8rem; padding: 6px 14px; white-space:nowrap; position:relative; top:4px;">${c.regulation === '7th' ? '7th Ed.' : '6th Ed.'}</span>
                     </div>
                     
                     <div style="width:100%; height:1px; background:var(--border); margin:18px 0; opacity:0.6;"></div>
@@ -1803,32 +1895,36 @@
 
         // ★ 職業ベースの表示（技能リストの上部）
         if (c.jobSup && c.jobNameSel) {
-            const supMap = { '6th_base': '6版 基本ルールブック', '2010': 'クトゥルフ2010', '2015': 'クトゥルフ2015', '7th_base': '7版 基本ルールブック', 'scenario_base': 'シナリオベース' };
-            const supName = supMap[c.jobSup] || c.jobSup;
+            const supMapPc = { '6th_base': '6版 基本ルールブック', '2010': 'クトゥルフ2010', '2015': 'クトゥルフ2015', '7th_base': '7版 基本ルールブック', 'scenario_base': 'シナリオベース' };
+            const supMapMob = { '6th_base': '6版', '2010': '2010', '2015': '2015', '7th_base': '7版', 'scenario_base': 'シナリオ' };
+            const supNamePc = supMapPc[c.jobSup] || c.jobSup;
+            const supNameMob = supMapMob[c.jobSup] || c.jobSup;
             html += `<span class="section-label">職業ベース</span>`;
             html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:20px 25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; flex-direction:column; gap:15px;">`;
             
             // 上段：サプリ(橙)・職業名(白)・算出式
-            html += `<div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">`;
-            html += `<span style="background:var(--panel-header-bg); padding:4px 12px; border-radius:4px; font-size:0.85rem; font-weight:bold; border:1px solid var(--border); color:var(--important);">${supName}</span>`;
+            html += `<div class="viewer-job-header" style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">`;
+            html += `<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">`;
+            html += `<span style="background:var(--panel-header-bg); padding:4px 12px; border-radius:4px; font-size:0.85rem; font-weight:bold; border:1px solid var(--border); color:var(--important);"><span class="hide-mob">${supNamePc}</span><span class="badge-mob-only">${supNameMob}</span></span>`;
             html += `<b style="font-size:1.1rem; color:var(--text-main); font-family:'Noto Serif JP', serif;">${c.jobNameSel}</b>`;
+            html += `</div>`;
             if (PROFESSION_DATA[c.jobSup] && PROFESSION_DATA[c.jobSup][c.jobNameSel]) {
                 const calc = PROFESSION_DATA[c.jobSup][c.jobNameSel].calc;
-                html += `<span style="margin-left:auto; font-size:0.8rem; color:var(--text-sub); font-weight:bold; background:var(--bg); padding:4px 10px; border-radius:12px; border:1px solid var(--border);">算出式: ${calc}</span>`;
+                html += `<span class="viewer-job-calc" style="margin-left:auto; font-size:0.8rem; color:var(--text-sub); font-weight:bold; background:var(--bg); padding:4px 10px; border-radius:12px; border:1px solid var(--border);">算出式: ${calc}</span>`;
             }
             html += `</div>`;
             
             // ★シナリオベースの場合のメモ欄と動的タグ表示
             if (c.jobSup === 'scenario_base') {
                 if (c.scnMemo) {
-                    html += `<div style="padding-top:10px; border-top:1px dashed var(--border); font-size:0.95rem; line-height:1.6; color:var(--text-main); white-space:pre-wrap;">${c.scnMemo}</div>`;
+                    html += `<div style="padding-top:10px; border-top:1px solid var(--border); font-size:0.95rem; line-height:1.6; color:var(--text-main); white-space:pre-wrap;">${c.scnMemo}</div>`;
                 }
                 
                 // 割り振られた技能を青いタグとして表示
                 let allocated = c.skills ? c.skills.filter(s => Number(s.j) > 0 && s.n).map(s => s.n) : [];
                 if (allocated.length > 0) {
                     let tagsHtml = allocated.map(sk => `<span style="display:inline-block; background:#4a6fa5; padding:4px 12px; border-radius:20px; font-size:0.85rem; border:1px solid #4a6fa5; color:#ffffff; font-weight:bold; margin-right:4px; margin-bottom:4px;">${sk}</span>`).join('');
-                    html += `<div style="padding-top:10px; border-top:1px dashed var(--border); display:flex; flex-wrap:wrap; gap:5px;">${tagsHtml}</div>`;
+                    html += `<div style="padding-top:10px; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:5px;">${tagsHtml}</div>`;
                 }
             }
 
@@ -1905,17 +2001,17 @@
                     return `<span style="display:inline-block; background:${bg}; padding:4px 12px; border-radius:20px; font-size:0.85rem; border:1px solid ${borderColor}; color:${color}; font-weight:bold; margin-right:4px; margin-bottom:4px;">${t.text}</span>`;
                 }).join('');
 
-                html += `<div style="padding-top:10px; border-top:1px dashed var(--border); display:flex; flex-wrap:wrap; gap:5px;">${tagsHtml}</div>`;
+                html += `<div style="padding-top:10px; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:5px;">${tagsHtml}</div>`;
                 
                 // ★ 7版の「信用」を閲覧画面にも表示
                 if (jobData.credit) {
-                    html += `<div style="padding-top:10px; border-top:1px dashed var(--border); font-size:0.9rem; color:var(--important); font-weight:bold;">■ 信用: <span style="color:var(--text-main);">${jobData.credit}</span></div>`;
+                    html += `<div style="padding-top:10px; border-top:1px solid var(--border); font-size:0.9rem; color:var(--important); font-weight:bold;">■ 信用: <span style="color:var(--text-main);">${jobData.credit}</span></div>`;
                 }
             }
 
             // 下段：特記・特徴の統合 (2015の場合)
             if (c.jobSup === '2015' && (c.tokki || c.tokucho || c.tokucho2)) {
-                html += `<div style="padding-top:10px; border-top:1px dashed var(--border); display:flex; flex-direction:column; gap:10px;">`;
+                html += `<div style="padding-top:10px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:10px;">`;
                 if(c.tokki) html += `<div style="background:var(--bg); padding:12px; border-radius:6px; border:1px solid var(--border);"><b style="color:var(--important); font-size:0.85rem; display:block; margin-bottom:5px;">■ 特記</b><div style="font-size:0.9rem; line-height:1.5; color:var(--text-main);">${c.tokki}</div></div>`;
                 if(c.tokucho || c.tokucho2) {
                     html += `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
@@ -1939,11 +2035,11 @@
                 gs.forEach(s => { 
                     const dispName = s.sub ? `${s.n}(${s.sub})` : s.n;
                     let badges = '';
-                    badges += `<span class="skill-badge ${Number(s.b) > 0 ? 'badge-b' : 'badge-empty'}">基本 ${s.b||0}</span>`;
-                    badges += `<span class="skill-badge ${Number(s.j) > 0 ? 'badge-j' : 'badge-empty'}">職業 ${s.j||0}</span>`;
-                    badges += `<span class="skill-badge ${Number(s.i) > 0 ? 'badge-i' : 'badge-empty'}">興味 ${s.i||0}</span>`;
-                    badges += `<span class="skill-badge ${Number(s.g) > 0 ? 'badge-g' : 'badge-empty'}">成長 ${s.g||0}</span>`;
-                    badges += `<span class="skill-badge ${Number(s.o) > 0 ? 'badge-o' : 'badge-empty'}">その他 ${s.o||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.b) > 0 ? 'badge-b' : 'badge-empty'}"><span class="badge-lbl">基本 </span>${s.b||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.j) > 0 ? 'badge-j' : 'badge-empty'}"><span class="badge-lbl">職業 </span>${s.j||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.i) > 0 ? 'badge-i' : 'badge-empty'}"><span class="badge-lbl">興味 </span>${s.i||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.g) > 0 ? 'badge-g' : 'badge-empty'}"><span class="badge-lbl">成長 </span>${s.g||0}</span>`;
+                    badges += `<span class="skill-badge ${Number(s.o) > 0 ? 'badge-o' : 'badge-empty'}"><span class="badge-lbl">他 </span>${s.o||0}</span>`;
                     html += `<div class="viewer-skill-item" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted var(--border); padding:8px 0; font-size:1rem;"><span style="font-weight:bold; width:150px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${dispName}</span><div style="flex:1; display:flex; justify-content:center; gap:2px; flex-wrap:wrap;">${badges}</div><b style="font-size:1.3rem; color:var(--important); min-width:50px; text-align:right; font-family:'Noto Serif JP', serif;">${s.t}%</b></div>`; 
                 });
                 html += '</div>';
@@ -1955,11 +2051,11 @@
         if(!c.jobSup && (c.tokki || c.tokucho || c.tokucho2)) {
             html += '<span class="section-label">特記・特徴</span>';
             html += `<div style="display:flex; flex-direction:column; gap:15px; margin-bottom:40px;">`;
-            if(c.tokki) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px dashed var(--border); padding-bottom:5px;">■ 特記</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokki}</div></div>`;
+            if(c.tokki) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:10px;">■ 特記</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokki}</div></div>`;
             if(c.tokucho || c.tokucho2) {
                 html += `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">`;
-                if(c.tokucho) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px dashed var(--border); padding-bottom:5px;">■ 特徴1</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokucho}</div></div>`;
-                if(c.tokucho2) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px dashed var(--border); padding-bottom:5px;">■ 特徴2</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokucho2}</div></div>`;
+                if(c.tokucho) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:10px;">■ 特徴1</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokucho}</div></div>`;
+                if(c.tokucho2) html += `<div style="background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); font-family:'Noto Serif JP', serif; display:block; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:10px;">■ 特徴2</b><div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">${c.tokucho2}</div></div>`;
                 html += `</div>`;
             }
             html += `</div>`;
@@ -1970,12 +2066,12 @@
         else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         html += '<span class="section-label">手記（プロフィール / メモ）</span>';
-        if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; }); } 
+        if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; }); } 
         else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         if(c.secrets && c.secrets.length > 0) {
-            html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span><details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);"><summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary><div style="margin-top:15px; padding-top:20px; border-top:1px dashed var(--border);">';
-            c.secrets.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px dashed var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; });
+            html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span><details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);"><summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary><div style="margin-top:15px; padding-top:20px; border-top:1px solid var(--border);">';
+            c.secrets.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; });
             html += '</div></details>';
         }
 
@@ -1986,8 +2082,8 @@
 
         document.getElementById('v-viewer-footer').innerHTML = `
             <div style="flex:1; display:flex; justify-content:flex-end; gap:10px; padding-right:20px;">
-                <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="background:transparent; border:1px solid var(--important); color:var(--important); padding:10px 20px;">URL出力</button>
-                <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white; padding:10px 20px;">駒出力</button>
+                <button onclick="copyShareUrl(${i}, this)" class="btn-action" style="padding:10px 20px;">URL出力</button>
+                <button onclick="copyToCcfolia(${i}, this)" class="btn-action" style="padding:10px 20px;">駒出力</button>
             </div>
             
             <div style="flex:0 0 auto;">
@@ -2024,18 +2120,21 @@
             let scnDisp = (c.scns && c.scns.length) ? c.scns[0] + (c.scns.length > 1 ? `<span class="scn-count">+${c.scns.length - 1}</span>` : '') : '—— 未通過 ——'; 
             
             ui.innerHTML += `
-                <div class="char-card" onclick="openViewer(${i})">
-                    <img src="${c.img || ''}" class="char-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
-                    <div style="flex:1; position:relative; z-index:2;">
-                        <div style="position:absolute; top:-5px; right:-5px; display:flex; gap:8px; z-index:10;">
-                            <button onclick="event.stopPropagation(); copyShareUrl(${i}, this)" class="btn-action" style="border-color:var(--important); color:var(--important); background:transparent; padding:4px 10px;">URLコピー</button>
-                            <button onclick="event.stopPropagation(); copyToCcfolia(${i}, this)" class="btn-action" style="background:var(--accent); color:white; border:none; padding:4px 10px;">駒出力</button>
-                            <button onclick="event.stopPropagation(); editChar(${i})" class="btn-action admin-only">編集</button>
-                            <button onclick="event.stopPropagation(); deleteChar(${i})" class="btn-action del admin-only">削除</button>
+                    <div class="char-card" onclick="openViewer(${i})">
+                        <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
+                            <button class="btn-mobile-menu">⋮</button>
+                            <div class="card-btn-group">
+                                <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); copyShareUrl(${i}, this)" class="btn-action">URL出力</button>
+                                <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); copyToCcfolia(${i}, this)" class="btn-action">駒出力</button>
+                                <button onclick="event.stopPropagation(); editChar(${i})" class="btn-action admin-only">編集</button>
+                                <button onclick="event.stopPropagation(); deleteChar(${i})" class="btn-action del admin-only">削除</button>
+                            </div>
                         </div>
-                        <div class="name-area">
-                            <h3 class="char-name-ruby"><ruby>${c.name}<rt>${c.kana || ''}</rt></ruby></h3>
+                        <img src="${c.img || ''}" class="char-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
+                        <div style="flex:1; position:relative; z-index:2;">
+                            <div class="name-area">
                             <span class="reg-tag ${c.regulation === '7th' ? 'tag-7th' : 'tag-6th'}">${c.regulation === '7th' ? '7th Ed.' : '6th Ed.'}</span>
+                            <h3 class="char-name-ruby"><ruby>${c.name}<rt>${c.kana || ''}</rt></ruby></h3>
                         </div>
                         
                         <div style="width:100%; height:1px; background:var(--border); margin:10px 0 15px; opacity:0.6;"></div>
@@ -2082,7 +2181,7 @@
     function createFormNode(s) { const t = document.getElementById('form-template').content.cloneNode(true); t.querySelectorAll('input[name="regulation_tmp"]').forEach(r => r.name = "reg_" + s); return t; }
     function handleRegChange(el) { const p = el.closest('.panel-content, .editor-page'); updatePatternOptions(p, el.value); recalc(el); if(confirm("レギュレーションに合わせて技能リストを整理しますか？")) applyPresets(p, el.value); }
     function updatePatternOptions(p, r) { const sel = p.querySelector('.pt-job-pattern'); const m = r === '7th' ? 2 : 10; sel.innerHTML = '<option value="edu_only">EDU × ' + (r==='7th'?4:20) + '</option><option value="str">EDU×' + m + ' + STR×' + m + '</option><option value="con">EDU×' + m + ' + CON×' + m + '</option><option value="pow">EDU×' + m + ' + POW×' + m + '</option><option value="dex">EDU×' + m + ' + DEX×' + m + '</option><option value="app">EDU×' + m + ' + APP×' + m + '</option><option value="siz">EDU×' + m + ' + SIZ×' + m + '</option><option value="int">EDU×' + m + ' + INT×' + m + '</option><option value="manual">自由入力</option>'; }
-    function createHeaderRow() { const h = document.createElement('div'); h.className = 'skill-header-row-pts'; h.innerHTML = '<div class="skill-header-label">技能名</div><div class="skill-header-label">初期</div><div class="skill-header-label">職業(J)</div><div class="skill-header-label">興味(I)</div><div class="skill-header-label">成長</div><div class="skill-header-label">他</div><div class="skill-header-label">合計</div><div></div>'; return h; }
+    function createHeaderRow() { const h = document.createElement('div'); h.className = 'skill-header-row-pts'; h.innerHTML = '<div class="skill-header-label">技能名</div><div class="skill-header-label"><span class="badge-lbl">初期</span><span class="badge-mob-only">初</span></div><div class="skill-header-label"><span class="badge-lbl">職業</span><span class="badge-mob-only">職</span></div><div class="skill-header-label"><span class="badge-lbl">興味</span><span class="badge-mob-only">興</span></div><div class="skill-header-label"><span class="badge-lbl">成長</span><span class="badge-mob-only">成</span></div><div class="skill-header-label"><span class="badge-lbl">他</span><span class="badge-mob-only">他</span></div><div class="skill-header-label">計</div><div></div>'; return h; }
     function applyPresets(parent, reg) { const listIn = parent.querySelector('.skill-list-in'); listIn.innerHTML = ''; const presets = reg === '7th' ? SKILLS_7TH : SKILLS_6TH; ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); presets.filter(p => getGenre(p[0]) === g).forEach(p => { let v = p[1]; if(p[0] === "回避") { const dex = Number(parent.querySelector('.in-dex').value) || 0; v = reg === '7th' ? Math.floor(dex/2) : dex*2; } if(p[0] === "母国語") { const edu = Number(parent.querySelector('.in-edu').value) || 0; v = reg === '7th' ? edu : edu*5; } addSkillFieldToContainer(group, p[0], v, 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(parent.querySelector('.in-str')); }
     function addSkillFieldToContainer(container, n="", b=0, j=0, i=0, g=0, o=0, sub="", genre="") { const d = document.createElement('div'); d.className = "sk-row"; let nameHtml = '<input type="text" class="sk-name" value="' + n + '" placeholder="技能名">'; if (SUBTYPES[n]) { nameHtml = '<div style="display:flex; flex-direction:column; gap:2px;"><b style="font-size:0.6rem; color:var(--text-sub);">' + n + '</b><select class="sk-sub" onchange="updateDefaultValue(this, \'' + n + '\')">'; for (let s in SUBTYPES[n]) { nameHtml += '<option value="' + s + '" ' + (s === sub ? 'selected' : '') + '>' + s + '</option>'; } nameHtml += '</select><input type="hidden" class="sk-name" value="' + n + '"></div>'; } d.innerHTML = nameHtml + '<input type="hidden" class="sk-g-fix" value="' + (genre || '') + '"><input type="number" class="sk-b" value="' + b + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-j" value="' + j + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-i" value="' + i + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-g" value="' + g + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-o" value="' + o + '" oninput="updateSkillTotal(this)"><input type="number" class="sk-total" value="' + (Number(b)+Number(j)+Number(i)+Number(g)+Number(o)) + '" readonly style="font-weight:bold; color:var(--important);\"><button type="button" onclick="this.parentElement.remove(); recalc(document.body);" class="btn-action admin-only">✕</button>'; container.appendChild(d); }
     function updateDefaultValue(sel, category) { const row = sel.closest('.sk-row'); const newVal = SUBTYPES[category][sel.value] || 1; row.querySelector('.sk-b').value = newVal; updateSkillTotal(row.querySelector('.sk-b')); }
@@ -2719,9 +2818,12 @@
                             ${pcTag}${ptnHtml}
                         </div>
                     </div>
-                    <div class="card-btn-area admin-only">
-                        <button class="btn-action" onclick="event.stopPropagation(); editSch(${s.id})">編集</button>
-                        <button class="btn-action del" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button>
+                    <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
+                        <button class="btn-mobile-menu">⋮</button>
+                        <div class="card-btn-group">
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); editSch(${s.id})" class="btn-action">編集</button>
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); deleteSchedule(${s.id})" class="btn-action del">削除</button>
+                        </div>
                     </div>
                 </div>`;
                 if (s.status === '進行中') ongoingUI.innerHTML += cardHtml; else upcomingUI.innerHTML += cardHtml;
@@ -2740,9 +2842,12 @@
                             ${allPl ? '<span><b>PL:</b> ' + allPl + '</span>' : ''}
                         </div>
                     </div>
-                    <div class="scn-card-btns admin-only" style="top:15px; right:15px;">
-                        <button class="btn-action" onclick="event.stopPropagation(); editSch(${s.id})">編集</button>
-                        <button class="btn-action del" onclick="event.stopPropagation(); deleteSchedule(${s.id})">削除</button>
+                    <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
+                        <button class="btn-mobile-menu">⋮</button>
+                        <div class="card-btn-group">
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); editSch(${s.id})" class="btn-action">編集</button>
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); deleteSchedule(${s.id})" class="btn-action del">削除</button>
+                        </div>
                     </div>
                 </div>`;
             }
@@ -3000,9 +3105,12 @@
             
             const cardHtml = `
                 <div class="scn-card">
-                    <div class="scn-card-btns admin-only">
-                        <button class="btn-action" onclick="editScenario(${s.id})">編集</button>
-                        <button class="btn-action del" onclick="deleteScenario(${s.id})">削除</button>
+                    <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
+                        <button class="btn-mobile-menu">⋮</button>
+                        <div class="card-btn-group">
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); editScenario(${s.id})" class="btn-action">編集</button>
+                            <button onclick="event.stopPropagation(); this.parentElement.parentElement.classList.remove('open'); deleteScenario(${s.id})" class="btn-action del">削除</button>
+                        </div>
                     </div>
                     <h4 class="scn-card-title">${s.title}</h4>
                     ${metaHtml}
