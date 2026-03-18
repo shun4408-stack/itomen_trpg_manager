@@ -4314,6 +4314,57 @@
         }
       ],
       "secrets": []
+    },
+    {
+      "regulation": "6th",
+      "name": "w",
+      "kana": "",
+      "job": "",
+      "jobSup": "",
+      "jobNameSel": "",
+      "tokki": "",
+      "tokucho": "",
+      "tokucho2": "",
+      "scnMemo": "",
+      "sex": "",
+      "age": "",
+      "height": "",
+      "img": "",
+      "stats": {
+        "str": "",
+        "mod_str": "",
+        "con": "",
+        "mod_con": "",
+        "pow": "",
+        "mod_pow": "",
+        "dex": "",
+        "mod_dex": "",
+        "app": "",
+        "mod_app": "",
+        "siz": "",
+        "mod_siz": "",
+        "int": "",
+        "mod_int": "",
+        "edu": "",
+        "mod_edu": "",
+        "san": "",
+        "mod_san": ""
+      },
+      "calcStats": {
+        "luck": "",
+        "mod_luck": "",
+        "mod_hp": "",
+        "mod_mp": "",
+        "mod_db": "",
+        "mod_ide": "",
+        "mod_know": ""
+      },
+      "ptPattern": "edu_only",
+      "ptManual": 0,
+      "skills": [],
+      "scns": [],
+      "profs": [],
+      "secrets": []
     }
   ],
   "schedules": [
@@ -6788,105 +6839,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": 1773831532339,
-      "title": "白夜の歌",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831543045,
-      "title": "ぼくらのそうさい",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831582689,
-      "title": "かたわれ",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831600932,
-      "title": "ヤドリギあやかし探偵社",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831616638,
-      "title": "カーネーションは凛として枯れる",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831650508,
-      "title": "ラプラスの遺言",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831678808,
-      "title": "BIRTH CRY",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831898289,
-      "title": "Color×Ki11er",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
-    },
-    {
-      "id": 1773831915284,
-      "title": "AMIGO MI-GO",
-      "genre": "prep",
-      "date": "",
-      "pc": "",
-      "kp": [],
-      "pl": [],
-      "kpCount": 0,
-      "runs": []
     }
   ]
 }
