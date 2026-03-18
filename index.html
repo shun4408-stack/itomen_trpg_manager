@@ -8,7 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap');
         
-        /* ★ 第1フェーズ：カラーパレットのコントラストと高級感アップ */
+        /* ★ 第1フェーズ：カラーパレット ＆ 発光エフェクト変数 */
         :root {
             --bg: #f4f1ea; --sidebar: #252525; --sidebar-text: #e0d6c8; --accent: #8b0000;
             --accent-hover: #b30000; --important: #b87333; --card-bg: #ffffff;
@@ -16,6 +16,9 @@
             --san-bg: #fff1f0; --san-border: #ffa39e; --tag-6th: #6c757d; --tag-7th: #4e7ba7;
             --input-bg: #ffffff; --input-border: #c8bca7; --panel-header-bg: #e8dfcc;
             --shadow: 0 6px 18px rgba(110, 100, 80, 0.12);
+            /* --- 発光エフェクト --- */
+            --e-glow-strong: rgba(139, 0, 0, 0.4); /* 赤い光 */
+            --e-glow-status: rgba(78, 123, 167, 0.4); /* 進行状況（青系）の光 */
         }
 
         [data-theme="dark"] {
@@ -25,20 +28,117 @@
             --san-bg: #3b0808; --san-border: #991b1b; --tag-6th: #495057; --tag-7th: #345678;
             --input-bg: #16181b; --input-border: #353a43; --panel-header-bg: #25282d;
             --shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            /* --- 発光エフェクト（ダーク用） --- */
+            --e-glow-strong: rgba(255, 30, 30, 0.6); 
+            --e-glow-status: rgba(100, 160, 220, 0.5); 
         }
 
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; line-height: 1.6; letter-spacing: 0.3px; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg);
+            /* ★ 1920年代の「使い古されたザラつく古紙」を2種のテクスチャで完全再現 */
+            background-image: 
+                /* 1. 【ざらつき】紙の物理的なザラザラ感（細かい粒子） */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"),
+                /* 2. 【使い古し】日焼けや湿気による不規則なシミ・ムラ（大きな雲状の波） */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cloud'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cloud)' opacity='0.05'/%3E%3C/svg%3E"),
+                /* 3. 【経年劣化】四隅の色あせと、かすかなセピア色の沈着 */
+                radial-gradient(circle at 50% 50%, transparent 20%, rgba(184, 115, 51, 0.05) 100%);
+            
+            background-blend-mode: multiply; /* インクと染みが紙に「染み込む」表現 */
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] body {
+            /* ダークモード：使い込まれた古い革装丁や、黒く変色した羊皮紙の質感 */
+            background-image: 
+                /* ダークでは粒子の不透明度を調整し、白浮きせず「触れそうなザラつき」を残す */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"),
+                /* ムラを少し強めにして、暗闇の中にうごめくような重厚感（クトゥルフ的）に */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cloud'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cloud)' opacity='0.08'/%3E%3C/svg%3E"),
+                /* 深い闇に沈むようなグラデーション */
+                radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            
+            background-blend-mode: overlay; /* 暗い背景の質感を潰さず、綺麗に光と影を乗せる魔法 */
+        }
         body.view-mode .admin-only { display: none !important; }
 
-        nav { width: 210px; background-color: var(--sidebar); color: var(--sidebar-text); flex-shrink: 0; display: flex; flex-direction: column; z-index: 10; }
-        nav h1 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; text-align: center; padding: 30px 10px; margin: 0; letter-spacing: 3px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #fff; cursor: pointer; transition: 0.3s; }
-        nav h1:hover { color: var(--important); text-shadow: 0 0 10px rgba(184,115,51,0.5); }
+        /* ★ サイドバー：インデックス・フォルダ ＋ クラシック・リボン（A+C案） */
+        nav { 
+            width: 220px; 
+            background-color: var(--sidebar); /* 既存のシックな黒ベースを維持 */
+            color: var(--sidebar-text); 
+            flex-shrink: 0; display: flex; flex-direction: column; z-index: 10; 
+            /* わずかに右側に影を落とし、メインコンテンツ（古紙）との境界を作る */
+            box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+        }
         
-        .nav-items { flex: 1; padding-top: 10px; overflow-y: auto; scrollbar-width: none; }
+        /* タイトル：アンティークな活版印刷風 */
+        nav h1 { 
+            font-family: 'Noto Serif JP', serif; font-size: 1.2rem; text-align: center; 
+            padding: 30px 10px 25px 10px; margin: 0 15px; letter-spacing: 4px; 
+            border-bottom: 3px double rgba(255,255,255,0.08); /* 二重線でクラシックに */
+            color: var(--important); /* 真鍮色 */
+            cursor: pointer; transition: all 0.4s ease; 
+        }
+        nav h1:hover { color: #fff; text-shadow: 0 0 10px rgba(184, 115, 51, 0.6); }
+
+        .nav-items { flex: 1; padding-top: 15px; overflow-y: auto; scrollbar-width: none; }
         .nav-items::-webkit-scrollbar { display: none; }
-        .nav-item { padding: 15px 25px; cursor: pointer; font-size: 0.9rem; color: var(--sidebar-text); transition: 0.2s; position: relative; letter-spacing: 1px; }
-        .nav-item.active { background-color: var(--bg); color: var(--accent); font-weight: bold; border-radius: 20px 0 0 20px; margin-left: 10px; }
-        [data-theme="dark"] .nav-item.active { color: #fff; background-color: var(--accent); }
+
+        /* メニューアイテム：丸みをなくし、シャープなファイルタブへ変更 */
+        .nav-item { 
+            padding: 15px 20px 15px 25px; margin: 5px 0 5px 15px;
+            cursor: pointer; font-size: 0.95rem; color: var(--sidebar-text); 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; letter-spacing: 1px;
+            border-radius: 3px 0 0 3px; /* ★丸みをやめて、ごくわずかな角丸を持つ直角に */
+            background: transparent;
+        }
+
+        /* 左端のリボン（通常時） */
+        .nav-item::before {
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            height: 0%; width: 3px; background-color: transparent; 
+            border-radius: 2px; transition: all 0.3s ease;
+        }
+        
+        /* ホバー時の演出：真鍮色の短いリボン */
+        .nav-item:hover {
+            color: #fff;
+            background: linear-gradient(to right, rgba(255,255,255,0.03), transparent);
+        }
+        .nav-item:hover::before {
+            height: 60%; background-color: var(--important); 
+        }
+
+        /* ★ アクティブ時：背景色同化 ＋ リボンをボタンの高さにピッタリ合わせる */
+        .nav-item.active { 
+            background-color: var(--bg); 
+            color: var(--accent); font-weight: bold; 
+            box-shadow: -4px 4px 10px rgba(0,0,0,0.05), -4px -4px 10px rgba(0,0,0,0.02);
+        }
+        
+        /* アクティブ時のリボン：左端にピタッとくっつき、ボタンと同じ高さになる */
+        .nav-item.active::before {
+            height: 100%; /* ★ボタンの高さいっぱいに広げる */
+            width: 4px; left: 0; /* ★隙間をなくし、左端の縁取りのように見せる */
+            border-radius: 3px 0 0 3px; /* ★ボタンの角の形と完璧に一致させる */
+            background-color: var(--accent);
+        }
+        
+        /* ダークモード対応 */
+        [data-theme="dark"] nav { box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
+        [data-theme="dark"] .nav-item.active { 
+            color: var(--text-main); 
+            background-color: var(--bg);
+            box-shadow: -4px 4px 10px rgba(0,0,0,0.2), -4px -4px 10px rgba(0,0,0,0.1);
+        }
+        [data-theme="dark"] .nav-item.active::before { background-color: var(--accent); }
         
         .nav-stats { padding: 20px 20px 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: var(--sidebar-text); background-color: rgba(0,0,0,0.15); }
         .stat-title { font-family: 'Noto Serif JP', serif; font-weight: bold; color: var(--important); margin-bottom: 12px; letter-spacing: 2px; font-size: 0.85rem; text-align: center; border-bottom: 1px solid rgba(184, 115, 51, 0.3); padding-bottom: 5px; }
@@ -121,7 +221,7 @@
         .sticky-footer .btn-action.del-outline { background: transparent; border: 1px solid rgba(255,77,79,0.5); color: #ff4d4f; }
 
         /* ★ 探索者ページ用の常時追従フッター */
-        .char-sticky-footer { position: fixed; bottom: 0; left: 210px; width: calc(100% - 210px); background: var(--panel-header-bg); display: flex; justify-content: center; align-items: center; padding: 15px 30px; box-sizing: border-box; z-index: 100; border-top: 2px solid var(--accent); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
+        .char-sticky-footer { position: fixed; bottom: 0; left: 220px; width: calc(100% - 220px); background: var(--panel-header-bg); display: flex; justify-content: center; align-items: center; padding: 15px 30px; box-sizing: border-box; z-index: 100; border-top: 2px solid var(--accent); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
         [data-theme="dark"] .char-sticky-footer { background: var(--card-bg); box-shadow: 0 -5px 20px rgba(0,0,0,0.6); }
         @media (max-width: 850px) { .char-sticky-footer { left: 0; width: 100%; flex-direction: column; gap: 10px; padding: 10px; } .char-sticky-footer > div { width: 100%; justify-content: center !important; } }
 
@@ -232,12 +332,177 @@
         
         .viewer-edit-btn-area { position: absolute; bottom: 40px; left: 40px; z-index: 120; }
 
-        .scn-card { background: var(--card-bg); border: 1px solid var(--border); padding: 14px 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; gap: 8px; transition: 0.2s; cursor: pointer; }
-        .scn-card:hover { transform: translateX(5px); background: var(--panel-header-bg); }
-        .scn-card-title { font-family: 'Noto Serif JP', serif; font-weight: bold; font-size: 1.1rem; margin: 0; color: var(--text-main); padding-right: 120px; height: 26px; line-height: 26px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* ★ 1. 探索者名簿：インク色差別化 ＆ ダークモード視認性向上版 */
+        .char-card { 
+            border: 1px solid var(--border) !important; 
+            border-radius: 8px !important; 
+            position: relative; 
+            transition: all 0.4s ease !important; 
+            overflow: hidden; 
+            background-color: var(--card-bg) !important;
+        }
+
+        /* 【装飾1】内側の金枠 */
+        .char-card::before {
+            content: ''; position: absolute;
+            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 1px solid var(--important);
+            border-radius: 6px;
+            opacity: 0.25;
+            pointer-events: none; z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        /* 【装飾2】消印スタンプ：至高のオカルト・エンブレム（高密度・中央凝縮版） */
+        .char-card::after {
+            content: ''; 
+            position: absolute;
+            bottom: -45px; left: -45px;
+            width: 190px; height: 190px;
+            display: block; 
+            
+            /* --- ライトモード用の設定（インク色） --- */
+            border: 2px solid #1a2a3a;
+            box-shadow: 
+                inset 0 0 0 4px var(--card-bg),
+                inset 0 0 0 5px #1a2a3a,
+                inset 0 0 0 9px var(--card-bg),
+                inset 0 0 0 10px #1a2a3a;
+            
+            /* ★ SVG再構築：すべてのパーツをY軸の中心(95)に向かって約10pxずつ圧縮 */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='190'%3E%3Cg fill='%231a2a3a' text-anchor='middle' font-family='Times New Roman, serif' font-weight='bold' letter-spacing='2'%3E%3Ctext x='50%25' y='72' font-size='11.5'%3ECALL OF CTHULHU%3C/text%3E%3Ctext x='50%25' y='124' font-size='11.5'%3EINVESTIGATOR%3C/text%3E%3Ctext x='50%25' y='158' font-size='9.5' font-style='italic' letter-spacing='1.5'%3Efrom Arkham%3C/text%3E%3C/g%3E%3Cg fill='%231a2a3a'%3E%3Crect x='45' y='51.5' width='100' height='1'/%3E%3Crect x='55' y='48.5' width='80' height='1'/%3E%3Cpolygon points='95,46.5 98,50 95,53.5 92,50'/%3E%3Crect x='45' y='138.5' width='100' height='1'/%3E%3Crect x='55' y='141.5' width='80' height='1'/%3E%3Cpolygon points='95,136.5 98,140 95,143.5 92,140'/%3E%3Crect x='35' y='94.5' width='35' height='1'/%3E%3Crect x='120' y='94.5' width='35' height='1'/%3E%3Cpolygon points='45,95 48,92 51,95 48,98'/%3E%3Cpolygon points='145,95 142,92 139,95 142,98'/%3E%3Cpath d='M95 79 L97.5 92.5 L111 95 L97.5 97.5 L95 111 L92.5 97.5 L79 95 L92.5 92.5 Z'/%3E%3Cpath d='M95 86 L101 89 L104 95 L101 101 L95 104 L89 101 L86 95 L89 89 Z' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E"),
+                /* 内側の円弧（軌道） */
+                radial-gradient(circle at 50% 50%, transparent 66%, rgba(26, 42, 58, 0.25) 66.5%, transparent 67.5%),
+                /* 斜めの掠れ線（キラーバー） */
+                repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(26, 42, 58, 0.05) 4px, rgba(26, 42, 58, 0.05) 5px);
+            
+            mix-blend-mode: multiply;
+            transform: rotate(-22deg);
+            opacity: 0.12;
+            z-index: 1; pointer-events: none;
+            transition: all 0.4s ease;
+            border-radius: 50%;
+        }
+
+        /* ★ ダークモード専用：かすれた銀インク風 */
+        [data-theme="dark"] .char-card::after {
+            border-color: #8a9aaa;
+            box-shadow: 
+                inset 0 0 0 4px var(--card-bg),
+                inset 0 0 0 5.5px #8a9aaa,
+                inset 0 0 0 9.5px var(--card-bg),
+                inset 0 0 0 11px #8a9aaa;
+            background-image: 
+                /* ダークモード用に fill（色）を銀色（%238a9aaa）に変更 */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='190'%3E%3Cg fill='%238a9aaa' text-anchor='middle' font-family='Times New Roman, serif' font-weight='bold' letter-spacing='2'%3E%3Ctext x='50%25' y='72' font-size='11.5'%3ECALL OF CTHULHU%3C/text%3E%3Ctext x='50%25' y='124' font-size='11.5'%3EINVESTIGATOR%3C/text%3E%3Ctext x='50%25' y='158' font-size='9.5' font-style='italic' letter-spacing='1.5'%3Efrom Arkham%3C/text%3E%3C/g%3E%3Cg fill='%238a9aaa'%3E%3Crect x='45' y='51.5' width='100' height='1'/%3E%3Crect x='55' y='48.5' width='80' height='1'/%3E%3Cpolygon points='95,46.5 98,50 95,53.5 92,50'/%3E%3Crect x='45' y='138.5' width='100' height='1'/%3E%3Crect x='55' y='141.5' width='80' height='1'/%3E%3Cpolygon points='95,136.5 98,140 95,143.5 92,140'/%3E%3Crect x='35' y='94.5' width='35' height='1'/%3E%3Crect x='120' y='94.5' width='35' height='1'/%3E%3Cpolygon points='45,95 48,92 51,95 48,98'/%3E%3Cpolygon points='145,95 142,92 139,95 142,98'/%3E%3Cpath d='M95 79 L97.5 92.5 L111 95 L97.5 97.5 L95 111 L92.5 97.5 L79 95 L92.5 92.5 Z'/%3E%3Cpath d='M95 86 L101 89 L104 95 L101 101 L95 104 L89 101 L86 95 L89 89 Z' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E"),
+                radial-gradient(circle at 50% 50%, transparent 66%, rgba(138, 154, 170, 0.3) 66.5%, transparent 67.5%),
+                repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(138, 154, 170, 0.08) 4px, rgba(138, 154, 170, 0.08) 5px);
+            mix-blend-mode: screen;
+            opacity: 0.15;
+        }
+
+        /* ホバー時の演出 */
+        .char-card:hover { 
+            border-color: var(--accent) !important; 
+            box-shadow: 0 0 25px var(--e-glow-strong); 
+            z-index: 5; 
+        }
+        .char-card:hover::before {
+            opacity: 0.5;
+        }
+        .char-card:hover::after {
+            opacity: 0.3;
+            transform: rotate(-18deg) scale(1.08);
+            filter: contrast(1.2) drop-shadow(0 0 1px rgba(26, 42, 58, 0.3));
+        }
+        [data-theme="dark"] .char-card:hover::after {
+            opacity: 0.4; /* ダークモード時は少し強めに浮かび上がらせる */
+            filter: brightness(1.2) drop-shadow(0 0 2px rgba(138, 154, 170, 0.4));
+        }
+
+        /* ★ 2. 予定カード：本体のみ切り離されるアニメーション ＋ ダイナミック発光 */
+        .chr-card { background: transparent !important; border: none !important; box-shadow: none !important; overflow: visible !important; }
+        
+        .chr-date-sidebar {
+            background-color: var(--card-bg); border: 1px solid var(--border);
+            border-right: 2px dashed var(--border) !important; border-radius: 8px 0 0 8px !important; 
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(139, 0, 0, 0.03) 5px, rgba(139, 0, 0, 0.03) 10px);
+            transition: all 0.4s ease; position: relative; z-index: 2;
+        }
+        [data-theme="dark"] .chr-date-sidebar { background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(0, 0, 0, 0.3) 5px, rgba(0, 0, 0, 0.3) 10px); }
+
+        .chr-main-content {
+            background-color: var(--card-bg); border: 1px solid var(--border); border-left-color: transparent; border-radius: 0 8px 8px 0;
+            transition: all 0.4s ease;
+        }
+
+        /* 帯（左側）：位置を固定（transform: none）し、赤くじわっと光る */
+        .chr-card:hover .chr-date-sidebar { 
+            transform: none !important; 
+            border-color: var(--accent) !important; 
+            box-shadow: 0 0 20px var(--e-glow-strong); 
+        }
+        
+        /* 本体（右側）：右にスライド（translateX）し、進行状況の色で光る */
+        /* 💡 待機中（青） */
+        .chr-card:has(.status-wait):hover .chr-main-content {
+            transform: translateX(8px) !important; /* 本体だけがスッと離れる */
+            border-left-color: #4a6fa5; border-color: #4a6fa5 !important; 
+            box-shadow: 0 0 20px rgba(74, 111, 165, 0.4); 
+        }
+        /* 💡 進行中 (緑) */
+        .chr-card:has(.status-ongoing):hover .chr-main-content {
+            transform: translateX(8px) !important;
+            border-left-color: #588157; border-color: #588157 !important; 
+            box-shadow: 0 0 20px rgba(88, 129, 87, 0.4); 
+        }
+        /* 💡 調整中 (グレー) */
+        .chr-card:has(.status-adj):hover .chr-main-content {
+            transform: translateX(8px) !important;
+            border-left-color: #6c757d; border-color: #6c757d !important; 
+            box-shadow: 0 0 20px rgba(108, 117, 125, 0.4); 
+        }
+        /* 💡 完走 (真鍮色) */
+        .chr-card:has(.status-done):hover .chr-main-content {
+            transform: translateX(8px) !important;
+            border-left-color: var(--important); border-color: var(--important) !important; 
+            box-shadow: 0 0 20px rgba(184, 115, 51, 0.4); 
+        }
+
+        /* ★ 3. シナリオ一覧カード（金具なし＋ストライプ帯＋リベット） */
+        .scn-card {
+            background-color: var(--card-bg) !important; border: 1px solid var(--border) !important; border-radius: 8px !important;
+            background-image:
+                linear-gradient(to right, transparent 38px, var(--border) 38px, var(--border) 40px, transparent 40px),
+                repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(139, 0, 0, 0.03) 5px, rgba(139, 0, 0, 0.03) 10px) !important;
+            background-size: 100% 100%, 38px 100% !important; background-repeat: no-repeat !important;
+            padding: 14px 20px 14px 54px !important; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; cursor: pointer;
+            transition: all 0.4s ease !important; position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        [data-theme="dark"] .scn-card {
+            background-image:
+                linear-gradient(to right, transparent 38px, var(--border) 38px, var(--border) 40px, transparent 40px),
+                repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(0, 0, 0, 0.3) 5px, rgba(0, 0, 0, 0.3) 10px) !important;
+        }
+
+        /* リベットを中心に配置 */
+        .scn-card::after {
+            content: ''; position: absolute; top: 50%; left: 19px; transform: translate(-50%, -50%);
+            width: 12px; height: 12px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fceabb, var(--important) 60%, #8a5a19);
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.3), inset -1px -2px 3px rgba(0,0,0,0.4); pointer-events: none; z-index: 3;
+        }
+        [data-theme="dark"] .scn-card::after { background: radial-gradient(circle at 35% 35%, #fceabb, var(--important) 50%, #4a2a09); box-shadow: 1px 2px 4px rgba(0,0,0,0.6), inset -1px -2px 3px rgba(0,0,0,0.5); }
+        
+        /* ホバー時は影を出さずに赤く発光するだけ */
+        .scn-card:hover { transform: translateX(5px) !important; border-color: var(--accent) !important; box-shadow: 0 0 20px var(--e-glow-strong) !important; z-index: 5; }
+
+        /* ▼ 既存レイアウトの保護 */
+        .scn-card-title { font-family: 'Noto Serif JP', serif; font-weight: bold; font-size: 1.1rem; margin: 0; color: var(--text-main); padding-right: 120px; height: 26px; line-height: 26px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 2; position: relative; }
         .scn-card-btns { position: absolute; top: 14px; right: 15px; display: flex; gap: 8px; z-index: 10; align-items: center; height: 26px; }
         .scn-card-btns .btn-action { height: 24px; display: flex; align-items: center; justify-content: center; padding: 0 12px; margin: 0; box-sizing: border-box; font-size: 0.7rem; }
-        .scn-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.85rem; color: var(--text-sub); align-items: center; }
+        .scn-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.85rem; color: var(--text-sub); align-items: center; z-index: 2; position: relative; }
         .scn-meta > span { display: inline-flex; align-items: center; height: 24px; line-height: 24px; font-family: 'Noto Serif JP', serif; }
         .scn-meta b { color: var(--accent); font-family: 'Noto Sans JP', sans-serif; margin-right: 6px; font-size: 0.9rem; }
 
@@ -246,7 +511,7 @@
         details.secret-details summary:hover { opacity: 0.8; }
         details.secret-details > div { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
 
-        /* ★ アコーディオン用スタイル（目録＆KP記録） */
+        /* ★ アコーディオン用スタイル（一覧＆KP記録） */
         details.scn-section-details > summary.scn-summary-btn { background: var(--panel-header-bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 20px; cursor: pointer; font-family: 'Noto Serif JP', serif; font-size: 0.95rem; font-weight: bold; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; user-select: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         details.scn-section-details > summary.scn-summary-btn:hover { filter: brightness(0.95); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
         details.scn-section-details > summary.scn-summary-btn::-webkit-details-marker { display: none; }
@@ -340,7 +605,8 @@
             nav h1, .nav-stats, .nav-footer { display: none !important; }
             .nav-items { display: flex !important; flex-direction: row !important; width: 100% !important; overflow: visible !important; padding: 0 !important; justify-content: space-around !important; }
             .nav-item { flex-direction: column !important; padding: 5px 0 !important; margin: 0 !important; font-size: 0.65rem !important; gap: 4px !important; width: 100% !important; text-align: center !important; border-radius: 0 !important; }
-            .nav-item.active { background-color: transparent !important; color: var(--accent) !important; border-radius: 0 !important; border: none !important; border-top: 3px solid var(--accent) !important; }
+            .nav-item::before { display: none !important; } /* ★ スマホ時は縦線リボンを非表示にする */
+            .nav-item.active { background-color: transparent !important; color: var(--accent) !important; border-radius: 0 !important; border: none !important; border-top: 3px solid var(--accent) !important; box-shadow: none !important; }
             [data-theme="dark"] .nav-item.active { background-color: transparent !important; color: #fff !important; border: none !important; border-top: 3px solid #fff !important; }
             
             main { margin: 0 !important; padding: 10px 10px 85px 10px !important; width: 100% !important; height: 100vh !important; box-sizing: border-box !important; overflow-y: auto !important; overflow-x: hidden !important; }
@@ -403,8 +669,9 @@
             /* スケジュール右上ボタン（テキスト維持） */
             .chr-card .card-btn-area { top: 6px !important; right: 6px !important; transform: scale(0.8); transform-origin: top right; gap: 4px !important; }
 
-            /* ★ 3. シナリオ目録カードのミニチュア化 */
-            .scn-card { padding: 10px 12px !important; gap: 6px !important; border-radius: 8px !important; margin-bottom: 8px !important; }
+            /* ★ 3. シナリオ一覧カードのミニチュア化 */
+            /* ★ paddingの左側を50px確保してストライプ帯との重なりを防ぐ */
+            .scn-card { padding: 10px 12px 10px 50px !important; gap: 6px !important; border-radius: 8px !important; margin-bottom: 8px !important; }
             .scn-card-title { font-size: 0.95rem !important; padding-right: 60px !important; height: 20px !important; line-height: 20px !important; }
             .scn-meta { gap: 8px !important; font-size: 0.6rem !important; line-height: 1.4 !important; }
             .scn-meta > span { height: auto !important; line-height: 1.4 !important; }
@@ -465,10 +732,10 @@
             .badge-mob-only { display: inline !important; }
             .skill-list-in { overflow-x: hidden !important; padding-bottom: 10px !important; }
 
-            /* 各カードの基準点を統一してはみ出しを許可する */
-            .char-card, .chr-card, .scn-card { position: relative !important; overflow: visible !important; }
-            /* ★ メニューを開いたカードを最前面に出して、下のカードに隠れないようにする */
-            .char-card:has(.open), .chr-card:has(.open), .scn-card:has(.open) { z-index: 999 !important; }
+            /* 各カードの基準点を統一し、普段はスタンプ等の不要なはみ出しを隠す（hidden） */
+            .char-card, .chr-card, .scn-card { position: relative !important; overflow: hidden !important; }
+            /* ★ メニューを開いたカードのみ、最前面に出してメニュー枠のはみ出しを許可する（visible） */
+            .char-card:has(.open), .chr-card:has(.open), .scn-card:has(.open) { z-index: 999 !important; overflow: visible !important; }
 
             /* ★ スマホ用ボタン折りたたみメニュー化（強制上書き・クラシックデザイン） */
             /* 全カード共通で右上スレスレ（角）に配置 */
@@ -498,7 +765,7 @@
         <div class="nav-item active" id="nav-home" onclick="showView('v-home')">ホーム</div>
         <div class="nav-item" id="nav-cal" onclick="showView('v-calendar')">活動予定表</div>
         <div class="nav-item" id="nav-char" onclick="showView('v-characters')">探索者名簿</div>
-        <div class="nav-item" id="nav-scn" onclick="showView('v-scenarios')">シナリオ目録</div> 
+        <div class="nav-item" id="nav-scn" onclick="showView('v-scenarios')">シナリオ一覧</div> 
     </div>
 
     <div class="nav-stats">
@@ -541,7 +808,7 @@
                 <h2 class="page-header-main">活動予定表</h2>
             </div>
             <div class="panel admin-only">
-                <button class="panel-trigger" onclick="togglePanel('add-sch-form')">＋ 新しい予定を記帳する</button>
+                <button class="panel-trigger" onclick="togglePanel('add-sch-form')">＋ 新しい予定を登録する</button>
                 <div id="add-sch-form" class="panel-content">
                     <span class="section-label">刻限と状況</span>
                     <div id="sch-date-list-new" class="sch-date-list"></div>
@@ -589,10 +856,10 @@
                 <h2 class="page-header-main">探索者名簿</h2>
             </div>
             <div class="panel admin-only">
-                <button class="panel-trigger" onclick="initNewForm(); showView('v-char-new');">＋ 新しい探索者を記帳する</button>
+                <button class="panel-trigger" onclick="initNewForm(); showView('v-char-new');">＋ 新しい探索者を登録する</button>
             </div>
             <div class="archive-controls">
-                <div class="control-group"><span>順序：</span><select id="sort-order" onchange="renderChars()"><option value="new">記帳が新しい順</option><option value="old">記帳が古い順</option><option value="name">名前（五十音）順</option><option value="san_desc">正気度が高い順</option><option value="san_asc">正気度が低い順</option></select></div>
+                <div class="control-group"><span>順序：</span><select id="sort-order" onchange="renderChars()"><option value="new">登録が新しい順</option><option value="old">登録が古い順</option><option value="name">名前（五十音）順</option><option value="san_desc">正気度が高い順</option><option value="san_asc">正気度が低い順</option></select></div>
                 <div class="control-group"><span>抽出：</span><select id="filter-reg" onchange="renderChars()"><option value="all">すべての版</option><option value="6th">6版のみ</option><option value="7th">7版のみ</option></select></div>
                 <div style="flex:1"></div><div class="control-group" style="font-style:italic;"><span id="char-count-disp">0</span> 名の記録</div>
             </div>
@@ -603,12 +870,12 @@
             <div class="page-header-title">
                 <div class="page-header-inner"></div>
                 <span class="page-header-sub">SCENARIOS</span>
-                <h2 class="page-header-main">シナリオ目録</h2>
+                <h2 class="page-header-main">シナリオ一覧</h2>
             </div>
             <div class="panel admin-only">
-                <button class="panel-trigger" onclick="togglePanel('add-scn-form')">＋ 新しいシナリオを目録に記帳する</button>
+                <button class="panel-trigger" onclick="togglePanel('add-scn-form')">＋ 新しいシナリオを一覧に登録する</button>
                 <div id="add-scn-form" class="panel-content">
-                    <span class="section-label">目録の情報</span>
+                    <span class="section-label">一覧の情報</span>
                     <div class="form-group"><label>シナリオ名</label><input type="text" id="scn-in-title" placeholder="タイトルを記入"></div>
                     <div class="form-group" style="margin-top:15px;">
                         <label>ジャンル</label>
@@ -643,7 +910,7 @@
                         <button class="btn-sub admin-only" onclick="addScnRunField('new')">＋ 開催記録を追加</button>
                     </div>
 
-                    <button class="btn-main" id="btn-save-scn" onclick="addScenarioToLibrary()" style="margin-top:30px;">目録に記帳する</button>
+                    <button class="btn-main" id="btn-save-scn" onclick="addScenarioToLibrary()" style="margin-top:30px;">一覧に登録する</button>
                 </div>
             </div>
 
@@ -651,8 +918,8 @@
                 <div class="control-group">
                     <span>順序：</span>
                     <select id="scn-sort-order" onchange="renderScenarioLibrary()">
-                        <option value="new">記帳が新しい順</option>
-                        <option value="old">記帳が古い順</option>
+                        <option value="new">登録が新しい順</option>
+                        <option value="old">登録が古い順</option>
                         <option value="date_desc">通過日が新しい順</option>
                         <option value="date_asc">通過日が古い順</option>
                         <option value="title">題名（五十音）順</option>
@@ -687,8 +954,8 @@
 
         <div id="v-char-new" class="view-section">
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--accent); padding-bottom:10px; margin-bottom:20px;">
-                <h2 style="font-family:'Noto Serif JP',serif; margin:0;">新しい探索者を記帳する</h2>
-                <button class="btn-action admin-only" onclick="openImportOverlay()" style="border-color:var(--accent); color:var(--accent); padding:8px 15px;">いあきゃらテキストから自動記帳</button>
+                <h2 style="font-family:'Noto Serif JP',serif; margin:0;">新しい探索者を登録する</h2>
+                <button class="btn-action admin-only" onclick="openImportOverlay()" style="border-color:var(--accent); color:var(--accent); padding:8px 15px;">いあきゃらテキストから自動登録</button>
             </div>
             <div class="editor-page" style="padding:0; overflow:visible; padding-bottom:100px;">
                 <div id="form-container-new"></div>
@@ -707,7 +974,7 @@
                 </div>
                 <div style="flex:1; display:flex; justify-content:flex-start; gap:10px; padding-left:20px;">
                     <button class="btn-action outline" onclick="showView('v-characters')" style="padding:10px 20px; border-color:var(--text-sub); color:var(--text-main);">取り消す</button>
-                    <button class="btn-action admin-only" onclick="saveData('new')" style="background:var(--accent); color:white; padding:10px 20px; font-weight:bold;">名簿に記帳する</button>
+                    <button class="btn-action admin-only" onclick="saveData('new')" style="background:var(--accent); color:white; padding:10px 20px; font-weight:bold;">名簿に登録する</button>
                 </div>
             </div>
         </div>
@@ -899,9 +1166,9 @@
     <div class="editor-book single-column" onclick="event.stopPropagation()">
         <div class="close-btn" onclick="closeScnEditor()">×</div>
         <div class="editor-page">
-            <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">目録の記録を改編する</h2>
+            <h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">一覧の記録を改編する</h2>
             <div id="scn-edit-form-area">
-                <span class="section-label">目録の情報</span>
+                <span class="section-label">一覧の情報</span>
                 <div class="form-group"><label>シナリオ題名</label><input type="text" id="edit-scn-in-title"></div>
                 <div class="form-group" style="margin-top:15px;">
                     <label>ジャンル</label>
@@ -936,7 +1203,7 @@
             </div>
         </div>
         <div class="sticky-footer">
-            <button class="btn-main admin-only" onclick="updateScenario()" style="max-width: 400px; margin: 0 auto; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">目録を書き換える</button>
+            <button class="btn-main admin-only" onclick="updateScenario()" style="max-width: 400px; margin: 0 auto; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">一覧を書き換える</button>
         </div>
     </div>
 </div>
@@ -2176,7 +2443,7 @@
         document.querySelectorAll('.filter-acq, .filter-prof').forEach(cb => cb.checked = false);
         const c = document.getElementById('form-container-new'); c.innerHTML = ''; c.appendChild(createFormNode('new')); crop.activeEl = c.querySelector('.crop-img-el'); updatePatternOptions(c, '6th'); applyPresets(c, '6th'); document.getElementById('sch-date-list-new').innerHTML = ''; addSchDateField(document.querySelector('#add-sch-form .btn-sub')); document.getElementById('sch-ptn-list-kp-new').innerHTML = ''; document.getElementById('sch-ptn-list-pl-new').innerHTML = ''; handleSchRoleChange(document.getElementById('sch-role')); document.getElementById('scn-ptn-list-kp-new').innerHTML = ''; document.getElementById('scn-ptn-list-pl-new').innerHTML = ''; 
         const btnNew = document.querySelector('#v-char-new .btn-action.admin-only:last-child');
-        if (btnNew) { btnNew.setAttribute('onclick', "saveData('new')"); btnNew.innerText = "名簿に記帳する"; }
+        if (btnNew) { btnNew.setAttribute('onclick', "saveData('new')"); btnNew.innerText = "名簿に登録する"; }
     }
     function createFormNode(s) { const t = document.getElementById('form-template').content.cloneNode(true); t.querySelectorAll('input[name="regulation_tmp"]').forEach(r => r.name = "reg_" + s); return t; }
     function handleRegChange(el) { const p = el.closest('.panel-content, .editor-page'); updatePatternOptions(p, el.value); recalc(el); if(confirm("レギュレーションに合わせて技能リストを整理しますか？")) applyPresets(p, el.value); }
@@ -3201,7 +3468,7 @@
     }
 
     function deleteScenario(id) {
-        if(confirm("このシナリオを目録から削除しますか？")) {
+        if(confirm("このシナリオを一覧から削除しますか？")) {
             scnLib = scnLib.filter(s => s.id !== id);
             localStorage.setItem(KEY_SCN_LIB, JSON.stringify(scnLib));
             renderScenarioLibrary(); pushData();
