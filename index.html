@@ -411,15 +411,118 @@
         .char-card:hover::before {
             opacity: 0.5;
         }
-        .char-card:hover::after {
-            opacity: 0.3;
-            transform: rotate(-18deg) scale(1.08);
-            filter: contrast(1.2) drop-shadow(0 0 1px rgba(26, 42, 58, 0.3));
+        /* ーーー ★現役探索者のホバー演出（3点盛り）ーーー */
+
+        /* 案B：現役の証（スタンプが真鍮色に輝く） */
+        .char-card:not(.is-lost):hover::after { 
+            opacity: 0.35; 
+            /* 黒/銀のSVGを強制的に真鍮色へ染め上げ、光らせる魔法 */
+            filter: sepia(1) hue-rotate(-20deg) saturate(4) brightness(1.2) drop-shadow(0 0 8px rgba(184, 115, 51, 0.6));
+            transform: rotate(-22deg) scale(1.02);
         }
-        [data-theme="dark"] .char-card:hover::after {
-            opacity: 0.4; /* ダークモード時は少し強めに浮かび上がらせる */
-            filter: brightness(1.2) drop-shadow(0 0 2px rgba(138, 154, 170, 0.4));
+        [data-theme="dark"] .char-card:not(.is-lost):hover::after { 
+            opacity: 0.5; 
+            filter: sepia(1) hue-rotate(-20deg) saturate(4) brightness(1.3) drop-shadow(0 0 10px rgba(184, 115, 51, 0.8));
         }
+
+        /* ーーー ★現役探索者のホバー演出（Gの斜光 ＋ Fの蔦模様 ＋ 真っ直ぐな透かし文字） ーーー */
+
+        /* 案C柄 ＆ 右上からの斜光：アール・デコ・メッシュと70%グラデーション */
+        .light-sweep {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* ★ 角度を 225deg (右上から左下へ) に変更し、透明化の起点を70%に拡張 */
+            background: 
+                linear-gradient(225deg, rgba(184, 115, 51, 0.18) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg fill='none' stroke='%23808080' stroke-width='0.5' stroke-opacity='0.3'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z'/%3E%3Cpath d='M0 0 L50 50 M50 0 L0 50'/%3E%3Cpath d='M25 10 L40 25 L25 40 L10 25 Z'/%3E%3Ccircle cx='25' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100% 100%, 50px 50px;
+            opacity: 0; z-index: 1; pointer-events: none; border-radius: inherit;
+            
+            /* ★ CSSマスク：右上から左下に向かって透明化し、70%で完全に消える */
+            -webkit-mask-image: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 70%);
+            mask-image: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 70%);
+            transition: opacity 0.8s ease;
+        }
+        [data-theme="dark"] .light-sweep {
+            background: 
+                linear-gradient(225deg, rgba(184, 115, 51, 0.25) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg fill='none' stroke='%2399aab5' stroke-width='0.5' stroke-opacity='0.3'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z'/%3E%3Cpath d='M0 0 L50 50 M50 0 L0 50'/%3E%3Cpath d='M25 10 L40 25 L25 40 L10 25 Z'/%3E%3Ccircle cx='25' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100% 100%, 50px 50px;
+        }
+        .char-card:not(.is-lost):hover .light-sweep { opacity: 1; }
+
+        /* ACTIVE INVESTIGATOR の透かし文字（傾きなし・小見出し＆区切り線つき） */
+        .active-watermark {
+            position: absolute; top: 50%; right: 5%; transform: translateY(-50%); 
+            display: flex; flex-direction: column; align-items: center; 
+            color: var(--important); opacity: 0; z-index: 1; pointer-events: none;
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .aw-main {
+            font-family: 'Times New Roman', 'Noto Serif JP', serif;
+            font-size: 2.8rem; font-weight: bold;
+            white-space: nowrap; letter-spacing: 5px;
+            border-bottom: 2px solid var(--important); 
+            padding-bottom: 2px; margin-bottom: 4px;
+        }
+        
+        .aw-sub {
+            font-family: 'Times New Roman', 'Noto Serif JP', serif;
+            font-size: 1.1rem; font-style: italic; 
+            letter-spacing: 3px; font-weight: bold;
+        }
+
+        .char-card:not(.is-lost):hover .active-watermark {
+            opacity: 0.07; 
+            transform: translateY(-50%) scale(1.02) translateX(-10px);
+        }
+        [data-theme="dark"] .char-card:not(.is-lost):hover .active-watermark {
+            opacity: 0.12;
+        }
+
+        /* ★ ロスト印（編集画面のトグルボタン）：傾きをなくし真っ直ぐに */
+        .lost-stamp-btn { background: transparent; border: 2px dashed rgba(139, 0, 0, 0.3); color: rgba(139, 0, 0, 0.4); font-family: 'Times New Roman', serif; font-size: 1.2rem; font-weight: bold; letter-spacing: 4px; padding: 4px 15px; border-radius: 4px; cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); user-select: none; }
+        .lost-stamp-btn:hover { border-color: rgba(139, 0, 0, 0.6); color: rgba(139, 0, 0, 0.8); transform: scale(1.05); }
+        .lost-stamp-btn.active { border: 3px solid #8b0000; color: #8b0000; background: rgba(139, 0, 0, 0.05); transform: scale(1.1); box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2), inset 0 0 10px rgba(139, 0, 0, 0.1); text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
+        [data-theme="dark"] .lost-stamp-btn.active { border-color: #ff3333; color: #ff3333; box-shadow: 0 4px 10px rgba(255, 50, 50, 0.3), inset 0 0 10px rgba(255, 50, 50, 0.2); }
+
+        /* ★ ロスト状態の名簿カード演出（ガシャン！と叩きつける劇的タイプ） */
+        .char-card.is-lost .char-name-ruby { color: var(--text-sub); } /* 名前を少し暗く（遺影風） */
+        .char-card.is-lost .char-icon { filter: grayscale(0.8) sepia(0.2); } /* アイコンを色褪せさせる */
+        
+        .char-card.is-lost:hover { 
+            /* 背景は一瞬で血に染まるが、枠と光り方は生存探索者と完全に統一する */
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(139,0,0,0.08) 100%) !important; 
+            border-color: var(--accent) !important; 
+            box-shadow: 0 0 25px var(--e-glow-strong); 
+            transition: background 0s, box-shadow 0.4s ease, border-color 0.4s ease; 
+        }
+        [data-theme="dark"] .char-card.is-lost:hover { 
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,50,50,0.1) 100%) !important; 
+            border-color: var(--accent) !important; 
+            box-shadow: 0 0 25px var(--e-glow-strong); 
+        }
+        
+        /* ガシャン！と叩きつけられるLOSTスタンプ */
+        .lost-stamp-overlay { 
+            position: absolute; bottom: 25px; right: 35px; font-family: 'Times New Roman', serif; 
+            font-size: 3.5rem; font-weight: bold; color: #8b0000; border: 4px solid #8b0000; 
+            padding: 0 15px; border-radius: 8px; 
+            transform: rotate(-15deg) scale(1.5); /* 最初は大きく浮かんでいる状態 */
+            opacity: 0; z-index: 4; pointer-events: none; 
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); /* 鋭く速いアニメーション */
+            mix-blend-mode: multiply; 
+        }
+        [data-theme="dark"] .lost-stamp-overlay { color: #ff3333; border-color: #ff3333; mix-blend-mode: screen; }
+        
+        .char-card.is-lost:hover .lost-stamp-overlay { 
+            opacity: 0.85; 
+            transform: rotate(-10deg) scale(1); /* 実寸大に叩きつけられる */
+        }
+        
+        /* 閲覧画面用の小さなLOSTバッジ */
+        .viewer-lost-badge { font-family: 'Times New Roman', serif; font-size: 1.2rem; font-weight: bold; color: #8b0000; border: 2px solid #8b0000; padding: 2px 8px; border-radius: 4px; transform: rotate(-5deg); display: inline-block; margin-left: 15px; mix-blend-mode: multiply; }
+        [data-theme="dark"] .viewer-lost-badge { color: #ff3333; border-color: #ff3333; mix-blend-mode: screen; }
 
         /* ★ 2. 予定カード：本体のみ切り離されるアニメーション ＋ ダイナミック発光 */
         .chr-card { background: transparent !important; border: none !important; box-shadow: none !important; overflow: visible !important; }
@@ -883,6 +986,7 @@
                             <option value="passed">通過済み</option>
                             <option value="watched">視聴済み</option>
                             <option value="kp">KP可能</option>
+                            <option value="prep">準備中</option>
                         </select>
                     </div>
 
@@ -945,6 +1049,12 @@
                 <summary class="scn-summary-btn"><div style="display:flex; align-items:center;"><span class="scn-count-badge" id="count-kp">0編</span> の記録</div></summary>
                 <div id="scn-list-kp" style="margin-top:15px;"></div>
             </details>
+
+            <span class="section-label" style="margin-top:40px;">準備中の物語</span>
+            <details class="scn-section-details">
+                <summary class="scn-summary-btn"><div style="display:flex; align-items:center;"><span class="scn-count-badge" id="count-prep">0編</span> の記録</div></summary>
+                <div id="scn-list-prep" style="margin-top:15px;"></div>
+            </details>
         </div>
 
         <div id="v-char-viewer" class="view-section">
@@ -953,10 +1063,23 @@
         </div>
 
         <div id="v-char-new" class="view-section">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--accent); padding-bottom:10px; margin-bottom:20px;">
-                <h2 style="font-family:'Noto Serif JP',serif; margin:0;">新しい探索者を登録する</h2>
-                <button class="btn-action admin-only" onclick="openImportOverlay()" style="border-color:var(--accent); color:var(--accent); padding:8px 15px;">いあきゃらテキストから自動登録</button>
+            <div class="page-header-title">
+                <div class="page-header-inner"></div>
+                <span class="page-header-sub">NEW INVESTIGATOR</span>
+                <h2 class="page-header-main">探索者の新規登録</h2>
             </div>
+
+            <div class="panel admin-only" style="border: 2px solid var(--accent); background: var(--san-bg); box-shadow: 0 5px 15px rgba(139,0,0,0.05); margin-bottom: 30px;">
+                <button class="panel-trigger" onclick="togglePanel('import-form-area')" style="background: transparent; border-bottom: 1px dashed var(--san-border); color: var(--accent);">
+                    <span style="font-size:1.2rem; margin-right:8px;">📜</span> いあきゃらインポート
+                </button>
+                <div id="import-form-area" class="panel-content open" style="background: transparent; padding: 20px;">
+                    <p style="font-size:0.85rem; color:var(--text-sub); margin-top:0; font-weight:bold;">いあきゃらの「チャットパレット出力」などで生成されたテキストデータを貼り付けてください。</p>
+                    <textarea id="import-text-area" style="height:100px; font-family:monospace; font-size:0.8rem; margin-bottom:15px; width:100%; box-sizing:border-box; background:var(--card-bg);" placeholder="ここにテキストをペースト..."></textarea>
+                    <button class="btn-main" onclick="parseAndAddChar()" style="padding:10px; font-size:1rem;">資料を写記する</button>
+                </div>
+            </div>
+
             <div class="editor-page" style="padding:0; overflow:visible; padding-bottom:100px;">
                 <div id="form-container-new"></div>
             </div>
@@ -993,7 +1116,13 @@
         <label class="reg-option"><input type="radio" name="regulation_tmp" value="7th" onchange="handleRegChange(this)"> 新クトゥルフ神話TRPG (7版)</label>
     </div>
     <span class="section-label">基本情報</span>
-    <div class="form-row"><div class="form-group"><label>名前</label><input type="text" class="in-name"></div><div class="form-group"><label>ふりがな</label><input type="text" class="in-kana"></div></div>
+    <div style="display: flex; align-items: flex-end; padding-bottom: 2px; margin-bottom: 15px;">
+        <button type="button" class="lost-stamp-btn" onclick="this.classList.toggle('active')" title="クリックでロスト状態（死亡/行方不明）を切り替え">M.I.A / LOST</button>
+    </div>
+    <div class="form-row">
+        <div class="form-group"><label>名前</label><input type="text" class="in-name"></div>
+        <div class="form-group"><label>ふりがな</label><input type="text" class="in-kana"></div>
+    </div>
     <div class="form-row"><div class="form-group"><label>職業</label><input type="text" class="in-job"></div><div class="form-group"><label>性別</label><input type="text" class="in-sex"></div></div>
     <div class="form-row"><div class="form-group"><label>年齢</label><input type="text" class="in-age"></div><div class="form-group"><label>身長</label><input type="text" class="in-height"></div></div>
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
@@ -1128,7 +1257,6 @@
             </div>
         </div>
 </main>
-<div id="import-overlay"><div class="import-book"><div class="close-btn" onclick="closeImportOverlay()">×</div><div class="import-page"><h2 style="font-family:'Noto Serif JP',serif; border-bottom:1px solid var(--accent); padding-bottom:10px;">「いあきゃら」テキストから写記する</h2><textarea id="import-text-area" style="height:350px; font-family:monospace; font-size:0.8rem;" placeholder="ここにテキストをペースト..."></textarea><button class="btn-main admin-only" style="margin-top:20px;" onclick="parseAndAddChar()">写記する</button></div></div></div>
 <div id="sch-viewer-overlay" onclick="closeSchViewer()"><div class="viewer-book single-column" onclick="event.stopPropagation()"><div class="close-btn" onclick="closeSchViewer()">×</div><div class="viewer-page" id="sv-page-content" style="flex: 1 0 auto;"></div><div id="sv-edit-btn-container" class="sticky-footer" style="display:none;"></div></div></div>
 <div id="sch-editor-overlay" onclick="closeSchEditor()">
     <div class="editor-book single-column" onclick="event.stopPropagation()">
@@ -1176,6 +1304,7 @@
                         <option value="passed">通過済み</option>
                         <option value="watched">視聴済み</option>
                         <option value="kp">KP可能</option>
+                        <option value="prep">準備中</option>
                     </select>
                 </div>
                 <div id="edit-scn-ext-passed">
@@ -2092,6 +2221,7 @@
                 <div style="flex:1; min-width:250px;">
                     <div style="display:flex; align-items:center; gap:15px; margin-bottom:12px; flex-wrap:wrap;">
                         <h2 style="font-family:'Noto Serif JP',serif; font-size:2.2rem; margin:0; font-weight:700; color:var(--text-main); word-break:keep-all; line-height:1.2;"><ruby>${c.name || '名無し'}<rt>${c.kana || ''}</rt></ruby></h2>
+                        ${c.isLost ? '<span class="viewer-lost-badge">LOST</span>' : ''}
                     </div>
                     
                     <div style="width:100%; height:1px; background:var(--border); margin:18px 0; opacity:0.6;"></div>
@@ -2387,7 +2517,7 @@
             let scnDisp = (c.scns && c.scns.length) ? c.scns[0] + (c.scns.length > 1 ? `<span class="scn-count">+${c.scns.length - 1}</span>` : '') : '—— 未通過 ——'; 
             
             ui.innerHTML += `
-                    <div class="char-card" onclick="openViewer(${i})">
+                    <div class="char-card ${c.isLost ? 'is-lost' : ''}" onclick="openViewer(${i})">
                         <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
                             <button class="btn-mobile-menu">⋮</button>
                             <div class="card-btn-group">
@@ -2398,6 +2528,7 @@
                             </div>
                         </div>
                         <img src="${c.img || ''}" class="char-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
+                        ${c.isLost ? '<div class="lost-stamp-overlay">LOST</div>' : '<div class="active-watermark"><div class="aw-main">ACTIVE INVESTIGATOR</div><div class="aw-sub">Can be Continued</div></div><div class="light-sweep"></div>'}
                         <div style="flex:1; position:relative; z-index:2;">
                             <div class="name-area">
                             <span class="reg-tag ${c.regulation === '7th' ? 'tag-7th' : 'tag-6th'}">${c.regulation === '7th' ? '7th Ed.' : '6th Ed.'}</span>
@@ -2779,7 +2910,7 @@
         currentEditIdx = i; const c = chars[i]; 
         document.querySelectorAll('.filter-acq, .filter-prof').forEach(cb => cb.checked = false);
         c.stats = c.stats || {}; c.calcStats = c.calcStats || {}; c.skills = c.skills || []; c.scns = c.scns || []; c.profs = c.profs || []; c.secrets = c.secrets || [];
-        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; if(f('in-tokki')) f('in-tokki').value = c.tokki || ""; if(f('in-tokucho')) f('in-tokucho').value = c.tokucho || ""; if(f('in-tokucho2')) f('in-tokucho2').value = c.tokucho2 || ""; if(f('in-scenario-memo')) f('in-scenario-memo').value = c.scnMemo || ""; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; 
+        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; if(f('in-tokki')) f('in-tokki').value = c.tokki || ""; if(f('in-tokucho')) f('in-tokucho').value = c.tokucho || ""; if(f('in-tokucho2')) f('in-tokucho2').value = c.tokucho2 || ""; if(f('in-scenario-memo')) f('in-scenario-memo').value = c.scnMemo || ""; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; if(c.isLost) f('lost-stamp-btn').classList.add('active');
         ["str","con","pow","dex","app","siz","int","edu","san"].forEach(k => { f('in-'+k).value = c.stats[k]; if(f('mod-'+k)) f('mod-'+k).value = c.stats['mod_'+k] || ''; }); 
         if(f('mod-hp')) f('mod-hp').value = c.calcStats?.mod_hp || ''; if(f('mod-mp')) f('mod-mp').value = c.calcStats?.mod_mp || ''; if(f('mod-db')) f('mod-db').value = c.calcStats?.mod_db || ''; if(f('mod-ide')) f('mod-ide').value = c.calcStats?.mod_ide || ''; if(f('mod-know')) f('mod-know').value = c.calcStats?.mod_know || ''; if(f('mod-luck')) f('mod-luck').value = c.calcStats?.mod_luck || '';
         container.querySelector('input[name="reg_edit"][value="' + (c.regulation || '6th') + '"]').checked = true; updatePatternOptions(container, c.regulation || '6th'); f('pt-job-pattern').value = c.ptPattern || 'edu_only'; if(f('pt-job-manual')) f('pt-job-manual').value = c.ptManual || 0;
@@ -2811,7 +2942,7 @@
         const sks = Array.from(c.querySelectorAll('.sk-row')).map(r => { return { n: r.querySelector('.sk-name').value, b: r.querySelector('.sk-b').value, j: r.querySelector('.sk-j').value, i: r.querySelector('.sk-i').value, g: r.querySelector('.sk-g').value, o: r.querySelector('.sk-o').value, t: r.querySelector('.sk-total').value, sub: r.querySelector('.sk-sub')?.value || "", gr: r.querySelector('.sk-g-fix').value }; }).filter(s => Number(s.j)||Number(s.i)||Number(s.g)||Number(s.o)); 
         
         const d = { 
-            regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, jobSup: f('job-supplement-select')?.value || "", jobNameSel: f('job-supplement-select')?.value === 'scenario_base' ? f('job-name-input')?.value || "" : f('job-name-select')?.value || "", tokki: f('in-tokki')?.value || "", tokucho: f('in-tokucho')?.value || "", tokucho2: f('in-tokucho2')?.value || "", scnMemo: f('in-scenario-memo')?.value || "", sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value, 
+              isLost: c.querySelector('.lost-stamp-btn').classList.contains('active'), regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, jobSup: f('job-supplement-select')?.value || "", jobNameSel: f('job-supplement-select')?.value === 'scenario_base' ? f('job-name-input')?.value || "" : f('job-name-select')?.value || "", tokki: f('in-tokki')?.value || "", tokucho: f('in-tokucho')?.value || "", tokucho2: f('in-tokucho2')?.value || "", scnMemo: f('in-scenario-memo')?.value || "", sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value,
             stats: { str: f('in-str').value, mod_str: f('mod-str')?.value, con: f('in-con').value, mod_con: f('mod-con')?.value, pow: f('in-pow').value, mod_pow: f('mod-pow')?.value, dex: f('in-dex').value, mod_dex: f('mod-dex')?.value, app: f('in-app').value, mod_app: f('mod-app')?.value, siz: f('in-siz').value, mod_siz: f('mod-siz')?.value, int: f('in-int').value, mod_int: f('mod-int')?.value, edu: f('in-edu').value, mod_edu: f('mod-edu')?.value, san: f('in-san').value, mod_san: f('mod-san')?.value }, 
             calcStats: { luck: f('val-luck').value, mod_luck: f('mod-luck')?.value, mod_hp: f('mod-hp')?.value, mod_mp: f('mod-mp')?.value, mod_db: f('mod-db')?.value, mod_ide: f('mod-ide')?.value, mod_know: f('mod-know')?.value }, 
             ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })) 
@@ -2953,7 +3084,10 @@
         parsedSkillsMap.forEach((s) => { if (Number(s.j)>0 || Number(s.i)>0 || Number(s.g)>0 || Number(s.o)>0) { orderedSkills.push({ n: s.n, b: s.b, j: s.j, i: s.i, g: s.g, o: s.o, t: s.t, sub: s.sub, gr: getGenre(s.n) }); } });
         const data = { regulation: reg, name: pName, kana: pKana, job: getVal(/職業:\s*(.+)/), sex: getVal(/性別:\s*(.+)/), age: getVal(/年齢:\s*(.+)/), height: getVal(/身長:\s*(.+)/), img: getVal(/https:\/\/image\.iaproject\.app\/([^\s]+)/) ? "https://image.iaproject.app/" + getVal(/https:\/\/image\.iaproject\.app\/([^\s]+)/) : "", stats: stats, calcStats: { luck: getVal(/幸運\s+(\d+)/) }, ptPattern: ptPatt, ptManual: ptMan, skills: orderedSkills, scns: (lines.find(l => l.includes('タグ:')) ? lines.find(l => l.includes('タグ:')).split('タグ:')[1].split(/[,，\s]+/).filter(s => s.trim()) : []), profs: [], secrets: [] };
         const memoIdx = text.indexOf('【メモ】'); if(memoIdx !== -1) data.profs.push({ t: "写記された手記", x: text.substring(memoIdx + 4).trim() });
-        chars.push(data); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); closeImportOverlay(); pushData(); alert(data.name + ' の記録を写記しました。'); updateScheduleFormSelect();
+        chars.push(data); localStorage.setItem(KEY, JSON.stringify(chars)); renderChars(); 
+        document.getElementById('import-text-area').value = ''; // テキストエリアをリセット
+        showView('v-characters'); // 成功したら名簿一覧画面へ自動で戻る
+        pushData(); alert(data.name + ' の記録を写記しました。'); updateScheduleFormSelect();
     }
 
     function renderScheduleView() { schedules = schedules.map(s => { if (!s.dates && s.date) s.dates = [s.date]; if (!s.dates) s.dates = []; return s; }); autoUpdateStatus(); renderCalendar(); renderChronicle(); updateScheduleFormSelect(); }
@@ -3325,12 +3459,14 @@
         const listPassed = document.getElementById('scn-list-passed');
         const listWatched = document.getElementById('scn-list-watched');
         const listKp = document.getElementById('scn-list-kp');
+        const listPrep = document.getElementById('scn-list-prep'); // ★追加
         
-        if(!listPassed || !listWatched || !listKp) return;
+        if(!listPassed || !listWatched || !listKp || !listPrep) return;
 
         listPassed.innerHTML = '';
         listWatched.innerHTML = '';
         listKp.innerHTML = '';
+        listPrep.innerHTML = ''; // ★追加
         
         let dList = [...scnLib];
         const sortVal = document.getElementById('scn-sort-order') ? document.getElementById('scn-sort-order').value : 'new';
@@ -3387,21 +3523,25 @@
             if(s.genre === 'passed') listPassed.innerHTML += cardHtml;
             else if(s.genre === 'watched') listWatched.innerHTML += cardHtml;
             else if(s.genre === 'kp') listKp.innerHTML += cardHtml;
+            else if(s.genre === 'prep') listPrep.innerHTML += cardHtml; // ★追加
         });
         
         const emptyMsg = '<div style="color:var(--text-sub); font-size:0.8rem; padding:10px 0;">—— 記録はありません ——</div>';
         if(!listPassed.innerHTML) listPassed.innerHTML = emptyMsg;
         if(!listWatched.innerHTML) listWatched.innerHTML = emptyMsg;
         if(!listKp.innerHTML) listKp.innerHTML = emptyMsg;
+        if(!listPrep.innerHTML) listPrep.innerHTML = emptyMsg; // ★追加
 
         // ★ 各セクションの件数を数えてボタンのバッジに反映
         const countPassed = dList.filter(s => s.genre === 'passed').length;
         const countWatched = dList.filter(s => s.genre === 'watched').length;
         const countKp = dList.filter(s => s.genre === 'kp').length;
+        const countPrep = dList.filter(s => s.genre === 'prep').length; // ★追加
         
         if (document.getElementById('count-passed')) document.getElementById('count-passed').innerText = countPassed + '編';
         if (document.getElementById('count-watched')) document.getElementById('count-watched').innerText = countWatched + '編';
         if (document.getElementById('count-kp')) document.getElementById('count-kp').innerText = countKp + '編';
+        if (document.getElementById('count-prep')) document.getElementById('count-prep').innerText = countPrep + '編'; // ★追加
 
         if(typeof updateStats === 'function') updateStats();
     }
