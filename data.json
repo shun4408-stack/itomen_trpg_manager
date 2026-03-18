@@ -4136,7 +4136,7 @@
       ]
     },
     {
-      "isLost": true,
+      "isLost": false,
       "regulation": "6th",
       "name": "Iris = Cotton",
       "kana": "アイリス　コットン",
