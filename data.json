@@ -4335,6 +4335,7 @@
     },
     {
       "isLost": true,
+      "isSecret": true,
       "regulation": "6th",
       "name": "八盲　糸乃",
       "kana": "やもう　しの",
