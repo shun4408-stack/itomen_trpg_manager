@@ -4527,6 +4527,7 @@
     },
     {
       "isLost": true,
+      "isSecret": true,
       "regulation": "6th",
       "name": "流眄　紋葉",
       "kana": "ながしめ　いさは",
