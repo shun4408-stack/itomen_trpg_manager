@@ -1293,6 +1293,8 @@
       ]
     },
     {
+      "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "真堂　系",
       "kana": "しんどう　けい",
