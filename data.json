@@ -1074,6 +1074,8 @@
       "secrets": []
     },
     {
+      "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "鹿目　千緋",
       "kana": "かなめ　ちあき",
