@@ -4926,7 +4926,7 @@
       "calcStats": {
         "luck": "50",
         "mod_luck": "",
-        "mod_hp": "",
+        "mod_hp": "20",
         "mod_mp": "",
         "mod_db": "",
         "mod_ide": "",
