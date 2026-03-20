@@ -2026,6 +2026,8 @@
       ]
     },
     {
+      "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "schöne = Faden",
       "kana": "シェーネ　ファーデン ",
