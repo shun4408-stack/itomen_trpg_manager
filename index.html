@@ -486,6 +486,56 @@
         .lost-stamp-btn.active { border: 3px solid #8b0000; color: #8b0000; background: rgba(139, 0, 0, 0.05); transform: scale(1.1); box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2), inset 0 0 10px rgba(139, 0, 0, 0.1); text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
         [data-theme="dark"] .lost-stamp-btn.active { border-color: #ff3333; color: #ff3333; box-shadow: 0 4px 10px rgba(255, 50, 50, 0.3), inset 0 0 10px rgba(255, 50, 50, 0.2); }
 
+/* ★ SECRET印（編集画面のトグルボタン） */
+        .secret-stamp-btn { background: transparent; border: 2px dashed rgba(46, 125, 50, 0.3); color: rgba(46, 125, 50, 0.4); font-family: 'Times New Roman', serif; font-size: 1.2rem; font-weight: bold; letter-spacing: 4px; padding: 4px 15px; border-radius: 4px; cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); user-select: none; }
+        .secret-stamp-btn:hover { border-color: rgba(46, 125, 50, 0.6); color: rgba(46, 125, 50, 0.8); transform: scale(1.05); }
+        .secret-stamp-btn.active { border: 3px solid #2e7d32; color: #2e7d32; background: rgba(46, 125, 50, 0.05); transform: scale(1.1); box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2), inset 0 0 10px rgba(46, 125, 50, 0.1); text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
+        [data-theme="dark"] .secret-stamp-btn.active { border-color: #4caf50; color: #4caf50; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3), inset 0 0 10px rgba(76, 175, 80, 0.2); }
+
+        /* ★ SECRET（秘匿）状態のウォーターマーク（光の方向を左→右へ） */
+        .secret-watermark {
+            position: absolute; top: 0; left: 0; 
+            font-family: 'Times New Roman', 'Noto Serif JP', serif;
+            font-size: 5rem; 
+            font-weight: bold;
+            transform: rotate(0); 
+            z-index: 1; pointer-events: none; letter-spacing: 5px;
+            
+            /* ★ 初期状態：光を「左側（100%）」の枠外に待機させる */
+            background: linear-gradient(110deg, 
+                rgba(128,128,128,0.25) 0%, 
+                rgba(128,128,128,0.25) 45%, 
+                rgba(184,115,51,0.9) 50%, 
+                rgba(128,128,128,0.25) 55%, 
+                rgba(128,128,128,0.25) 100%
+            );
+            background-size: 300% auto;
+            background-position: 100% center; /* 完全に左枠外に隠れる */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            transition: background-position 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        [data-theme="dark"] .secret-watermark {
+            background: linear-gradient(110deg, 
+                rgba(180,180,180,0.15) 0%, 
+                rgba(180,180,180,0.15) 45%, 
+                rgba(184,115,51,1) 50%, 
+                rgba(180,180,180,0.15) 55%, 
+                rgba(180,180,180,0.15) 100%
+            );
+            background-size: 300% auto;
+            background-position: 100% center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ★ ホバー時の演出：光を「右側（0%）」へ向かって走り抜けさせる（生存探索者のみ） */
+        .char-card.is-secret:not(.is-lost):hover .secret-watermark {
+            background-position: 0% center; 
+        }
+
         /* ★ ロスト状態の名簿カード演出（ガシャン！と叩きつける劇的タイプ） */
         .char-card.is-lost .char-name-ruby { color: var(--text-sub); } /* 名前を少し暗く（遺影風） */
         .char-card.is-lost .char-icon { filter: grayscale(0.8) sepia(0.2); } /* アイコンを色褪せさせる */
@@ -725,6 +775,31 @@
 
             /* ★ 1. 名簿カード（探索者）のミニチュア化 */
             .char-card { padding: 12px 10px !important; gap: 10px !important; border-radius: 8px !important; margin-bottom: 15px !important; }
+
+            /* ーーー ★ スマホ専用：追加装飾の縮小エフェクト ーーー */
+            /* 1. 左下のオカルトエンブレム（サイズを半分にし、線の太さも調整） */
+            .char-card::after { 
+                width: 100px !important; height: 100px !important; 
+                bottom: -25px !important; left: -25px !important; 
+                background-size: 100px 100px, 100% 100%, 100% 100% !important;
+                border-width: 1px !important;
+                box-shadow: inset 0 0 0 2px var(--card-bg), inset 0 0 0 3px #1a2a3a, inset 0 0 0 5px var(--card-bg), inset 0 0 0 6px #1a2a3a !important;
+            }
+            [data-theme="dark"] .char-card::after {
+                box-shadow: inset 0 0 0 2px var(--card-bg), inset 0 0 0 3px #8a9aaa, inset 0 0 0 5px var(--card-bg), inset 0 0 0 6px #8a9aaa !important;
+            }
+            
+            /* 2. ACTIVE透かし文字（フォントサイズを約60%へ） */
+            .active-watermark .aw-main { font-size: 1.3rem !important; letter-spacing: 2px !important; margin-bottom: 2px !important; border-bottom-width: 1px !important; }
+            .active-watermark .aw-sub { font-size: 0.6rem !important; letter-spacing: 1px !important; }
+            .char-card:not(.is-lost):hover .active-watermark { transform: translateY(-50%) scale(1.02) translateX(-5px) !important; }
+            
+            /* 3. アール・デコ模様（パターン幅を50pxから25pxへ） */
+            .light-sweep { background-size: 100% 100%, 25px 25px !important; }
+            
+            /* 4. LOSTスタンプ（フォントサイズと枠線を縮小） */
+            .lost-stamp-overlay { font-size: 1.6rem !important; padding: 0 6px !important; bottom: 15px !important; right: 15px !important; border-width: 2px !important; border-radius: 4px !important; }
+            /* ーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
             /* 一覧カードのアイコンは小さく */
             .char-card .char-icon { width: 55px !important; height: 55px !important; border-width: 2px !important; }
             /* 閲覧ページのアイコンは大きく（中央揃え） */
@@ -1116,8 +1191,9 @@
         <label class="reg-option"><input type="radio" name="regulation_tmp" value="7th" onchange="handleRegChange(this)"> 新クトゥルフ神話TRPG (7版)</label>
     </div>
     <span class="section-label">基本情報</span>
-    <div style="display: flex; align-items: flex-end; padding-bottom: 2px; margin-bottom: 15px;">
-        <button type="button" class="lost-stamp-btn" onclick="this.classList.toggle('active')" title="クリックでロスト状態（死亡/行方不明）を切り替え">M.I.A / LOST</button>
+    <div style="display: flex; align-items: flex-end; padding-bottom: 2px; margin-bottom: 15px; gap: 15px;">
+        <button type="button" class="secret-stamp-btn" id="secret-stamp-btn" onclick="this.classList.toggle('active')" title="クリックで秘匿状態（SECRET）を切り替え">SECRET</button>
+        <button type="button" class="lost-stamp-btn" id="lost-stamp-btn" onclick="this.classList.toggle('active')" title="クリックでロスト状態（死亡/行方不明）を切り替え">M.I.A / LOST</button>
     </div>
     <div class="form-row">
         <div class="form-group"><label>名前</label><input type="text" class="in-name"></div>
@@ -1791,17 +1867,39 @@
 
     function copyToCcfolia(idx, btn) {
         const c = chars[idx];
-        const str = Number(c.stats.str) || 0; const con = Number(c.stats.con) || 0; const pow = Number(c.stats.pow) || 0; const dex = Number(c.stats.dex) || 0; const app = Number(c.stats.app) || 0; const siz = Number(c.stats.siz) || 0; const int = Number(c.stats.int) || 0; const edu = Number(c.stats.edu) || 0; const san = Number(c.stats.san) || 0;
-        const luck = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0;
-        const hp = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
-        const mp = c.regulation === '7th' ? Math.floor(pow/5) : pow;
-        const ide = c.regulation === '7th' ? int : int*5;
-        const know = c.regulation === '7th' ? edu : edu*5;
+        c.stats = c.stats || {}; c.calcStats = c.calcStats || {};
+        
+        // ★ 修正2：基本値＋補正値を合算した「現在値」を取得する
+        const g = (k) => (Number(c.stats[k]) || 0) + (Number(c.stats['mod_' + k]) || 0);
+        const str = g('str'); const con = g('con'); const pow = g('pow'); const dex = g('dex'); const app = g('app'); const siz = g('siz'); const int = g('int'); const edu = g('edu'); const san = g('san');
+        
+        const luckBase = (c.calcStats.luck) ? Number(c.calcStats.luck) : 0;
+        const luck = luckBase + (Number(c.calcStats.mod_luck) || 0);
+        
+        const hpBase = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
+        const hp = hpBase + (Number(c.calcStats.mod_hp) || 0);
+        
+        const mpBase = c.regulation === '7th' ? Math.floor(pow/5) : pow;
+        const mp = mpBase + (Number(c.calcStats.mod_mp) || 0);
+        
+        const ideBase = c.regulation === '7th' ? int : int*5;
+        const ide = ideBase + (Number(c.calcStats.mod_ide) || 0);
+        
+        const knowBase = c.regulation === '7th' ? edu : edu*5;
+        const know = knowBase + (Number(c.calcStats.mod_know) || 0);
         
         const s_val = str + siz;
-        let db; 
-        if(c.regulation === '6th') db = (s_val<=12)?"-1d6":(s_val<=16)?"-1d4":(s_val<=24)?"0":(s_val<=32)?"+1d4":"+1d6"; 
-        else db = (s_val<65)?"-2":(s_val<85)?"-1":(s_val<125)?"0":(s_val<165)?"+1d4":"+1d6";
+        let dbBase; 
+        if(c.regulation === '6th') dbBase = (s_val<=12)?"-1d6":(s_val<=16)?"-1d4":(s_val<=24)?"0":(s_val<=32)?"+1d4":"+1d6"; 
+        else dbBase = (s_val<65)?"-2":(s_val<85)?"-1":(s_val<125)?"0":(s_val<165)?"+1d4":"+1d6";
+
+        let db = dbBase;
+        const dbMod = c.calcStats.mod_db;
+        if (dbMod) {
+            if (dbBase === "0" || dbBase === 0) db = dbMod;
+            else if (String(dbMod).startsWith("+") || String(dbMod).startsWith("-")) db = dbBase + String(dbMod);
+            else db = dbBase + "+" + dbMod;
+        }
 
         let cc = c.regulation === '7th' ? "CC" : "CCB";
         let commands = "";
@@ -1870,10 +1968,18 @@
         };
 
         navigator.clipboard.writeText(JSON.stringify(ccfoliaData)).then(() => {
+            // ★ 修正1：元の背景色と文字色を記憶させて、正確に復元する
             const orig = btn.innerText;
+            const origBg = btn.style.background;
+            const origColor = btn.style.color;
             btn.innerText = "コピー完了！";
             btn.style.background = "var(--important)";
-            setTimeout(() => { btn.innerText = orig; btn.style.background = "var(--accent)"; }, 2000);
+            btn.style.color = "white";
+            setTimeout(() => { 
+                btn.innerText = orig; 
+                btn.style.background = origBg; 
+                btn.style.color = origColor; 
+            }, 2000);
         }).catch(err => {
             console.error(err);
             alert("クリップボードへのコピーに失敗しました。");
@@ -2186,6 +2292,14 @@
     // ★ v9.8.0 縦長1カラム＆全枠固定バッジデザイン対応のビューア
     function openViewer(i) {
         const c = chars[i];
+        
+        // ★ 閲覧モード ＋ 秘匿(SECRET)探索者の場合は警告を出す
+        if (!isEditMode && c.isSecret) {
+            if (!confirm("【警告】\nこの探索者の記録には「秘匿情報（SECRET）」が含まれています。\n閲覧を続けますか？")) {
+                return; // 「キャンセル」を押した場合は開くのをやめる
+            }
+        }
+
         const content = document.getElementById('v-page-content');
         const editContainer = document.getElementById('v-edit-btn-container');
 
@@ -2517,7 +2631,8 @@
             let scnDisp = (c.scns && c.scns.length) ? c.scns[0] + (c.scns.length > 1 ? `<span class="scn-count">+${c.scns.length - 1}</span>` : '') : '—— 未通過 ——'; 
             
             ui.innerHTML += `
-                    <div class="char-card ${c.isLost ? 'is-lost' : ''}" onclick="openViewer(${i})">
+                    <div class="char-card ${c.isLost ? 'is-lost' : ''} ${c.isSecret ? 'is-secret' : ''}" onclick="openViewer(${i})">
+                        ${c.isSecret ? '<div class="secret-watermark">SECRET</div>' : ''}
                         <div class="card-btn-area admin-only" onclick="event.stopPropagation(); this.classList.toggle('open')">
                             <button class="btn-mobile-menu">⋮</button>
                             <div class="card-btn-group">
@@ -2910,7 +3025,7 @@
         currentEditIdx = i; const c = chars[i]; 
         document.querySelectorAll('.filter-acq, .filter-prof').forEach(cb => cb.checked = false);
         c.stats = c.stats || {}; c.calcStats = c.calcStats || {}; c.skills = c.skills || []; c.scns = c.scns || []; c.profs = c.profs || []; c.secrets = c.secrets || [];
-        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; if(f('in-tokki')) f('in-tokki').value = c.tokki || ""; if(f('in-tokucho')) f('in-tokucho').value = c.tokucho || ""; if(f('in-tokucho2')) f('in-tokucho2').value = c.tokucho2 || ""; if(f('in-scenario-memo')) f('in-scenario-memo').value = c.scnMemo || ""; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; if(c.isLost) f('lost-stamp-btn').classList.add('active');
+        const container = document.getElementById('form-container-edit'); container.innerHTML = ''; container.appendChild(createFormNode('edit')); const f = (cls) => container.querySelector('.'+cls); const listIn = container.querySelector('.skill-list-in'); f('in-name').value = c.name; f('in-kana').value = c.kana; f('in-job').value = c.job; if(f('in-tokki')) f('in-tokki').value = c.tokki || ""; if(f('in-tokucho')) f('in-tokucho').value = c.tokucho || ""; if(f('in-tokucho2')) f('in-tokucho2').value = c.tokucho2 || ""; if(f('in-scenario-memo')) f('in-scenario-memo').value = c.scnMemo || ""; f('in-sex').value = c.sex; f('in-age').value = c.age; f('in-height').value = c.height; f('in-img-data').value = c.img; f('crop-img-el').src = c.img; if(c.isLost) f('lost-stamp-btn').classList.add('active'); if(c.isSecret) f('secret-stamp-btn').classList.add('active');
         ["str","con","pow","dex","app","siz","int","edu","san"].forEach(k => { f('in-'+k).value = c.stats[k]; if(f('mod-'+k)) f('mod-'+k).value = c.stats['mod_'+k] || ''; }); 
         if(f('mod-hp')) f('mod-hp').value = c.calcStats?.mod_hp || ''; if(f('mod-mp')) f('mod-mp').value = c.calcStats?.mod_mp || ''; if(f('mod-db')) f('mod-db').value = c.calcStats?.mod_db || ''; if(f('mod-ide')) f('mod-ide').value = c.calcStats?.mod_ide || ''; if(f('mod-know')) f('mod-know').value = c.calcStats?.mod_know || ''; if(f('mod-luck')) f('mod-luck').value = c.calcStats?.mod_luck || '';
         container.querySelector('input[name="reg_edit"][value="' + (c.regulation || '6th') + '"]').checked = true; updatePatternOptions(container, c.regulation || '6th'); f('pt-job-pattern').value = c.ptPattern || 'edu_only'; if(f('pt-job-manual')) f('pt-job-manual').value = c.ptManual || 0;
@@ -2942,7 +3057,7 @@
         const sks = Array.from(c.querySelectorAll('.sk-row')).map(r => { return { n: r.querySelector('.sk-name').value, b: r.querySelector('.sk-b').value, j: r.querySelector('.sk-j').value, i: r.querySelector('.sk-i').value, g: r.querySelector('.sk-g').value, o: r.querySelector('.sk-o').value, t: r.querySelector('.sk-total').value, sub: r.querySelector('.sk-sub')?.value || "", gr: r.querySelector('.sk-g-fix').value }; }).filter(s => Number(s.j)||Number(s.i)||Number(s.g)||Number(s.o)); 
         
         const d = { 
-              isLost: c.querySelector('.lost-stamp-btn').classList.contains('active'), regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, jobSup: f('job-supplement-select')?.value || "", jobNameSel: f('job-supplement-select')?.value === 'scenario_base' ? f('job-name-input')?.value || "" : f('job-name-select')?.value || "", tokki: f('in-tokki')?.value || "", tokucho: f('in-tokucho')?.value || "", tokucho2: f('in-tokucho2')?.value || "", scnMemo: f('in-scenario-memo')?.value || "", sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value,
+               isLost: c.querySelector('.lost-stamp-btn').classList.contains('active'), isSecret: c.querySelector('.secret-stamp-btn')?.classList.contains('active') || false, regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, jobSup: f('job-supplement-select')?.value || "", jobNameSel: f('job-supplement-select')?.value === 'scenario_base' ? f('job-name-input')?.value || "" : f('job-name-select')?.value || "", tokki: f('in-tokki')?.value || "", tokucho: f('in-tokucho')?.value || "", tokucho2: f('in-tokucho2')?.value || "", scnMemo: f('in-scenario-memo')?.value || "", sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value,
             stats: { str: f('in-str').value, mod_str: f('mod-str')?.value, con: f('in-con').value, mod_con: f('mod-con')?.value, pow: f('in-pow').value, mod_pow: f('mod-pow')?.value, dex: f('in-dex').value, mod_dex: f('mod-dex')?.value, app: f('in-app').value, mod_app: f('mod-app')?.value, siz: f('in-siz').value, mod_siz: f('mod-siz')?.value, int: f('in-int').value, mod_int: f('mod-int')?.value, edu: f('in-edu').value, mod_edu: f('mod-edu')?.value, san: f('in-san').value, mod_san: f('mod-san')?.value }, 
             calcStats: { luck: f('val-luck').value, mod_luck: f('mod-luck')?.value, mod_hp: f('mod-hp')?.value, mod_mp: f('mod-mp')?.value, mod_db: f('mod-db')?.value, mod_ide: f('mod-ide')?.value, mod_know: f('mod-know')?.value }, 
             ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })) 
