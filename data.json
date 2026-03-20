@@ -4905,6 +4905,7 @@
     },
     {
       "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "黄糾　眸",
       "kana": "ききょう　ひとみ",
