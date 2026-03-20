@@ -3913,6 +3913,8 @@
       "secrets": []
     },
     {
+      "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "丝",
       "kana": "スウ",
