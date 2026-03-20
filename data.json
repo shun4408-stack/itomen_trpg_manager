@@ -2960,6 +2960,8 @@
       "secrets": []
     },
     {
+      "isLost": false,
+      "isSecret": true,
       "regulation": "6th",
       "name": "相模　結良",
       "kana": "さがみ　ゆら",
