@@ -3696,7 +3696,7 @@
     },
     {
       "isLost": false,
-      "isSecret": true,
+      "isSecret": false,
       "regulation": "6th",
       "name": "御楯　紮木",
       "kana": "みたて　さつき",
