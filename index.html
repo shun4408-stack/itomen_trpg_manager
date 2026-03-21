@@ -677,6 +677,13 @@
         details.run-details > summary::-webkit-details-marker { display: none; }
         details.run-details > summary::after { content: '▼'; font-size: 0.7rem; transition: transform 0.2s; color: var(--text-sub); }
         details.run-details[open] > summary::after { transform: rotate(180deg); }
+/* ★ 手記・秘匿情報の各項目アコーディオン化 */
+        .viewer-prof-details { margin-bottom:20px; background:var(--card-bg); padding:20px 25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); transition: 0.2s; }
+        .viewer-prof-details > summary { color:var(--important); font-family:'Noto Serif JP', serif; font-size:1.2rem; font-weight:bold; cursor:pointer; outline:none; border-bottom:1px solid var(--border); padding-bottom:10px; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none; }
+        .viewer-prof-details > summary::-webkit-details-marker { display: none; }
+        .viewer-prof-details > summary::after { content: '▼'; font-size:0.8rem; transition: transform 0.3s; color:var(--text-sub); font-family:'Noto Sans JP', sans-serif; }
+        .viewer-prof-details[open] > summary::after { transform: rotate(180deg); }
+        .viewer-prof-details > div { font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500; margin-top:15px; }
 /* ★ 第3フェーズ：ウインドウ（洋書風）のクラシック化 */
         .viewer-book.single-column, .editor-book.single-column { flex-direction: column; width: 95%; max-width: 1100px; height: 95vh; overflow-y: auto; background: var(--bg); display: flex; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; scrollbar-width: none; margin: 0 auto; border: 1px solid var(--border); }
         .viewer-book.single-column::-webkit-scrollbar, .editor-book.single-column::-webkit-scrollbar { display: none; }
@@ -799,6 +806,8 @@
             
             /* 4. LOSTスタンプ（フォントサイズと枠線を縮小） */
             .lost-stamp-overlay { font-size: 1.6rem !important; padding: 0 6px !important; bottom: 15px !important; right: 15px !important; border-width: 2px !important; border-radius: 4px !important; }
+            /* 5. SECRET透かし文字（フォントサイズと文字間隔をスマホ用に縮小） */
+            .secret-watermark { font-size: 2.5rem !important; letter-spacing: 2px !important; }
             /* ーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
             /* 一覧カードのアイコンは小さく */
             .char-card .char-icon { width: 55px !important; height: 55px !important; border-width: 2px !important; }
@@ -2577,12 +2586,12 @@
         else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         html += '<span class="section-label">手記（プロフィール / メモ）</span>';
-        if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:20px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; }); } 
+        if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<details class="viewer-prof-details"><summary><span>■ ${p.t}</span></summary><div>${p.x}</div></details>`; }); } 
         else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
 
         if(c.secrets && c.secrets.length > 0) {
             html += '<span class="section-label" style="margin-top:50px;">秘匿情報</span><details class="secret-details" style="margin-bottom:20px; box-shadow:var(--shadow);"><summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary><div style="margin-top:15px; padding-top:20px; border-top:1px solid var(--border);">';
-            c.secrets.forEach(p => { if(p.t || p.x) html += `<div style="margin-bottom:25px; background:var(--card-bg); padding:25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow);"><b style="color:var(--important); display:block; margin-bottom:15px; font-family:'Noto Serif JP', serif; font-size:1.2rem; border-bottom:1px solid var(--border); padding-bottom:10px;">■ ${p.t}</b><div style="font-size:1.05rem; line-height:1.8; white-space:pre-wrap; word-break:break-word; font-family:'Noto Serif JP', serif; color:var(--text-main); letter-spacing:0.5px; font-weight:500;">${p.x}</div></div>`; });
+            c.secrets.forEach(p => { if(p.t || p.x) html += `<details class="viewer-prof-details"><summary><span>■ ${p.t}</span></summary><div>${p.x}</div></details>`; });
             html += '</div></details>';
         }
 
@@ -3126,8 +3135,8 @@
         const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
         const container = root.querySelector('.prof-list'); 
         const d = document.createElement('div'); 
-        d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; 
-        d.innerHTML = `<input type="text" class="prof-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="prof-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>`;
+        d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; d.style.background="var(--bg)";
+        d.innerHTML = `<input type="text" class="prof-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px; width:100%;"><textarea class="prof-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;"><button type="button" onclick="moveItemUp(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▲ 上へ</button><button type="button" onclick="moveItemDown(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▼ 下へ</button><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action del admin-only" style="padding:4px 10px; font-size:0.75rem;">削除</button></div>`;
         container.appendChild(d); 
         const ta = d.querySelector('.prof-x');
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
@@ -3137,11 +3146,23 @@
         const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
         const container = root.querySelector('.secret-list'); 
         const d = document.createElement('div'); 
-        d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; 
-        d.innerHTML = `<input type="text" class="secret-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px;"><textarea class="secret-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="text-align:right; margin-top:5px;"><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action admin-only">削除</button></div>`;
+        d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; d.style.background="var(--bg)";
+        d.innerHTML = `<input type="text" class="secret-t" value="${t}" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px; width:100%;"><textarea class="secret-x" rows="3" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;"><button type="button" onclick="moveItemUp(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▲ 上へ</button><button type="button" onclick="moveItemDown(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▼ 下へ</button><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action del admin-only" style="padding:4px 10px; font-size:0.75rem;">削除</button></div>`;
         container.appendChild(d); 
         const ta = d.querySelector('.secret-x');
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
+    }
+
+    // ★ 上下移動用の関数を追加
+    function moveItemUp(btn) {
+        const item = btn.parentElement.parentElement;
+        const prev = item.previousElementSibling;
+        if (prev) item.parentElement.insertBefore(item, prev);
+    }
+    function moveItemDown(btn) {
+        const item = btn.parentElement.parentElement;
+        const next = item.nextElementSibling;
+        if (next) item.parentElement.insertBefore(next, item);
     }
 
     function initCrop(e) { if(!e.target.files[0]) return; const reader = new FileReader(); reader.onload = (ev) => { imgObj = new Image(); imgObj.crossOrigin = "anonymous"; imgObj.src = ev.target.result; const p = e.target.closest('.panel-content, .editor-page'); p.querySelector('.crop-img-el').src = ev.target.result; crop.activeEl = p.querySelector('.crop-img-el'); }; reader.readAsDataURL(e.target.files[0]); }
