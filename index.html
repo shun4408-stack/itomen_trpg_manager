@@ -276,26 +276,58 @@
         .control-group select { width: auto; padding: 5px 10px; font-size: 0.8rem; background: var(--panel-header-bg); border-color: var(--border); }
         .skill-filter-toggle { display: flex; align-items: center; gap: 8px; margin: 10px 0 20px; font-size: 0.8rem; font-weight: bold; color: var(--accent); background: var(--panel-header-bg); width: fit-content; padding: 8px 15px; border-radius: 20px; border: 1px solid var(--border); cursor: pointer; }
 
-        /* ★ 第3フェーズ：カレンダーのクラシック手帳化 */
-        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-family: 'Noto Serif JP', serif; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
-        .cal-title { font-size: 1.6rem; font-weight: bold; color: var(--accent); letter-spacing: 3px; text-shadow: 1px 1px 0 rgba(255,255,255,0.6); }
-        [data-theme="dark"] .cal-title { text-shadow: 1px 1px 0 rgba(0,0,0,0.8); }
+        /* ★ 第3フェーズ：カレンダーの装飾（活版印刷ベース＋視認性・アニメーション強化） */
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; font-family: 'Noto Serif JP', serif; position: relative; }
         
-        .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 2px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
-        .cal-day-label { background: linear-gradient(to bottom, var(--panel-header-bg), var(--bg)); padding: 12px; text-align: center; font-size: 0.8rem; font-weight: bold; color: var(--text-sub); letter-spacing: 1px; border-bottom: 1px solid var(--border); }
-        .cal-cell { background: var(--card-bg); min-height: 105px; padding: 8px; position: relative; transition: 0.2s; cursor: pointer; z-index: 1; min-width: 0; }
-        .cal-cell:hover { background: var(--panel-header-bg); box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
-        .cal-cell.today { background: var(--san-bg); box-shadow: inset 0 0 0 2px var(--san-border); }
-        .cal-cell.today .cal-date-num { color: var(--accent); font-weight: bold; text-decoration: underline; }
-        .cal-cell.other-month { opacity: 0.4; background: rgba(0,0,0,0.02); }
-        .cal-date-num { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: var(--text-sub); margin-bottom: 8px; display: block; font-weight: bold; }
+        /* タイトル：活版印刷の凹凸＋下部にランプの光のような真鍮の細いグラデーション線 */
+        .cal-title { font-size: 1.7rem; font-weight: bold; color: var(--text-main); letter-spacing: 4px; text-shadow: -1px -1px 0 rgba(0,0,0,0.1), 1px 1px 0 rgba(255,255,255,0.8); position: relative; }
+        .cal-header::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--important), transparent); opacity: 0.6; }
+        [data-theme="dark"] .cal-title { color: var(--text-main); text-shadow: -1px -1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(255,255,255,0.1); }
         
-        .cal-event-preview { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.7; font-family: 'Noto Serif JP', serif; border-left: 4px solid var(--accent); padding: 1px 6px; margin-bottom: 4px; font-weight: bold; box-shadow: 1px 1px 3px rgba(0,0,0,0.08); border-radius: 0 4px 4px 0; transition: 0.2s; position: relative; z-index: 5; display: block; }
-        .cal-event-preview:hover { filter: brightness(1.1); transform: translateX(2px); }
-        .cal-event-preview.status-adj { background: rgba(108, 117, 125, 0.15); border-left-color: #6c757d; color: #495057; }
-        .cal-event-preview.status-wait { background: rgba(74, 111, 165, 0.15); border-left-color: #4a6fa5; color: #4a6fa5; }
-        .cal-event-preview.status-ongoing { background: rgba(88, 129, 87, 0.15); border-left-color: #588157; color: #588157; }
-        .cal-event-preview.status-done { background: rgba(184, 115, 51, 0.15); border-left-color: var(--important); color: var(--important); }
+        /* カレンダー本体：深い溝のようなインナーシャドウで「分厚い紙の層」を表現 */
+        .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: rgba(0,0,0,0.08); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.06), inset 0 0 5px rgba(0,0,0,0.1); }
+        [data-theme="dark"] .cal-grid { background: rgba(255,255,255,0.08); box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 0 5px rgba(0,0,0,0.5); }
+        
+        /* 曜日ラベル：文字を少し大きくし、読みやすく */
+        .cal-day-label { background: linear-gradient(to bottom, var(--bg), rgba(0,0,0,0.03)); padding: 14px 12px; text-align: center; font-size: 0.9rem; font-weight: bold; color: var(--text-sub); letter-spacing: 2px; border-bottom: 1px solid rgba(0,0,0,0.15); text-shadow: 1px 1px 0 rgba(255,255,255,0.5); }
+        [data-theme="dark"] .cal-day-label { background: linear-gradient(to bottom, var(--bg), rgba(255,255,255,0.02)); border-bottom: 1px solid rgba(255,255,255,0.1); text-shadow: 1px 1px 0 rgba(0,0,0,0.5); }
+        
+        /* カレンダーセル：ホバー時にアンティークランプで照らされたようにふんわり明るくなる */
+        .cal-cell { background: var(--card-bg); min-height: 110px; padding: 10px; position: relative; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; z-index: 1; min-width: 0; }
+        .cal-cell:hover { background: var(--bg); box-shadow: inset 0 0 40px rgba(184, 115, 51, 0.06); z-index: 2; }
+        
+        /* 日付の数字：凹凸をハッキリと。ホバー時にほんの少しだけ手前に浮き出る */
+        .cal-date-num { font-family: 'Noto Serif JP', serif; font-size: 1.15rem; color: rgba(80, 75, 70, 0.85); margin-bottom: 12px; display: block; font-weight: bold; text-shadow: -1px -1px 1px rgba(0,0,0,0.15), 1px 1px 1px rgba(255,255,255,0.9); transition: all 0.3s ease; transform-origin: left; }
+        .cal-cell:hover .cal-date-num { color: var(--text-main); text-shadow: -1px -1px 2px rgba(0,0,0,0.1), 1px 1px 2px rgba(255,255,255,1); transform: scale(1.05); }
+        [data-theme="dark"] .cal-date-num { color: rgba(180, 170, 160, 0.7); text-shadow: -1px -1px 1px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.1); }
+        [data-theme="dark"] .cal-cell:hover .cal-date-num { color: #fff; }
+        
+        /* 今日の強調：上部に真鍮色のインクラインを引き、背景に静かな輝きを足す */
+        .cal-cell.today { background: linear-gradient(135deg, var(--card-bg) 60%, rgba(184, 115, 51, 0.06) 100%); }
+        .cal-cell.today::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--important); opacity: 0.9; }
+        .cal-cell.today .cal-date-num { color: var(--important); text-shadow: -1px -1px 0 rgba(0,0,0,0.2), 1px 1px 0 rgba(255,255,255,0.6); font-size: 1.25rem; }
+        [data-theme="dark"] .cal-cell.today .cal-date-num { text-shadow: -1px -1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(255,255,255,0.2); }
+        
+        .cal-cell.other-month { opacity: 0.5; }
+        
+        /* 予定プレビュー：少し大きく（0.7rem）、背景色を付けて読みやすさ（視認性）を強化 */
+        .cal-event-preview { font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.6; font-family: 'Noto Serif JP', serif; border-left: 4px solid var(--accent); padding: 3px 8px; margin-bottom: 5px; font-weight: bold; border-radius: 2px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; z-index: 5; display: block; background-color: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.04); box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6); }
+        [data-theme="dark"] .cal-event-preview { background-color: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.05); box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05); }
+        
+        /* ホバー時：右へスッとスライドし、影が落ちてコントラストが上がる（読みやすくなる） */
+        .cal-event-preview:hover { transform: translateX(3px); box-shadow: 2px 3px 6px rgba(0,0,0,0.08), inset 1px 1px 0 rgba(255,255,255,0.9); background-color: var(--card-bg); filter: contrast(1.1); }
+        [data-theme="dark"] .cal-event-preview:hover { box-shadow: 2px 3px 6px rgba(0,0,0,0.4), inset 1px 1px 0 rgba(255,255,255,0.1); background-color: var(--sidebar); }
+        
+        /* ステータス色：くすみを保ちつつ、文字色ははっきりと濃くして可読性を確保 */
+        .cal-event-preview.status-adj { border-left-color: #6c757d; color: #495057; }
+        .cal-event-preview.status-wait { border-left-color: #4a6fa5; color: #2b4263; }
+        .cal-event-preview.status-ongoing { border-left-color: #588157; color: #2d422c; }
+        .cal-event-preview.status-done { border-left-color: var(--important); color: #8a501c; }
+        
+        [data-theme="dark"] .cal-event-preview.status-adj { border-left-color: #868e96; color: #dee2e6; }
+        [data-theme="dark"] .cal-event-preview.status-wait { border-left-color: #5c88c4; color: #a3c2f1; }
+        [data-theme="dark"] .cal-event-preview.status-ongoing { border-left-color: #6da16b; color: #b2d8b1; }
+        [data-theme="dark"] .cal-event-preview.status-done { border-left-color: #c9803b; color: #f0c39a; }
 
         .chr-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 0; margin-bottom: 25px; display: flex; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; position: relative; }
         .chr-card:hover { transform: translateX(5px); }
@@ -1312,8 +1344,12 @@
     </div>
     
     <div class="skill-list-in"></div>
-    <span class="section-label">通過シナリオの記録</span><div class="scn-list"></div><button class="btn-sub admin-only" onclick="addScnField(this)">＋ シナリオを追加</button>
-    <span class="section-label">手記（プロフィール / メモ）</span><div class="prof-list"></div><button class="btn-sub admin-only" onclick="addProfField(this)">＋ 項目を追加</button>
+    <span class="section-label" style="margin-top:40px;">通過シナリオの記録</span>
+    <div class="scn-list"></div><button class="btn-sub admin-only" onclick="addScnField(this)">＋ シナリオを追加</button>
+    <span class="section-label" style="margin-top:40px;">アーティファクト / 習得魔術</span>
+    <div class="af-list"></div><button class="btn-sub admin-only" onclick="addAfField(this)">＋ 項目を追加</button>
+    <span class="section-label" style="margin-top:40px;">手記（プロフィール / メモ）</span>
+    <div class="prof-list"></div><button class="btn-sub admin-only" onclick="addProfField(this)">＋ 手記項目を追加</button>
     <span class="section-label" style="margin-top:40px;">秘匿情報（ネタバレ注意）</span>
     <div class="secret-list"></div><button class="btn-sub admin-only" onclick="addSecretField(this)">＋ 秘匿項目を追加</button>
 </template>
@@ -2582,8 +2618,25 @@
         }
 
         html += '<span class="section-label">通過シナリオの記録</span>';
-        if(c.scns && c.scns.length > 0) { html += `<div style="margin-bottom:40px; font-size:1.05rem; line-height:1.8; color:var(--text-main); font-family:'Noto Serif JP', serif; white-space:pre-wrap; word-break:break-word; background:var(--card-bg); padding:20px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); letter-spacing:0.5px; font-weight:500;">${c.scns.join('　/　')}</div>`; } 
+        if(c.scns && c.scns.length > 0) { 
+            // ★ 各シナリオに「真鍮色の❖」と「アンティークな罫線（最後の項目以外）」を付与
+            const scnsHtml = c.scns.map((s, idx) => {
+                const border = idx !== c.scns.length - 1 ? 'border-bottom:1px solid var(--border);' : '';
+                return `<div style="padding:12px 0; ${border} position:relative; padding-left:1.8em;"><span style="position:absolute; left:0; top:12px; color:var(--important); font-size:1.1em; line-height:1.6;">▪</span>${s}</div>`;
+            }).join('');
+            
+            html += `<div style="margin-bottom:40px; font-size:1.05rem; line-height:1.6; color:var(--text-main); font-family:'Noto Serif JP', serif; word-break:break-word; background:var(--card-bg); padding:10px 25px; border-radius:8px; border:1px solid var(--border); box-shadow:var(--shadow); letter-spacing:0.5px; font-weight:500;">${scnsHtml}</div>`; 
+        } 
         else { html += `<div style="margin-bottom:40px; font-size:0.9rem; color:var(--text-sub);">記録なし</div>`; }
+
+        // ★ アーティファクト / 習得魔術（警告アコーディオン付き）
+        if(c.artifacts && c.artifacts.length > 0) {
+            html += '<span class="section-label" style="margin-top:50px;">アーティファクト / 習得魔術</span><details class="secret-details" style="margin-bottom:40px; box-shadow:var(--shadow);"><summary style="font-size:1.1rem; padding:10px 0;">⚠ ネタバレ注意（クリックで展開）</summary><div style="margin-top:15px; padding-top:20px; border-top:1px solid var(--border);">';
+            c.artifacts.forEach(p => { 
+                if(p.t || p.x) html += `<details class="viewer-prof-details"><summary><span>■ ${p.t}</span></summary><div>${p.x}</div></details>`; 
+            });
+            html += '</div></details>';
+        }
 
         html += '<span class="section-label">手記（プロフィール / メモ）</span>';
         if(c.profs && c.profs.length > 0) { c.profs.forEach(p => { if(p.t || p.x) html += `<details class="viewer-prof-details"><summary><span>■ ${p.t}</span></summary><div>${p.x}</div></details>`; }); } 
@@ -3053,7 +3106,7 @@
                     showJobSkillCard(nameSel);
                 }
             }
-        } ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); c.skills.filter(s => (s.gr || getGenre(s.n)) === g).forEach(s => addSkillFieldToContainer(group, s.n, s.b, s.j, s.i, s.g, s.o, s.sub || "", g)); const presets = (c.regulation === '7th' ? SKILLS_7TH : SKILLS_6TH); presets.filter(p => getGenre(p[0]) === g).forEach(p => { if(!c.skills.some(s => s.n === p[0])) addSkillFieldToContainer(group, p[0], p[1], 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(f('in-str')); f('val-luck').value = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0; c.scns?.forEach(v => addScnField(container, v)); c.profs?.forEach(p => addProfField(container, p.t, p.x)); c.secrets?.forEach(p => addSecretField(container, p.t, p.x)); 
+        } ["戦闘", "探索", "行動", "交渉", "知識"].forEach(g => { const header = document.createElement('div'); header.className = 'skill-genre-header'; header.innerText = g + "技能"; listIn.appendChild(header); listIn.appendChild(createHeaderRow()); const group = document.createElement('div'); group.className = 'genre-group'; listIn.appendChild(group); c.skills.filter(s => (s.gr || getGenre(s.n)) === g).forEach(s => addSkillFieldToContainer(group, s.n, s.b, s.j, s.i, s.g, s.o, s.sub || "", g)); const presets = (c.regulation === '7th' ? SKILLS_7TH : SKILLS_6TH); presets.filter(p => getGenre(p[0]) === g).forEach(p => { if(!c.skills.some(s => s.n === p[0])) addSkillFieldToContainer(group, p[0], p[1], 0, 0, 0, 0, p[2] || "", g); }); const addBtn = document.createElement('button'); addBtn.className = 'btn-sub admin-only'; addBtn.innerText = '＋ ' + g + '技能を追加'; addBtn.onclick = () => addSkillFieldToContainer(group, "", 0, 0, 0, 0, 0, "", g); listIn.appendChild(addBtn); }); recalc(f('in-str')); f('val-luck').value = (c.calcStats && c.calcStats.luck) ? c.calcStats.luck : 0; c.scns?.forEach(v => addScnField(container, v)); c.profs?.forEach(p => addProfField(container, p.t, p.x)); c.secrets?.forEach(p => addSecretField(container, p.t, p.x)); c.artifacts?.forEach(p => addAfField(container, p.t, p.x));
         document.getElementById('btn-save-edit').onclick = () => saveData('edit'); 
         showView('v-char-editor'); document.querySelector('main').scrollTo(0, 0);
     }
@@ -3069,8 +3122,8 @@
                isLost: c.querySelector('.lost-stamp-btn').classList.contains('active'), isSecret: c.querySelector('.secret-stamp-btn')?.classList.contains('active') || false, regulation: c.querySelector('input[type="radio"]:checked').value, name: f('in-name').value, kana: f('in-kana').value, job: f('in-job').value, jobSup: f('job-supplement-select')?.value || "", jobNameSel: f('job-supplement-select')?.value === 'scenario_base' ? f('job-name-input')?.value || "" : f('job-name-select')?.value || "", tokki: f('in-tokki')?.value || "", tokucho: f('in-tokucho')?.value || "", tokucho2: f('in-tokucho2')?.value || "", scnMemo: f('in-scenario-memo')?.value || "", sex: f('in-sex').value, age: f('in-age').value, height: f('in-height').value, img: f('in-img-data').value,
             stats: { str: f('in-str').value, mod_str: f('mod-str')?.value, con: f('in-con').value, mod_con: f('mod-con')?.value, pow: f('in-pow').value, mod_pow: f('mod-pow')?.value, dex: f('in-dex').value, mod_dex: f('mod-dex')?.value, app: f('in-app').value, mod_app: f('mod-app')?.value, siz: f('in-siz').value, mod_siz: f('mod-siz')?.value, int: f('in-int').value, mod_int: f('mod-int')?.value, edu: f('in-edu').value, mod_edu: f('mod-edu')?.value, san: f('in-san').value, mod_san: f('mod-san')?.value }, 
             calcStats: { luck: f('val-luck').value, mod_luck: f('mod-luck')?.value, mod_hp: f('mod-hp')?.value, mod_mp: f('mod-mp')?.value, mod_db: f('mod-db')?.value, mod_ide: f('mod-ide')?.value, mod_know: f('mod-know')?.value }, 
-            ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })) 
-        }; 
+            ptPattern: f('pt-job-pattern').value, ptManual: f('pt-job-manual')?.value || 0, skills: sks, scns: Array.from(c.querySelectorAll('.scn-in')).map(i => i.value).filter(v => v), profs: Array.from(c.querySelectorAll('.prof-list > div')).map(p => ({ t: p.querySelector('.prof-t').value, x: p.querySelector('.prof-x').value })), secrets: Array.from(c.querySelectorAll('.secret-list > div')).map(p => ({ t: p.querySelector('.secret-t').value, x: p.querySelector('.secret-x').value })), artifacts: Array.from(c.querySelectorAll('.af-list > div')).map(p => ({ t: p.querySelector('.af-t').value, x: p.querySelector('.af-x').value }))
+        };
 
         if(mode === 'new') { 
             chars.push(d); 
@@ -3141,7 +3194,7 @@
         const ta = d.querySelector('.prof-x');
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
     }
-    
+
     function addSecretField(p, t="項目名", txt="") { 
         const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
         const container = root.querySelector('.secret-list'); 
@@ -3153,6 +3206,17 @@
         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
     }
 
+    function addAfField(p, t="名称", txt="") { 
+         const root = p instanceof HTMLElement ? p.closest('.panel-content, .editor-page') : p; 
+         const container = root.querySelector('.af-list'); 
+         const d = document.createElement('div'); 
+         d.style.border="1px dashed var(--border)"; d.style.padding="10px"; d.style.marginBottom="10px"; d.style.borderRadius="6px"; d.style.background="var(--bg)";
+         d.innerHTML = `<input type="text" class="af-t" value="${t}" placeholder="アーティファクト名 / 魔術名" style="font-weight:bold; border:none; background:transparent; color:var(--important); margin-bottom:5px; width:100%;"><textarea class="af-x" rows="3" placeholder="効果や詳細メモ" style="width:100%; font-size:0.95rem; font-family:'Noto Serif JP', serif; line-height:1.6; resize:none; overflow:hidden; padding:5px; box-sizing:border-box; background:transparent; border:1px solid var(--border); color:var(--text-main); border-radius:4px;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';">${txt}</textarea><div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;"><button type="button" onclick="moveItemUp(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▲ 上へ</button><button type="button" onclick="moveItemDown(this)" class="btn-action outline admin-only" style="padding:4px 10px; font-size:0.75rem; border-color:var(--border);">▼ 下へ</button><button type="button" onclick="this.parentElement.parentElement.remove()" class="btn-action del admin-only" style="padding:4px 10px; font-size:0.75rem;">削除</button></div>`;
+         container.appendChild(d); 
+         const ta = d.querySelector('.af-x');
+         setTimeout(() => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }, 10);
+
+    }
     // ★ 上下移動用の関数を追加
     function moveItemUp(btn) {
         const item = btn.parentElement.parentElement;
@@ -3230,13 +3294,30 @@
     
     function autoUpdateStatus() {
         const now = new Date(); let changed = false;
+        
+        // ★ 日付比較用（現在の時刻を 00:00:00 に切り捨てたもの）
+        const todayDateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
         schedules.forEach(s => {
             if (!s.dates || s.dates.length === 0) return;
             const dObjs = s.dates.map(d => new Date(d)).sort((a,b) => a - b);
-            const start = dObjs[0]; const end = dObjs[dObjs.length - 1];
+            const start = dObjs[0]; 
+            const end = dObjs[dObjs.length - 1];
+            
+            // ★ 最後の予定日の時刻を 00:00:00 に切り捨て、さらに1日足す（＝翌日の0時）
+            const endDateOnly = new Date(end.getFullYear(), end.getMonth(), end.getDate() + 1);
+
             const oldStatus = s.status;
-            if (s.status === '待機中' && now >= start) s.status = '進行中';
-            else if (s.status === '進行中' && now > end) s.status = '完走';
+            
+            // 待機中⇒進行中 は「時間」で比較（now >= start）
+            if (s.status === '待機中' && now >= start) {
+                s.status = '進行中';
+            }
+            // 進行中⇒完走 は「日付」で比較（現在の日付が、最後の予定日の翌日になっていれば完走）
+            else if (s.status === '進行中' && todayDateOnly >= endDateOnly) {
+                s.status = '完走';
+            }
+            
             if (oldStatus !== s.status) { changed = true; if (s.status === '完走') { syncScenarioToChar(s.charName, s.title); syncScheduleToScenario(s); } }
         });
         if (changed) { localStorage.setItem(KEY_SCH, JSON.stringify(schedules)); pushData(); }
@@ -3312,7 +3393,21 @@
         
         const nowTime = Date.now();
 
-        schedules.forEach(s => {
+        // ★ 予定を「直近の日程が近い順」にソートしてから表示する
+        const sortedSchedules = [...schedules].sort((a, b) => {
+            if (a.status === '調整中' || b.status === '調整中') return 0; // 調整中はソートしない
+            if (!a.dates || a.dates.length === 0) return 1;
+            if (!b.dates || b.dates.length === 0) return -1;
+            
+            // a の直近の未来の日程を取得
+            let aNext = a.dates.filter(d => new Date(d).getTime() > nowTime).sort()[0] || a.dates[a.dates.length - 1];
+            // b の直近の未来の日程を取得
+            let bNext = b.dates.filter(d => new Date(d).getTime() > nowTime).sort()[0] || b.dates[b.dates.length - 1];
+            
+            return new Date(aNext) - new Date(bNext);
+        });
+
+        sortedSchedules.forEach(s => {
             // ★ 次の予定日を自動計算（過ぎた日程を無視して一番近い未来の日付を取得）
             let nextDateStr = s.dates && s.dates[0] ? s.dates[0] : null;
             if (s.dates && s.dates.length > 0) {
