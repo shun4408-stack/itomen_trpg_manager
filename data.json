@@ -5497,7 +5497,7 @@
         "edu": "80",
         "mod_edu": "-5",
         "san": "85",
-        "mod_san": "5"
+        "mod_san": ""
       },
       "calcStats": {
         "luck": "80",
