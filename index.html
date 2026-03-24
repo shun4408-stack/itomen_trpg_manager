@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>いとめんのTRPG ARCHIVE</title>
@@ -1921,11 +1921,12 @@
         const luckBase = (c.calcStats.luck) ? Number(c.calcStats.luck) : 0;
         const luck = luckBase + (Number(c.calcStats.mod_luck) || 0);
         
-        const hpBase = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
-        const hp = hpBase + (Number(c.calcStats.mod_hp) || 0);
+        // ★ 修正：基本値（最大値）と、ダメージ・補正等を含んだ「現在値」を明確に分ける
+        const hpMax = Math.ceil((con+siz)/(c.regulation === '7th' ? 10 : 2));
+        const hpCur = hpMax + (Number(c.calcStats.mod_hp) || 0);
         
-        const mpBase = c.regulation === '7th' ? Math.floor(pow/5) : pow;
-        const mp = mpBase + (Number(c.calcStats.mod_mp) || 0);
+        const mpMax = c.regulation === '7th' ? Math.floor(pow/5) : pow;
+        const mpCur = mpMax + (Number(c.calcStats.mod_mp) || 0);
         
         const ideBase = c.regulation === '7th' ? int : int*5;
         const ide = ideBase + (Number(c.calcStats.mod_ide) || 0);
@@ -1933,6 +1934,7 @@
         const knowBase = c.regulation === '7th' ? edu : edu*5;
         const know = knowBase + (Number(c.calcStats.mod_know) || 0);
         
+        const sanBase = Number(c.stats['san']) || 0;
         const s_val = str + siz;
         let dbBase; 
         if(c.regulation === '6th') dbBase = (s_val<=12)?"-1d6":(s_val<=16)?"-1d4":(s_val<=24)?"0":(s_val<=32)?"+1d4":"+1d6"; 
@@ -1959,15 +1961,14 @@
             commands += `${cc}<={幸運} 【幸運】\n`;
         }
 
-        // 3 & 4. アイデア・知識（6版7版ともに計算後の固定値）
+        // 3 & 4. アイデア・知識
         commands += `${cc}<=${ide} 【アイデア】\n`;
         commands += `${cc}<=${know} 【知識】\n\n`;
 
-        // 5. 成長した技能系 ＆ 必須三大技能（目星・聞き耳・図書館）
+        // 5. 成長した技能系 ＆ 必須三大技能
         const outSkills = {};
         const is7th = c.regulation === '7th';
         
-        // 必須三大技能の初期値をセット（6版と7版で初期値を自動切替）
         outSkills["目星"] = 25;
         outSkills["聞き耳"] = is7th ? 20 : 25;
         outSkills["図書館"] = is7th ? 20 : 25;
@@ -1988,7 +1989,7 @@
         let dbForCmd = db === "0" ? "" : db;
         commands += `1d3${dbForCmd} 【ダメージ】\n1d6${dbForCmd} 【ダメージ】\n1d8${dbForCmd} 【ダメージ】\n1d10${dbForCmd} 【ダメージ】\n\n`;
 
-        // 7. ステータス系（6版はパラメータ*5、7版はパラメータ等倍）
+        // 7. ステータス系
         const statKeys = [ { key: "str", label: "STR" }, { key: "con", label: "CON" }, { key: "pow", label: "POW" }, { key: "dex", label: "DEX" }, { key: "app", label: "APP" }, { key: "siz", label: "SIZ" }, { key: "int", label: "INT" }, { key: "edu", label: "EDU" } ];
         statKeys.forEach(st => {
             if (c.regulation === '6th') commands += `${cc}<={${st.label}}*5 【${st.label}×5】\n`;
@@ -1996,7 +1997,12 @@
         });
         commands += `\n`;
 
-        const statusArray = [ { label: "HP", value: hp, max: hp }, { label: "MP", value: mp, max: mp }, { label: "SAN", value: san, max: san } ];
+        // ★ statusArray を修正：HP/MP/SANは value(現在値) と max(最大値) を明確に分ける
+        const statusArray = [ 
+            { label: "HP", value: hpCur, max: hpMax }, 
+            { label: "MP", value: mpCur, max: mpMax }, 
+            { label: "SAN", value: san, max: sanBase } 
+        ];
         if (c.regulation === '7th') { statusArray.push({ label: "幸運", value: luck, max: 99 }); }
 
         let validIconUrl = (c.img && c.img.startsWith('http')) ? c.img : "";
@@ -2203,7 +2209,7 @@
             "芸術家": { calc: "EDU×2＋POW×2またはEDU×2＋DEX×2", credit: "9~50%", skills: ["芸術/制作(任意の分野)", "心理学", "目星", "ほかの言語(任意)", "[選択: 自然/歴史から1つ]", "[選択: 威圧/言いくるめ/説得/魅惑から1つ]", "[選択: 個人的な特技2つ]"] },
             "古物研究家": { calc: "EDU×4", credit: "30~70%", skills: ["鑑定", "芸術/制作(任意の分野)", "図書館", "目星", "歴史", "ほかの言語(任意)", "[選択: 威圧/言いくるめ/説得/魅惑から1つ]", "[選択: 個人的な特技1つ]"] },
             "作家": { calc: "EDU×4", credit: "9~30%", skills: ["芸術/制作(文学)", "心理学", "図書館", "歴史", "母国語", "ほかの言語(任意)", "[選択: オカルト/自然から1つ]", "[選択: 個人的な特技1つ]"] },
-            "士官": { calc: "EDU×2＋DEX×2またはEDU×2＋STR×2", credit: "20~70%", skills: ["経理", "サバイバル", "射撃", "心理学", "ナビличие", "[選択: 威圧/言いくるめ/説得/魅惑から2つ]", "[選択: 個人的な特技1つ]"] },
+            "士官": { calc: "EDU×2＋DEX×2またはEDU×2＋STR×2", credit: "20~70%", skills: ["経理", "サバイバル", "射撃", "心理学", "ナビゲート", "[選択: 威圧/言いくるめ/説得/魅惑から2つ]", "[選択: 個人的な特技1つ]"] },
             "司書": { calc: "EDU×4", credit: "9~35%", skills: ["経理", "図書館", "ほかの言語(任意)", "母国語(任意)", "[選択: 個人的な専門の技能4つ]"] },
             "ジャーナリスト": { calc: "EDU×4", credit: "9~30%", skills: ["芸術/制作(写真術)", "心理学", "図書館", "歴史", "母国語(任意)", "[選択: 威圧/言いくるめ/説得/魅惑から1つ]", "[選択: 個人的な特技2つ]"] },
             "私立探偵": { calc: "EDU×2＋DEX×2またはEDU×2＋STR×2", credit: "9~30%", skills: ["芸術/制作(写真術)", "心理学", "図書館", "変装", "法律", "目星", "[選択: 威圧/言いくるめ/説得/魅惑から1つ]", "[選択: 個人的な特技1つ]"] },
@@ -2282,9 +2288,13 @@
                 return aIsSel - bIsSel;
             });
 
-            // ★ デザインを統一し、クラス名「job-skill-tag」を付与
+            // ★ 編集ページ用：補足タグ（サブタグ）を内蔵したカプセル型構造
             let html = sortedSkills.map(s => {
-                return `<span class="job-skill-tag" style="display:inline-block; background:var(--panel-header-bg); padding:4px 12px; border-radius:20px; font-size:0.85rem; border:1px solid var(--border); color:var(--text-main); font-weight:bold; margin-right:4px; margin-bottom:4px; transition:all 0.2s;">${s}</span>`;
+                return `
+                <span class="job-tag-wrapper" data-skill="${s}" style="display:inline-flex; align-items:stretch; margin-right:6px; margin-bottom:8px; border-radius:20px; border:1px solid var(--border); overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.05); vertical-align:middle; transition:0.2s;">
+                    <span class="job-skill-tag" style="background:var(--panel-header-bg); padding:4px 12px; font-size:0.85rem; color:var(--text-main); font-weight:bold; display:flex; align-items:center; transition:0.2s;">${s}</span>
+                    <span class="job-skill-sub" style="display:none; background:rgba(0,0,0,0.05); padding:4px 10px; font-size:0.8rem; color:var(--text-main); font-weight:bold; border-left:1px dashed var(--border); align-items:center; letter-spacing:0.5px; font-family:'Noto Sans JP', sans-serif;"></span>
+                </span>`;
             }).join('');
             
            listText.innerHTML = html;
@@ -2490,7 +2500,11 @@
                 const sortedSkills = [...jobData.skills].sort((a, b) => (a.startsWith('[選択:') ? 1 : 0) - (b.startsWith('[選択:') ? 1 : 0));
                 
                 // 全角カッコを半角に正規化しつつ抽出
-                let allocated = c.skills ? c.skills.filter(s => Number(s.j) > 0 && s.n).map(s => s.n.replace(/（/g, '(').replace(/）/g, ')').trim()) : [];
+                // ★ 編集ページと条件を統一：職業ポイント（j）が振られている技能だけを対象とする
+                let allocated = [];
+                (c.skills || []).forEach(s => {
+                    if (Number(s.j) > 0) allocated.push(s.n + (s.sub ? `(${s.sub})` : ''));
+                });
                 
                 let matchedSkills = new Set();
                 let anyTags = [];
@@ -2498,7 +2512,7 @@
 
                 // 割り振られた技能を「ベース名」として認識させる
                 let matchableAllocated = allocated.filter(sk => {
-                    if (c.regulation === '7th' && sk === '信用') return false; // ★ 7版の信用はタグ判定および余り計算から除外
+                    if (c.regulation === '7th' && sk === '信用') return false; 
                     return true;
                 }).map(sk => {
                     for (let b of bases) { if (sk.startsWith(b)) return { orig: sk, base: b }; }
@@ -2506,11 +2520,20 @@
                 });
                 
                 let tempTags = sortedSkills.map(s => {
-                    // ★ 編集ページと完全に統一した自由枠の条件（「任意」単体での誤爆を防ぐ）
                     if (s.includes('個人的') || s.includes('関する') || s.includes('任意の技能') || s.includes('好きな技能') || s.includes('専門の技能')) {
                         let obj = {text: s, isAllocated: false};
                         anyTags.push(obj);
                         return obj;
+                    }
+
+                    // ★ タグ名から「〇つ」の上限数を取得（全角・半角・漢数字対応）
+                    let limit = 1;
+                    let lMatch = s.match(/([0-9０-９一二三四五六七八九十]+)つ/);
+                    if (lMatch) {
+                        const numMap = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10};
+                        let normalized = lMatch[1].replace(/[０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0));
+                        limit = parseInt(normalized);
+                        if (isNaN(limit)) limit = numMap[lMatch[1]] || 1;
                     }
 
                     let tx = s.replace(/^\[選択:\s*/, '').replace(/から\d+つ\]$/, '').trim();
@@ -2519,44 +2542,75 @@
                     let matchableTagText = tx.replace(/\([^)]*\)/g, '');
                     let tagBases = matchableTagText.split(/[\/、・]/).map(b => b.trim()).filter(b => b);
 
-                    let isMatch = false;
-                    let matchedOrig = null;
-
+                    let matchedOrigs = [];
                     for (let mSk of matchableAllocated) {
+                        if (matchedOrigs.length >= limit) break; // 上限数に達したらストップ
                         if (matchedSkills.has(mSk.orig)) continue;
                         
-                        if (tagBases.includes(mSk.base)) { isMatch = true; }
-                        else if (s.startsWith('[選択:') && tagBases.some(tb => mSk.base.includes(tb) || tb.includes(mSk.base))) { isMatch = true; }
+                        let isThisMatch = false;
+                        if (tagBases.includes(mSk.base)) { isThisMatch = true; }
+                        else if (s.startsWith('[選択:') && tagBases.some(tb => mSk.base.includes(tb) || tb.includes(mSk.base))) { isThisMatch = true; }
+                        else if (tagBases.some(tb => mSk.orig.includes(tb) || tb.includes(mSk.orig))) { isThisMatch = true; }
                         
-                        if (isMatch) {
-                            matchedOrig = mSk.orig;
-                            break;
+                        if (isThisMatch) {
+                            matchedOrigs.push(mSk.orig);
+                            matchedSkills.add(mSk.orig);
                         }
                     }
 
-                    if (isMatch && matchedOrig) {
-                        matchedSkills.add(matchedOrig);
-                        return {text: s, isAllocated: true};
+                    if (matchedOrigs.length > 0) {
+                        return {text: s, isAllocated: true, matchedOrig: matchedOrigs.join('、')};
                     }
-                    return {text: s, isAllocated: false};
+                    return {text: s, isAllocated: false, matchedOrig: null};
                 });
                 
-                // ★ 余り計算
+                // ★ 余り計算（個人的な特技などの任意枠への複数割り当て対応）
                 let leftoverCount = matchableAllocated.length - matchedSkills.size;
+                let unusedSkills = matchableAllocated.filter(m => !matchedSkills.has(m.orig)).map(m => m.orig);
+                
                 anyTags.forEach(t => {
-                    if (leftoverCount > 0) {
-                        t.isAllocated = true;
+                    const rawTx = t.text;
+                    let limit = 1;
+                    let lMatch = rawTx.match(/([0-9０-９一二三四五六七八九十]+)つ/);
+                    if (lMatch) {
+                        const numMap = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10};
+                        let normalized = lMatch[1].replace(/[０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0));
+                        limit = parseInt(normalized);
+                        if (isNaN(limit)) limit = numMap[lMatch[1]] || 1;
+                    } else if (rawTx.includes('任意')) {
+                        limit = 99; // 制限なし
+                    }
+
+                    let allocatedForThisTag = [];
+                    while (leftoverCount > 0 && allocatedForThisTag.length < limit && unusedSkills.length > 0) {
+                        allocatedForThisTag.push(unusedSkills.shift());
                         leftoverCount--;
                     }
+                    if (allocatedForThisTag.length > 0) {
+                        t.isAllocated = true;
+                        t.matchedOrig = allocatedForThisTag.join('、');
+                    }
                 });
                 
+                // ★ 閲覧ページ用のタグ生成（割り当てられた技能名のサブタグ付き）
                 let tagsHtml = tempTags.map(t => {
                     const bg = t.isAllocated ? '#4a6fa5' : 'var(--panel-header-bg)';
                     const color = t.isAllocated ? '#ffffff' : 'var(--text-main)';
                     const borderColor = t.isAllocated ? '#4a6fa5' : 'var(--border)';
-                    return `<span style="display:inline-block; background:${bg}; padding:4px 12px; border-radius:20px; font-size:0.85rem; border:1px solid ${borderColor}; color:${color}; font-weight:bold; margin-right:4px; margin-bottom:4px;">${t.text}</span>`;
+                    
+                    // ★ 割り当てられた技能が存在し、かつタグの文字と「完全一致していない」場合（＝選択枠や任意枠の場合）
+                    if (t.isAllocated && t.matchedOrig && t.matchedOrig !== t.text) {
+                        return `
+                        <span style="display:inline-flex; align-items:stretch; margin-right:6px; margin-bottom:8px; border-radius:20px; border:1px solid ${borderColor}; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.05); vertical-align:middle; transition:0.2s;">
+                            <span style="background:${bg}; padding:4px 12px; font-size:0.85rem; color:${color}; font-weight:bold; display:flex; align-items:center; transition:0.2s;">${t.text}</span>
+                            <span style="background:rgba(0,0,0,0.05); padding:4px 10px; font-size:0.8rem; color:var(--text-main); font-weight:bold; border-left:1px dashed var(--border); display:flex; align-items:center; letter-spacing:0.5px; font-family:'Noto Sans JP', sans-serif;">${t.matchedOrig}</span>
+                        </span>`;
+                    } else {
+                        // 通常のタグ
+                        return `
+                        <span style="display:inline-flex; align-items:center; background:${bg}; padding:4px 12px; border-radius:20px; font-size:0.85rem; border:1px solid ${borderColor}; color:${color}; font-weight:bold; margin-right:6px; margin-bottom:8px; box-shadow:0 1px 2px rgba(0,0,0,0.05); vertical-align:middle; transition:0.2s;">${t.text}</span>`;
+                    }
                 }).join('');
-
                 html += `<div style="padding-top:10px; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:5px;">${tagsHtml}</div>`;
                 
                 // ★ 7版の「信用」を閲覧画面にも表示
@@ -2812,6 +2866,26 @@
         const int = g('in-int') + g('mod-int');
         const edu = g('in-edu') + g('mod-edu'); 
 
+        // ★ 追加：回避・母国語の初期値自動計算（6版/7版対応）
+        const dodgeBase = r === '7th' ? Math.floor(dex / 2) : dex * 2;
+        const langBase = r === '7th' ? edu : edu * 5;
+
+        p.querySelectorAll('.sk-row').forEach(row => {
+            const skName = row.querySelector('.sk-name')?.value;
+            const bInput = row.querySelector('.sk-b');
+            if ((skName === '回避' || skName === '母国語') && bInput) {
+                const newVal = skName === '回避' ? dodgeBase : langBase;
+                if (Number(bInput.value) !== newVal) {
+                    bInput.value = newVal;
+                    const j = Number(row.querySelector('.sk-j').value) || 0;
+                    const i = Number(row.querySelector('.sk-i').value) || 0;
+                    const g = Number(row.querySelector('.sk-g').value) || 0;
+                    const o = Number(row.querySelector('.sk-o').value) || 0;
+                    row.querySelector('.sk-total').value = newVal + j + i + g + o;
+                }
+            }
+        });
+
         let hp, mp, ide, know, db;
 
         if (r === '6th') { 
@@ -2911,6 +2985,7 @@
         let allocated = [];
         p.querySelectorAll('.sk-row').forEach(row => {
             const snEl = row.querySelector('.sk-name');
+            const subEl = row.querySelector('.sk-sub'); // ★ サブ技能の要素を取得
             const jvEl = row.querySelector('.sk-j');
             if (snEl && jvEl) {
                 let sn = snEl.value.trim();
@@ -2921,8 +2996,12 @@
                     sn = snEl.options[snEl.selectedIndex].text;
                 }
                 
+                // ★ サブタイプ（近接戦闘や射撃など）のテキストを結合して完全な名前にする
+                if (subEl && subEl.value) {
+                    sn += '(' + subEl.value.trim() + ')';
+                }
+                
                 if(jv > 0 && sn) {
-                    // 全角カッコを半角に変換して保存（表記揺れの吸収）
                     allocated.push(sn.replace(/（/g, '(').replace(/）/g, ')'));
                 }
             }
@@ -2942,77 +3021,124 @@
         }
 
         // ★ 通常の職業ポイントタグ変色処理 (ベース名統一仕様)
-        const tags = p.querySelectorAll('.job-skill-tag');
-        if(tags.length > 0) {
+        const wrappers = p.querySelectorAll('.job-tag-wrapper');
+        if(wrappers.length > 0) {
             let matchedSkills = new Set();
-            let anyTags = [];
+            let anyWrappers = [];
 
-            // ★ 対象とするベース技能のリスト
             const bases = ['芸術', '製作', '制作', 'ほかの言語', '母国語', '近接戦闘', '射撃', '科学', '運転', '操縦', 'サバイバル'];
             
-            // 割り振られた技能を「ベース名」として認識させる
             let matchableAllocated = allocated.filter(sk => {
-                if (r === '7th' && sk === '信用') return false; // ★ 7版の信用はタグ判定および余り計算から除外
+                if (r === '7th' && sk === '信用') return false; 
                 return true;
             }).map(sk => {
                 for (let b of bases) { if (sk.startsWith(b)) return { orig: sk, base: b }; }
                 return { orig: sk, base: sk };
             });
 
-            tags.forEach(t => {
+            wrappers.forEach(w => {
+                const t = w.querySelector('.job-skill-tag');
+                const sub = w.querySelector('.job-skill-sub');
                 const rawTx = t.innerText;
-                // ★ 閲覧ページと完全に統一した自由枠の条件（「任意」単体での誤爆を防ぐ）
+                
                 if (rawTx.includes('個人的') || rawTx.includes('関する') || rawTx.includes('任意の技能') || rawTx.includes('好きな技能') || rawTx.includes('専門の技能')) {
-                    anyTags.push(t);
+                    anyWrappers.push(w);
                     return;
                 }
                 
-                let isMatch = false;
-                let matchedOrig = null;
-                
+                // ★ タグ名から「〇つ」の上限数を取得
+                let limit = 1;
+                let lMatch = rawTx.match(/([0-9０-９一二三四五六七八九十]+)つ/);
+                if (lMatch) {
+                    const numMap = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10};
+                    limit = parseInt(lMatch[1]);
+                    if (isNaN(limit)) limit = numMap[lMatch[1]] || 1;
+                }
+
                 let tx = rawTx.replace(/^\[選択:\s*/, '').replace(/から\d+つ\]$/, '').trim();
                 tx = tx.replace(/（/g, '(').replace(/）/g, ')');
                 
                 let matchableTagText = tx.replace(/\([^)]*\)/g, '');
                 let tagBases = matchableTagText.split(/[\/、・]/).map(s => s.trim()).filter(s => s);
 
+                let matchedOrigs = []; // ★ 複数の技能を格納する配列
                 for (let mSk of matchableAllocated) {
+                    if (matchedOrigs.length >= limit) break; // 上限数に達したらストップ
                     if (matchedSkills.has(mSk.orig)) continue; 
                     
-                    if (tagBases.includes(mSk.base)) { isMatch = true; }
-                    else if (rawTx.startsWith('[選択:') && tagBases.some(tb => mSk.base.includes(tb) || tb.includes(mSk.base))) { isMatch = true; }
+                    let isThisMatch = false;
+                    if (tagBases.includes(mSk.base)) { isThisMatch = true; }
+                    else if (rawTx.startsWith('[選択:') && tagBases.some(tb => mSk.base.includes(tb) || tb.includes(mSk.base))) { isThisMatch = true; }
                     
-                    if (isMatch) {
-                        matchedOrig = mSk.orig;
-                        break;
+                    if (isThisMatch) {
+                        matchedOrigs.push(mSk.orig);
+                        matchedSkills.add(mSk.orig);
                     }
                 }
 
-                if (matchedOrig) {
-                    matchedSkills.add(matchedOrig);
+                if (matchedOrigs.length > 0) {
+                    w.style.borderColor = '#4a6fa5';
                     t.style.backgroundColor = '#4a6fa5';
                     t.style.color = '#ffffff';
-                    t.style.borderColor = '#4a6fa5';
+                    
+                    let combinedOrig = matchedOrigs.join('、'); // ★ 「、」で繋げる
+                    if (combinedOrig !== rawTx) {
+                        sub.textContent = combinedOrig;
+                        sub.style.display = 'flex';
+                    } else {
+                        sub.style.display = 'none';
+                    }
                 } else {
+                    w.style.borderColor = 'var(--border)';
                     t.style.backgroundColor = 'var(--panel-header-bg)';
                     t.style.color = 'var(--text-main)';
-                    t.style.borderColor = 'var(--border)';
+                    sub.style.display = 'none';
                 }
             });
 
-            // ★ 余り計算
+            // ★ 余り計算（個人的な特技などの任意枠の処理）
             let leftoverCount = matchableAllocated.length - matchedSkills.size;
+            let unusedSkills = matchableAllocated.filter(m => !matchedSkills.has(m.orig)).map(m => m.orig);
             
-            anyTags.forEach(t => {
-                if (leftoverCount > 0) {
+            anyWrappers.forEach(w => {
+                const t = w.querySelector('.job-skill-tag');
+                const sub = w.querySelector('.job-skill-sub');
+                let rawTx = t.innerText;
+
+                // ★ 任意枠でも上限数を取得
+                let limit = 1;
+                let lMatch = rawTx.match(/([0-9０-９一二三四五六七八九十]+)つ/);
+                if (lMatch) {
+                    const numMap = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10};
+                    limit = parseInt(lMatch[1]);
+                    if (isNaN(limit)) limit = numMap[lMatch[1]] || 1;
+                } else if (rawTx.includes('任意')) {
+                    limit = 99; // 制限なし
+                }
+
+                let allocatedForThisTag = [];
+                while (leftoverCount > 0 && allocatedForThisTag.length < limit && unusedSkills.length > 0) {
+                    allocatedForThisTag.push(unusedSkills.shift());
+                    leftoverCount--;
+                }
+
+                if (allocatedForThisTag.length > 0) {
+                    w.style.borderColor = '#4a6fa5';
                     t.style.backgroundColor = '#4a6fa5';
                     t.style.color = '#ffffff';
-                    t.style.borderColor = '#4a6fa5';
-                    leftoverCount--; 
+                    
+                    let combinedOrig = allocatedForThisTag.join('、');
+                    if (combinedOrig !== rawTx) {
+                        sub.textContent = combinedOrig;
+                        sub.style.display = 'flex';
+                    } else {
+                        sub.style.display = 'none';
+                    }
                 } else {
+                    w.style.borderColor = 'var(--border)';
                     t.style.backgroundColor = 'var(--panel-header-bg)';
                     t.style.color = 'var(--text-main)';
-                    t.style.borderColor = 'var(--border)';
+                    sub.style.display = 'none';
                 }
             });
         }
