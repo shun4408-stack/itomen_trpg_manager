@@ -329,6 +329,16 @@
         [data-theme="dark"] .cal-event-preview.status-ongoing { border-left-color: #6da16b; color: #b2d8b1; }
         [data-theme="dark"] .cal-event-preview.status-done { border-left-color: #c9803b; color: #f0c39a; }
 
+/* ★ プライベート予定用の色（セッションと被らない上品なベージュ・グレー系） */
+        .cal-event-preview.status-private { border-left-color: #a0937d; color: #5a5045; background-color: rgba(160, 147, 125, 0.15); }
+        [data-theme="dark"] .cal-event-preview.status-private { border-left-color: #8a7e6b; color: #d0c8b8; background-color: rgba(160, 147, 125, 0.15); }
+
+        /* ★ プライベート追加ボタン（ホバー時にふわっと出現） */
+        .cal-add-priv-btn { position: absolute; bottom: 6px; right: 6px; font-size: 0.8rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; cursor: pointer; opacity: 0; transition: 0.2s; color: var(--text-sub); z-index: 10; font-family: 'Noto Sans JP', sans-serif; font-weight: bold; }
+        .cal-cell:hover .cal-add-priv-btn { opacity: 1; }
+        .cal-add-priv-btn:hover { background: var(--panel-header-bg); color: var(--important); border-color: var(--important); }
+        @media (max-width: 850px) { .cal-add-priv-btn { opacity: 0.6; } } /* スマホ時は常にうっすら表示 */
+
         .chr-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 0; margin-bottom: 25px; display: flex; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; position: relative; }
         .chr-card:hover { transform: translateX(5px); }
         .chr-date-sidebar { width: 100px; background: var(--panel-header-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid var(--border); padding: 25px 10px; flex-shrink: 0; }
@@ -452,9 +462,15 @@
             filter: sepia(1) hue-rotate(-20deg) saturate(4) brightness(1.2) drop-shadow(0 0 8px rgba(184, 115, 51, 0.6));
             transform: rotate(-22deg) scale(1.02);
         }
-        [data-theme="dark"] .char-card:not(.is-lost):hover::after { 
-            opacity: 0.5; 
-            filter: sepia(1) hue-rotate(-20deg) saturate(4) brightness(1.3) drop-shadow(0 0 10px rgba(184, 115, 51, 0.8));
+        /* 案B：ロスト探索者用の証（スタンプが赤黒く輝く） */
+        .char-card.is-lost:hover::after { 
+            opacity: 0.35; 
+            filter: sepia(1) hue-rotate(-50deg) saturate(5) brightness(0.8) drop-shadow(0 0 8px rgba(139, 0, 0, 0.6));
+            transform: rotate(-22deg) scale(1.02);
+        }
+        [data-theme="dark"] .char-card.is-lost:hover::after { 
+            opacity: 0.6; 
+            filter: sepia(1) hue-rotate(-50deg) saturate(6) brightness(1.1) drop-shadow(0 0 10px rgba(255, 50, 50, 0.8));
         }
 
         /* ーーー ★現役探索者のホバー演出（Gの斜光 ＋ Fの蔦模様 ＋ 真っ直ぐな透かし文字） ーーー */
@@ -480,9 +496,23 @@
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg fill='none' stroke='%2399aab5' stroke-width='0.5' stroke-opacity='0.3'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z'/%3E%3Cpath d='M0 0 L50 50 M50 0 L0 50'/%3E%3Cpath d='M25 10 L40 25 L25 40 L10 25 Z'/%3E%3Ccircle cx='25' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 100% 100%, 50px 50px;
         }
-        .char-card:not(.is-lost):hover .light-sweep { opacity: 1; }
+        .char-card:hover .light-sweep { opacity: 1; }
+        
+        /* ★ ロスト探索者用の赤系斜光 */
+        .char-card.is-lost .light-sweep {
+            background: 
+                linear-gradient(225deg, rgba(139, 0, 0, 0.18) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg fill='none' stroke='%23808080' stroke-width='0.5' stroke-opacity='0.3'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z'/%3E%3Cpath d='M0 0 L50 50 M50 0 L0 50'/%3E%3Cpath d='M25 10 L40 25 L25 40 L10 25 Z'/%3E%3Ccircle cx='25' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100% 100%, 50px 50px;
+        }
+        [data-theme="dark"] .char-card.is-lost .light-sweep {
+            background: 
+                linear-gradient(225deg, rgba(255, 50, 50, 0.15) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg fill='none' stroke='%2399aab5' stroke-width='0.5' stroke-opacity='0.3'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z'/%3E%3Cpath d='M0 0 L50 50 M50 0 L0 50'/%3E%3Cpath d='M25 10 L40 25 L25 40 L10 25 Z'/%3E%3Ccircle cx='25' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100% 100%, 50px 50px;
+        }
 
-        /* ACTIVE INVESTIGATOR の透かし文字（傾きなし・小見出し＆区切り線つき） */
+        /* INVESTIGATOR の透かし文字（傾きなし・小見出し＆区切り線つき） */
         .active-watermark {
             position: absolute; top: 50%; right: 5%; transform: translateY(-50%); 
             display: flex; flex-direction: column; align-items: center; 
@@ -504,13 +534,18 @@
             letter-spacing: 3px; font-weight: bold;
         }
 
-        .char-card:not(.is-lost):hover .active-watermark {
+        /* ★ 生存・ロスト問わずホバーで透かし文字をスライドさせる */
+        .char-card:hover .active-watermark {
             opacity: 0.07; 
             transform: translateY(-50%) scale(1.02) translateX(-10px);
         }
-        [data-theme="dark"] .char-card:not(.is-lost):hover .active-watermark {
+        [data-theme="dark"] .char-card:hover .active-watermark {
             opacity: 0.12;
         }
+        
+        /* ★ ロスト探索者用の赤系テキスト設定 */
+        .char-card.is-lost .active-watermark { color: var(--accent); }
+        .char-card.is-lost .aw-main { border-bottom-color: var(--accent); }
 
         /* ★ ロスト印（編集画面のトグルボタン）：傾きをなくし真っ直ぐに */
         .lost-stamp-btn { background: transparent; border: 2px dashed rgba(139, 0, 0, 0.3); color: rgba(139, 0, 0, 0.4); font-family: 'Times New Roman', serif; font-size: 1.2rem; font-weight: bold; letter-spacing: 4px; padding: 4px 15px; border-radius: 4px; cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); user-select: none; }
@@ -563,8 +598,38 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* ★ ホバー時の演出：光を「右側（0%）」へ向かって走り抜けさせる（生存探索者のみ） */
-        .char-card.is-secret:not(.is-lost):hover .secret-watermark {
+        /* ★ ロスト探索者用のSECRET赤色発光グラデーション */
+        .char-card.is-lost .secret-watermark {
+            background: linear-gradient(110deg, 
+                rgba(128,128,128,0.25) 0%, 
+                rgba(128,128,128,0.25) 45%, 
+                rgba(139,0,0,0.9) 50%, 
+                rgba(128,128,128,0.25) 55%, 
+                rgba(128,128,128,0.25) 100%
+            );
+            background-size: 300% auto;
+            background-position: 100% center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        [data-theme="dark"] .char-card.is-lost .secret-watermark {
+            background: linear-gradient(110deg, 
+                rgba(180,180,180,0.15) 0%, 
+                rgba(180,180,180,0.15) 45%, 
+                rgba(255,50,50,1) 50%, 
+                rgba(180,180,180,0.15) 55%, 
+                rgba(180,180,180,0.15) 100%
+            );
+            background-size: 300% auto;
+            background-position: 100% center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ★ ホバー時の演出：光を「右側（0%）」へ向かって走り抜けさせる（共通） */
+        .char-card.is-secret:hover .secret-watermark {
             background-position: 0% center; 
         }
 
@@ -573,14 +638,14 @@
         .char-card.is-lost .char-icon { filter: grayscale(0.8) sepia(0.2); } /* アイコンを色褪せさせる */
         
         .char-card.is-lost:hover { 
-            /* 背景は一瞬で血に染まるが、枠と光り方は生存探索者と完全に統一する */
-            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(139,0,0,0.08) 100%) !important; 
+            /* 生存探索者と同様に、背景グラデーションは .light-sweep のアニメーションに任せる */
+            background-color: var(--card-bg) !important; 
             border-color: var(--accent) !important; 
             box-shadow: 0 0 25px var(--e-glow-strong); 
-            transition: background 0s, box-shadow 0.4s ease, border-color 0.4s ease; 
+            transition: box-shadow 0.4s ease, border-color 0.4s ease; 
         }
         [data-theme="dark"] .char-card.is-lost:hover { 
-            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,50,50,0.1) 100%) !important; 
+            background-color: var(--card-bg) !important; 
             border-color: var(--accent) !important; 
             box-shadow: 0 0 25px var(--e-glow-strong); 
         }
@@ -828,10 +893,10 @@
                 box-shadow: inset 0 0 0 2px var(--card-bg), inset 0 0 0 3px #8a9aaa, inset 0 0 0 5px var(--card-bg), inset 0 0 0 6px #8a9aaa !important;
             }
             
-            /* 2. ACTIVE透かし文字（フォントサイズを約60%へ） */
+            /* 2. ACTIVE/LOST透かし文字（フォントサイズを約60%へ） */
             .active-watermark .aw-main { font-size: 1.3rem !important; letter-spacing: 2px !important; margin-bottom: 2px !important; border-bottom-width: 1px !important; }
             .active-watermark .aw-sub { font-size: 0.6rem !important; letter-spacing: 1px !important; }
-            .char-card:not(.is-lost):hover .active-watermark { transform: translateY(-50%) scale(1.02) translateX(-5px) !important; }
+            .char-card:hover .active-watermark { transform: translateY(-50%) scale(1.02) translateX(-5px) !important; }
             
             /* 3. アール・デコ模様（パターン幅を50pxから25pxへ） */
             .light-sweep { background-size: 100% 100%, 25px 25px !important; }
@@ -2766,7 +2831,7 @@
                             </div>
                         </div>
                         <img src="${c.img || ''}" class="char-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzlhOWE5YSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltZzwvdGV4dD48L3N2Zz4='">
-                        ${c.isLost ? '<div class="lost-stamp-overlay">LOST</div>' : '<div class="active-watermark"><div class="aw-main">ACTIVE INVESTIGATOR</div><div class="aw-sub">Can be Continued</div></div><div class="light-sweep"></div>'}
+                        ${c.isLost ? '<div class="active-watermark"><div class="aw-main">LOST INVESTIGATOR</div><div class="aw-sub">Unable to Continue</div></div><div class="light-sweep"></div><div class="lost-stamp-overlay">LOST</div>' : '<div class="active-watermark"><div class="aw-main">ACTIVE INVESTIGATOR</div><div class="aw-sub">Can be Continued</div></div><div class="light-sweep"></div>'}
                         <div style="flex:1; position:relative; z-index:2;">
                             <div class="name-area">
                             <span class="reg-tag ${c.regulation === '7th' ? 'tag-7th' : 'tag-6th'}">${c.regulation === '7th' ? '7th Ed.' : '6th Ed.'}</span>
@@ -3508,17 +3573,53 @@
         for (let i = 1; i <= lastDate; i++) { 
             const today = new Date(); const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear(); 
             let cellContent = ''; const cellDateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`; 
+            
             schedules.forEach(s => { 
                 if(s.dates && s.dates.some(d => d.startsWith(cellDateStr))) { 
-                    const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done'; 
-                    cellContent += `<div class="cal-event-preview ${stCls}" onclick="event.stopPropagation(); openSchViewer(${s.id})">${s.title}</div>`; 
+                    if (s.status === 'プライベート') {
+                        // ★ プライベート予定の場合は、クリックで即削除確認を出す（閲覧モードの時は何もしない）
+                        cellContent += `<div class="cal-event-preview status-private" onclick="event.stopPropagation(); if(isEditMode) deletePrivateSch(${s.id}, '${s.title}')">${s.title}</div>`; 
+                    } else {
+                        const stCls = s.status === '調整中' ? 'status-adj' : s.status === '待機中' ? 'status-wait' : s.status === '進行中' ? 'status-ongoing' : 'status-done'; 
+                        cellContent += `<div class="cal-event-preview ${stCls}" onclick="event.stopPropagation(); openSchViewer(${s.id})">${s.title}</div>`; 
+                    }
                 } 
             }); 
-            grid.innerHTML += `<div class="cal-cell ${isToday ? 'today' : ''}" onclick="if(isEditMode) quickAdd(${i})"><div class="cal-date-num">${i}</div>${cellContent}</div>`; 
+            
+            // ★ ホバー時のみ出現する「＋☕」ボタン
+            const addPrivBtn = isEditMode ? `<button class="cal-add-priv-btn admin-only" onclick="event.stopPropagation(); addPrivateSch(${year}, ${month+1}, ${i})" title="プライベートの予定を追加">＋☕</button>` : '';
+            
+            grid.innerHTML += `<div class="cal-cell ${isToday ? 'today' : ''}" onclick="if(isEditMode) quickAdd(${i})"><div class="cal-date-num">${i}</div>${cellContent}${addPrivBtn}</div>`; 
         } 
     }
     
     function changeMonth(diff) { currentViewDate.setMonth(currentViewDate.getMonth() + diff); renderCalendar(); }
+
+// ★ プライベート予定の追加処理（ダイアログでサクッと入力）
+    function addPrivateSch(y, m, d) {
+        const title = prompt(`${m}月${d}日のプライベート予定を入力してください:\n（例：仕事、旅行、飲み会 など）`);
+        if(!title || !title.trim()) return;
+        
+        // 予定の時刻を便宜上 00:00 として登録する
+        const dateStr = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}T00:00`;
+        const data = { 
+            id: Date.now(), dates: [dateStr], title: title.trim(), status: 'プライベート', 
+            role: '', charName: '', partners_kp: [], partners_pl: [] 
+        };
+        
+        schedules.push(data);
+        localStorage.setItem(KEY_SCH, JSON.stringify(schedules));
+        renderScheduleView(); pushData();
+    }
+
+    // ★ プライベート予定の削除処理（帯をクリックしたとき）
+    function deletePrivateSch(id, title) {
+        if(confirm(`プライベート予定「${title}」を削除しますか？`)) {
+            schedules = schedules.filter(s => s.id !== id);
+            localStorage.setItem(KEY_SCH, JSON.stringify(schedules));
+            renderScheduleView(); pushData();
+        }
+    }
     
     function saveSchedule(mode) {
         const root = document.getElementById(mode === 'new' ? 'add-sch-form' : 'sch-editor-overlay');
