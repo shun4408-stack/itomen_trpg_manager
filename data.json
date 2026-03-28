@@ -6285,6 +6285,18 @@
           "name": "いとめん"
         }
       ]
+    },
+    {
+      "id": 1774687035161,
+      "dates": [
+        "2026-03-31T00:00"
+      ],
+      "title": "午後休",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
