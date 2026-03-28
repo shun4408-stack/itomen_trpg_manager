@@ -6297,6 +6297,18 @@
       "charName": "",
       "partners_kp": [],
       "partners_pl": []
+    },
+    {
+      "id": 1774687044390,
+      "dates": [
+        "2026-03-28T00:00"
+      ],
+      "title": "出勤日",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
