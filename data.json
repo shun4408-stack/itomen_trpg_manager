@@ -6321,6 +6321,18 @@
       "charName": "",
       "partners_kp": [],
       "partners_pl": []
+    },
+    {
+      "id": 1774687124366,
+      "dates": [
+        "2026-05-09T00:00"
+      ],
+      "title": "出勤日",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
