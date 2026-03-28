@@ -6333,6 +6333,18 @@
       "charName": "",
       "partners_kp": [],
       "partners_pl": []
+    },
+    {
+      "id": 1774687106524,
+      "dates": [
+        "2026-05-04T00:00"
+      ],
+      "title": "祝日",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
