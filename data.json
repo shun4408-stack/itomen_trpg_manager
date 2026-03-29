@@ -5747,8 +5747,8 @@
       "id": 1772716868784,
       "dates": [
         "2026-03-27T21:00",
-        "2026-03-29T10:00",
-        "2026-03-30T21:00"
+        "2026-03-29T13:00",
+        "2026-03-30T20:00"
       ],
       "title": "血のチョコレートは誰を狩る",
       "status": "進行中",
@@ -6033,15 +6033,15 @@
       ]
     },
     {
-      "id": 1774691873969,
+      "id": 1773411399138,
       "dates": [],
-      "title": "カーテンコールに祝福の花束を",
+      "title": "四季送り",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "玉葱"
+          "name": "ねぎ"
         }
       ],
       "partners_pl": [
@@ -6051,9 +6051,36 @@
       ]
     },
     {
-      "id": 1774357201826,
+      "id": 1773153499639,
       "dates": [],
-      "title": "ロトカ・ヴォルテラの愛堕討ち",
+      "title": "茶瀬木高校オカルト部",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "カルボナーラ"
+        },
+        {
+          "name": "ねぎ"
+        },
+        {
+          "name": "さにー"
+        }
+      ]
+    },
+    {
+      "id": 1773152396772,
+      "dates": [],
+      "title": "片鱗",
       "status": "調整中",
       "role": "キーパー（KP/SKP）",
       "charName": "",
@@ -6072,15 +6099,42 @@
       ]
     },
     {
-      "id": 1773047161399,
+      "id": 1772721982285,
       "dates": [],
-      "title": "フィンブルの手記",
+      "title": "VOID",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "きなこ"
+        },
+        {
+          "name": "カルボナーラ"
+        },
+        {
+          "name": "些目"
+        },
+        {
+          "name": "さにー"
+        }
+      ]
+    },
+    {
+      "id": 1772717517762,
+      "dates": [],
+      "title": "井藤チアキと云う女",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ss"
+          "name": "ねぎ"
         }
       ],
       "partners_pl": [
@@ -6088,59 +6142,14 @@
           "name": "いとめん"
         },
         {
-          "name": "ちいた"
+          "name": "カルボナーラ"
         }
       ]
     },
     {
-      "id": 1772717537683,
+      "id": 1772717458166,
       "dates": [],
-      "title": "欲望街",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "なお"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "あきづ"
-        },
-        {
-          "name": "ひなた"
-        }
-      ]
-    },
-    {
-      "id": 1772717484506,
-      "dates": [],
-      "title": "クオリフィル世界における独ガ論",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "Stella"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "ナス大臣"
-        }
-      ]
-    },
-    {
-      "id": 1772717441103,
-      "dates": [],
-      "title": "笑う人間師",
+      "title": "ワンルーム・ディスコン",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
@@ -6156,15 +6165,15 @@
       ]
     },
     {
-      "id": 1772717398418,
+      "id": 1772717424651,
       "dates": [],
-      "title": "イザナミの棺",
+      "title": "Reverse city 2",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "あきづ"
+          "name": "ナス大臣"
         }
       ],
       "partners_pl": [
@@ -6201,117 +6210,9 @@
       ]
     },
     {
-      "id": 1772717424651,
+      "id": 1772717398418,
       "dates": [],
-      "title": "Reverse city 2",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ナス大臣"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1772717458166,
-      "dates": [],
-      "title": "ワンルーム・ディスコン",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717517762,
-      "dates": [],
-      "title": "井藤チアキと云う女",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ねぎ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "カルボナーラ"
-        }
-      ]
-    },
-    {
-      "id": 1772721982285,
-      "dates": [],
-      "title": "VOID",
-      "status": "調整中",
-      "role": "キーパー（KP/SKP）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "いとめん"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "きなこ"
-        },
-        {
-          "name": "カルボナーラ"
-        },
-        {
-          "name": "些目"
-        },
-        {
-          "name": "さにー"
-        }
-      ]
-    },
-    {
-      "id": 1773152396772,
-      "dates": [],
-      "title": "片鱗",
-      "status": "調整中",
-      "role": "キーパー（KP/SKP）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "いとめん"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "ねぎ"
-        },
-        {
-          "name": "カルボナーラ"
-        }
-      ]
-    },
-    {
-      "id": 1773153499639,
-      "dates": [],
-      "title": "茶瀬木高校オカルト部",
+      "title": "イザナミの棺",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
@@ -6325,26 +6226,125 @@
           "name": "いとめん"
         },
         {
-          "name": "カルボナーラ"
-        },
-        {
-          "name": "ねぎ"
-        },
-        {
-          "name": "さにー"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1773411399138,
+      "id": 1772717441103,
       "dates": [],
-      "title": "四季送り",
+      "title": "笑う人間師",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1772717484506,
+      "dates": [],
+      "title": "クオリフィル世界における独ガ論",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "Stella"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ナス大臣"
+        }
+      ]
+    },
+    {
+      "id": 1772717537683,
+      "dates": [],
+      "title": "欲望街",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "なお"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "あきづ"
+        },
+        {
+          "name": "ひなた"
+        }
+      ]
+    },
+    {
+      "id": 1773047161399,
+      "dates": [],
+      "title": "フィンブルの手記",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ss"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ちいた"
+        }
+      ]
+    },
+    {
+      "id": 1774357201826,
+      "dates": [],
+      "title": "ロトカ・ヴォルテラの愛堕討ち",
+      "status": "調整中",
+      "role": "キーパー（KP/SKP）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "いとめん"
+        }
+      ],
+      "partners_pl": [
+        {
           "name": "ねぎ"
+        },
+        {
+          "name": "カルボナーラ"
+        }
+      ]
+    },
+    {
+      "id": 1774691873969,
+      "dates": [],
+      "title": "カーテンコールに祝福の花束を",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "玉葱"
         }
       ],
       "partners_pl": [
