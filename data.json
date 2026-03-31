@@ -6370,6 +6370,18 @@
       "charName": "",
       "partners_kp": [],
       "partners_pl": []
+    },
+    {
+      "id": 1774946376606,
+      "dates": [
+        "2026-05-01T00:00"
+      ],
+      "title": "休み",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
