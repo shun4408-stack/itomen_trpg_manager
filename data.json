@@ -6370,6 +6370,18 @@
       "charName": "",
       "partners_kp": [],
       "partners_pl": []
+    },
+    {
+      "id": 1774946391946,
+      "dates": [
+        "2026-05-01T00:00"
+      ],
+      "title": "振替休日",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
