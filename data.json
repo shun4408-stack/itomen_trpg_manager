@@ -6420,6 +6420,18 @@
           "name": "きなこ"
         }
       ]
+    },
+    {
+      "id": 1775135432216,
+      "dates": [
+        "2026-05-16T00:00"
+      ],
+      "title": "飲み会",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
     }
   ],
   "scnLib": [
