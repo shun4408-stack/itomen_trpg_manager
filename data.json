@@ -5866,6 +5866,18 @@
       "partners_pl": []
     },
     {
+      "id": 1775208678185,
+      "dates": [
+        "2026-04-14T00:00"
+      ],
+      "title": "VOID会議 21:00～",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
+    },
+    {
       "id": 1772717259884,
       "dates": [
         "2026-04-18T13:00",
@@ -5979,6 +5991,18 @@
       ]
     },
     {
+      "id": 1775208108592,
+      "dates": [
+        "2026-05-01T00:00"
+      ],
+      "title": "VOID顔合わせ",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
+    },
+    {
       "id": 1774946391946,
       "dates": [
         "2026-05-01T00:00"
@@ -6063,6 +6087,18 @@
       ]
     },
     {
+      "id": 1775135432216,
+      "dates": [
+        "2026-05-16T00:00"
+      ],
+      "title": "飲み会",
+      "status": "プライベート",
+      "role": "",
+      "charName": "",
+      "partners_kp": [],
+      "partners_pl": []
+    },
+    {
       "id": 1774357201826,
       "dates": [
         "2026-05-17T21:00"
@@ -6086,79 +6122,18 @@
       ]
     },
     {
-      "id": 1773047368159,
-      "dates": [
-        "2026-06-06T13:00",
-        "2026-06-13T13:00"
-      ],
-      "title": "████が消えた夏",
-      "status": "待機中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ちいた"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1773411399138,
-      "dates": [],
-      "title": "四季送り",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ねぎ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1773153499639,
-      "dates": [],
-      "title": "茶瀬木高校オカルト部",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "あきづ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "カルボナーラ"
-        },
-        {
-          "name": "ねぎ"
-        },
-        {
-          "name": "さにー"
-        }
-      ]
-    },
-    {
       "id": 1772721982285,
-      "dates": [],
+      "dates": [
+        "2026-05-19T21:00",
+        "2026-05-21T21:00",
+        "2026-05-22T21:00",
+        "2026-05-23T13:00",
+        "2026-05-26T21:00",
+        "2026-05-29T21:00",
+        "2026-05-30T13:00"
+      ],
       "title": "VOID",
-      "status": "調整中",
+      "status": "待機中",
       "role": "キーパー（KP/SKP）",
       "charName": "",
       "partners_kp": [
@@ -6188,15 +6163,18 @@
       ]
     },
     {
-      "id": 1772717517762,
-      "dates": [],
-      "title": "井藤チアキと云う女",
-      "status": "調整中",
+      "id": 1773047368159,
+      "dates": [
+        "2026-06-06T13:00",
+        "2026-06-13T13:00"
+      ],
+      "title": "████が消えた夏",
+      "status": "待機中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ねぎ"
+          "name": "ちいた"
         }
       ],
       "partners_pl": [
@@ -6204,14 +6182,125 @@
           "name": "いとめん"
         },
         {
-          "name": "カルボナーラ"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1772717458166,
+      "id": 1774955932677,
       "dates": [],
-      "title": "ワンルーム・ディスコン",
+      "title": "旅館の捕食者",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ひなた"
+        },
+        {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ちいた"
+        },
+        {
+          "name": "きなこ"
+        }
+      ]
+    },
+    {
+      "id": 1774691873969,
+      "dates": [],
+      "title": "カーテンコールに祝福の花束を",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "玉葱"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1773047161399,
+      "dates": [],
+      "title": "フィンブルの手記",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "ss"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ちいた"
+        }
+      ]
+    },
+    {
+      "id": 1772717537683,
+      "dates": [],
+      "title": "欲望街",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "なお"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "あきづ"
+        },
+        {
+          "name": "ひなた"
+        }
+      ]
+    },
+    {
+      "id": 1772717484506,
+      "dates": [],
+      "title": "クオリフィル世界における独ガ論",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "Stella"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "ナス大臣"
+        }
+      ]
+    },
+    {
+      "id": 1772717441103,
+      "dates": [],
+      "title": "笑う人間師",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
@@ -6227,15 +6316,15 @@
       ]
     },
     {
-      "id": 1772717424651,
+      "id": 1772717398418,
       "dates": [],
-      "title": "Reverse city 2",
+      "title": "イザナミの棺",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ナス大臣"
+          "name": "あきづ"
         }
       ],
       "partners_pl": [
@@ -6272,139 +6361,34 @@
       ]
     },
     {
-      "id": 1772717398418,
+      "id": 1772717424651,
       "dates": [],
-      "title": "イザナミの棺",
+      "title": "Reverse city 2",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
-        {
-          "name": "あきづ"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
-      ]
-    },
-    {
-      "id": 1772717441103,
-      "dates": [],
-      "title": "笑う人間師",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717484506,
-      "dates": [],
-      "title": "クオリフィル世界における独ガ論",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "Stella"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
         {
           "name": "ナス大臣"
         }
-      ]
-    },
-    {
-      "id": 1772717537683,
-      "dates": [],
-      "title": "欲望街",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "なお"
-        }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
         },
         {
-          "name": "あきづ"
-        },
-        {
-          "name": "ひなた"
+          "name": "てる"
         }
       ]
     },
     {
-      "id": 1773047161399,
+      "id": 1772717458166,
       "dates": [],
-      "title": "フィンブルの手記",
+      "title": "ワンルーム・ディスコン",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
-        {
-          "name": "ss"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "ちいた"
-        }
-      ]
-    },
-    {
-      "id": 1774691873969,
-      "dates": [],
-      "title": "カーテンコールに祝福の花束を",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "玉葱"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1774955932677,
-      "dates": [],
-      "title": "旅館の捕食者",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ひなた"
-        },
         {
           "name": "てる"
         }
@@ -6412,50 +6396,74 @@
       "partners_pl": [
         {
           "name": "いとめん"
-        },
-        {
-          "name": "ちいた"
-        },
-        {
-          "name": "きなこ"
         }
       ]
     },
     {
-      "id": 1775135432216,
-      "dates": [
-        "2026-05-16T00:00"
-      ],
-      "title": "飲み会",
-      "status": "プライベート",
-      "role": "",
+      "id": 1772717517762,
+      "dates": [],
+      "title": "井藤チアキと云う女",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
       "charName": "",
-      "partners_kp": [],
-      "partners_pl": []
+      "partners_kp": [
+        {
+          "name": "ねぎ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "カルボナーラ"
+        }
+      ]
     },
     {
-      "id": 1775208108592,
-      "dates": [
-        "2026-05-01T00:00"
-      ],
-      "title": "VOID顔合わせ",
-      "status": "プライベート",
-      "role": "",
+      "id": 1773153499639,
+      "dates": [],
+      "title": "茶瀬木高校オカルト部",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
       "charName": "",
-      "partners_kp": [],
-      "partners_pl": []
+      "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "カルボナーラ"
+        },
+        {
+          "name": "ねぎ"
+        },
+        {
+          "name": "さにー"
+        }
+      ]
     },
     {
-      "id": 1775208678185,
-      "dates": [
-        "2026-04-14T00:00"
-      ],
-      "title": "VOID会議 21:00～",
-      "status": "プライベート",
-      "role": "",
+      "id": 1773411399138,
+      "dates": [],
+      "title": "四季送り",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
       "charName": "",
-      "partners_kp": [],
-      "partners_pl": []
+      "partners_kp": [
+        {
+          "name": "ねぎ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
     }
   ],
   "scnLib": [
