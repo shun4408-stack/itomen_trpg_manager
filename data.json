@@ -5279,7 +5279,7 @@
       "artifacts": []
     },
     {
-      "isLost": true,
+      "isLost": false,
       "isSecret": true,
       "regulation": "6th",
       "name": "眺野　綟",
