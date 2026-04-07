@@ -5993,11 +5993,11 @@
       ]
     },
     {
-      "id": 1775208108592,
+      "id": 1774946391946,
       "dates": [
         "2026-05-01T00:00"
       ],
-      "title": "VOID顔合わせ",
+      "title": "振替休日",
       "status": "プライベート",
       "role": "",
       "charName": "",
@@ -6005,11 +6005,11 @@
       "partners_pl": []
     },
     {
-      "id": 1774946391946,
+      "id": 1775208108592,
       "dates": [
         "2026-05-01T00:00"
       ],
-      "title": "振替休日",
+      "title": "VOID顔合わせ",
       "status": "プライベート",
       "role": "",
       "charName": "",
@@ -6221,16 +6221,35 @@
       ]
     },
     {
-      "id": 1774955932677,
-      "dates": [],
-      "title": "旅館の捕食者",
-      "status": "調整中",
+      "id": 1774691873969,
+      "dates": [
+        "2026-06-07T13:00",
+        "2026-06-14T13:00",
+        "2026-06-21T13:00"
+      ],
+      "title": "カーテンコールに祝福の花束を",
+      "status": "待機中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ひなた"
-        },
+          "name": "玉葱"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1775209653600,
+      "dates": [],
+      "title": "奇奇怪怪同好会",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
         {
           "name": "てる"
         }
@@ -6248,15 +6267,15 @@
       ]
     },
     {
-      "id": 1774691873969,
+      "id": 1773411399138,
       "dates": [],
-      "title": "カーテンコールに祝福の花束を",
+      "title": "四季送り",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "玉葱"
+          "name": "ねぎ"
         }
       ],
       "partners_pl": [
@@ -6266,15 +6285,15 @@
       ]
     },
     {
-      "id": 1773047161399,
+      "id": 1772717517762,
       "dates": [],
-      "title": "フィンブルの手記",
+      "title": "井藤チアキと云う女",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ss"
+          "name": "ねぎ"
         }
       ],
       "partners_pl": [
@@ -6282,59 +6301,14 @@
           "name": "いとめん"
         },
         {
-          "name": "ちいた"
+          "name": "カルボナーラ"
         }
       ]
     },
     {
-      "id": 1772717537683,
+      "id": 1772717458166,
       "dates": [],
-      "title": "欲望街",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "なお"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "あきづ"
-        },
-        {
-          "name": "ひなた"
-        }
-      ]
-    },
-    {
-      "id": 1772717484506,
-      "dates": [],
-      "title": "クオリフィル世界における独ガ論",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "Stella"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "ナス大臣"
-        }
-      ]
-    },
-    {
-      "id": 1772717441103,
-      "dates": [],
-      "title": "笑う人間師",
+      "title": "ワンルーム・ディスコン",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
@@ -6350,15 +6324,15 @@
       ]
     },
     {
-      "id": 1772717398418,
+      "id": 1772717424651,
       "dates": [],
-      "title": "イザナミの棺",
+      "title": "Reverse city 2",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "あきづ"
+          "name": "ナス大臣"
         }
       ],
       "partners_pl": [
@@ -6395,54 +6369,75 @@
       ]
     },
     {
-      "id": 1772717424651,
+      "id": 1772717398418,
       "dates": [],
-      "title": "Reverse city 2",
+      "title": "イザナミの棺",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
+        {
+          "name": "あきづ"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
+        {
+          "name": "てる"
+        }
+      ]
+    },
+    {
+      "id": 1772717441103,
+      "dates": [],
+      "title": "笑う人間師",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "てる"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        }
+      ]
+    },
+    {
+      "id": 1772717484506,
+      "dates": [],
+      "title": "クオリフィル世界における独ガ論",
+      "status": "調整中",
+      "role": "プレイヤー（PL）",
+      "charName": "",
+      "partners_kp": [
+        {
+          "name": "Stella"
+        }
+      ],
+      "partners_pl": [
+        {
+          "name": "いとめん"
+        },
         {
           "name": "ナス大臣"
         }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        },
-        {
-          "name": "てる"
-        }
       ]
     },
     {
-      "id": 1772717458166,
+      "id": 1772717537683,
       "dates": [],
-      "title": "ワンルーム・ディスコン",
+      "title": "欲望街",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "てる"
-        }
-      ],
-      "partners_pl": [
-        {
-          "name": "いとめん"
-        }
-      ]
-    },
-    {
-      "id": 1772717517762,
-      "dates": [],
-      "title": "井藤チアキと云う女",
-      "status": "調整中",
-      "role": "プレイヤー（PL）",
-      "charName": "",
-      "partners_kp": [
-        {
-          "name": "ねぎ"
+          "name": "なお"
         }
       ],
       "partners_pl": [
@@ -6450,36 +6445,45 @@
           "name": "いとめん"
         },
         {
-          "name": "カルボナーラ"
+          "name": "あきづ"
+        },
+        {
+          "name": "ひなた"
         }
       ]
     },
     {
-      "id": 1773411399138,
+      "id": 1773047161399,
       "dates": [],
-      "title": "四季送り",
+      "title": "フィンブルの手記",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
         {
-          "name": "ねぎ"
+          "name": "ss"
         }
       ],
       "partners_pl": [
         {
           "name": "いとめん"
+        },
+        {
+          "name": "ちいた"
         }
       ]
     },
     {
-      "id": 1775209653600,
+      "id": 1774955932677,
       "dates": [],
-      "title": "奇奇怪怪同好会",
+      "title": "旅館の捕食者",
       "status": "調整中",
       "role": "プレイヤー（PL）",
       "charName": "",
       "partners_kp": [
+        {
+          "name": "ひなた"
+        },
         {
           "name": "てる"
         }
